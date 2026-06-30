@@ -1,0 +1,60 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-bg-primary: #0d0d0d;
+  --color-bg-section: #1a1a1a;
+  --color-bg-card: #141414;
+  --color-bg-footer: #0a0a0a;
+  --color-bg-hero: #121212;
+  --color-border: #3a3a3a;
+  --color-grid: #212121;
+
+  --color-text-primary: #e8e6e2;
+  --color-text-secondary: #8c8a85;
+  --color-text-muted: #b8b5b2;
+  --color-text-dim: #595959;
+  --color-text-placeholder: #4d4d4d;
+
+  --color-accent-red: #c41e1e;
+  --color-accent-gold: #d4a23c;
+
+  --font-sans: var(--font-inter);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--color-bg-primary);
+  color: var(--color-text-primary);
+  font-family: var(--font-inter), Inter, system-ui, sans-serif;
+}
+
+.hero-grid {
+  background-color: var(--color-bg-section);
+  background-image: repeating-linear-gradient(
+    to right,
+    var(--color-grid) 0,
+    var(--color-grid) 1px,
+    transparent 1px,
+    transparent 40px
+  );
+}
+
+.image-placeholder {
+  background: linear-gradient(135deg, #1a1a1a 0%, #141414 50%, #0d0d0d 100%);
+}
+
+.bts-fade {
+  background: linear-gradient(to bottom, transparent 40%, #0d0d0d 100%);
+}
+
+.about-hero-gradient {
+  background: linear-gradient(180deg, #1a1a1a 0%, #0e0e0e 100%);
+}
