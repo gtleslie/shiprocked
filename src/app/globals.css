@@ -1,21 +1,20 @@
 @import "tailwindcss";
 
 @theme inline {
-  --color-bg-primary: #0d0d0d;
-  --color-bg-section: #1a1a1a;
-  --color-bg-card: #141414;
-  --color-bg-footer: #0a0a0a;
-  --color-bg-hero: #121212;
-  --color-border: #3a3a3a;
-  --color-grid: #212121;
+  --color-bg-primary: #000000;
+  --color-bg-section: #141414;
+  --color-bg-card: #161616;
+  --color-bg-footer: #000000;
+  --color-bg-hero: #0e0e0e;
+  --color-border: #2e2e2e;
+  --color-grid: #1c1c1c;
 
-  --color-text-primary: #e8e6e2;
-  --color-text-secondary: #8c8a85;
-  --color-text-muted: #b8b5b2;
-  --color-text-dim: #595959;
-  --color-text-placeholder: #4d4d4d;
+  --color-text-primary: #ffffff;
+  --color-text-secondary: #9a9a9a;
+  --color-text-muted: #c8c8c8;
+  --color-text-dim: #6b6b6b;
 
-  --color-accent-red: #c41e1e;
+  --color-accent-red: #d21f1f;
   --color-accent-gold: #d4a23c;
 
   --font-sans: var(--font-inter);
@@ -37,24 +36,20 @@ body {
 }
 
 .hero-grid {
-  background-color: var(--color-bg-section);
+  background-color: #0c0c0c;
   background-image: repeating-linear-gradient(
     to right,
-    var(--color-grid) 0,
-    var(--color-grid) 1px,
+    #161616 0,
+    #161616 1px,
     transparent 1px,
-    transparent 40px
+    transparent 28px
   );
 }
 
 .image-placeholder {
-  background: linear-gradient(135deg, #1a1a1a 0%, #141414 50%, #0d0d0d 100%);
+  background: #1a1a1a;
 }
 
-.bts-fade {
-  background: linear-gradient(to bottom, transparent 40%, #0d0d0d 100%);
-}
-
-.about-hero-gradient {
-  background: linear-gradient(180deg, #1a1a1a 0%, #0e0e0e 100%);
+.font-display {
+  font-family: var(--font-display), Impact, "Arial Narrow", sans-serif;
 }

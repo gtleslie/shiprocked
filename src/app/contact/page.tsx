@@ -4,6 +4,7 @@ import { FormEvent, useState } from "react";
 import { PageShell } from "@/components/PageShell";
 import { SiteButton } from "@/components/SiteButton";
 import { SectionDivider } from "@/components/SectionDivider";
+import { LineRule, SectionLabel } from "@/components/ImagePlaceholder";
 import { siteContent } from "@content/site-content";
 
 export default function ContactPage() {
@@ -17,77 +18,72 @@ export default function ContactPage() {
 
   return (
     <PageShell activePage="contact">
-      <section className="mx-auto max-w-[1440px] px-16 py-20">
-        <p className="text-[11px] font-bold tracking-[0.66px] text-accent-gold uppercase">
-          {contact.hero.overline}
-        </p>
-        <h1 className="mt-4 text-[44px] font-black text-text-primary">
+      <section className="mx-auto max-w-[1440px] px-6 pt-16 pb-10 md:px-12 lg:px-16">
+        <SectionLabel>{contact.hero.overline}</SectionLabel>
+        <h1 className="mt-4 text-[42px] font-black text-white md:text-[52px]">
           {contact.hero.headline}
         </h1>
+        <p className="mt-4 max-w-3xl text-[16px] text-text-muted">{contact.hero.body}</p>
       </section>
 
       <SectionDivider />
 
-      <section className="mx-auto max-w-[1440px] px-16 py-12">
+      <section className="mx-auto max-w-[1440px] px-6 py-12 md:px-12 lg:px-16">
         <div className="grid gap-6 lg:grid-cols-2">
           {contact.blocks.map((block) => (
-            <article
-              key={block.overline}
-              className="rounded-[4px] border border-border bg-bg-section p-8"
-            >
-              <p className="text-[11px] font-bold tracking-[0.66px] text-accent-gold uppercase">
-                {block.overline}
-              </p>
-              <h2 className="mt-4 text-[20px] font-bold text-text-primary">{block.title}</h2>
+            <article key={block.overline} className="bg-bg-card p-8">
+              <SectionLabel>{block.overline}</SectionLabel>
+              <h2 className="mt-4 text-[20px] font-bold text-white">{block.title}</h2>
               <a
                 href={`mailto:${block.email}`}
-                className="mt-3 inline-block text-[15px] text-text-muted hover:text-text-primary"
+                className="mt-3 inline-block text-[15px] text-text-secondary hover:text-white"
               >
                 {block.email}
               </a>
               {block.note && (
-                <p className="mt-4 text-[13px] text-text-secondary">{block.note}</p>
+                <p className="mt-3 text-[13px] text-text-secondary">{block.note}</p>
               )}
             </article>
           ))}
         </div>
       </section>
 
-      <section className="mx-auto max-w-[1440px] px-16 py-12">
-        <form
-          onSubmit={handleSubmit}
-          className="rounded-[4px] border border-border bg-bg-section p-8"
-        >
-          <div className="grid gap-6 md:grid-cols-2">
-            <label className="block">
-              <span className="text-[11px] font-bold tracking-[0.44px] text-accent-gold uppercase">
-                {contact.form.name}
-              </span>
-              <input
-                required
-                type="text"
-                className="mt-2 h-12 w-full rounded-[3px] border border-border bg-bg-primary px-4 text-[15px] text-text-primary outline-none focus:border-accent-red"
-              />
-            </label>
-            <label className="block">
-              <span className="text-[11px] font-bold tracking-[0.44px] text-accent-gold uppercase">
-                {contact.form.email}
-              </span>
-              <input
-                required
-                type="email"
-                className="mt-2 h-12 w-full rounded-[3px] border border-border bg-bg-primary px-4 text-[15px] text-text-primary outline-none focus:border-accent-red"
-              />
-            </label>
-          </div>
+      <div className="mx-auto max-w-[1440px] px-6 md:px-12 lg:px-16">
+        <LineRule />
+      </div>
+
+      <section className="mx-auto max-w-[1440px] px-6 py-12 md:px-12 lg:px-16">
+        <SectionLabel>{contact.form.overline}</SectionLabel>
+        <h2 className="mt-4 text-[32px] font-black text-white">{contact.form.headline}</h2>
+        <form onSubmit={handleSubmit} className="mt-8 max-w-3xl">
+          <label className="block">
+            <span className="text-[11px] font-bold tracking-[0.44px] text-text-secondary uppercase">
+              {contact.form.name}
+            </span>
+            <input
+              required
+              type="text"
+              className="mt-2 h-12 w-full border border-border bg-bg-card px-4 text-[15px] text-white outline-none focus:border-accent-red"
+            />
+          </label>
           <label className="mt-6 block">
-            <span className="text-[11px] font-bold tracking-[0.44px] text-accent-gold uppercase">
+            <span className="text-[11px] font-bold tracking-[0.44px] text-text-secondary uppercase">
+              {contact.form.email}
+            </span>
+            <input
+              required
+              type="email"
+              className="mt-2 h-12 w-full border border-border bg-bg-card px-4 text-[15px] text-white outline-none focus:border-accent-red"
+            />
+          </label>
+          <label className="mt-6 block">
+            <span className="text-[11px] font-bold tracking-[0.44px] text-text-secondary uppercase">
               {contact.form.message}
             </span>
             <textarea
               required
               rows={6}
-              className="mt-2 w-full rounded-[3px] border border-border bg-bg-primary px-4 py-3 text-[15px] text-text-primary outline-none focus:border-accent-red"
+              className="mt-2 w-full border border-border bg-bg-card px-4 py-3 text-[15px] text-white outline-none focus:border-accent-red"
             />
           </label>
           <SiteButton type="submit" className="mt-8">
@@ -101,19 +97,21 @@ export default function ContactPage() {
         </form>
       </section>
 
-      <section className="mx-auto max-w-[1440px] px-16 py-20">
-        <p className="text-[11px] font-bold tracking-[0.66px] text-accent-gold uppercase">
-          {contact.social.overline}
-        </p>
+      <div className="mx-auto max-w-[1440px] px-6 md:px-12 lg:px-16">
+        <LineRule />
+      </div>
+
+      <section className="mx-auto max-w-[1440px] px-6 py-12 md:px-12 lg:px-16">
+        <SectionLabel>{contact.social.overline}</SectionLabel>
         <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
           {contact.social.buttons.map((button) => (
             <a
               key={button.label}
               href={button.href}
-              className={`flex h-11 items-center justify-center rounded-[2px] text-[12px] font-bold tracking-[0.36px] ${
+              className={`flex h-11 items-center justify-center text-[12px] font-bold tracking-[0.36px] ${
                 button.variant === "gold"
-                  ? "bg-accent-gold text-bg-primary"
-                  : "border-[1.5px] border-text-primary text-text-primary"
+                  ? "bg-accent-gold text-black"
+                  : "border border-white text-white"
               }`}
             >
               {button.label}

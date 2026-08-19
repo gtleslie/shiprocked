@@ -1,56 +1,27 @@
-import Image from "next/image";
 import { PageShell } from "@/components/PageShell";
 import { SiteButton } from "@/components/SiteButton";
 import { CampaignProgress } from "@/components/CampaignProgress";
 import { SectionDivider } from "@/components/SectionDivider";
+import { Logo } from "@/components/Logo";
+import { ImagePlaceholder, SectionLabel } from "@/components/ImagePlaceholder";
 import { siteContent } from "@content/site-content";
 
 export default function HomePage() {
-  const { home, assets, links } = siteContent;
+  const { home } = siteContent;
 
   return (
     <PageShell activePage="home">
-      <section className="hero-grid relative min-h-[760px] overflow-hidden">
-        <div className="mx-auto grid max-w-[1440px] grid-cols-1 lg:grid-cols-2">
-          <div className="flex flex-col justify-center px-16 py-20">
-            <p className="text-[11px] font-bold tracking-[0.66px] text-accent-gold uppercase">
-              {home.hero.overline}
-            </p>
-            <div className="relative mt-8 h-[180px] w-[340px] max-w-full">
-              <Image
-                src={assets.logo}
-                alt={siteContent.site.title}
-                fill
-                className="object-contain object-left"
-                priority
-              />
-            </div>
-            <p className="mt-8 max-w-xl text-[17px] text-text-primary">
-              {home.hero.subtitle}
-            </p>
-            <div className="mt-8 flex flex-wrap gap-4">
-              <SiteButton href={links.trailer}>{home.hero.watchTrailer}</SiteButton>
-              <SiteButton href="/donate" variant="outline">
-                {home.hero.donate}
-              </SiteButton>
-            </div>
-          </div>
-          <div className="image-placeholder relative min-h-[420px] lg:min-h-[760px]">
-            <div className="absolute inset-0 bg-bg-hero/80" />
-            <p className="absolute bottom-8 left-8 text-[12px] tracking-[0.48px] text-text-dim uppercase">
-              Hero photography — TBD
-            </p>
-          </div>
+      <section className="hero-grid relative flex min-h-[520px] items-center overflow-hidden md:min-h-[620px]">
+        <div className="mx-auto w-full max-w-[1440px] px-6 py-20 md:px-12 lg:px-16">
+          <Logo size="hero" />
         </div>
       </section>
 
       <SectionDivider />
 
-      <section className="mx-auto max-w-[1440px] px-16 py-20">
-        <p className="text-[11px] font-bold tracking-[0.66px] text-accent-gold uppercase">
-          {home.film.overline}
-        </p>
-        <h2 className="mt-4 text-[38px] leading-tight font-black text-text-primary">
+      <section className="mx-auto max-w-[1440px] px-6 py-20 md:px-12 lg:px-16">
+        <SectionLabel>{home.film.overline}</SectionLabel>
+        <h2 className="mt-4 text-[36px] leading-tight font-black text-white md:text-[42px]">
           {home.film.headline.map((line) => (
             <span key={line} className="block">
               {line}
@@ -58,14 +29,11 @@ export default function HomePage() {
           ))}
         </h2>
 
-        <div className="mt-12 grid gap-12 lg:grid-cols-[560px_1fr]">
-          <div className="image-placeholder h-[380px] rounded-[4px]" />
+        <div className="mt-12 grid gap-12 lg:grid-cols-[1.05fr_1fr] lg:items-start">
+          <ImagePlaceholder className="h-[340px] w-full md:h-[400px]" />
           <div className="space-y-6">
-            {home.film.paragraphs.map((paragraph, index) => (
-              <p
-                key={paragraph}
-                className={`text-[16px] leading-relaxed ${index === 0 ? "text-text-primary" : "text-text-muted"}`}
-              >
+            {home.film.paragraphs.map((paragraph) => (
+              <p key={paragraph} className="text-[16px] leading-relaxed text-text-muted">
                 {paragraph}
               </p>
             ))}
@@ -76,23 +44,20 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-[1440px] px-16 py-20">
-        <p className="text-[11px] font-bold tracking-[0.66px] text-accent-gold uppercase">
-          {home.whyItMatters.overline}
-        </p>
-        <h2 className="mt-4 max-w-2xl text-[32px] font-black text-text-primary">
+      <section className="mx-auto max-w-[1440px] px-6 py-16 md:px-12 lg:px-16">
+        <SectionLabel>{home.whyItMatters.overline}</SectionLabel>
+        <h2 className="mt-4 max-w-3xl text-[32px] font-black text-white md:text-[36px]">
           {home.whyItMatters.headline}
         </h2>
 
-        <div className="mt-12 grid gap-6 lg:grid-cols-3">
+        <div className="mt-12 grid gap-6 md:grid-cols-3">
           {home.whyItMatters.cards.map((card) => (
-            <article
-              key={card.number}
-              className="rounded-[4px] border border-border bg-bg-section p-7"
-            >
+            <article key={card.number} className="border border-border bg-bg-card p-6">
               <p className="text-[13px] font-bold text-accent-red">{card.number}</p>
-              <div className="image-placeholder mt-6 h-[140px] rounded-[3px]" />
-              <h3 className="mt-5 text-[16px] font-bold text-text-primary">{card.title}</h3>
+              <ImagePlaceholder className="mt-5 h-[140px]" />
+              <h3 className="mt-5 text-[15px] font-bold tracking-[0.2px] text-white">
+                {card.title}
+              </h3>
               <p className="mt-2 text-[13px] leading-relaxed text-text-secondary">
                 {card.description}
               </p>
@@ -101,15 +66,14 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-[1440px] px-16 py-20">
-        <p className="text-[11px] font-bold tracking-[0.66px] text-accent-gold uppercase">
-          {home.campaign.overline}
-        </p>
-        <h2 className="mt-4 text-[32px] font-black text-text-primary">
+      <section className="mx-auto max-w-[1440px] px-6 pt-12 pb-20 md:px-12 lg:px-16">
+        <SectionLabel>{home.campaign.overline}</SectionLabel>
+        <h2 className="mt-4 text-[32px] font-black text-white md:text-[36px]">
           {home.campaign.headline}
         </h2>
-        <CampaignProgress className="mt-8 max-w-5xl" />
-        <SiteButton href="/donate" className="mt-8">
+        <p className="mt-3 text-[14px] text-text-muted">{siteContent.campaign.homeDates}</p>
+        <CampaignProgress variant="home" className="mt-8" />
+        <SiteButton href="/support" className="mt-8">
           {home.campaign.supportCta}
         </SiteButton>
       </section>

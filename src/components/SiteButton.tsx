@@ -1,12 +1,13 @@
 import Link from "next/link";
 import { ReactNode } from "react";
 
-type ButtonVariant = "primary" | "outline" | "gold";
+type ButtonVariant = "primary" | "outline" | "gold" | "dark";
 
 const variantClasses: Record<ButtonVariant, string> = {
-  primary: "bg-accent-red text-text-primary hover:bg-[#a81818]",
-  outline: "border-[1.5px] border-text-primary text-text-primary hover:bg-white/5",
-  gold: "bg-accent-gold text-bg-primary hover:bg-[#c49234]",
+  primary: "bg-accent-red text-white hover:bg-[#b81818]",
+  outline: "border border-white text-white hover:bg-white/5",
+  gold: "bg-accent-gold text-black hover:bg-[#c49234]",
+  dark: "bg-black text-white hover:bg-[#111]",
 };
 
 type SiteButtonProps = {
@@ -26,7 +27,7 @@ export function SiteButton({
   type = "button",
   disabled = false,
 }: SiteButtonProps) {
-  const classes = `inline-flex h-[52px] items-center justify-center rounded-[2px] px-6 text-[13px] font-bold tracking-[0.26px] transition-colors ${variantClasses[variant]} ${className} ${disabled ? "pointer-events-none cursor-not-allowed opacity-50" : ""}`;
+  const classes = `inline-flex h-[48px] items-center justify-center px-7 text-[12px] font-bold tracking-[0.32px] uppercase transition-colors ${variantClasses[variant]} ${className} ${disabled ? "pointer-events-none cursor-not-allowed opacity-50" : ""}`;
 
   if (href && !disabled) {
     return (

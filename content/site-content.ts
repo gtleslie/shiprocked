@@ -6,23 +6,9 @@ export const siteContent = {
   },
 
   assets: {
-    logo: "/assets/logo.png",
+    logo: "/assets/logos/Logo.png",
     seedAndSpark: "/assets/seedandsparktransparent.svg",
     dividerVector: "/assets/divider-vector.svg",
-    dividerLine: "/assets/divider-line.png",
-    heroSamurai: "/assets/hero-samurai.jpg",
-    filmStill: "/assets/film-still.jpg",
-    btsPhoto: "/assets/bts-photo.jpg",
-    productionStills: [
-      "/assets/production-still-1.jpg",
-      "/assets/production-still-2.jpg",
-      "/assets/production-still-3.jpg",
-    ],
-    crew: {
-      albert: "/assets/crew-albert.jpg",
-      matt: "/assets/crew-matt.jpg",
-      silas: "/assets/crew-silas.jpg",
-    },
   },
 
   links: {
@@ -36,28 +22,31 @@ export const siteContent = {
 
   campaign: {
     goal: 30000,
+    homeGoal: 25000,
     raised: 0,
     dates: "Sept 7 – Nov 7, 2026",
-    datesShort: "September 7 – November 7, 2026",
+    homeDates: "Oct 2nd – Nov 7, 2026",
+    datesLabel: "CAMPAIGN: SEPT 7 – NOV 7, 2026",
     eightyPercentNote:
       "Seed & Spark requires campaigns to reach 80% of goal before funds are released.",
   },
 
   nav: {
-    donateCta: "DONATE NOW",
+    supportCta: "SUPPORT NOW",
     links: [
-      { label: "HOME", href: "/", key: "home" as const, underlineWidth: 38 },
-      { label: "ABOUT", href: "/about", key: "about" as const, underlineWidth: 45 },
-      { label: "DONATE", href: "/donate", key: "donate" as const, underlineWidth: 53 },
-      { label: "CONTACT", href: "/contact", key: "contact" as const, underlineWidth: 62 },
+      { label: "HOME", href: "/", key: "home" as const },
+      { label: "ABOUT", href: "/about", key: "about" as const },
+      { label: "SUPPORT", href: "/support", key: "support" as const },
+      { label: "CONTACT", href: "/contact", key: "contact" as const },
     ],
   },
 
   footer: {
+    tagline: "A senior thesis documentary",
     explore: [
       { label: "Home", href: "/" },
       { label: "About", href: "/about" },
-      { label: "Donate", href: "/donate" },
+      { label: "Support", href: "/support" },
       { label: "Contact", href: "/contact" },
     ],
     contact: {
@@ -71,25 +60,10 @@ export const siteContent = {
     copyright: "© 2026 THE STORY OF SHIPROCKED — A SENIOR THESIS FILM",
   },
 
-  splash: {
-    subtitle: [
-      "Four thousand rock fans. One cruise ship. Sixteen years of chaos,",
-      "community, and music — captured for the first time on film.",
-    ],
-    watchTrailer: "WATCH TRAILER",
-    donate: "DONATE",
-  },
-
   home: {
-    hero: {
-      overline: "WELCOME TO SHIPROCKED",
-      subtitle: "A floating world, decades in the making.",
-      watchTrailer: "WATCH TRAILER",
-      donate: "DONATE",
-    },
     film: {
       overline: "THE FILM",
-      headline: ["A floating world,", "decades in the making."],
+      headline: ["A floating world,", "finally documented."],
       paragraphs: [
         "For sixteen years, ShipRocked has brought thousands of rock and metal fans together on a cruise ship in the Caribbean, part festival, part floating community, all chaos.",
         "This documentary goes behind the music to capture what makes ShipRocked unlike anything else in the touring world: the fans who return year after year, the artists who become family, and the culture built one voyage at a time.",
@@ -109,13 +83,13 @@ export const siteContent = {
         },
         {
           number: "02",
-          title: "THE FAMILY",
+          title: "THE COMMUNITY",
           description:
             "A distinct culture, 16 years deep. Fans who have sailed every single year, and the crew who keeps it running.",
         },
         {
           number: "03",
-          title: "THE PRODUCTION",
+          title: "THE STAKES",
           description:
             "A senior thesis film, self-funded, racing toward a January 2027 voyage and a hard deadline.",
         },
@@ -133,34 +107,35 @@ export const siteContent = {
       overline: "PRODUCTION DETAILS",
       headline: "30 terabytes",
       headlineAccent: "and counting.",
+      body: "What started as a film school thesis has become the most ambitious documentation project in ShipRocked's sixteen-year history. Two years of footage, hundreds of interviews, and one voyage left to capture before the story is complete.",
     },
     timeline: {
       overline: "THE TIMELINE",
       headline: "From dock to deadline.",
       items: [
         {
-          date: "FALL 2024",
-          title: "Pre-production begins",
+          date: "JAN 2026",
+          title: "Voyage of the Ronin filming begins",
           description:
-            "Research, outreach, and building relationships with the ShipRocked community.",
+            "Principal documentary footage captured aboard the first voyage.",
         },
         {
-          date: "JAN 2025",
-          title: "First voyage shoot",
+          date: "FEB – JUN 2026",
+          title: "Post-production",
           description:
-            "Embarking on the cruise with cameras, crew, and a mountain of hard drives.",
+            "Editing, sound design, and color grading the 4K raw footage.",
         },
         {
-          date: "SPRING 2025",
-          title: "Post-production ramp",
+          date: "SEPT – NOV 2026",
+          title: "Fundraising campaign",
           description:
-            "Logging, transcribing, and shaping hundreds of hours of footage.",
+            "Public campaign to fund post-production and distribution costs.",
         },
         {
-          date: "JAN 2027",
-          title: "Voyage of the Ronin",
+          date: "2027",
+          title: "Festival circuit & release",
           description:
-            "The next ShipRocked cruise — our deadline to deliver the finished film.",
+            "Submission to documentary festivals, followed by public release.",
         },
       ],
     },
@@ -168,137 +143,112 @@ export const siteContent = {
       overline: "MEET THE CREW",
       headline: "The people behind the lens.",
       members: [
-        {
-          name: "Albert Koenig",
-          role: "DIRECTOR",
-          bio: "Senior thesis filmmaker documenting the culture and community of ShipRocked from the inside.",
-        },
-        {
-          name: "Matt Davis",
-          role: "PRODUCER",
-          bio: "Production lead coordinating shoots, logistics, and the growing archive of voyage footage.",
-        },
-        {
-          name: "Silas Grasse",
-          role: "MARKETING LEAD",
-          bio: "Driving awareness for the campaign and connecting the film with fans and press.",
-        },
+        { name: "ALBERT KOENIG", role: "DIRECTOR" },
+        { name: "MATT DAVIS", role: "PRODUCER" },
+        { name: "SILAS GRASSE", role: "PRODUCTION LEAD" },
       ],
     },
     characters: {
       overline: "MEET THE CHARACTERS",
-      headline: "The faces of ShipRocked.",
+      headline: "The voices of the voyage.",
       subjects: [
-        { name: "Subject TBD", note: "Longtime sailor" },
-        { name: "Subject TBD", note: "Artist alumni" },
-        { name: "Subject TBD", note: "Crew member" },
-        { name: "Subject TBD", note: "First-time voyager" },
+        { name: "[NAME TBD]", note: "Character / scene name TBD" },
+        { name: "[NAME TBD]", note: "Character / scene name TBD" },
+        { name: "[NAME TBD]", note: "Character / scene name TBD" },
+        { name: "[NAME TBD]", note: "Character / scene name TBD" },
       ],
     },
     transparency: {
       overline: "TRANSPARENCY",
-      headline: "Where your support goes.",
+      headline: "Where the money goes.",
       breakdown: [
-        { label: "Production & equipment", percent: 35 },
-        { label: "Post-production & editing", percent: 25 },
-        { label: "Music licensing", percent: 15 },
-        { label: "Marketing & festival submissions", percent: 15 },
-        { label: "Contingency", percent: 10 },
+        { label: "Post-production & editing", percent: 40 },
+        { label: "Festival submission fees", percent: 20 },
+        { label: "Sound design & color grade", percent: 20 },
+        { label: "Travel & final voyage capture", percent: 15 },
+        { label: "Distribution & marketing", percent: 5 },
       ],
     },
   },
 
-  donate: {
+  support: {
     hero: {
       overline: "JOIN THE CREW",
       headline: "Fund the final voyage.",
+      body: "Every tier gets you closer to the finished film — and the top tier gets you a cabin on the real thing.",
     },
-    tiers: [
-      {
-        id: "tier-1",
-        tier: "Tier I",
-        price: 25,
-        name: "NEWB",
-        description: "Digital thank-you and campaign updates.",
-        featured: false,
-        comingSoon: false,
-        availability: null,
-        premium: false,
-      },
-      {
-        id: "tier-2",
-        tier: "Tier II",
-        price: 100,
-        name: "SHIPROCKER",
-        description: "Exclusive digital content and behind-the-scenes access.",
-        featured: false,
-        comingSoon: false,
-        availability: null,
-        premium: false,
-      },
-      {
-        id: "tier-3",
-        tier: "Tier III",
-        price: 250,
-        name: "SKULLY'S DAIMYO",
-        description: "Limited-edition merch and early screening invite.",
-        featured: false,
-        comingSoon: false,
-        availability: null,
-        premium: false,
-      },
-      {
-        id: "tier-4",
-        tier: "Tier IV",
-        price: 500,
-        name: "SKULLY'S HAND",
-        description: "Producer credit, signed poster, and VIP screening access.",
-        featured: true,
-        badge: "MOST CLAIMED",
-        comingSoon: false,
-        availability: null,
-        premium: false,
-      },
-      {
-        id: "tier-5-coming",
-        tier: "Tier V",
-        price: null,
-        name: "COMING SOON",
-        description: "A new reward tier is on the way.",
-        featured: false,
-        comingSoon: true,
-        availability: null,
-        premium: false,
-      },
-      {
-        id: "tier-6",
-        tier: "Tier VI",
-        price: 1500,
-        name: "SURVIVOR",
-        description: "Premium package with exclusive voyage memorabilia.",
-        featured: false,
-        comingSoon: false,
-        availability: "Only 40 available.",
-        premium: false,
-      },
-      {
-        id: "tier-7",
-        tier: "Tier VII",
-        price: 6000,
-        name: "OCEANVIEW CABIN FOR TWO",
-        description:
-          "The ultimate reward — an oceanview cabin for two on a future ShipRocked voyage.",
-        featured: false,
-        comingSoon: false,
-        availability: null,
-        premium: true,
-      },
-    ],
+    tiers: {
+      overline: "CHOOSE YOUR TIER",
+      headline: "Six ways to support the film.",
+      selectCta: "SELECT THIS TIER",
+      claimCta: "CLAIM THIS TIER",
+      items: [
+        {
+          id: "tier-1",
+          tier: "TIER I",
+          price: 25,
+          name: "NEWB",
+          perks: ["Digital thank you card", "Name in credits"],
+          featured: false,
+          premium: false,
+        },
+        {
+          id: "tier-2",
+          tier: "TIER II",
+          price: 100,
+          name: "SHIPROCKER",
+          perks: ["Everything in Deckhand", "Exclusive BTS photo set"],
+          featured: false,
+          premium: false,
+        },
+        {
+          id: "tier-3",
+          tier: "TIER III",
+          price: 250,
+          name: "SKULLY'S DAIMYO",
+          perks: ["Everything in First Mate", "Early access to trailer"],
+          featured: false,
+          premium: false,
+        },
+        {
+          id: "tier-4",
+          tier: "TIER IV",
+          price: 500,
+          name: "SKULLY'S HAND",
+          perks: ["Everything in Navigator", "Signed film poster"],
+          featured: true,
+          badge: "MOST CLAIMED",
+          premium: false,
+        },
+        {
+          id: "tier-5",
+          tier: "TIER V",
+          price: 1500,
+          name: "SURVIVOR",
+          perks: ["Everything in Quartermaster", "Digital film download day one"],
+          featured: false,
+          premium: false,
+        },
+        {
+          id: "tier-6",
+          tier: "TIER VI",
+          price: 6000,
+          name: "OCEANVIEW CABIN FOR TWO",
+          perks: [
+            "Cabin for two on Voyage of the Ronin",
+            "Everything in all lower tiers",
+          ],
+          featured: false,
+          badge: "TOP REWARD",
+          premium: true,
+        },
+      ],
+    },
     seedAndSpark: {
-      overline: "POWERED BY",
-      headline: "Seed & Spark",
-      body: "Our crowdfunding campaign runs on Seed & Spark. Every contribution helps us cross the finish line.",
-      cta: "VISIT CAMPAIGN",
+      overline: "POWERED BY SEED & SPARK",
+      headline: "Built for indie film. Designed for trust.",
+      body: "We're running this campaign through Seed & Spark, the platform built specifically for independent filmmakers — transparent fees, direct filmmaker support, and a community that champions stories like this one.",
+      cta: "SUPPORT VIA SEED & SPARK →",
     },
   },
 
@@ -306,6 +256,7 @@ export const siteContent = {
     hero: {
       overline: "GET IN TOUCH",
       headline: "Questions? We're listening.",
+      body: "Press, sponsors, fans, and fellow rock-and-roll rōnin — reach out below.",
     },
     blocks: [
       {
@@ -318,10 +269,12 @@ export const siteContent = {
         overline: "GENERAL INQUIRIES",
         title: "ASK4 Entertainment",
         email: "info@ask4ent.com",
-        note: "Response within 2-3 business days",
+        note: "Response within 2–3 business days",
       },
     ],
     form: {
+      overline: "GOT A QUESTION?",
+      headline: "Drop us a line.",
       name: "NAME",
       email: "EMAIL",
       message: "MESSAGE",
