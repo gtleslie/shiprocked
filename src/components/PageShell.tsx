@@ -10,9 +10,9 @@ type PageShellProps = {
 
 export function PageShell({ activePage, children }: PageShellProps) {
   return (
-    <div className="min-h-screen bg-black">
+    <div className="flex min-h-screen flex-col bg-black">
       <SiteNav activePage={activePage} />
-      <main className="pt-[84px]">{children}</main>
+      <main className="flex-1 pt-[84px]">{children}</main>
       <SiteFooter />
     </div>
   );
