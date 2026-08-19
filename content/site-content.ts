@@ -7,6 +7,7 @@ export const siteContent = {
 
   assets: {
     logo: "/assets/logos/Logo.png",
+    heroLogo: "/assets/logos/hero-logo.png",
     seedAndSpark: "/assets/seedandsparktransparent.svg",
     dividerVector: "/assets/divider-vector.svg",
   },
