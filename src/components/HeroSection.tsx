@@ -16,7 +16,7 @@ export function HeroSection() {
         </div>
 
         <div className="hero-visual relative min-h-[320px] flex-1 lg:min-h-0 lg:basis-[58%]">
-          <div className="hero-visual-frame absolute inset-0 m-6 md:m-10 lg:m-12">
+          <div className="hero-visual-frame absolute inset-0 mx-6 my-14 md:mx-10 md:my-20 lg:mx-12 lg:my-28">
             <div className="image-placeholder relative h-full w-full overflow-hidden">
               <div className="hero-visual-sheen absolute inset-0" aria-hidden />
               <div className="hero-ribbon hero-ribbon-one" aria-hidden />
