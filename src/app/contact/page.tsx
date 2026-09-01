@@ -26,7 +26,7 @@ export default function ContactPage() {
       </section>
 
       <div className="mx-auto max-w-[1440px] px-6 md:px-12 lg:px-16" aria-hidden>
-        <div className="h-[3px] w-full bg-[linear-gradient(90deg,transparent_0%,rgba(210,31,31,0.65)_18%,rgba(210,31,31,0.95)_50%,rgba(210,31,31,0.65)_82%,transparent_100%)]" />
+        <div className="h-[3px] w-full bg-gradient-to-r from-[rgba(210,31,31,0.95)] via-[rgba(210,31,31,0.45)] to-transparent" />
       </div>
 
       <section className="mx-auto max-w-[1440px] px-6 py-12 md:px-12 lg:px-16">

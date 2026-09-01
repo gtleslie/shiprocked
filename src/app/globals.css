@@ -49,10 +49,8 @@ body {
   height: 3px;
   background: linear-gradient(
     90deg,
-    transparent 0%,
-    rgba(210, 31, 31, 0.65) 18%,
-    rgba(210, 31, 31, 0.95) 50%,
-    rgba(210, 31, 31, 0.65) 82%,
+    rgba(210, 31, 31, 0.95) 0%,
+    rgba(210, 31, 31, 0.45) 45%,
     transparent 100%
   );
 }
