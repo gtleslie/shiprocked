@@ -1,40 +1,48 @@
 import { PageShell } from "@/components/PageShell";
+import { CampaignProgress } from "@/components/CampaignProgress";
 import { SiteButton } from "@/components/SiteButton";
+import { SectionDivider } from "@/components/SectionDivider";
+import { SectionLabel } from "@/components/ImagePlaceholder";
+import { RewardGate } from "@/components/RewardGate";
 import { siteContent } from "@content/site-content";
 
 export default function SupportPage() {
   const { support, links } = siteContent;
-  const { teaser } = support;
 
   return (
     <PageShell activePage="support">
-      <section className="flex min-h-full flex-col items-center justify-center px-6 py-16 text-center md:px-12 lg:px-16">
-        <div className="mx-auto max-w-2xl">
-          <span className="inline-block border border-accent-red px-4 py-1.5 text-[10px] font-bold tracking-[0.8px] text-accent-red uppercase">
-            {teaser.badge}
-          </span>
+      <section className="mx-auto max-w-[1440px] px-6 pt-16 pb-10 md:px-12 lg:px-16">
+        <SectionLabel>{support.hero.overline}</SectionLabel>
+        <h1 className="mt-4 text-[42px] font-black text-white md:text-[52px]">
+          {support.hero.headline}
+        </h1>
+        <p className="mt-4 max-w-3xl text-[16px] text-text-muted">{support.hero.body}</p>
+        <CampaignProgress variant="support" className="mt-10" />
+      </section>
 
-          <h1 className="mt-10 text-[40px] leading-tight font-black text-white md:text-[52px]">
-            {teaser.headline}
-          </h1>
+      <SectionDivider />
 
-          <p className="mt-5 text-[18px] font-medium text-accent-gold [text-shadow:0_0_24px_rgba(212,162,60,0.35)] md:text-[20px]">
-            {teaser.subheadline}
-          </p>
-
-          <SiteButton
-            href={links.mailingList}
-            className="mt-10 h-14 min-w-[220px] rounded-md px-10 text-[13px]"
-          >
-            {teaser.cta}
-          </SiteButton>
-
-          <p className="mt-6 text-[13px] leading-relaxed text-text-dim">{teaser.note}</p>
-
-          <p className="mt-16 text-[11px] font-semibold tracking-[0.64px] text-text-dim uppercase">
-            {teaser.date}
-          </p>
+      <section className="mx-auto max-w-[1440px] px-6 py-16 md:px-12 lg:px-16">
+        <SectionLabel>{support.tiers.overline}</SectionLabel>
+        <h2 className="mt-4 text-[32px] font-black text-white md:text-[36px]">
+          {support.tiers.headline}
+        </h2>
+        <div className="mt-12">
+          <RewardGate />
         </div>
+      </section>
+
+      <section className="mx-auto max-w-[1440px] px-6 pt-8 pb-20 md:px-12 lg:px-16">
+        <SectionLabel>{support.seedAndSpark.overline}</SectionLabel>
+        <h2 className="mt-4 max-w-3xl text-[32px] font-black text-white md:text-[36px]">
+          {support.seedAndSpark.headline}
+        </h2>
+        <p className="mt-5 max-w-3xl text-[15px] leading-relaxed text-text-secondary">
+          {support.seedAndSpark.body}
+        </p>
+        <SiteButton href={links.seedAndSpark} className="mt-8">
+          {support.seedAndSpark.cta}
+        </SiteButton>
       </section>
     </PageShell>
   );

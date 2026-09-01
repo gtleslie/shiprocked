@@ -17,6 +17,7 @@ type SiteButtonProps = {
   className?: string;
   type?: "button" | "submit";
   disabled?: boolean;
+  onClick?: () => void;
 };
 
 export function SiteButton({
@@ -26,19 +27,20 @@ export function SiteButton({
   className = "",
   type = "button",
   disabled = false,
+  onClick,
 }: SiteButtonProps) {
   const classes = `inline-flex h-[48px] items-center justify-center px-7 text-[12px] font-bold tracking-[0.32px] uppercase transition-colors ${variantClasses[variant]} ${className} ${disabled ? "pointer-events-none cursor-not-allowed opacity-50" : ""}`;
 
   if (href && !disabled) {
     return (
-      <Link href={href} className={classes}>
+      <Link href={href} className={classes} onClick={onClick}>
         {children}
       </Link>
     );
   }
 
   return (
-    <button type={type} className={classes} disabled={disabled}>
+    <button type={type} className={classes} disabled={disabled} onClick={onClick}>
       {children}
     </button>
   );
