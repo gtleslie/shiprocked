@@ -38,13 +38,19 @@ export function TierCard({ tier, locked = false }: TierCardProps) {
   const path = wavyPath(320, 420, gold ? 8 : 7, 8);
 
   return (
-    <article className="relative min-h-[380px] overflow-visible">
+    <article className="relative min-h-[380px]">
+      {tier.premium && (
+        <svg
+          className="pointer-events-none absolute inset-0 h-full w-full [filter:drop-shadow(0_0_6px_#d4a23c)_drop-shadow(0_0_14px_rgba(212,162,60,0.7))]"
+          viewBox="0 0 320 420"
+          preserveAspectRatio="none"
+          aria-hidden
+        >
+          <path d={path} fill="none" stroke="#d4a23c" strokeWidth="4" />
+        </svg>
+      )}
       <svg
-        className={`absolute inset-0 h-full w-full ${
-          tier.premium
-            ? "[filter:drop-shadow(0_0_16px_rgba(212,162,60,0.9))_drop-shadow(0_0_32px_rgba(212,162,60,0.45))]"
-            : ""
-        }`}
+        className="absolute inset-0 h-full w-full"
         viewBox="0 0 320 420"
         preserveAspectRatio="none"
         aria-hidden
