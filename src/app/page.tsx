@@ -1,8 +1,7 @@
 import { PageShell } from "@/components/PageShell";
+import { HeroSection } from "@/components/HeroSection";
 import { SiteButton } from "@/components/SiteButton";
 import { CampaignProgress } from "@/components/CampaignProgress";
-import { SectionDivider } from "@/components/SectionDivider";
-import { Logo } from "@/components/Logo";
 import { ImagePlaceholder, SectionLabel } from "@/components/ImagePlaceholder";
 import { siteContent } from "@content/site-content";
 
@@ -11,13 +10,7 @@ export default function HomePage() {
 
   return (
     <PageShell activePage="home">
-      <section className="hero-grid relative flex min-h-[520px] items-center overflow-hidden md:min-h-[620px]">
-        <div className="mx-auto w-full max-w-[1440px] px-6 py-20 md:px-12 lg:px-16">
-          <Logo size="hero" />
-        </div>
-      </section>
-
-      <SectionDivider />
+      <HeroSection />
 
       <section className="mx-auto max-w-[1440px] px-6 py-20 md:px-12 lg:px-16">
         <SectionLabel>{home.film.overline}</SectionLabel>

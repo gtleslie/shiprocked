@@ -47,11 +47,10 @@ export function TeaserOption3({ onReveal }: TeaserOption3Props) {
           <p className="mt-3 max-w-xl text-[14px] leading-relaxed text-text-muted md:text-[15px]">
             {teaser.body}
           </p>
-          <div className="mt-7 flex flex-wrap items-center gap-x-5 gap-y-3">
+          <div className="mt-7">
             <SiteButton onClick={onReveal} variant="gold" className="h-12 min-w-[200px] px-8">
               {teaser.cta}
             </SiteButton>
-            <p className="text-[12px] text-text-dim">{teaser.note}</p>
           </div>
         </div>
       </div>

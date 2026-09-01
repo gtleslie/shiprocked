@@ -33,7 +33,6 @@ export function TeaserOption1({ onReveal }: TeaserOption1Props) {
         <SiteButton onClick={onReveal} className="mt-8 h-14 min-w-[220px] px-10">
           {teaser.cta}
         </SiteButton>
-        <p className="mt-4 text-[12px] text-text-dim">{teaser.note}</p>
       </div>
     </div>
   );

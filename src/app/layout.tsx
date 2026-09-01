@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Bebas_Neue, Inter } from "next/font/google";
+import { ScrollToTop } from "@/components/ScrollToTop";
 import { siteContent } from "@content/site-content";
 import "./globals.css";
 
@@ -28,7 +29,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${inter.variable} ${bebas.variable}`}>
-      <body className="min-h-screen antialiased">{children}</body>
+      <body className="min-h-screen antialiased">
+        <ScrollToTop />
+        {children}
+      </body>
     </html>
   );
 }

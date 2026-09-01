@@ -55,45 +55,52 @@ export default function ContactPage() {
       <section className="mx-auto max-w-[1440px] px-6 py-12 md:px-12 lg:px-16">
         <SectionLabel>{contact.form.overline}</SectionLabel>
         <h2 className="mt-4 text-[32px] font-black text-white">{contact.form.headline}</h2>
-        <form onSubmit={handleSubmit} className="mt-8 max-w-3xl">
-          <label className="block">
-            <span className="text-[11px] font-bold tracking-[0.44px] text-text-secondary uppercase">
-              {contact.form.name}
-            </span>
-            <input
-              required
-              type="text"
-              className="mt-2 h-12 w-full border border-border bg-bg-card px-4 text-[15px] text-white outline-none focus:border-accent-red"
-            />
-          </label>
-          <label className="mt-6 block">
-            <span className="text-[11px] font-bold tracking-[0.44px] text-text-secondary uppercase">
-              {contact.form.email}
-            </span>
-            <input
-              required
-              type="email"
-              className="mt-2 h-12 w-full border border-border bg-bg-card px-4 text-[15px] text-white outline-none focus:border-accent-red"
-            />
-          </label>
-          <label className="mt-6 block">
-            <span className="text-[11px] font-bold tracking-[0.44px] text-text-secondary uppercase">
-              {contact.form.message}
-            </span>
-            <textarea
-              required
-              rows={6}
-              className="mt-2 w-full border border-border bg-bg-card px-4 py-3 text-[15px] text-white outline-none focus:border-accent-red"
-            />
-          </label>
-          <SiteButton type="submit" className="mt-8">
-            {contact.form.submit}
-          </SiteButton>
-          {submitted && (
-            <p className="mt-4 text-[14px] text-text-muted">
-              Thanks for reaching out. We&apos;ll get back to you soon.
-            </p>
-          )}
+        <form onSubmit={handleSubmit} className="mt-8">
+          <div className="grid gap-6 lg:grid-cols-2 lg:gap-x-10 lg:gap-y-6">
+            <label className="order-1 block lg:col-start-1 lg:row-start-1">
+              <span className="text-[11px] font-bold tracking-[0.44px] text-text-secondary uppercase">
+                {contact.form.name}
+              </span>
+              <input
+                required
+                type="text"
+                className="mt-2 h-12 w-full border border-border bg-bg-card px-4 text-[15px] text-white outline-none focus:border-accent-red"
+              />
+            </label>
+
+            <label className="order-2 block lg:col-start-1 lg:row-start-2">
+              <span className="text-[11px] font-bold tracking-[0.44px] text-text-secondary uppercase">
+                {contact.form.email}
+              </span>
+              <input
+                required
+                type="email"
+                className="mt-2 h-12 w-full border border-border bg-bg-card px-4 text-[15px] text-white outline-none focus:border-accent-red"
+              />
+            </label>
+
+            <label className="order-3 flex flex-col lg:col-start-2 lg:row-span-2 lg:row-start-1">
+              <span className="text-[11px] font-bold tracking-[0.44px] text-text-secondary uppercase">
+                {contact.form.message}
+              </span>
+              <textarea
+                required
+                rows={6}
+                className="mt-2 min-h-[180px] w-full flex-1 resize-none border border-border bg-bg-card px-4 py-3 text-[15px] text-white outline-none focus:border-accent-red lg:min-h-0"
+              />
+            </label>
+
+            <div className="order-4 flex flex-col lg:col-start-2 lg:items-end">
+              <SiteButton type="submit" className="w-full sm:w-auto">
+                {contact.form.submit}
+              </SiteButton>
+              {submitted && (
+                <p className="mt-4 text-[14px] text-text-muted">
+                  Thanks for reaching out. We&apos;ll get back to you soon.
+                </p>
+              )}
+            </div>
+          </div>
         </form>
       </section>
 
@@ -108,10 +115,10 @@ export default function ContactPage() {
             <a
               key={button.label}
               href={button.href}
-              className={`flex h-11 items-center justify-center text-[12px] font-bold tracking-[0.36px] ${
+              className={`box-border flex h-11 items-center justify-center text-[12px] font-bold tracking-[0.36px] uppercase transition-colors ${
                 button.variant === "gold"
-                  ? "bg-accent-gold text-black"
-                  : "border border-white text-white"
+                  ? "border border-transparent bg-accent-gold text-black hover:bg-[#c49234]"
+                  : "border border-white text-white transition-colors hover:border-accent-red hover:bg-white/5"
               }`}
             >
               {button.label}

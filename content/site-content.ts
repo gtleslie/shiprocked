@@ -2,7 +2,7 @@ export const siteContent = {
   site: {
     title: "The Story of ShipRocked",
     description:
-      "A senior thesis documentary capturing sixteen years of ShipRocked — the heavy metal rock cruise festival in the Caribbean.",
+      "A senior thesis documentary capturing sixteen years of ShipRocked, the heavy metal rock cruise festival in the Caribbean.",
   },
 
   assets: {
@@ -25,9 +25,9 @@ export const siteContent = {
     goal: 30000,
     homeGoal: 25000,
     raised: 0,
-    dates: "Sept 7 – Nov 7, 2026",
-    homeDates: "Oct 2nd – Nov 7, 2026",
-    datesLabel: "CAMPAIGN: SEPT 7 – NOV 7, 2026",
+    dates: "Sept 7 - Nov 7, 2026",
+    homeDates: "Oct 2nd - Nov 7, 2026",
+    datesLabel: "CAMPAIGN: SEPT 7 - NOV 7, 2026",
     eightyPercentNote:
       "Seed & Spark requires campaigns to reach 80% of goal before funds are released.",
   },
@@ -57,12 +57,19 @@ export const siteContent = {
     connect: [
       { label: "Instagram", href: "#", icon: "instagram" as const },
       { label: "Facebook", href: "#", icon: "facebook" as const },
-      { label: "Email", href: "mailto:info@ask4ent.com", icon: "email" as const },
+      { label: "YouTube", href: "#", icon: "youtube" as const },
     ],
-    copyright: "© 2026 THE STORY OF SHIPROCKED — A SENIOR THESIS FILM",
+    copyright: "© 2026 THE STORY OF SHIPROCKED | A SENIOR THESIS FILM",
   },
 
   home: {
+    hero: {
+      subtitle: "Seventeen years of heavy metal at sea. One film to capture it all.",
+      voyage: "VOYAGE OF THE RONIN",
+      dates: "JANUARY 2027",
+      visualLabel: "HERO STILL / POSTER ART",
+      watchTrailer: "WATCH TRAILER",
+    },
     film: {
       overline: "THE FILM",
       headline: ["A floating world,", "finally documented."],
@@ -122,13 +129,13 @@ export const siteContent = {
             "Principal documentary footage captured aboard the first voyage.",
         },
         {
-          date: "FEB – JUN 2026",
+          date: "FEB - JUN 2026",
           title: "Post-production",
           description:
             "Editing, sound design, and color grading the 4K raw footage.",
         },
         {
-          date: "SEPT – NOV 2026",
+          date: "SEPT - NOV 2026",
           title: "Fundraising campaign",
           description:
             "Public campaign to fund post-production and distribution costs.",
@@ -177,14 +184,13 @@ export const siteContent = {
     hero: {
       overline: "JOIN THE CREW",
       headline: "Fund the final voyage.",
-      body: "Every tier gets you closer to the finished film — and the top tier gets you a cabin on the real thing.",
+      body: "Every tier gets you closer to the finished film, and the top tier gets you a cabin on the real thing.",
     },
     teaser: {
       badge: "REWARDS INSIDE",
       headline: "Support the film. Earn merch and prizes.",
       body: "Every tier comes with its own reward. Open the board to see the amounts and pick yours.",
       cta: "VIEW TIERS",
-      note: "Prices stay hidden until you click through.",
     },
     tiers: {
       overline: "CHOOSE YOUR TIER",
@@ -256,7 +262,7 @@ export const siteContent = {
     seedAndSpark: {
       overline: "POWERED BY SEED & SPARK",
       headline: "Built for indie film. Designed for trust.",
-      body: "We're running this campaign through Seed & Spark, the platform built specifically for independent filmmakers — transparent fees, direct filmmaker support, and a community that champions stories like this one.",
+      body: "We're running this campaign through Seed & Spark, the platform built specifically for independent filmmakers: transparent fees, direct filmmaker support, and a community that champions indie stories.",
       cta: "SUPPORT VIA SEED & SPARK →",
     },
   },
@@ -265,7 +271,7 @@ export const siteContent = {
     hero: {
       overline: "GET IN TOUCH",
       headline: "Questions? We're listening.",
-      body: "Press, sponsors, fans, and fellow rock-and-roll rōnin — reach out below.",
+      body: "Press, sponsors, fans, and fellow rock-and-roll rōnin: reach out below.",
     },
     blocks: [
       {
@@ -278,7 +284,7 @@ export const siteContent = {
         overline: "GENERAL INQUIRIES",
         title: "ASK4 Entertainment",
         email: "info@ask4ent.com",
-        note: "Response within 2–3 business days",
+        note: "Response within 2-3 business days",
       },
     ],
     form: {

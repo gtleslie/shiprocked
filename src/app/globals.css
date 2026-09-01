@@ -25,7 +25,7 @@
 }
 
 html {
-  scroll-behavior: smooth;
+  scroll-behavior: auto;
 }
 
 body {
@@ -33,6 +33,110 @@ body {
   background: var(--color-bg-primary);
   color: var(--color-text-primary);
   font-family: var(--font-inter), Inter, system-ui, sans-serif;
+}
+
+.hero-edge-fade {
+  height: 112px;
+  background: linear-gradient(to bottom, transparent, #000000 85%);
+}
+
+.hero-edge-fade::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 1px;
+  background: rgba(210, 31, 31, 0.4);
+}
+
+.hero-cinematic {
+  background:
+    radial-gradient(ellipse 80% 60% at 80% 50%, rgba(210, 31, 31, 0.14), transparent 60%),
+    radial-gradient(ellipse 50% 40% at 85% 20%, rgba(212, 162, 60, 0.08), transparent 55%),
+    linear-gradient(180deg, #0a0a0a 0%, #000000 100%);
+}
+
+.hero-grain {
+  opacity: 0.35;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+  background-size: 180px 180px;
+}
+
+.hero-glow {
+  background: radial-gradient(circle at 70% 55%, rgba(210, 31, 31, 0.18), transparent 45%);
+}
+
+.hero-bamboo {
+  background-image: repeating-linear-gradient(
+    90deg,
+    transparent 0,
+    transparent 42px,
+    rgba(255, 255, 255, 0.02) 42px,
+    rgba(255, 255, 255, 0.02) 43px
+  );
+  mask-image: linear-gradient(90deg, transparent, black 15%, black 85%, transparent);
+}
+
+.hero-visual-frame {
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow:
+    0 0 80px rgba(210, 31, 31, 0.12),
+    inset 0 0 60px rgba(0, 0, 0, 0.5);
+}
+
+.hero-visual-sheen {
+  background: linear-gradient(
+    115deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.04) 45%,
+    transparent 60%
+  );
+  animation: hero-sheen 8s ease-in-out infinite;
+}
+
+.hero-ribbon {
+  position: absolute;
+  width: 140%;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, var(--color-accent-red), transparent);
+  opacity: 0.7;
+  transform: rotate(-12deg);
+}
+
+.hero-ribbon-one {
+  top: 38%;
+  left: -20%;
+  animation: hero-ribbon 6s ease-in-out infinite;
+}
+
+.hero-ribbon-two {
+  top: 62%;
+  left: -15%;
+  opacity: 0.45;
+  animation: hero-ribbon 8s ease-in-out infinite reverse;
+}
+
+@keyframes hero-sheen {
+  0%,
+  100% {
+    transform: translateX(-30%);
+    opacity: 0;
+  }
+  50% {
+    transform: translateX(30%);
+    opacity: 1;
+  }
+}
+
+@keyframes hero-ribbon {
+  0%,
+  100% {
+    transform: rotate(-12deg) translateX(0);
+  }
+  50% {
+    transform: rotate(-12deg) translateX(24px);
+  }
 }
 
 .hero-grid {
@@ -48,6 +152,18 @@ body {
 
 .image-placeholder {
   background: #1a1a1a;
+}
+
+.ship-card {
+  background: linear-gradient(160deg, #1c1c1c 0%, #101010 100%);
+  border: 1px solid var(--color-border);
+  border-left: 2px solid var(--color-accent-red);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+.ship-card-footer {
+  border-top: 1px solid rgba(210, 31, 31, 0.2);
+  background: rgba(0, 0, 0, 0.28);
 }
 
 .font-display {

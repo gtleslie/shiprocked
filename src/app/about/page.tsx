@@ -53,14 +53,14 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-[1440px] px-6 py-10 md:px-12 lg:px-16">
+      <section className="mx-auto max-w-[1440px] px-8 py-10 md:px-14 md:py-12 lg:px-20 lg:py-14">
         <SectionLabel>{about.crew.overline}</SectionLabel>
-        <h2 className="mt-4 text-[32px] font-black text-white">{about.crew.headline}</h2>
+        <h2 className="mt-4 max-w-3xl text-[32px] font-black text-white">{about.crew.headline}</h2>
         <div className="mt-8 grid gap-6 md:grid-cols-3">
           {about.crew.members.map((member) => (
-            <article key={member.name} className="bg-bg-card">
+            <article key={member.name} className="ship-card overflow-hidden">
               <ImagePlaceholder className="h-[280px] w-full" />
-              <div className="px-1 pt-4 pb-2">
+              <div className="ship-card-footer px-5 py-4">
                 <h3 className="text-[16px] font-bold tracking-[0.2px] text-white">
                   {member.name}
                 </h3>
@@ -73,18 +73,22 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-[1440px] px-6 py-10 md:px-12 lg:px-16">
-        <SectionLabel>{about.characters.overline}</SectionLabel>
-        <h2 className="mt-4 text-[32px] font-black text-white">
-          {about.characters.headline}
-        </h2>
+      <section className="mx-auto max-w-[1440px] px-8 py-10 md:px-14 md:py-12 lg:px-20 lg:py-14">
+        <div className="max-w-3xl">
+          <SectionLabel>{about.characters.overline}</SectionLabel>
+          <h2 className="mt-4 text-[32px] font-black text-white">
+            {about.characters.headline}
+          </h2>
+        </div>
         <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {about.characters.subjects.map((subject, index) => (
-            <article key={`${subject.name}-${index}`} className="bg-bg-card">
+            <article key={`${subject.name}-${index}`} className="ship-card overflow-hidden">
               <ImagePlaceholder className="h-[220px] w-full" />
-              <div className="px-1 pt-4 pb-3">
+              <div className="ship-card-footer px-5 py-4">
                 <h3 className="text-[15px] font-bold text-white">{subject.name}</h3>
-                <p className="mt-1 text-[13px] text-text-secondary">{subject.note}</p>
+                <p className="mt-1 text-[13px] leading-relaxed text-text-secondary">
+                  {subject.note}
+                </p>
               </div>
             </article>
           ))}
