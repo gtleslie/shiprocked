@@ -3,7 +3,6 @@
 import { FormEvent, useState } from "react";
 import { PageShell } from "@/components/PageShell";
 import { SiteButton } from "@/components/SiteButton";
-import { SectionDivider } from "@/components/SectionDivider";
 import { LineRule, SectionLabel } from "@/components/ImagePlaceholder";
 import { siteContent } from "@content/site-content";
 
@@ -26,7 +25,9 @@ export default function ContactPage() {
         <p className="mt-4 max-w-3xl text-[16px] text-text-muted">{contact.hero.body}</p>
       </section>
 
-      <SectionDivider />
+      <div className="mx-auto max-w-[1440px] px-6 md:px-12 lg:px-16" aria-hidden>
+        <div className="h-[3px] w-full bg-[linear-gradient(90deg,transparent_0%,rgba(210,31,31,0.65)_18%,rgba(210,31,31,0.95)_50%,rgba(210,31,31,0.65)_82%,transparent_100%)]" />
+      </div>
 
       <section className="mx-auto max-w-[1440px] px-6 py-12 md:px-12 lg:px-16">
         <div className="grid gap-6 lg:grid-cols-2">
@@ -118,7 +119,7 @@ export default function ContactPage() {
               className={`box-border flex h-11 items-center justify-center text-[12px] font-bold tracking-[0.36px] uppercase transition-colors ${
                 button.variant === "gold"
                   ? "border border-transparent bg-accent-gold text-black hover:bg-[#c49234]"
-                  : "border border-white text-white transition-colors hover:border-accent-red hover:bg-white/5"
+                  : "border border-white text-white transition-colors hover:border-accent-gold hover:bg-white/5"
               }`}
             >
               {button.label}

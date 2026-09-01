@@ -64,7 +64,7 @@ export function SiteFooter() {
                     key={item.label}
                     href={item.href}
                     aria-label={item.label}
-                    className="flex h-9 w-9 items-center justify-center border border-transparent text-text-secondary transition-colors hover:border-accent-red hover:text-white"
+                    className="flex h-9 w-9 items-center justify-center text-text-secondary transition-colors hover:text-white"
                   >
                     <Icon className="h-5 w-5" />
                   </a>

@@ -46,8 +46,15 @@ body {
   right: 0;
   bottom: 0;
   left: 0;
-  height: 1px;
-  background: rgba(210, 31, 31, 0.4);
+  height: 3px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(210, 31, 31, 0.65) 18%,
+    rgba(210, 31, 31, 0.95) 50%,
+    rgba(210, 31, 31, 0.65) 82%,
+    transparent 100%
+  );
 }
 
 .hero-cinematic {
