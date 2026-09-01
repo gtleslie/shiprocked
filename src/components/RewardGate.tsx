@@ -9,7 +9,7 @@ import { TeaserOption4 } from "@/components/teasers/TeaserOption4";
 import { siteContent } from "@content/site-content";
 
 /** Flip to 1 to restore the saved overlay card. */
-const ACTIVE_TEASER = 4 as 1 | 2 | 3 | 4;
+const ACTIVE_TEASER = 1 as 1 | 2 | 3 | 4;
 const STORAGE_KEY = {
   1: "shiprocked-tiers-revealed",
   2: "shiprocked-tiers-revealed-opt2b",
