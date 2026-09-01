@@ -8,7 +8,7 @@ export default function AboutPage() {
 
   return (
     <PageShell activePage="about">
-      <section className="mx-auto max-w-[1440px] px-6 py-16 md:px-12 lg:px-16">
+      <section className="mx-auto max-w-[1440px] px-6 py-12 md:px-12 lg:px-16">
         <div className="grid gap-10 lg:grid-cols-[1.2fr_0.8fr] lg:items-end">
           <div>
             <SectionLabel>{about.hero.overline}</SectionLabel>
@@ -28,14 +28,14 @@ export default function AboutPage() {
 
       <SectionDivider />
 
-      <section className="mx-auto max-w-[1440px] px-6 py-20 md:px-12 lg:px-16">
+      <section className="mx-auto max-w-[1440px] px-6 py-14 md:px-12 lg:px-16">
         <div className="grid gap-12 lg:grid-cols-[1fr_1fr] lg:items-start">
           <div>
             <SectionLabel>{about.timeline.overline}</SectionLabel>
             <h2 className="mt-4 text-[32px] font-black text-white">
               {about.timeline.headline}
             </h2>
-            <div className="relative mt-10 space-y-10 border-l-2 border-accent-red pl-6">
+            <div className="relative mt-8 space-y-8 border-l-2 border-accent-red pl-6">
               {about.timeline.items.map((item) => (
                 <div key={item.date}>
                   <p className="text-[12px] font-bold tracking-[0.48px] text-accent-gold uppercase">
@@ -53,10 +53,10 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-[1440px] px-6 py-16 md:px-12 lg:px-16">
+      <section className="mx-auto max-w-[1440px] px-6 py-10 md:px-12 lg:px-16">
         <SectionLabel>{about.crew.overline}</SectionLabel>
         <h2 className="mt-4 text-[32px] font-black text-white">{about.crew.headline}</h2>
-        <div className="mt-12 grid gap-6 md:grid-cols-3">
+        <div className="mt-8 grid gap-6 md:grid-cols-3">
           {about.crew.members.map((member) => (
             <article key={member.name} className="bg-bg-card">
               <ImagePlaceholder className="h-[280px] w-full" />
@@ -73,12 +73,12 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-[1440px] px-6 py-16 md:px-12 lg:px-16">
+      <section className="mx-auto max-w-[1440px] px-6 py-10 md:px-12 lg:px-16">
         <SectionLabel>{about.characters.overline}</SectionLabel>
         <h2 className="mt-4 text-[32px] font-black text-white">
           {about.characters.headline}
         </h2>
-        <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {about.characters.subjects.map((subject, index) => (
             <article key={`${subject.name}-${index}`} className="bg-bg-card">
               <ImagePlaceholder className="h-[220px] w-full" />
@@ -91,12 +91,12 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-[1440px] px-6 pt-12 pb-20 md:px-12 lg:px-16">
+      <section className="mx-auto max-w-[1440px] px-6 pt-10 pb-16 md:px-12 lg:px-16">
         <SectionLabel>{about.transparency.overline}</SectionLabel>
         <h2 className="mt-4 text-[32px] font-black text-white">
           {about.transparency.headline}
         </h2>
-        <div className="mt-12 grid gap-10 lg:grid-cols-2 lg:items-center">
+        <div className="mt-8 grid gap-10 lg:grid-cols-2 lg:items-center">
           <ImagePlaceholder className="h-[320px] w-full" />
           <ul className="space-y-5">
             {about.transparency.breakdown.map((item) => (

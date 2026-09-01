@@ -36,33 +36,19 @@ export function TierCard({ tier, locked = false }: TierCardProps) {
   const { support, links } = siteContent;
   const gold = tier.featured || tier.premium;
   const path = wavyPath(320, 420, gold ? 8 : 7, 8);
-  const glowId = `tier-glow-${tier.id}`;
 
   return (
     <article className="relative min-h-[380px] overflow-visible">
       <svg
-        className="absolute inset-0 h-full w-full overflow-visible"
+        className={`absolute inset-0 h-full w-full ${
+          tier.premium
+            ? "[filter:drop-shadow(0_0_16px_rgba(212,162,60,0.9))_drop-shadow(0_0_32px_rgba(212,162,60,0.45))]"
+            : ""
+        }`}
         viewBox="0 0 320 420"
         preserveAspectRatio="none"
-        overflow="visible"
         aria-hidden
       >
-        {tier.premium && (
-          <>
-            <defs>
-              <filter
-                id={glowId}
-                x="-45%"
-                y="-20%"
-                width="190%"
-                height="140%"
-              >
-                <feGaussianBlur stdDeviation="14" />
-              </filter>
-            </defs>
-            <path d={path} fill="#d4a23c" opacity="0.7" filter={`url(#${glowId})`} />
-          </>
-        )}
         <path
           d={path}
           fill="#161616"
