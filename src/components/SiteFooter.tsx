@@ -1,6 +1,13 @@
 import Link from "next/link";
 import { Logo } from "@/components/Logo";
+import { EmailIcon, FacebookIcon, InstagramIcon } from "@/components/SocialIcons";
 import { siteContent } from "@content/site-content";
+
+const connectIcons = {
+  instagram: InstagramIcon,
+  facebook: FacebookIcon,
+  email: EmailIcon,
+} as const;
 
 export function SiteFooter() {
   const { footer } = siteContent;
@@ -49,18 +56,21 @@ export function SiteFooter() {
             <p className="mb-3 text-[10px] font-bold tracking-[0.8px] text-accent-gold uppercase">
               CONNECT
             </p>
-            <ul className="space-y-1.5">
-              {footer.connect.map((item) => (
-                <li key={item.label}>
+            <div className="flex items-center gap-4">
+              {footer.connect.map((item) => {
+                const Icon = connectIcons[item.icon];
+                return (
                   <a
+                    key={item.label}
                     href={item.href}
-                    className="text-[12px] text-text-secondary hover:text-white"
+                    aria-label={item.label}
+                    className="text-text-secondary transition-colors hover:text-white"
                   >
-                    {item.label}
+                    <Icon className="h-5 w-5" />
                   </a>
-                </li>
-              ))}
-            </ul>
+                );
+              })}
+            </div>
           </div>
         </div>
 

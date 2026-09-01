@@ -55,8 +55,9 @@ export const siteContent = {
       email: "info@ask4ent.com",
     },
     connect: [
-      { label: "Instagram", href: "#" },
-      { label: "Mailing list", href: "#" },
+      { label: "Instagram", href: "#", icon: "instagram" as const },
+      { label: "Facebook", href: "#", icon: "facebook" as const },
+      { label: "Email", href: "mailto:info@ask4ent.com", icon: "email" as const },
     ],
     copyright: "© 2026 THE STORY OF SHIPROCKED — A SENIOR THESIS FILM",
   },
