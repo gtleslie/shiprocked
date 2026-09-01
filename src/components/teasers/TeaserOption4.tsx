@@ -1,0 +1,50 @@
+"use client";
+
+import { SiteButton } from "@/components/SiteButton";
+import { siteContent } from "@content/site-content";
+
+type TeaserOption4Props = {
+  onReveal: () => void;
+};
+
+/** Experiment: same board underneath; film slate / title card on the usual dim overlay. */
+export function TeaserOption4({ onReveal }: TeaserOption4Props) {
+  const { teaser } = siteContent.support;
+
+  return (
+    <div className="absolute inset-0 z-20 flex items-center justify-center p-4">
+      <div className="absolute inset-0 bg-black/65" />
+
+      <div
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="reward-gate-title"
+        className="relative z-10 w-full max-w-[560px] bg-bg-card"
+      >
+        <div className="flex items-center justify-center gap-4 border-b border-border px-6 py-3">
+          <span className="h-px w-10 bg-accent-gold" />
+          <p className="text-[11px] font-bold tracking-[0.72px] text-accent-gold uppercase">
+            {teaser.badge}
+          </p>
+          <span className="h-px w-10 bg-accent-gold" />
+        </div>
+
+        <div className="px-8 py-9 text-center">
+          <h3
+            id="reward-gate-title"
+            className="text-[26px] leading-tight font-black text-white md:text-[32px]"
+          >
+            {teaser.headline}
+          </h3>
+          <p className="mt-4 text-[15px] leading-relaxed text-text-muted">{teaser.body}</p>
+          <SiteButton onClick={onReveal} className="mt-8 h-14 min-w-[220px] px-10">
+            {teaser.cta}
+          </SiteButton>
+          <p className="mt-4 text-[12px] text-text-dim">{teaser.note}</p>
+        </div>
+
+        <div className="h-[3px] w-full bg-accent-gold" />
+      </div>
+    </div>
+  );
+}
