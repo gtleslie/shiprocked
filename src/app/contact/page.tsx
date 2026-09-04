@@ -109,19 +109,25 @@ export default function ContactPage() {
       <section className="mx-auto max-w-[1440px] px-6 py-12 md:px-12 lg:px-16">
         <SectionLabel>{contact.social.overline}</SectionLabel>
         <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
-          {contact.social.buttons.map((button) => (
-            <a
-              key={button.label}
-              href={button.href}
-              className={`box-border flex h-11 items-center justify-center text-[12px] font-bold tracking-[0.36px] uppercase transition-colors ${
-                button.variant === "gold"
-                  ? "border border-transparent bg-accent-gold text-black hover:bg-[#c49234]"
-                  : "border border-white text-white transition-colors hover:border-accent-gold hover:bg-white/5"
-              }`}
-            >
-              {button.label}
-            </a>
-          ))}
+          {contact.social.buttons.map((button) => {
+            const isExternal = button.href.startsWith("http");
+            return (
+              <a
+                key={button.label}
+                href={button.href}
+                {...(isExternal
+                  ? { target: "_blank", rel: "noopener noreferrer" }
+                  : {})}
+                className={`box-border flex h-11 items-center justify-center text-[12px] font-bold tracking-[0.36px] uppercase transition-colors ${
+                  button.variant === "gold"
+                    ? "border border-transparent bg-accent-gold text-black hover:bg-[#c49234]"
+                    : "border border-white text-white transition-colors hover:border-accent-gold hover:bg-white/5"
+                }`}
+              >
+                {button.label}
+              </a>
+            );
+          })}
         </div>
       </section>
     </PageShell>

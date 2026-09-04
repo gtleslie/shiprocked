@@ -299,7 +299,7 @@ export const siteContent = {
     social: {
       overline: "FOLLOW THE FILM",
       buttons: [
-        { label: "INSTAGRAM", href: "#", variant: "outline" as const },
+        { label: "INSTAGRAM", href: "https://www.instagram.com/storyofshiprocked", variant: "outline" as const },
         { label: "FACEBOOK", href: "#", variant: "outline" as const },
         { label: "YOUTUBE", href: "#", variant: "outline" as const },
         { label: "JOIN MAILING LIST", href: "#", variant: "gold" as const },
