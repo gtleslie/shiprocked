@@ -71,9 +71,9 @@ export function TierCard({ tier, locked = false }: TierCardProps) {
           {tier.tier}
         </p>
         <p
-          className={`mt-2 font-black ${
+          className={`teaser-price mt-2 font-black ${
             tier.premium ? "text-[40px]" : "text-[32px]"
-          } ${locked ? "text-[#3a3a3a] blur-[16px] select-none" : "text-white"}`}
+          } ${locked ? "text-[#3a3a3a] blur-[16px] select-none" : "text-white blur-none"}`}
           aria-hidden={locked}
         >
           ${tier.price.toLocaleString()}
