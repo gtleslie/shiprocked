@@ -1,5 +1,6 @@
 import { PageShell } from "@/components/PageShell";
 import { SectionDivider } from "@/components/SectionDivider";
+import { BudgetChart } from "@/components/BudgetChart";
 import { ImagePlaceholder, SectionLabel } from "@/components/ImagePlaceholder";
 import { siteContent } from "@content/site-content";
 
@@ -95,24 +96,13 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-[1440px] px-6 pt-10 pb-16 md:px-12 lg:px-16">
+      <section className="mx-auto max-w-[1440px] px-6 pt-8 pb-12 md:px-12 lg:px-16">
         <SectionLabel>{about.transparency.overline}</SectionLabel>
-        <h2 className="mt-4 text-[32px] font-black text-white">
+        <h2 className="mt-3 text-[32px] font-black text-white">
           {about.transparency.headline}
         </h2>
-        <div className="mt-8 grid gap-10 lg:grid-cols-2 lg:items-center">
-          <ImagePlaceholder className="h-[320px] w-full" />
-          <ul className="space-y-5">
-            {about.transparency.breakdown.map((item) => (
-              <li key={item.label} className="flex items-center justify-between gap-4">
-                <span className="flex items-center gap-3 text-[15px] text-white">
-                  <span className="inline-block h-2.5 w-2.5 shrink-0 bg-accent-red" />
-                  {item.label}
-                </span>
-                <span className="text-[15px] font-bold text-accent-gold">{item.percent}%</span>
-              </li>
-            ))}
-          </ul>
+        <div className="mt-4">
+          <BudgetChart items={about.transparency.breakdown} />
         </div>
       </section>
     </PageShell>
