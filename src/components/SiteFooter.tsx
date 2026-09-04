@@ -16,7 +16,7 @@ export function SiteFooter() {
     <footer className="border-t border-border bg-black">
       <div className="mx-auto max-w-[1440px] px-6 py-12 md:px-12 lg:px-16">
         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1fr]">
-          <div>
+          <div className="self-end">
             <Logo size="footer" />
           </div>
 
