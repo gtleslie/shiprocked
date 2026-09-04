@@ -16,7 +16,7 @@ export const siteContent = {
   links: {
     trailer: "#",
     seedAndSpark: "#",
-    instagram: "#",
+    instagram: "https://www.instagram.com/storyofshiprocked",
     facebook: "#",
     youtube: "#",
     mailingList: "#",
@@ -56,7 +56,7 @@ export const siteContent = {
       email: "info@ask4ent.com",
     },
     connect: [
-      { label: "Instagram", href: "#", icon: "instagram" as const },
+      { label: "Instagram", href: "https://www.instagram.com/storyofshiprocked", icon: "instagram" as const },
       { label: "Facebook", href: "#", icon: "facebook" as const },
       { label: "YouTube", href: "#", icon: "youtube" as const },
     ],
