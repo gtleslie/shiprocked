@@ -30,12 +30,15 @@ function wavyPath(width: number, height: number, amp = 7, waves = 9) {
 type TierCardProps = {
   tier: Tier;
   locked?: boolean;
+  index?: number;
 };
 
-export function TierCard({ tier, locked = false }: TierCardProps) {
+export function TierCard({ tier, locked = false, index = 0 }: TierCardProps) {
   const { support, links } = siteContent;
   const gold = tier.featured || tier.premium;
   const path = wavyPath(320, 420, gold ? 8 : 7, 8);
+  const clipId = `${tier.id}-shape`;
+  const sheenId = `${tier.id}-sheen`;
 
   return (
     <article className="relative min-h-[380px] overflow-visible bg-transparent">
@@ -46,6 +49,28 @@ export function TierCard({ tier, locked = false }: TierCardProps) {
         overflow="visible"
         aria-hidden
       >
+        <defs>
+          <clipPath id={clipId}>
+            <path d={path} />
+          </clipPath>
+          <linearGradient id={sheenId} x1="0" y1="0" x2="1" y2="0.15">
+            <stop
+              offset="0%"
+              stopColor={gold ? "#d4a23c" : "#ffffff"}
+              stopOpacity="0"
+            />
+            <stop
+              offset="50%"
+              stopColor={gold ? "#d4a23c" : "#ffffff"}
+              stopOpacity={gold ? "0.32" : "0.16"}
+            />
+            <stop
+              offset="100%"
+              stopColor={gold ? "#d4a23c" : "#ffffff"}
+              stopOpacity="0"
+            />
+          </linearGradient>
+        </defs>
         {tier.premium && (
           <>
             <path d={path} fill="none" stroke="#d4a23c" strokeWidth="8" opacity="0.25" />
@@ -57,6 +82,17 @@ export function TierCard({ tier, locked = false }: TierCardProps) {
           fill="#161616"
           stroke={gold ? "#d4a23c" : "#3a3a3a"}
           strokeWidth={gold ? 3 : 1.25}
+        />
+        <rect
+          className="tier-shimmer"
+          style={{ animationDelay: `${index * 0.5}s` }}
+          x="-140"
+          y="0"
+          width="150"
+          height="420"
+          fill={`url(#${sheenId})`}
+          clipPath={`url(#${clipId})`}
+          pointerEvents="none"
         />
       </svg>
 

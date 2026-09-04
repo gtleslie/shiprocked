@@ -56,8 +56,8 @@ export function RewardGate() {
         }`}
         aria-hidden={!open}
       >
-        {support.tiers.items.map((tier) => (
-          <TierCard key={tier.id} tier={tier} locked={lockedPrices} />
+        {support.tiers.items.map((tier, index) => (
+          <TierCard key={tier.id} tier={tier} locked={lockedPrices} index={index} />
         ))}
       </div>
 

@@ -240,12 +240,19 @@ body {
     filter 0.7s ease;
 }
 
+.tier-shimmer {
+  animation: tier-shimmer 5.8s ease-in-out infinite;
+  transform-box: view-box;
+  transform-origin: 0 0;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .teaser-cta,
   .teaser-cta::after,
   .teaser-overlay,
   .teaser-overlay-card,
-  .teaser-price {
+  .teaser-price,
+  .tier-shimmer {
     transition: none;
     animation: none;
   }
@@ -258,5 +265,24 @@ body {
 @keyframes teaser-sheen {
   to {
     transform: translateX(120%);
+  }
+}
+
+@keyframes tier-shimmer {
+  0%,
+  16% {
+    transform: translateX(0);
+    opacity: 0;
+  }
+  28% {
+    opacity: 1;
+  }
+  52% {
+    transform: translateX(380px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(380px);
+    opacity: 0;
   }
 }
