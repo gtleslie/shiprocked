@@ -14,10 +14,10 @@ const variants: Record<
     className: "h-[60px] w-auto",
   },
   footer: {
-    src: siteContent.assets.logo,
-    width: 186,
-    height: 120,
-    className: "h-[80px] w-auto",
+    src: siteContent.assets.keLogo,
+    width: 3600,
+    height: 3600,
+    className: "h-[120px] w-auto object-contain",
   },
   hero: {
     src: siteContent.assets.heroLogo,
@@ -33,7 +33,7 @@ export function Logo({ size = "nav" }: { size?: LogoSize }) {
   return (
     <Image
       src={variant.src}
-      alt={siteContent.site.title}
+      alt={size === "footer" ? "Koenig Entertainment Co." : siteContent.site.title}
       width={variant.width}
       height={variant.height}
       className={variant.className}

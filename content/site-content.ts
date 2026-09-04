@@ -8,6 +8,7 @@ export const siteContent = {
   assets: {
     logo: "/assets/logos/Logo.png",
     heroLogo: "/assets/logos/hero-logo.png",
+    keLogo: "/assets/logos/KE_LOGO-WHITE.png",
     seedAndSpark: "/assets/seedandsparktransparent.svg",
     dividerVector: "/assets/divider-vector.svg",
   },
