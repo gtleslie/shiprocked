@@ -1,4 +1,5 @@
 import { Logo } from "@/components/Logo";
+import { SectionDivider } from "@/components/SectionDivider";
 import { siteContent } from "@content/site-content";
 
 export function HeroSection() {
@@ -31,7 +32,7 @@ export function HeroSection() {
         </div>
       </div>
 
-      <div className="hero-edge-fade pointer-events-none absolute right-0 bottom-0 left-0" aria-hidden />
+      <SectionDivider />
     </section>
   );
 }
