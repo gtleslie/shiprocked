@@ -153,9 +153,21 @@ export const siteContent = {
       overline: "MEET THE CREW",
       headline: "The people behind the lens.",
       members: [
-        { name: "ALBERT KOENIG", role: "DIRECTOR" },
-        { name: "MATT DAVIS", role: "PRODUCER" },
-        { name: "SILAS GRASSE", role: "PRODUCTION LEAD" },
+        {
+          name: "ALBERT KOENIG",
+          role: "DIRECTOR",
+          bio: "Albert leads the vision for The Story of ShipRocked, shaping every frame of this senior thesis documentary. He has spent years embedded with the voyage community, determined to capture the chaos and camaraderie that only happen at sea.",
+        },
+        {
+          name: "MATT DAVIS",
+          role: "PRODUCER",
+          bio: "Matt keeps the production moving from dock to deadline, bridging creative ambition with the realities of indie filmmaking. He coordinates the campaign, the crew, and the partnerships that make finishing the film possible.",
+        },
+        {
+          name: "SILAS GRASSE",
+          role: "PRODUCTION LEAD",
+          bio: "Silas runs the day-to-day shoot with a steady hand, turning packed voyage schedules into usable footage. He thrives in the pressure of live events, making sure nothing essential slips past the lens.",
+        },
       ],
     },
     characters: {
@@ -172,11 +184,36 @@ export const siteContent = {
       overline: "TRANSPARENCY",
       headline: "Where the money goes.",
       breakdown: [
-        { label: "Post-production & editing", percent: 40 },
-        { label: "Festival submission fees", percent: 20 },
-        { label: "Sound design & color grade", percent: 20 },
-        { label: "Travel & final voyage capture", percent: 15 },
-        { label: "Distribution & marketing", percent: 5 },
+        {
+          label: "Post-production & editing",
+          percent: 40,
+          description:
+            "Cutting hours of voyage footage into a finished documentary — editors, assembly, and picture lock.",
+        },
+        {
+          label: "Festival submission fees",
+          percent: 20,
+          description:
+            "Entry fees and materials to get the film in front of festival programmers and audiences.",
+        },
+        {
+          label: "Sound design & color grade",
+          percent: 20,
+          description:
+            "Mixing the roar of the sea and grading every frame so the voyage feels cinematic.",
+        },
+        {
+          label: "Travel & final voyage capture",
+          percent: 15,
+          description:
+            "Getting the crew back on board for the last critical shoots and pickup interviews.",
+        },
+        {
+          label: "Distribution & marketing",
+          percent: 5,
+          description:
+            "Trailers, press kits, and the outreach that helps the story find its audience.",
+        },
       ],
     },
   },

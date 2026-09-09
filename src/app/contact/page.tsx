@@ -36,7 +36,7 @@ export default function ContactPage() {
               <h2 className="mt-4 text-[20px] font-bold text-white">{block.title}</h2>
               <a
                 href={`mailto:${block.email}`}
-                className="mt-3 inline-block text-[15px] text-text-secondary hover:text-white"
+                className="mt-3 inline-block text-[15px] text-text-secondary underline decoration-white/25 underline-offset-2 transition-colors hover:text-accent-red hover:decoration-accent-red"
               >
                 {block.email}
               </a>

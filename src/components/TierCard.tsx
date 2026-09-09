@@ -106,6 +106,9 @@ export function TierCard({ tier, locked = false, index = 0 }: TierCardProps) {
         <p className="text-[11px] font-bold tracking-[0.44px] text-accent-red">
           {tier.tier}
         </p>
+        <h3 className="mt-2 text-[14px] font-bold tracking-[0.4px] text-accent-gold uppercase">
+          {tier.name}
+        </h3>
         <p
           className={`teaser-price mt-2 font-black ${
             tier.premium ? "text-[40px]" : "text-[32px]"
@@ -114,9 +117,6 @@ export function TierCard({ tier, locked = false, index = 0 }: TierCardProps) {
         >
           ${tier.price.toLocaleString()}
         </p>
-        <h3 className="mt-1 text-[14px] font-bold tracking-[0.4px] text-accent-gold uppercase">
-          {tier.name}
-        </h3>
         <ul className="mt-5 flex-1 space-y-2">
           {tier.perks.map((perk) => (
             <li key={perk} className="flex items-start gap-2 text-[13px] text-text-secondary">

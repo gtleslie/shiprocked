@@ -45,7 +45,7 @@ export function SiteFooter() {
             <p className="text-[12px] text-text-secondary">{footer.contact.label}</p>
             <a
               href={`mailto:${footer.contact.email}`}
-              className="text-[12px] text-text-secondary hover:text-white"
+              className="mt-0.5 inline-block text-[12px] text-text-secondary underline decoration-white/25 underline-offset-2 transition-colors hover:text-accent-red hover:decoration-accent-red"
             >
               {footer.contact.email}
             </a>

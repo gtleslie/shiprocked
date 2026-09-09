@@ -1,6 +1,8 @@
 import { PageShell } from "@/components/PageShell";
 import { SectionDivider } from "@/components/SectionDivider";
 import { BudgetChart } from "@/components/BudgetChart";
+import { CharactersCarousel } from "@/components/CharactersCarousel";
+import { CrewFlipCard } from "@/components/CrewFlipCard";
 import { ImagePlaceholder, SectionLabel } from "@/components/ImagePlaceholder";
 import { siteContent } from "@content/site-content";
 
@@ -59,17 +61,7 @@ export default function AboutPage() {
         <h2 className="mt-4 max-w-3xl text-[32px] font-black text-white">{about.crew.headline}</h2>
         <div className="mt-8 grid gap-6 md:grid-cols-3">
           {about.crew.members.map((member) => (
-            <article key={member.name} className="ship-card overflow-hidden">
-              <ImagePlaceholder className="h-[280px] w-full" />
-              <div className="ship-card-footer px-5 py-4">
-                <h3 className="text-[16px] font-bold tracking-[0.2px] text-white">
-                  {member.name}
-                </h3>
-                <p className="mt-1 text-[11px] font-bold tracking-[0.44px] text-accent-red uppercase">
-                  {member.role}
-                </p>
-              </div>
-            </article>
+            <CrewFlipCard key={member.name} member={member} />
           ))}
         </div>
       </section>
@@ -81,18 +73,8 @@ export default function AboutPage() {
             {about.characters.headline}
           </h2>
         </div>
-        <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {about.characters.subjects.map((subject, index) => (
-            <article key={`${subject.name}-${index}`} className="ship-card overflow-hidden">
-              <ImagePlaceholder className="h-[220px] w-full" />
-              <div className="ship-card-footer px-5 py-4">
-                <h3 className="text-[15px] font-bold text-white">{subject.name}</h3>
-                <p className="mt-1 text-[13px] leading-relaxed text-text-secondary">
-                  {subject.note}
-                </p>
-              </div>
-            </article>
-          ))}
+        <div className="mt-8">
+          <CharactersCarousel subjects={about.characters.subjects} />
         </div>
       </section>
 

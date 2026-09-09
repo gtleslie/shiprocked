@@ -171,6 +171,215 @@ body {
   background: rgba(0, 0, 0, 0.28);
 }
 
+.crew-flip-card {
+  perspective: 1200px;
+  height: 356px;
+  background: transparent;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+}
+
+.crew-flip-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.65s cubic-bezier(0.4, 0.2, 0.2, 1);
+}
+
+.crew-flip-inner.is-flipped {
+  transform: rotateY(180deg);
+}
+
+.crew-flip-face {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.crew-flip-back {
+  transform: rotateY(180deg);
+}
+
+.crew-flip-badge {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 999px;
+  border: 1px solid rgba(210, 31, 31, 0.55);
+  background: rgba(0, 0, 0, 0.55);
+  color: #f2f2f2;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.35);
+  opacity: 0.72;
+  animation: crew-flip-badge-pulse 2.8s ease-in-out infinite;
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease,
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.crew-flip-card:hover .crew-flip-badge,
+.crew-flip-card:focus-visible .crew-flip-badge {
+  opacity: 1;
+  transform: scale(1.08);
+  border-color: rgba(210, 31, 31, 0.95);
+  background: rgba(210, 31, 31, 0.22);
+  color: #ffffff;
+  animation: none;
+}
+
+@keyframes crew-flip-badge-pulse {
+  0%,
+  100% {
+    opacity: 0.62;
+    box-shadow: 0 0 0 0 rgba(210, 31, 31, 0);
+  }
+  50% {
+    opacity: 0.95;
+    box-shadow: 0 0 0 6px rgba(210, 31, 31, 0.12);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .crew-flip-badge {
+    animation: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .crew-flip-badge {
+    animation: none;
+  }
+}
+
+.funding-carousel-track {
+  display: flex;
+  gap: 1.25rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  padding: 0.15rem max(0px, calc(50% - min(50%, 170px))) 0.5rem;
+  scroll-padding-inline: max(0px, calc(50% - min(50%, 170px)));
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.funding-carousel-track::-webkit-scrollbar {
+  display: none;
+}
+
+.funding-carousel-card {
+  flex: 0 0 min(100%, 340px);
+  scroll-snap-align: center;
+  cursor: pointer;
+  opacity: 0.55;
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease,
+    border-color 0.3s ease;
+}
+
+.funding-carousel-card.is-active {
+  opacity: 1;
+  transform: translateY(-2px);
+}
+
+.funding-carousel-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  background: transparent;
+  padding: 0;
+  transition:
+    width 0.25s ease,
+    background-color 0.25s ease,
+    border-color 0.25s ease;
+}
+
+.funding-carousel-dot.is-active {
+  width: 22px;
+}
+
+.funding-slice-group,
+.funding-slice-group:focus,
+.funding-slice-group:focus-visible,
+.funding-slice,
+.budget-chart svg *:focus,
+.budget-chart svg *:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.characters-carousel-track {
+  display: flex;
+  gap: 1.5rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  padding-bottom: 0.5rem;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.characters-carousel-track::-webkit-scrollbar {
+  display: none;
+}
+
+.characters-carousel-card {
+  flex: 0 0 min(280px, 82%);
+  scroll-snap-align: start;
+}
+
+@media (min-width: 640px) {
+  .characters-carousel-card {
+    flex-basis: calc((100% - 1.5rem) / 2);
+  }
+}
+
+@media (min-width: 1024px) {
+  .characters-carousel-card {
+    flex-basis: calc((100% - 3rem) / 3);
+  }
+}
+
+.characters-carousel-nav {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border: 1px solid rgba(210, 31, 31, 0.55);
+  background: rgba(0, 0, 0, 0.45);
+  color: #f2f2f2;
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease,
+    opacity 0.2s ease;
+}
+
+.characters-carousel-nav:hover:not(:disabled) {
+  border-color: rgba(210, 31, 31, 0.95);
+  background: rgba(210, 31, 31, 0.22);
+  color: #ffffff;
+}
+
+.characters-carousel-nav:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
 .font-display {
   font-family: var(--font-display), Impact, "Arial Narrow", sans-serif;
 }
