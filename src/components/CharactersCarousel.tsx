@@ -9,7 +9,7 @@ type CharacterSubject = {
 };
 
 type CharactersCarouselProps = {
-  subjects: CharacterSubject[];
+  subjects: readonly CharacterSubject[];
 };
 
 function ChevronLeftIcon({ className = "h-4 w-4" }: { className?: string }) {
