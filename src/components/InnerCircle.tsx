@@ -29,7 +29,7 @@ export function InnerCircle({ onJoin }: InnerCircleProps) {
       <h1 className="sr-only">{innerCircle.headline}</h1>
 
       <video
-        className="inner-circle-logo h-auto w-full mix-blend-screen"
+        className="inner-circle-logo ml-[4px] h-auto w-full mix-blend-screen"
         src={innerCircleLogo}
         autoPlay
         muted
