@@ -494,6 +494,15 @@ body {
   }
 }
 
+.campaign-rider {
+  transform: translateX(-50%);
+  transition: left 1.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.campaign-fill {
+  transition: width 1.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
 @media (prefers-reduced-motion: reduce) {
   .teaser-cta,
   .teaser-cta::after,
@@ -503,7 +512,9 @@ body {
   .tier-shimmer,
   .inner-circle-logo,
   .inner-circle-copy,
-  .inner-circle-cta {
+  .inner-circle-cta,
+  .campaign-rider,
+  .campaign-fill {
     transition: none;
     animation: none;
   }

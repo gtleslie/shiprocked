@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Logo } from "@/components/Logo";
 import { FacebookIcon, InstagramIcon, YouTubeIcon } from "@/components/SocialIcons";
 import { siteContent } from "@content/site-content";
@@ -16,8 +17,15 @@ export function SiteFooter() {
     <footer className="border-t border-border bg-black">
       <div className="mx-auto max-w-[1440px] px-6 py-12 md:px-12 lg:px-16">
         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1fr]">
-          <div className="self-end">
+          <div className="flex flex-wrap items-center gap-6 self-end lg:gap-8">
             <Logo size="footer" />
+            <Image
+              src={siteContent.assets.ask4Logo}
+              alt="ASK4 Entertainment"
+              width={1244}
+              height={845}
+              className="h-[58px] w-auto object-contain brightness-0 invert md:h-[68px]"
+            />
           </div>
 
           <div>
