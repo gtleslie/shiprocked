@@ -88,7 +88,7 @@ export function CampaignProgress({
 
   return (
     <div ref={trackRef} className={className}>
-      <div className="relative overflow-visible pt-[132px]">
+      <div className="relative overflow-visible pt-[118px]">
         <svg
           className="campaign-wave-svg block h-[48px] w-full overflow-visible"
           viewBox="0 0 1000 48"
@@ -112,31 +112,17 @@ export function CampaignProgress({
           <g clipPath={`url(#${clipId}-fill)`}>
             <path d={sea} fill={`url(#${clipId}-sea)`} />
             <path
-              className="campaign-foam"
               d={crest}
               fill="none"
               stroke="#ffffff"
-              strokeWidth="3"
-              strokeLinecap="round"
-              opacity="0.55"
-            />
-            <path
-              d={crest}
-              fill="none"
-              stroke="#fff7e6"
-              strokeWidth="1.25"
-              opacity="0.7"
+              strokeWidth="1.4"
+              opacity="0.65"
             />
           </g>
         </svg>
 
         <div
-          className="campaign-wake pointer-events-none"
-          style={{ left: `${ride}%`, opacity: ride > 2 ? 1 : 0 }}
-        />
-
-        <div
-          className="campaign-rider pointer-events-none absolute z-[2] h-[148px] w-[240px] md:h-[168px] md:w-[280px]"
+          className="campaign-rider pointer-events-none absolute z-[2] h-[118px] w-[196px] md:h-[132px] md:w-[220px]"
           style={{ left: `${ride}%` }}
         >
           <Image
@@ -144,7 +130,7 @@ export function CampaignProgress({
             alt=""
             width={2388}
             height={1668}
-            className="h-full w-full origin-bottom scale-[1.35] object-contain object-bottom"
+            className="h-full w-full origin-bottom scale-[1.2] object-contain object-bottom"
           />
         </div>
       </div>
