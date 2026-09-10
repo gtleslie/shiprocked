@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useId, useRef, useState } from "react";
 import Image from "next/image";
 import { siteContent } from "@content/site-content";
 
@@ -8,6 +8,25 @@ type CampaignProgressProps = {
   className?: string;
   variant?: "home" | "support";
 };
+
+function waveLine(width: number, height: number, amp: number, cycles: number) {
+  const mid = height * 0.42;
+  const steps = 96;
+  let d = `M 0 ${mid.toFixed(2)}`;
+
+  for (let i = 1; i <= steps; i++) {
+    const t = i / steps;
+    const x = t * width;
+    const y = mid + Math.sin(t * Math.PI * cycles * 2) * amp;
+    d += ` L ${x.toFixed(2)} ${y.toFixed(2)}`;
+  }
+
+  return d;
+}
+
+function waveFill(width: number, height: number, amp: number, cycles: number) {
+  return `${waveLine(width, height, amp, cycles)} L ${width} ${height} L 0 ${height} Z`;
+}
 
 export function CampaignProgress({
   className = "",
@@ -19,6 +38,7 @@ export function CampaignProgress({
   const visualPercent = Math.max(percent, 22);
   const [ride, setRide] = useState(0);
   const trackRef = useRef<HTMLDivElement>(null);
+  const clipId = useId().replace(/:/g, "");
 
   useEffect(() => {
     const track = trackRef.current;
@@ -63,11 +83,60 @@ export function CampaignProgress({
     );
   }
 
+  const crest = waveLine(1000, 48, 7, 11);
+  const sea = waveFill(1000, 48, 7, 11);
+
   return (
     <div ref={trackRef} className={className}>
-      <div className="relative pt-[108px]">
+      <div className="relative overflow-visible pt-[132px]">
+        <svg
+          className="campaign-wave-svg block h-[48px] w-full overflow-visible"
+          viewBox="0 0 1000 48"
+          preserveAspectRatio="none"
+          aria-hidden
+        >
+          <defs>
+            <clipPath id={`${clipId}-fill`}>
+              <rect className="campaign-fill" x="0" y="0" height="48" width={`${ride * 10}`} />
+            </clipPath>
+            <linearGradient id={`${clipId}-sea`} x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stopColor="#e24a4a" />
+              <stop offset="55%" stopColor="#d21f1f" />
+              <stop offset="100%" stopColor="#8a1010" />
+            </linearGradient>
+          </defs>
+
+          <path d={sea} fill="#1c1c1c" />
+          <path d={crest} fill="none" stroke="#3a3a3a" strokeWidth="2.25" />
+
+          <g clipPath={`url(#${clipId}-fill)`}>
+            <path d={sea} fill={`url(#${clipId}-sea)`} />
+            <path
+              className="campaign-foam"
+              d={crest}
+              fill="none"
+              stroke="#ffffff"
+              strokeWidth="3"
+              strokeLinecap="round"
+              opacity="0.55"
+            />
+            <path
+              d={crest}
+              fill="none"
+              stroke="#fff7e6"
+              strokeWidth="1.25"
+              opacity="0.7"
+            />
+          </g>
+        </svg>
+
         <div
-          className="campaign-rider pointer-events-none absolute bottom-[6px] h-[100px] w-[168px] md:w-[200px]"
+          className="campaign-wake pointer-events-none"
+          style={{ left: `${ride}%`, opacity: ride > 2 ? 1 : 0 }}
+        />
+
+        <div
+          className="campaign-rider pointer-events-none absolute z-[2] h-[148px] w-[240px] md:h-[168px] md:w-[280px]"
           style={{ left: `${ride}%` }}
         >
           <Image
@@ -75,12 +144,8 @@ export function CampaignProgress({
             alt=""
             width={2388}
             height={1668}
-            className="h-full w-full object-contain object-bottom"
+            className="h-full w-full origin-bottom scale-[1.35] object-contain object-bottom"
           />
-        </div>
-
-        <div className="h-[10px] w-full overflow-hidden rounded-full bg-[#2a2a2a]">
-          <div className="campaign-fill h-full rounded-full bg-accent-red" style={{ width: `${ride}%` }} />
         </div>
       </div>
       <div className="mt-3 flex items-center justify-between text-[11px] font-bold tracking-[0.32px] uppercase">
