@@ -12,7 +12,7 @@ export function SupportCampaign() {
 
   return (
     <>
-      <section className="px-6 md:px-12 lg:px-16">
+      <section className="mx-auto max-w-[1440px] px-6 pt-6 pb-4 md:px-12 lg:px-16">
         <InnerCircle onJoin={revealTiers} />
       </section>
 

@@ -456,8 +456,8 @@ body {
 }
 
 .inner-circle-stage {
-  min-height: calc(100dvh - 84px);
-  justify-content: center;
+  min-height: calc(100dvh - 300px);
+  padding-top: 2rem;
 }
 
 .inner-circle-logo {
@@ -478,15 +478,15 @@ body {
 @keyframes inner-circle-logo-drama {
   0% {
     opacity: 0;
-    transform: translateY(18vh) scale(1.55);
+    transform: translateY(12vh) scale(1.55);
   }
   19% {
     opacity: 1;
-    transform: translateY(18vh) scale(1.5);
+    transform: translateY(12vh) scale(1.5);
   }
   60% {
     opacity: 1;
-    transform: translateY(18vh) scale(1.5);
+    transform: translateY(12vh) scale(1.5);
   }
   100% {
     opacity: 1;
