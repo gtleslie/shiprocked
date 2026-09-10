@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useId, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { siteContent } from "@content/site-content";
 
@@ -8,25 +8,6 @@ type CampaignProgressProps = {
   className?: string;
   variant?: "home" | "support";
 };
-
-function waveLine(width: number, height: number, amp: number, cycles: number) {
-  const mid = height * 0.42;
-  const steps = 96;
-  let d = `M 0 ${mid.toFixed(2)}`;
-
-  for (let i = 1; i <= steps; i++) {
-    const t = i / steps;
-    const x = t * width;
-    const y = mid + Math.sin(t * Math.PI * cycles * 2) * amp;
-    d += ` L ${x.toFixed(2)} ${y.toFixed(2)}`;
-  }
-
-  return d;
-}
-
-function waveFill(width: number, height: number, amp: number, cycles: number) {
-  return `${waveLine(width, height, amp, cycles)} L ${width} ${height} L 0 ${height} Z`;
-}
 
 export function CampaignProgress({
   className = "",
@@ -38,7 +19,6 @@ export function CampaignProgress({
   const visualPercent = Math.max(percent, 22);
   const [ride, setRide] = useState(0);
   const trackRef = useRef<HTMLDivElement>(null);
-  const clipId = useId().replace(/:/g, "");
 
   useEffect(() => {
     const track = trackRef.current;
@@ -83,46 +63,11 @@ export function CampaignProgress({
     );
   }
 
-  const crest = waveLine(1000, 48, 7, 11);
-  const sea = waveFill(1000, 48, 7, 11);
-
   return (
     <div ref={trackRef} className={className}>
-      <div className="relative overflow-visible pt-[118px]">
-        <svg
-          className="campaign-wave-svg block h-[48px] w-full overflow-visible"
-          viewBox="0 0 1000 48"
-          preserveAspectRatio="none"
-          aria-hidden
-        >
-          <defs>
-            <clipPath id={`${clipId}-fill`}>
-              <rect className="campaign-fill" x="0" y="0" height="48" width={`${ride * 10}`} />
-            </clipPath>
-            <linearGradient id={`${clipId}-sea`} x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor="#e24a4a" />
-              <stop offset="55%" stopColor="#d21f1f" />
-              <stop offset="100%" stopColor="#8a1010" />
-            </linearGradient>
-          </defs>
-
-          <path d={sea} fill="#1c1c1c" />
-          <path d={crest} fill="none" stroke="#3a3a3a" strokeWidth="2.25" />
-
-          <g clipPath={`url(#${clipId}-fill)`}>
-            <path d={sea} fill={`url(#${clipId}-sea)`} />
-            <path
-              d={crest}
-              fill="none"
-              stroke="#ffffff"
-              strokeWidth="1.4"
-              opacity="0.65"
-            />
-          </g>
-        </svg>
-
+      <div className="relative overflow-visible pt-[110px]">
         <div
-          className="campaign-rider pointer-events-none absolute z-[2] h-[118px] w-[196px] md:h-[132px] md:w-[220px]"
+          className="campaign-rider pointer-events-none absolute z-[2] h-[120px] w-[200px] overflow-hidden md:h-[132px] md:w-[220px]"
           style={{ left: `${ride}%` }}
         >
           <Image
@@ -130,8 +75,36 @@ export function CampaignProgress({
             alt=""
             width={2388}
             height={1668}
-            className="h-full w-full origin-bottom scale-[1.2] object-contain object-bottom"
+            className="absolute top-0 left-1/2 h-[154%] w-[132%] max-w-none -translate-x-1/2 object-cover object-top"
           />
+        </div>
+
+        <div className="campaign-track relative h-[24px] w-full overflow-hidden rounded-full">
+          <div
+            className="campaign-fill relative h-full overflow-hidden rounded-full"
+            style={{ width: `${ride}%` }}
+          >
+            <div className="campaign-wave-body absolute inset-0" />
+            <svg
+              className="campaign-wave-motion pointer-events-none absolute inset-y-0 left-0 h-full w-[200%]"
+              viewBox="0 0 400 24"
+              preserveAspectRatio="none"
+              aria-hidden
+            >
+              <path
+                d="M0 6 C 16 1 34 1 50 6 S 84 11 100 6 S 134 1 150 6 S 184 11 200 6 S 234 1 250 6 S 284 11 300 6 S 334 1 350 6 S 384 11 400 6"
+                fill="none"
+                stroke="rgba(255,255,255,0.62)"
+                strokeWidth="1.35"
+              />
+              <path
+                d="M0 13 C 16 9 34 9 50 13 S 84 17 100 13 S 134 9 150 13 S 184 17 200 13 S 234 9 250 13 S 284 17 300 13 S 334 9 350 13 S 384 17 400 13"
+                fill="none"
+                stroke="rgba(255,255,255,0.22)"
+                strokeWidth="1.1"
+              />
+            </svg>
+          </div>
         </div>
       </div>
       <div className="mt-3 flex items-center justify-between text-[11px] font-bold tracking-[0.32px] uppercase">
