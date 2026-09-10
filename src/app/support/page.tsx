@@ -1,7 +1,5 @@
 import { PageShell } from "@/components/PageShell";
-import { CampaignProgress } from "@/components/CampaignProgress";
 import { SiteButton } from "@/components/SiteButton";
-import { SectionDivider } from "@/components/SectionDivider";
 import { SectionLabel } from "@/components/ImagePlaceholder";
 import { SupportCampaign } from "@/components/SupportCampaign";
 import { siteContent } from "@content/site-content";
@@ -11,17 +9,6 @@ export default function SupportPage() {
 
   return (
     <PageShell activePage="support">
-      <section className="mx-auto max-w-[1440px] px-6 pt-16 pb-10 md:px-12 lg:px-16">
-        <SectionLabel>{support.hero.overline}</SectionLabel>
-        <h1 className="mt-4 text-[42px] font-black text-white md:text-[52px]">
-          {support.hero.headline}
-        </h1>
-        <p className="mt-4 max-w-3xl text-[16px] text-text-muted">{support.hero.body}</p>
-        <CampaignProgress variant="support" className="mt-10" />
-      </section>
-
-      <SectionDivider />
-
       <SupportCampaign />
 
       <section className="mx-auto max-w-[1440px] px-6 pt-8 pb-20 md:px-12 lg:px-16">

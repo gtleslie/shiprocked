@@ -237,8 +237,7 @@ export const siteContent = {
       cta: "VIEW TIERS",
     },
     innerCircle: {
-      overline: "PHASE 1 — PROMOTION",
-      dates: "SEPT 21 – OCT 14",
+      overline: "SUPPORT",
       headline: "Join the Inner Circle",
       perks: [
         "Live film updates",
@@ -247,7 +246,7 @@ export const siteContent = {
         "Exclusive ShipRocked content",
       ],
       fundraising: "Fundraising begins October 14th",
-      cta: "Join the Inner Circle to view merch rewards.",
+      cta: "Join the Inner Circle",
     },
     tiers: {
       overline: "CHOOSE YOUR TIER",

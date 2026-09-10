@@ -28,9 +28,9 @@ export function InnerCircle({ onJoin }: InnerCircleProps) {
   return (
     <div className="mx-auto max-w-3xl text-center">
       <SectionLabel>{innerCircle.overline}</SectionLabel>
-      <p className="mt-2 text-[12px] font-bold tracking-[0.4px] text-text-dim uppercase">
-        {innerCircle.dates}
-      </p>
+      <h1 className="mt-4 text-[42px] font-black text-white md:text-[52px]">
+        {innerCircle.headline}
+      </h1>
 
       <video
         className="mx-auto mt-8 h-auto w-full max-w-[420px] mix-blend-screen"
@@ -41,10 +41,6 @@ export function InnerCircle({ onJoin }: InnerCircleProps) {
         preload="auto"
         aria-hidden
       />
-
-      <h2 className="mt-6 text-[32px] font-black text-white md:text-[36px]">
-        {innerCircle.headline}
-      </h2>
 
       <ul className="mx-auto mt-8 max-w-md space-y-3 text-left">
         {innerCircle.perks.map((perk) => (
