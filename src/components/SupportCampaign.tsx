@@ -12,7 +12,7 @@ export function SupportCampaign() {
 
   return (
     <>
-      <section className="mx-auto max-w-[1440px] px-6 pt-4 pb-12 md:px-12 lg:px-16">
+      <section className="mx-auto max-w-[1440px] px-6 pt-4 pb-6 md:px-12 lg:px-16">
         <InnerCircle onJoin={revealTiers} />
       </section>
 
@@ -20,7 +20,7 @@ export function SupportCampaign() {
 
       <section
         id="support-tiers"
-        className="mx-auto max-w-[1440px] overflow-visible px-6 pt-12 pb-16 md:px-12 lg:px-16"
+        className="mx-auto max-w-[1440px] overflow-visible px-6 pt-8 pb-16 md:px-12 lg:px-16"
       >
         <SectionLabel>{support.tiers.overline}</SectionLabel>
         <h2 className="mt-4 text-[32px] font-black text-white md:text-[36px]">
