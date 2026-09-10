@@ -1,6 +1,5 @@
 "use client";
 
-import { SiteButton } from "@/components/SiteButton";
 import { siteContent } from "@content/site-content";
 
 type InnerCircleProps = {
@@ -25,11 +24,11 @@ export function InnerCircle({ onJoin }: InnerCircleProps) {
   }
 
   return (
-    <div className="mx-auto max-w-3xl text-center">
+    <div className="mx-auto flex max-w-[480px] flex-col items-center text-center">
       <h1 className="sr-only">{innerCircle.headline}</h1>
 
       <video
-        className="mx-auto h-auto w-full max-w-[520px] mix-blend-screen"
+        className="h-auto w-full mix-blend-screen"
         src={innerCircleLogo}
         autoPlay
         muted
@@ -38,29 +37,17 @@ export function InnerCircle({ onJoin }: InnerCircleProps) {
         aria-hidden
       />
 
-      <p className="mt-2 text-[22px] font-black tracking-[0.04em] text-white md:text-[26px]">
-        {innerCircle.headline}
-      </p>
+      <button type="button" onClick={handleJoin} className="inner-circle-join -mt-4">
+        {innerCircle.cta}
+      </button>
 
-      <ul className="mx-auto mt-7 grid max-w-xl gap-x-8 gap-y-2.5 text-left sm:grid-cols-2">
-        {innerCircle.perks.map((perk) => (
-          <li key={perk} className="flex items-start gap-2.5 text-[14px] text-text-muted">
-            <span className="mt-1.5 inline-block h-1.5 w-1.5 shrink-0 bg-accent-red" />
-            <span>{perk}</span>
-          </li>
-        ))}
-      </ul>
-
-      <p className="mt-7 text-[12px] font-bold tracking-[0.48px] text-accent-gold uppercase">
+      <p className="mt-4 text-[11px] font-bold tracking-[0.56px] text-accent-gold uppercase">
         {innerCircle.fundraising}
       </p>
 
-      <SiteButton
-        onClick={handleJoin}
-        className="teaser-cta mt-5 h-12 min-w-[240px] px-8 hover:!bg-[#e42727]"
-      >
-        {innerCircle.cta}
-      </SiteButton>
+      <p className="mt-5 max-w-[420px] text-[12px] leading-relaxed tracking-[0.08em] text-text-dim uppercase">
+        {innerCircle.perks.join("  ·  ")}
+      </p>
     </div>
   );
 }
