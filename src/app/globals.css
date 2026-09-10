@@ -455,31 +455,37 @@ body {
   transform-origin: 0 0;
 }
 
+.inner-circle-stage {
+  min-height: calc(100vh - 140px);
+}
+
 .inner-circle-logo {
-  animation: inner-circle-logo-in 1.35s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation: inner-circle-logo-drama 2s cubic-bezier(0.22, 1, 0.36, 1) both;
+  transform-origin: center center;
 }
 
 .inner-circle-copy {
   animation: inner-circle-fade 0.8s ease both;
-  animation-delay: 1.15s;
+  animation-delay: 1.85s;
 }
 
 .inner-circle-cta {
   animation: inner-circle-fade 0.8s ease both;
-  animation-delay: 1.7s;
+  animation-delay: 2.25s;
 }
 
-@keyframes inner-circle-logo-in {
+@keyframes inner-circle-logo-drama {
   0% {
     opacity: 0;
-    transform: scale(1.28);
+    transform: translateY(22vh) scale(1.55);
   }
-  55% {
+  32% {
     opacity: 1;
+    transform: translateY(22vh) scale(1.5);
   }
   100% {
     opacity: 1;
-    transform: scale(1);
+    transform: translateY(0) scale(1);
   }
 }
 

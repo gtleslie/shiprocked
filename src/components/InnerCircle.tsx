@@ -25,7 +25,7 @@ export function InnerCircle({ onJoin }: InnerCircleProps) {
   }
 
   return (
-    <div className="mx-auto flex max-w-[580px] flex-col items-center text-center">
+    <div className="inner-circle-stage mx-auto flex w-full max-w-[640px] flex-col items-center text-center">
       <h1 className="sr-only">{innerCircle.headline}</h1>
 
       <div className="inner-circle-logo ml-[8px] w-full overflow-hidden [clip-path:inset(6%_0_20%_0)]">
