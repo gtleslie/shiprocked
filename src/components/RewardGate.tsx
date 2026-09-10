@@ -17,8 +17,7 @@ const STORAGE_KEY = {
   4: "shiprocked-tiers-revealed-opt4",
 }[ACTIVE_TEASER];
 
-export function RewardGate() {
-  const { support } = siteContent;
+export function useTierReveal() {
   const [phase, setPhase] = useState<"locked" | "revealing" | "open">("locked");
   const revealTimer = useRef<number | null>(null);
 
@@ -44,6 +43,23 @@ export function RewardGate() {
     }, 620);
   }
 
+  return {
+    phase,
+    revealTiers,
+    open: phase === "open",
+    lockedPrices: phase === "locked",
+    showOverlay: phase !== "open",
+  };
+}
+
+export function RewardGate({
+  phase,
+  onReveal,
+}: {
+  phase: "locked" | "revealing" | "open";
+  onReveal: () => void;
+}) {
+  const { support } = siteContent;
   const open = phase === "open";
   const lockedPrices = phase === "locked";
   const showOverlay = phase !== "open";
@@ -62,11 +78,11 @@ export function RewardGate() {
       </div>
 
       {showOverlay && ACTIVE_TEASER === 1 && (
-        <TeaserOption1 onReveal={revealTiers} exiting={phase === "revealing"} />
+        <TeaserOption1 onReveal={onReveal} exiting={phase === "revealing"} />
       )}
-      {showOverlay && ACTIVE_TEASER === 2 && <TeaserOption2 onReveal={revealTiers} />}
-      {showOverlay && ACTIVE_TEASER === 3 && <TeaserOption3 onReveal={revealTiers} />}
-      {showOverlay && ACTIVE_TEASER === 4 && <TeaserOption4 onReveal={revealTiers} />}
+      {showOverlay && ACTIVE_TEASER === 2 && <TeaserOption2 onReveal={onReveal} />}
+      {showOverlay && ACTIVE_TEASER === 3 && <TeaserOption3 onReveal={onReveal} />}
+      {showOverlay && ACTIVE_TEASER === 4 && <TeaserOption4 onReveal={onReveal} />}
     </div>
   );
 }

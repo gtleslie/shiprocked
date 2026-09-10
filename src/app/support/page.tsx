@@ -3,7 +3,7 @@ import { CampaignProgress } from "@/components/CampaignProgress";
 import { SiteButton } from "@/components/SiteButton";
 import { SectionDivider } from "@/components/SectionDivider";
 import { SectionLabel } from "@/components/ImagePlaceholder";
-import { RewardGate } from "@/components/RewardGate";
+import { SupportCampaign } from "@/components/SupportCampaign";
 import { siteContent } from "@content/site-content";
 
 export default function SupportPage() {
@@ -22,15 +22,7 @@ export default function SupportPage() {
 
       <SectionDivider />
 
-      <section className="mx-auto max-w-[1440px] overflow-visible px-6 py-16 md:px-12 lg:px-16">
-        <SectionLabel>{support.tiers.overline}</SectionLabel>
-        <h2 className="mt-4 text-[32px] font-black text-white md:text-[36px]">
-          {support.tiers.headline}
-        </h2>
-        <div className="mt-12">
-          <RewardGate />
-        </div>
-      </section>
+      <SupportCampaign />
 
       <section className="mx-auto max-w-[1440px] px-6 pt-8 pb-20 md:px-12 lg:px-16">
         <SectionLabel>{support.seedAndSpark.overline}</SectionLabel>

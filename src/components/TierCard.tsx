@@ -103,10 +103,7 @@ export function TierCard({ tier, locked = false, index = 0 }: TierCardProps) {
       )}
 
       <div className="relative z-10 flex h-full flex-col px-10 pt-14 pb-8">
-        <p className="text-[11px] font-bold tracking-[0.44px] text-accent-red">
-          {tier.tier}
-        </p>
-        <h3 className="mt-2 text-[14px] font-bold tracking-[0.4px] text-accent-gold uppercase">
+        <h3 className="text-[16px] font-bold tracking-[0.4px] text-accent-gold uppercase">
           {tier.name}
         </h3>
         <p
