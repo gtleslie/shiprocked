@@ -1,7 +1,6 @@
 "use client";
 
 import { SiteButton } from "@/components/SiteButton";
-import { SectionLabel } from "@/components/ImagePlaceholder";
 import { siteContent } from "@content/site-content";
 
 type InnerCircleProps = {
@@ -27,13 +26,10 @@ export function InnerCircle({ onJoin }: InnerCircleProps) {
 
   return (
     <div className="mx-auto max-w-3xl text-center">
-      <SectionLabel>{innerCircle.overline}</SectionLabel>
-      <h1 className="mt-4 text-[42px] font-black text-white md:text-[52px]">
-        {innerCircle.headline}
-      </h1>
+      <h1 className="sr-only">{innerCircle.headline}</h1>
 
       <video
-        className="mx-auto mt-8 h-auto w-full max-w-[420px] mix-blend-screen"
+        className="mx-auto h-auto w-full max-w-[520px] mix-blend-screen"
         src={innerCircleLogo}
         autoPlay
         muted
@@ -42,22 +38,26 @@ export function InnerCircle({ onJoin }: InnerCircleProps) {
         aria-hidden
       />
 
-      <ul className="mx-auto mt-8 max-w-md space-y-3 text-left">
+      <p className="mt-2 text-[22px] font-black tracking-[0.04em] text-white md:text-[26px]">
+        {innerCircle.headline}
+      </p>
+
+      <ul className="mx-auto mt-7 grid max-w-xl gap-x-8 gap-y-2.5 text-left sm:grid-cols-2">
         {innerCircle.perks.map((perk) => (
-          <li key={perk} className="flex items-start gap-3 text-[15px] text-text-muted">
-            <span className="mt-2 inline-block h-1.5 w-1.5 shrink-0 bg-accent-red" />
+          <li key={perk} className="flex items-start gap-2.5 text-[14px] text-text-muted">
+            <span className="mt-1.5 inline-block h-1.5 w-1.5 shrink-0 bg-accent-red" />
             <span>{perk}</span>
           </li>
         ))}
       </ul>
 
-      <p className="mt-8 text-[13px] font-bold tracking-[0.4px] text-accent-gold uppercase">
+      <p className="mt-7 text-[12px] font-bold tracking-[0.48px] text-accent-gold uppercase">
         {innerCircle.fundraising}
       </p>
 
       <SiteButton
         onClick={handleJoin}
-        className="teaser-cta mt-8 h-auto min-h-14 max-w-xl whitespace-normal px-8 py-4 text-center leading-snug hover:!bg-[#e42727]"
+        className="teaser-cta mt-5 h-12 min-w-[240px] px-8 hover:!bg-[#e42727]"
       >
         {innerCircle.cta}
       </SiteButton>
