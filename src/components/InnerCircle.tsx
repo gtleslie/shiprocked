@@ -1,5 +1,6 @@
 "use client";
 
+import { SiteButton } from "@/components/SiteButton";
 import { siteContent } from "@content/site-content";
 
 type InnerCircleProps = {
@@ -37,17 +38,17 @@ export function InnerCircle({ onJoin }: InnerCircleProps) {
         aria-hidden
       />
 
-      <button type="button" onClick={handleJoin} className="inner-circle-join -mt-4">
-        {innerCircle.cta}
-      </button>
+      <p className="-mt-2 max-w-[440px] text-[13px] leading-relaxed text-text-muted">
+        {innerCircle.perks.join("  ·  ")}
+      </p>
 
-      <p className="mt-4 text-[11px] font-bold tracking-[0.56px] text-accent-gold uppercase">
+      <p className="mt-6 text-[11px] font-bold tracking-[0.56px] text-accent-gold uppercase">
         {innerCircle.fundraising}
       </p>
 
-      <p className="mt-5 max-w-[420px] text-[12px] leading-relaxed tracking-[0.08em] text-text-dim uppercase">
-        {innerCircle.perks.join("  ·  ")}
-      </p>
+      <SiteButton onClick={handleJoin} className="mt-5 h-14 min-w-[260px] px-10">
+        {innerCircle.cta}
+      </SiteButton>
     </div>
   );
 }
