@@ -174,10 +174,14 @@ export const siteContent = {
       overline: "MEET THE CHARACTERS",
       headline: "The voices of the voyage.",
       subjects: [
-        { name: "[NAME TBD]", note: "Character / scene name TBD" },
-        { name: "[NAME TBD]", note: "Character / scene name TBD" },
-        { name: "[NAME TBD]", note: "Character / scene name TBD" },
-        { name: "[NAME TBD]", note: "Character / scene name TBD" },
+        { name: "Al McManus", bio: "(bio)" },
+        { name: "Jennifer Zito", bio: "(bio)" },
+        { name: "Alan Koenig", bio: "(bio)" },
+        { name: "Emi Grace", bio: "(bio)" },
+        { name: "GANG!", bio: "(bio)" },
+        { name: "Cookie", bio: "(bio)" },
+        { name: "The Swedes", bio: "(bio)" },
+        { name: "The ShipRocked Family", bio: "(bio)" },
       ],
     },
     transparency: {

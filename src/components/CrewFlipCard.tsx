@@ -5,7 +5,7 @@ import { ImagePlaceholder } from "@/components/ImagePlaceholder";
 
 type CrewMember = {
   name: string;
-  role: string;
+  role?: string;
   bio: string;
 };
 
@@ -48,7 +48,7 @@ export function CrewFlipCard({ member }: CrewFlipCardProps) {
     <button
       type="button"
       aria-pressed={flipped}
-      aria-label={`${member.name}, ${member.role}. ${flipped ? "Showing bio. Click to flip back." : "Click to flip and reveal bio."}`}
+      aria-label={`${member.name}${member.role ? `, ${member.role}` : ""}. ${flipped ? "Showing bio. Click to flip back." : "Click to flip and reveal bio."}`}
       onClick={() => setFlipped((value) => !value)}
       className="crew-flip-card group w-full text-left"
     >
@@ -59,9 +59,11 @@ export function CrewFlipCard({ member }: CrewFlipCardProps) {
             <h3 className="text-[16px] font-bold tracking-[0.2px] text-white">
               {member.name}
             </h3>
-            <p className="mt-1 text-[11px] font-bold tracking-[0.44px] text-accent-red uppercase">
-              {member.role}
-            </p>
+            {member.role && (
+              <p className="mt-1 text-[11px] font-bold tracking-[0.44px] text-accent-red uppercase">
+                {member.role}
+              </p>
+            )}
           </div>
           <FlipBadge />
         </div>
@@ -74,9 +76,11 @@ export function CrewFlipCard({ member }: CrewFlipCardProps) {
             <h3 className="mt-3 text-[16px] font-bold tracking-[0.2px] text-white">
               {member.name}
             </h3>
-            <p className="mt-1 text-[11px] font-bold tracking-[0.44px] text-accent-red uppercase">
-              {member.role}
-            </p>
+            {member.role && (
+              <p className="mt-1 text-[11px] font-bold tracking-[0.44px] text-accent-red uppercase">
+                {member.role}
+              </p>
+            )}
             <p className="mt-5 text-[13px] leading-relaxed text-text-muted">
               {member.bio}
             </p>

@@ -1,11 +1,11 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { ImagePlaceholder } from "@/components/ImagePlaceholder";
+import { CrewFlipCard } from "@/components/CrewFlipCard";
 
 type CharacterSubject = {
   name: string;
-  note: string;
+  bio: string;
 };
 
 type CharactersCarouselProps = {
@@ -94,19 +94,13 @@ export function CharactersCarousel({ subjects }: CharactersCarouselProps) {
         tabIndex={0}
       >
         {subjects.map((subject, index) => (
-          <article
+          <div
             key={`${subject.name}-${index}`}
             data-carousel-card
-            className="characters-carousel-card ship-card overflow-hidden"
+            className="characters-carousel-card"
           >
-            <ImagePlaceholder className="h-[220px] w-full" />
-            <div className="ship-card-footer px-5 py-4">
-              <h3 className="text-[15px] font-bold text-white">{subject.name}</h3>
-              <p className="mt-1 text-[13px] leading-relaxed text-text-secondary">
-                {subject.note}
-              </p>
-            </div>
-          </article>
+            <CrewFlipCard member={subject} />
+          </div>
         ))}
       </div>
 
