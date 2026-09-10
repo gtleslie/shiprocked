@@ -28,7 +28,7 @@ export function InnerCircle({ onJoin }: InnerCircleProps) {
     <div className="inner-circle-stage mx-auto flex w-full max-w-[640px] flex-col items-center text-center">
       <h1 className="sr-only">{innerCircle.headline}</h1>
 
-      <div className="inner-circle-logo ml-[10px] w-full overflow-hidden [clip-path:inset(6%_0_30%_0)]">
+      <div className="inner-circle-logo ml-[10px] w-full">
         <video
           className="block h-auto w-full mix-blend-screen"
           src={innerCircleLogo}
@@ -40,7 +40,7 @@ export function InnerCircle({ onJoin }: InnerCircleProps) {
         />
       </div>
 
-      <p className="inner-circle-copy -mt-2 max-w-[460px] text-[15px] leading-relaxed text-text-muted">
+      <p className="inner-circle-copy mt-1 max-w-[460px] text-[15px] leading-relaxed text-text-muted">
         {innerCircle.perks.join("  ·  ")}
       </p>
 
