@@ -14,9 +14,14 @@ export default function HomePage() {
 
       <section className="mx-auto max-w-[1440px] px-6 py-20 md:px-12 lg:px-16">
         <SectionLabel>{home.film.overline}</SectionLabel>
-        <h2 className="mt-4 text-[36px] leading-tight font-black text-white md:text-[42px]">
-          {home.film.headline.map((line) => (
-            <span key={line} className="block">
+        <h2 className="mt-4 leading-tight font-black text-white">
+          {home.film.headline.map((line, index) => (
+            <span
+              key={line}
+              className={`block ${
+                index === 0 ? "text-[30px] md:text-[36px]" : "text-[36px] md:text-[42px]"
+              }`}
+            >
               {line}
             </span>
           ))}
