@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { ImagePlaceholder } from "@/components/ImagePlaceholder";
 
 type CrewMember = {
@@ -43,13 +43,27 @@ function FlipBadge() {
 
 export function CrewFlipCard({ member }: CrewFlipCardProps) {
   const [flipped, setFlipped] = useState(false);
+  const hoverFlip = useRef(false);
 
   return (
     <button
       type="button"
       aria-pressed={flipped}
-      aria-label={`${member.name}${member.role ? `, ${member.role}` : ""}. ${flipped ? "Showing bio. Click to flip back." : "Click to flip and reveal bio."}`}
-      onClick={() => setFlipped((value) => !value)}
+      aria-label={`${member.name}${member.role ? `, ${member.role}` : ""}. ${flipped ? "Showing bio. Click to flip back." : "Hover or click to flip and reveal bio."}`}
+      onPointerEnter={(event) => {
+        if (event.pointerType !== "mouse") return;
+        hoverFlip.current = true;
+        setFlipped(true);
+      }}
+      onPointerLeave={(event) => {
+        if (event.pointerType !== "mouse") return;
+        hoverFlip.current = false;
+        setFlipped(false);
+      }}
+      onClick={() => {
+        if (hoverFlip.current) return;
+        setFlipped((value) => !value);
+      }}
       className="crew-flip-card group w-full text-left"
     >
       <div className={`crew-flip-inner ${flipped ? "is-flipped" : ""}`}>
