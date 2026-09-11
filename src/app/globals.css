@@ -435,6 +435,7 @@ h2 {
   font-weight: 700;
   font-style: normal;
   letter-spacing: 0.02em;
+  line-height: 1.05;
   text-transform: uppercase;
   font-synthesis: none;
   font-variant-ligatures: none;
@@ -446,7 +447,14 @@ h2 {
   font-weight: 700;
   font-style: normal;
   font-variation-settings: "wght" 700;
+  letter-spacing: 0.04em;
+  line-height: 1;
   text-transform: uppercase;
+}
+
+.font-overline + h1,
+.font-overline + h2 {
+  margin-top: 0.5rem;
 }
 
 .font-subhead {

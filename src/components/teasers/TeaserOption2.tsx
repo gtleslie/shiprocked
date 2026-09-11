@@ -71,7 +71,7 @@ export function TeaserOption2({ onReveal }: TeaserOption2Props) {
         </svg>
 
         <div className="relative z-10 flex min-h-[420px] flex-col items-center px-10 pt-14 pb-10 text-center">
-          <p className="font-overline text-[18px] font-bold tracking-[0.14em] text-accent-gold uppercase">
+          <p className="font-overline text-[18px] font-bold text-accent-gold uppercase">
             {teaser.badge}
           </p>
           <h3

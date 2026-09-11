@@ -4,7 +4,7 @@ export function ImagePlaceholder({ className = "" }: { className?: string }) {
 
 export function SectionLabel({ children }: { children: React.ReactNode }) {
   return (
-    <p className="font-overline text-[18px] font-bold tracking-[0.14em] text-accent-gold uppercase">
+    <p className="font-overline text-[18px] font-bold text-accent-gold uppercase">
       {children}
     </p>
   );
