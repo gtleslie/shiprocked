@@ -150,11 +150,11 @@ export function TierCard({ tier, locked = false, index = 0 }: TierCardProps) {
         </ul>
         <SiteButton
           href={locked ? undefined : links.seedAndSpark}
-          variant={gold ? "gold" : "dark"}
+          variant="dark"
           className="mt-6 h-11 w-full text-[11px]"
           disabled={locked}
         >
-          {tier.premium ? support.tiers.claimCta : support.tiers.selectCta}
+          {support.tiers.selectCta}
         </SiteButton>
       </div>
     </article>

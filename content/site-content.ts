@@ -321,7 +321,7 @@ export const siteContent = {
           image: "",
           perks: ["Everything in all lower tiers"],
           featured: false,
-          badge: "TOP REWARD",
+          badge: "MOST CLAIMED",
           premium: true,
         },
       ],

@@ -7,7 +7,7 @@ const variantClasses: Record<ButtonVariant, string> = {
   primary: "bg-accent-red text-white hover:bg-[#b81818]",
   outline: "border border-white text-white hover:bg-white/5",
   gold: "bg-accent-gold text-black hover:bg-[#c49234]",
-  dark: "bg-black text-white hover:bg-[#111]",
+  dark: "bg-black text-white hover:bg-accent-red hover:shadow-[0_0_22px_rgba(210,31,31,0.5)]",
 };
 
 type SiteButtonProps = {
@@ -29,7 +29,7 @@ export function SiteButton({
   disabled = false,
   onClick,
 }: SiteButtonProps) {
-  const classes = `inline-flex h-[48px] items-center justify-center px-7 text-[12px] font-bold tracking-[0.32px] uppercase transition-colors ${variantClasses[variant]} ${className} ${disabled ? "pointer-events-none cursor-not-allowed opacity-50" : ""}`;
+  const classes = `inline-flex h-[48px] items-center justify-center px-7 text-[12px] font-bold tracking-[0.32px] uppercase transition-[color,background-color,box-shadow] duration-200 ${variantClasses[variant]} ${className} ${disabled ? "pointer-events-none cursor-not-allowed opacity-50" : ""}`;
 
   if (href && !disabled) {
     return (
