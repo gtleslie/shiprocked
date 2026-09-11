@@ -23,14 +23,14 @@ export function TeaserOption3({ onReveal }: TeaserOption3Props) {
       >
         <div className="flex w-[72px] shrink-0 flex-col items-center justify-between border-r border-dashed border-accent-gold/70 bg-black py-6">
           <p
-            className="text-[10px] font-bold tracking-[0.4px] text-accent-gold uppercase"
+            className="font-overline text-[10px] font-bold tracking-[0.4px] text-accent-gold uppercase"
             style={{ writingMode: "vertical-rl", transform: "rotate(180deg)" }}
           >
             Admit one
           </p>
           <span className="h-1.5 w-1.5 bg-accent-gold" />
           <p
-            className="text-[10px] font-bold tracking-[0.4px] text-accent-gold uppercase"
+            className="font-overline text-[10px] font-bold tracking-[0.4px] text-accent-gold uppercase"
             style={{ writingMode: "vertical-rl", transform: "rotate(180deg)" }}
           >
             {teaser.badge}
@@ -40,11 +40,11 @@ export function TeaserOption3({ onReveal }: TeaserOption3Props) {
         <div className="flex flex-1 flex-col justify-center px-8 py-8 md:px-10 md:py-9">
           <h3
             id="reward-gate-title"
-            className="text-[24px] leading-tight font-black text-white md:text-[30px]"
+            className="font-header text-[24px] leading-tight text-white md:text-[30px]"
           >
             {teaser.headline}
           </h3>
-          <p className="mt-3 max-w-xl text-[14px] leading-relaxed text-text-muted md:text-[15px]">
+          <p className="font-subhead mt-3 max-w-xl text-[14px] leading-relaxed text-text-muted md:text-[15px]">
             {teaser.body}
           </p>
           <div className="mt-7">

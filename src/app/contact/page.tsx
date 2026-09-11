@@ -4,7 +4,7 @@ import { FormEvent, useState } from "react";
 import { PageShell } from "@/components/PageShell";
 import { SiteButton } from "@/components/SiteButton";
 import { SectionDivider } from "@/components/SectionDivider";
-import { LineRule, SectionLabel } from "@/components/ImagePlaceholder";
+import { LineRule, SectionLabel, SectionSubhead } from "@/components/ImagePlaceholder";
 import { siteContent } from "@content/site-content";
 
 export default function ContactPage() {
@@ -23,7 +23,7 @@ export default function ContactPage() {
         <h1 className="mt-4 text-[42px] font-black text-white md:text-[52px]">
           {contact.hero.headline}
         </h1>
-        <p className="mt-4 max-w-3xl text-[16px] text-text-muted">{contact.hero.body}</p>
+        <SectionSubhead className="mt-4 max-w-3xl text-[16px]">{contact.hero.body}</SectionSubhead>
       </section>
 
       <SectionDivider />

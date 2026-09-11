@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { Bebas_Neue, Inter } from "next/font/google";
+import { Barlow_Condensed, Inter, Pathway_Gothic_One } from "next/font/google";
+import localFont from "next/font/local";
 import { ScrollToTop } from "@/components/ScrollToTop";
 import { siteContent } from "@content/site-content";
 import "./globals.css";
@@ -10,10 +11,24 @@ const inter = Inter({
   display: "swap",
 });
 
-const bebas = Bebas_Neue({
+const din = localFont({
+  src: "../fonts/DINCondensed-Bold.ttf",
+  weight: "700",
+  variable: "--font-header",
+  display: "swap",
+});
+
+const industry = Barlow_Condensed({
+  weight: ["600", "700"],
+  subsets: ["latin"],
+  variable: "--font-overline",
+  display: "swap",
+});
+
+const agency = Pathway_Gothic_One({
   weight: "400",
   subsets: ["latin"],
-  variable: "--font-display",
+  variable: "--font-subhead",
   display: "swap",
 });
 
@@ -28,7 +43,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${bebas.variable}`}>
+    <html
+      lang="en"
+      className={`${inter.variable} ${din.variable} ${industry.variable} ${agency.variable}`}
+    >
       <body className="min-h-screen antialiased">
         <ScrollToTop />
         {children}

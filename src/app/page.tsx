@@ -2,7 +2,7 @@ import { PageShell } from "@/components/PageShell";
 import { HeroSection } from "@/components/HeroSection";
 import { SiteButton } from "@/components/SiteButton";
 import { CampaignProgress } from "@/components/CampaignProgress";
-import { ImagePlaceholder, SectionLabel } from "@/components/ImagePlaceholder";
+import { ImagePlaceholder, SectionLabel, SectionSubhead } from "@/components/ImagePlaceholder";
 import { siteContent } from "@content/site-content";
 
 export default function HomePage() {
@@ -64,7 +64,7 @@ export default function HomePage() {
         <h2 className="mt-4 text-[32px] font-black text-white md:text-[36px]">
           {home.campaign.headline}
         </h2>
-        <p className="mt-3 text-[14px] text-text-muted">{siteContent.campaign.homeDates}</p>
+        <SectionSubhead className="mt-3 text-[16px]">{siteContent.campaign.homeDates}</SectionSubhead>
         <CampaignProgress variant="home" className="mt-8" />
         <SiteButton href="/support" className="mt-8">
           {home.campaign.supportCta}

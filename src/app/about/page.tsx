@@ -3,7 +3,7 @@ import { SectionDivider } from "@/components/SectionDivider";
 import { BudgetChart } from "@/components/BudgetChart";
 import { CharactersCarousel } from "@/components/CharactersCarousel";
 import { CrewFlipCard } from "@/components/CrewFlipCard";
-import { ImagePlaceholder, SectionLabel } from "@/components/ImagePlaceholder";
+import { ImagePlaceholder, SectionLabel, SectionSubhead } from "@/components/ImagePlaceholder";
 import { siteContent } from "@content/site-content";
 
 export default function AboutPage() {
@@ -18,12 +18,12 @@ export default function AboutPage() {
             <h1 className="mt-5 text-[48px] leading-none font-black text-white md:text-[56px]">
               {about.hero.headline}
             </h1>
-            <p className="mt-1 text-[48px] leading-none font-black text-accent-red md:text-[56px]">
+            <p className="font-header mt-1 text-[48px] leading-none text-accent-red md:text-[56px]">
               {about.hero.headlineAccent}
             </p>
-            <p className="mt-8 max-w-2xl text-[16px] leading-relaxed text-text-muted">
+            <SectionSubhead className="mt-8 max-w-2xl text-[16px] leading-relaxed">
               {about.hero.body}
-            </p>
+            </SectionSubhead>
           </div>
           <ImagePlaceholder className="h-[180px] w-full lg:h-[200px]" />
         </div>

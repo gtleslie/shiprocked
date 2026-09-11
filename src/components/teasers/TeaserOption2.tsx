@@ -71,16 +71,16 @@ export function TeaserOption2({ onReveal }: TeaserOption2Props) {
         </svg>
 
         <div className="relative z-10 flex min-h-[420px] flex-col items-center px-10 pt-14 pb-10 text-center">
-          <p className="text-[11px] font-bold tracking-[0.72px] text-accent-gold uppercase">
+          <p className="font-overline text-[15px] font-bold tracking-[0.14em] text-accent-gold uppercase">
             {teaser.badge}
           </p>
           <h3
             id="reward-gate-title"
-            className="mt-5 text-[26px] leading-tight font-black text-white md:text-[30px]"
+            className="font-header mt-5 text-[26px] leading-tight text-white md:text-[30px]"
           >
             {teaser.headline}
           </h3>
-          <p className="mt-4 text-[15px] leading-relaxed text-text-muted">{teaser.body}</p>
+          <p className="font-subhead mt-4 text-[15px] leading-relaxed text-text-muted">{teaser.body}</p>
           <SiteButton onClick={onReveal} className="mt-8 h-14 min-w-[220px] px-10">
             {teaser.cta}
           </SiteButton>

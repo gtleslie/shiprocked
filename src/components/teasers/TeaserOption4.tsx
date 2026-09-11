@@ -23,7 +23,7 @@ export function TeaserOption4({ onReveal }: TeaserOption4Props) {
       >
         <div className="flex items-center justify-center gap-4 border-b border-border px-6 py-3">
           <span className="h-px w-10 bg-accent-gold" />
-          <p className="text-[11px] font-bold tracking-[0.72px] text-accent-gold uppercase">
+          <p className="font-overline text-[15px] font-bold tracking-[0.14em] text-accent-gold uppercase">
             {teaser.badge}
           </p>
           <span className="h-px w-10 bg-accent-gold" />
@@ -32,11 +32,11 @@ export function TeaserOption4({ onReveal }: TeaserOption4Props) {
         <div className="px-8 py-9 text-center">
           <h3
             id="reward-gate-title"
-            className="text-[26px] leading-tight font-black text-white md:text-[32px]"
+            className="font-header text-[26px] leading-tight text-white md:text-[32px]"
           >
             {teaser.headline}
           </h3>
-          <p className="mt-4 text-[15px] leading-relaxed text-text-muted">{teaser.body}</p>
+          <p className="font-subhead mt-4 text-[15px] leading-relaxed text-text-muted">{teaser.body}</p>
           <SiteButton onClick={onReveal} className="mt-8 h-14 min-w-[220px] px-10">
             {teaser.cta}
           </SiteButton>

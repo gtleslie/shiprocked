@@ -421,8 +421,20 @@ body {
   border-color: rgba(210, 31, 31, 0.7);
 }
 
-.font-display {
-  font-family: var(--font-display), Impact, "Arial Narrow", sans-serif;
+.font-header,
+h1:not(.sr-only),
+h2 {
+  font-family: var(--font-header), "DIN Condensed", sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.font-overline {
+  font-family: "Industry Test", "Industry", var(--font-overline), sans-serif;
+}
+
+.font-subhead {
+  font-family: "Agency FB", "Agency FB Bold", var(--font-subhead), sans-serif;
 }
 
 .teaser-cta {

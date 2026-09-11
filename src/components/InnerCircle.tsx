@@ -30,7 +30,7 @@ export function InnerCircle() {
         />
       </div>
 
-      <p className="inner-circle-copy mt-5 max-w-[460px] text-[15px] leading-relaxed text-text-muted">
+      <p className="inner-circle-copy font-subhead mt-5 max-w-[460px] text-[15px] leading-relaxed text-text-muted">
         {innerCircle.perks.join("  ·  ")}
       </p>
 
