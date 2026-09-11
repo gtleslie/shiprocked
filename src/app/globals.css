@@ -506,16 +506,6 @@ body {
   transform-origin: center center;
 }
 
-.inner-circle-copy {
-  animation: inner-circle-fade 0.35s ease both;
-  animation-delay: 1.05s;
-}
-
-.inner-circle-cta {
-  animation: inner-circle-fade 0.35s ease both;
-  animation-delay: 1.2s;
-}
-
 @keyframes inner-circle-logo-drama {
   0% {
     opacity: 0;
@@ -532,17 +522,6 @@ body {
   100% {
     opacity: 1;
     transform: translateY(0) scale(1);
-  }
-}
-
-@keyframes inner-circle-fade {
-  from {
-    opacity: 0;
-    transform: translateY(14px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
   }
 }
 
@@ -593,8 +572,6 @@ body {
   .teaser-price,
   .tier-shimmer,
   .inner-circle-logo,
-  .inner-circle-copy,
-  .inner-circle-cta,
   .campaign-rider,
   .campaign-fill,
   .campaign-wave-motion {
