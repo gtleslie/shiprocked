@@ -84,10 +84,76 @@ body {
 }
 
 .hero-visual-frame {
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(210, 31, 31, 0.45);
   box-shadow:
-    0 0 80px rgba(210, 31, 31, 0.12),
-    inset 0 0 60px rgba(0, 0, 0, 0.5);
+    0 0 80px rgba(210, 31, 31, 0.22),
+    0 0 0 1px rgba(210, 31, 31, 0.18),
+    inset 0 0 60px rgba(0, 0, 0, 0.35);
+  overflow: hidden;
+}
+
+.hero-video-slot,
+.hero-video-slot iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.hero-video-slot iframe {
+  pointer-events: none;
+  transform: scale(1.22);
+  transform-origin: center center;
+}
+
+.hero-audio-toggle {
+  position: absolute;
+  right: 16px;
+  bottom: 16px;
+  z-index: 3;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border: 1px solid rgba(210, 31, 31, 0.55);
+  background: rgba(0, 0, 0, 0.62);
+  color: #f2f2f2;
+  cursor: pointer;
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.hero-audio-toggle:hover,
+.hero-audio-toggle:focus-visible {
+  border-color: rgba(210, 31, 31, 0.95);
+  background: rgba(210, 31, 31, 0.28);
+  color: #ffffff;
+  outline: none;
+}
+
+.hero-audio-toggle.is-muted {
+  animation: hero-audio-pulse 2.4s ease-in-out infinite;
+}
+
+@keyframes hero-audio-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(210, 31, 31, 0);
+  }
+  50% {
+    box-shadow: 0 0 0 8px rgba(210, 31, 31, 0.12);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-audio-toggle.is-muted {
+    animation: none;
+  }
 }
 
 .hero-visual-sheen {
@@ -326,6 +392,22 @@ body {
 .budget-chart svg *:focus-visible {
   outline: none !important;
   box-shadow: none !important;
+}
+
+@media (min-width: 1024px) {
+  /* Size the pie to the carousel column: top of cards through bottom of arrows. */
+  .budget-chart {
+    height: 0;
+    min-height: 100%;
+    align-items: stretch;
+  }
+
+  .budget-chart svg {
+    height: 100%;
+    width: auto;
+    max-height: 100%;
+    max-width: 100%;
+  }
 }
 
 .characters-carousel-track {

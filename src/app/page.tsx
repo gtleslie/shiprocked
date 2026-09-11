@@ -37,7 +37,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-[1440px] px-6 py-16 md:px-12 lg:px-16">
+      <section className="mx-auto max-w-[1440px] px-6 pt-16 pb-10 md:px-12 lg:px-16">
         <SectionLabel>{home.whyItMatters.overline}</SectionLabel>
         <h2 className="mt-4 max-w-3xl text-[32px] font-black text-white md:text-[36px]">
           {home.whyItMatters.headline}
@@ -59,7 +59,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-[1440px] px-6 pt-12 pb-20 md:px-12 lg:px-16">
+      <section className="mx-auto max-w-[1440px] px-6 pt-8 pb-20 md:px-12 lg:px-16">
         <SectionLabel>{home.campaign.overline}</SectionLabel>
         <h2 className="mt-4 text-[32px] font-black text-white md:text-[36px]">
           {home.campaign.headline}

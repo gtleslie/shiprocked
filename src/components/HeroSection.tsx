@@ -1,4 +1,5 @@
 import { Logo } from "@/components/Logo";
+import { HeroVideo } from "@/components/HeroVideo";
 import { SectionDivider } from "@/components/SectionDivider";
 import { siteContent } from "@content/site-content";
 
@@ -18,16 +19,7 @@ export function HeroSection() {
 
         <div className="hero-visual relative min-h-[320px] flex-1 lg:min-h-0 lg:basis-[58%]">
           <div className="hero-visual-frame absolute inset-0 mx-6 my-14 md:mx-10 md:my-20 lg:mx-12 lg:my-28">
-            <div className="image-placeholder relative h-full w-full overflow-hidden">
-              <div className="hero-visual-sheen absolute inset-0" aria-hidden />
-              <div className="hero-ribbon hero-ribbon-one" aria-hidden />
-              <div className="hero-ribbon hero-ribbon-two" aria-hidden />
-              <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent" />
-              <div className="absolute inset-0 bg-gradient-to-l from-black/70 via-transparent to-black/30" />
-              <p className="absolute right-6 bottom-6 text-[10px] font-bold tracking-[0.8px] text-text-dim uppercase">
-                {home.hero.visualLabel}
-              </p>
-            </div>
+            <HeroVideo videoId={home.hero.youtubeId} />
           </div>
         </div>
       </div>
