@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { SiteButton } from "@/components/SiteButton";
-import { WavyMediaSlot } from "@/components/ImagePlaceholder";
+import { ImagePlaceholder } from "@/components/ImagePlaceholder";
 import { siteContent } from "@content/site-content";
 
 type Tier = (typeof siteContent.support.tiers.items)[number];
@@ -106,7 +106,7 @@ export function TierCard({ tier, locked = false, index = 0 }: TierCardProps) {
       )}
 
       <div className="relative z-10 flex h-full flex-col px-8 pt-12 pb-8">
-        <WavyMediaSlot gold={gold} labeled={!image} className="mb-5 aspect-[16/10]">
+        <div className="relative mb-5 aspect-[16/10] overflow-hidden bg-[#0c0c0c]">
           {image ? (
             <Image
               src={image}
@@ -115,8 +115,10 @@ export function TierCard({ tier, locked = false, index = 0 }: TierCardProps) {
               sizes="(min-width: 1280px) 30vw, (min-width: 768px) 45vw, 90vw"
               className="object-cover"
             />
-          ) : null}
-        </WavyMediaSlot>
+          ) : (
+            <ImagePlaceholder className="h-full w-full" />
+          )}
+        </div>
 
         <h3 className="text-[16px] font-bold tracking-[0.4px] text-accent-gold uppercase">
           {tier.name}
