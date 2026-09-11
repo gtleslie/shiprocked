@@ -3,25 +3,15 @@
 import { SiteButton } from "@/components/SiteButton";
 import { siteContent } from "@content/site-content";
 
-type InnerCircleProps = {
-  onJoin: () => void;
-};
-
-export function InnerCircle({ onJoin }: InnerCircleProps) {
+export function InnerCircle() {
   const { innerCircle } = siteContent.support;
   const { innerCircleLogo } = siteContent.assets;
   const groupHref = siteContent.links.innerCircle;
   const hasGroupLink = groupHref.startsWith("http");
 
   function handleJoin() {
-    onJoin();
-    if (hasGroupLink) {
-      window.open(groupHref, "_blank", "noopener,noreferrer");
-    }
-    document.getElementById("support-tiers")?.scrollIntoView({
-      behavior: "smooth",
-      block: "start",
-    });
+    if (!hasGroupLink) return;
+    window.open(groupHref, "_blank", "noopener,noreferrer");
   }
 
   return (

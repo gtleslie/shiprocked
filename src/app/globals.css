@@ -380,6 +380,47 @@ body {
   cursor: not-allowed;
 }
 
+.merch-carousel-track {
+  display: flex;
+  gap: 1.5rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  padding-bottom: 0.5rem;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.merch-carousel-track::-webkit-scrollbar {
+  display: none;
+}
+
+.merch-carousel-card {
+  flex: 0 0 min(260px, 78%);
+  scroll-snap-align: start;
+}
+
+@media (min-width: 640px) {
+  .merch-carousel-card {
+    flex-basis: calc((100% - 1.5rem) / 2);
+  }
+}
+
+@media (min-width: 1024px) {
+  .merch-carousel-card {
+    flex-basis: calc((100% - 3rem) / 3);
+  }
+}
+
+.merch-carousel-card .ship-card {
+  width: 100%;
+  transition: border-color 0.2s ease;
+}
+
+.merch-carousel-card .ship-card:hover {
+  border-color: rgba(210, 31, 31, 0.7);
+}
+
 .font-display {
   font-family: var(--font-display), Impact, "Arial Narrow", sans-serif;
 }

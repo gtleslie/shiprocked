@@ -41,7 +41,7 @@ export function TierCard({ tier, locked = false, index = 0 }: TierCardProps) {
   const path = wavyPath(320, 540, gold ? 8 : 7, 8);
   const clipId = `${tier.id}-shape`;
   const sheenId = `${tier.id}-sheen`;
-  const imageFit = "imageFit" in tier && tier.imageFit === "contain" ? "contain" : "cover";
+  const image = "image" in tier ? tier.image : "";
 
   return (
     <article id={tier.id} className="relative min-h-[500px] overflow-visible bg-transparent">
@@ -107,13 +107,13 @@ export function TierCard({ tier, locked = false, index = 0 }: TierCardProps) {
 
       <div className="relative z-10 flex h-full flex-col px-8 pt-12 pb-8">
         <div className="relative mb-5 aspect-[16/10] overflow-hidden bg-[#0c0c0c]">
-          {tier.image ? (
+          {image ? (
             <Image
-              src={tier.image}
+              src={image}
               alt={tier.reward}
               fill
               sizes="(min-width: 1280px) 30vw, (min-width: 768px) 45vw, 90vw"
-              className={imageFit === "contain" ? "object-contain p-4" : "object-cover"}
+              className="object-cover"
             />
           ) : (
             <ImagePlaceholder className="h-full w-full" />
