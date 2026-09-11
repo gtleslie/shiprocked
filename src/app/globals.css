@@ -188,8 +188,15 @@ body {
   transition: transform 0.65s cubic-bezier(0.4, 0.2, 0.2, 1);
 }
 
-.crew-flip-inner.is-flipped {
+.crew-flip-inner.is-flipped,
+.crew-flip-card:focus-visible .crew-flip-inner {
   transform: rotateY(180deg);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .crew-flip-card:hover .crew-flip-inner {
+    transform: rotateY(180deg);
+  }
 }
 
 .crew-flip-face {
