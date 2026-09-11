@@ -160,23 +160,35 @@ export const siteContent = {
         {
           name: "ALBERT KOENIG",
           role: "DIRECTOR",
-          bio: "Albert leads the vision for The Story of ShipRocked, shaping every frame of this senior thesis documentary. He has spent years embedded with the voyage community, determined to capture the chaos and camaraderie that only happen at sea.",
+          bio: "Albert Koenig is a documentary producer and editor from Nashville, TN. With ShipRocked being his dad's livelihood, he's excited to explore the family and world through the lens of cinema.",
         },
         {
           name: "MATT DAVIS",
           role: "PRODUCER",
-          bio: "Matt keeps the production moving from dock to deadline, bridging creative ambition with the realities of indie filmmaking. He coordinates the campaign, the crew, and the partnerships that make finishing the film possible.",
+          bio: "(bio)",
         },
         {
           name: "SILAS GRASSE",
-          role: "PRODUCTION LEAD",
-          bio: "Silas runs the day-to-day shoot with a steady hand, turning packed voyage schedules into usable footage. He thrives in the pressure of live events, making sure nothing essential slips past the lens.",
+          role: "MARKETING PRODUCER",
+          bio: "Silas Grasse is a Marketer and Producer from Philadelphia, PA. He specializes in creating vivid and interactive promotional campaigns for experiential creative projects.",
         },
       ],
     },
     characters: {
-      overline: "MEET THE CHARACTERS",
+      overline: "THE VOICES",
       headline: "The voices of the voyage.",
+      subjects: [
+        { name: "ELLIOT CUNNINGHAM", role: "POST SUPERVISOR", bio: "(bio)" },
+        { name: "JACK EASTERHAUS", role: "CINEMATOGRAPHY", bio: "(bio)" },
+        { name: "WILLIAM BROWN", role: "PRODUCTION SOUND", bio: "(bio)" },
+        { name: "ARCHER MCCRACKEN", role: "SOUND SUPERVISOR", bio: "(bio)" },
+        { name: "EMILY MOTTA", role: "EDITOR", bio: "(bio)" },
+        { name: "CAMI ROADMAN", role: "EDITOR", bio: "(bio)" },
+      ],
+    },
+    meetCharacters: {
+      overline: "MEET THE CHARACTERS",
+      headline: "The people of the voyage.",
       subjects: [
         { name: "Al McManus", bio: "(bio)" },
         { name: "Jennifer Zito", bio: "(bio)" },

@@ -5,11 +5,13 @@ import { CrewFlipCard } from "@/components/CrewFlipCard";
 
 type CharacterSubject = {
   name: string;
+  role?: string;
   bio: string;
 };
 
 type CharactersCarouselProps = {
   subjects: readonly CharacterSubject[];
+  label?: string;
 };
 
 function ChevronLeftIcon({ className = "h-4 w-4" }: { className?: string }) {
@@ -46,7 +48,10 @@ function ChevronRightIcon({ className = "h-4 w-4" }: { className?: string }) {
   );
 }
 
-export function CharactersCarousel({ subjects }: CharactersCarouselProps) {
+export function CharactersCarousel({
+  subjects,
+  label = "Character carousel",
+}: CharactersCarouselProps) {
   const trackRef = useRef<HTMLDivElement>(null);
   const [canPrev, setCanPrev] = useState(false);
   const [canNext, setCanNext] = useState(false);
@@ -111,7 +116,7 @@ export function CharactersCarousel({ subjects }: CharactersCarouselProps) {
         ref={trackRef}
         className="characters-carousel-track"
         role="region"
-        aria-label="Character voices carousel"
+        aria-label={label}
         tabIndex={0}
       >
         {subjects.map((subject, index) => (
