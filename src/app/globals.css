@@ -510,31 +510,7 @@ h2 {
 
 .inner-circle-stage {
   min-height: calc(100dvh - 300px);
-  padding-top: calc(2rem + 10vh);
-}
-
-.inner-circle-logo {
-  animation: inner-circle-logo-drama 2.1s cubic-bezier(0.22, 1, 0.36, 1) both;
-  transform-origin: center center;
-}
-
-@keyframes inner-circle-logo-drama {
-  0% {
-    opacity: 0;
-    transform: translateY(2vh) scale(1.55);
-  }
-  22% {
-    opacity: 1;
-    transform: translateY(2vh) scale(1.5);
-  }
-  48% {
-    opacity: 1;
-    transform: translateY(2vh) scale(1.5);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
+  padding-top: 2rem;
 }
 
 .campaign-rider {
@@ -583,7 +559,6 @@ h2 {
   .teaser-overlay-card,
   .teaser-price,
   .tier-shimmer,
-  .inner-circle-logo,
   .campaign-rider,
   .campaign-fill,
   .campaign-wave-motion {
