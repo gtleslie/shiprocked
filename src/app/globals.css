@@ -431,15 +431,18 @@ body {
 .font-header,
 h1:not(.sr-only),
 h2 {
-  font-family: "industry", "Industry Test", var(--font-header), sans-serif;
+  font-family: var(--font-industry), industry, sans-serif;
   font-weight: 700;
   font-style: normal;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.02em;
   text-transform: uppercase;
+  font-synthesis: none;
+  font-variant-ligatures: none;
+  font-feature-settings: "liga" 0, "dlig" 0, "calt" 0;
 }
 
 .font-overline {
-  font-family: "overpass-variable", var(--font-overline), sans-serif;
+  font-family: "overpass-variable", sans-serif;
   font-weight: 700;
   font-style: normal;
   font-variation-settings: "wght" 700;
