@@ -106,7 +106,7 @@ export function TierCard({ tier, locked = false, index = 0 }: TierCardProps) {
       )}
 
       <div className="relative z-10 flex h-full flex-col px-8 pt-12 pb-8">
-        <WavyMediaSlot gold={gold} className="mb-5 aspect-[16/10]">
+        <WavyMediaSlot gold={gold} labeled={!image} className="mb-5 aspect-[16/10]">
           {image ? (
             <Image
               src={image}
