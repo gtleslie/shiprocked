@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
-import { ImagePlaceholder } from "@/components/ImagePlaceholder";
+import { WavyMediaSlot } from "@/components/ImagePlaceholder";
 import { siteContent } from "@content/site-content";
 
 type MerchCarouselProps = {
@@ -98,7 +98,7 @@ export function MerchCarousel({ onSelect }: MerchCarouselProps) {
               onClick={() => onSelect(tier.id)}
               className="ship-card group w-full overflow-hidden text-left"
             >
-              <div className="relative h-[180px] overflow-hidden bg-[#0c0c0c]">
+              <WavyMediaSlot gold={Boolean(tier.featured || tier.premium)} className="h-[180px]">
                 {tier.image ? (
                   <Image
                     src={tier.image}
@@ -107,10 +107,8 @@ export function MerchCarousel({ onSelect }: MerchCarouselProps) {
                     sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 80vw"
                     className="object-cover"
                   />
-                ) : (
-                  <ImagePlaceholder className="h-full w-full" />
-                )}
-              </div>
+                ) : null}
+              </WavyMediaSlot>
               <div className="ship-card-footer px-5 py-4">
                 <p className="text-[11px] font-bold tracking-[0.44px] text-accent-gold uppercase">
                   {tier.name}

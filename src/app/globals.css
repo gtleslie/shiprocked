@@ -159,6 +159,55 @@ body {
   background: #1a1a1a;
 }
 
+.wavy-media-slot {
+  position: relative;
+  overflow: hidden;
+  height: 100%;
+  width: 100%;
+  background:
+    radial-gradient(ellipse 85% 70% at 28% 18%, rgba(210, 31, 31, 0.28), transparent 62%),
+    radial-gradient(ellipse 70% 60% at 82% 88%, rgba(210, 31, 31, 0.1), transparent 58%),
+    linear-gradient(165deg, #2c2c2c 0%, #161616 46%, #0b0b0b 100%);
+}
+
+.wavy-media-slot.is-gold {
+  background:
+    radial-gradient(ellipse 85% 70% at 28% 18%, rgba(212, 162, 60, 0.28), transparent 62%),
+    radial-gradient(ellipse 70% 60% at 82% 88%, rgba(210, 31, 31, 0.12), transparent 58%),
+    linear-gradient(165deg, #2c2c2c 0%, #161616 46%, #0b0b0b 100%);
+}
+
+.wavy-media-slot::before {
+  content: "";
+  position: absolute;
+  inset: -30% -20%;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 80' preserveAspectRatio='none'%3E%3Cpath d='M0 40 C 25 18 50 18 75 40 S 125 62 150 40 S 200 18 225 40' fill='none' stroke='rgba(255,255,255,0.16)' stroke-width='1.4'/%3E%3Cpath d='M0 52 C 25 34 50 34 75 52 S 125 70 150 52 S 200 34 225 52' fill='none' stroke='rgba(210,31,31,0.28)' stroke-width='1.1'/%3E%3C/svg%3E");
+  background-size: 180px 70px;
+  animation: wavy-media-drift 9s linear infinite;
+  pointer-events: none;
+}
+
+.wavy-media-slot.is-gold::before {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 80' preserveAspectRatio='none'%3E%3Cpath d='M0 40 C 25 18 50 18 75 40 S 125 62 150 40 S 200 18 225 40' fill='none' stroke='rgba(212,162,60,0.34)' stroke-width='1.4'/%3E%3Cpath d='M0 52 C 25 34 50 34 75 52 S 125 70 150 52 S 200 34 225 52' fill='none' stroke='rgba(255,255,255,0.12)' stroke-width='1.1'/%3E%3C/svg%3E");
+}
+
+.wavy-media-slot::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 160 160' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.45'/%3E%3C/svg%3E");
+  background-size: 140px 140px;
+  opacity: 0.35;
+  mix-blend-mode: overlay;
+  pointer-events: none;
+}
+
+@keyframes wavy-media-drift {
+  to {
+    transform: translateX(-90px);
+  }
+}
+
 .ship-card {
   background: linear-gradient(160deg, #1c1c1c 0%, #101010 100%);
   border: 1px solid var(--color-border);
@@ -597,7 +646,8 @@ body {
   .inner-circle-cta,
   .campaign-rider,
   .campaign-fill,
-  .campaign-wave-motion {
+  .campaign-wave-motion,
+  .wavy-media-slot::before {
     transition: none;
     animation: none;
   }
