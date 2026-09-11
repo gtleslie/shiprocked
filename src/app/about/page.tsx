@@ -74,7 +74,25 @@ export default function AboutPage() {
           </h2>
         </div>
         <div className="mt-8">
-          <CharactersCarousel subjects={about.characters.subjects} />
+          <CharactersCarousel
+            subjects={about.characters.subjects}
+            label="Voices of the voyage carousel"
+          />
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-[1440px] px-8 py-10 md:px-14 md:py-12 lg:px-20 lg:py-14">
+        <div className="max-w-3xl">
+          <SectionLabel>{about.meetCharacters.overline}</SectionLabel>
+          <h2 className="mt-4 text-[32px] font-black text-white">
+            {about.meetCharacters.headline}
+          </h2>
+        </div>
+        <div className="mt-8">
+          <CharactersCarousel
+            subjects={about.meetCharacters.subjects}
+            label="Meet the characters carousel"
+          />
         </div>
       </section>
 
