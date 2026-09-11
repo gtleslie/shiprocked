@@ -507,13 +507,13 @@ body {
 }
 
 .inner-circle-copy {
-  animation: inner-circle-fade 0.55s ease both;
-  animation-delay: 1.95s;
+  animation: inner-circle-fade 0.35s ease both;
+  animation-delay: 1.05s;
 }
 
 .inner-circle-cta {
-  animation: inner-circle-fade 0.55s ease both;
-  animation-delay: 2.2s;
+  animation: inner-circle-fade 0.35s ease both;
+  animation-delay: 1.2s;
 }
 
 @keyframes inner-circle-logo-drama {
