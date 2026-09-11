@@ -251,10 +251,11 @@ export const siteContent = {
       cta: "Join the Inner Circle",
     },
     tiers: {
-      overline: "CHOOSE YOUR TIER",
+      overline: "COME ABOARD",
       headline: "Six ways to support the film.",
       selectCta: "SELECT THIS TIER",
       claimCta: "CLAIM THIS TIER",
+      merchHeadline: "Merchandise",
       items: [
         {
           id: "tier-1",

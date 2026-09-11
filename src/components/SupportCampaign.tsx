@@ -41,11 +41,14 @@ export function SupportCampaign() {
         <h2 className="mt-4 text-[32px] font-black text-white md:text-[36px]">
           {support.tiers.headline}
         </h2>
-        <div className="mt-10">
-          <MerchCarousel onSelect={jumpToTier} />
-        </div>
         <div className="mt-12">
           <RewardGate phase={phase} onReveal={revealTiers} />
+        </div>
+        <h2 className="mt-16 text-[32px] font-black text-white md:text-[36px]">
+          {support.tiers.merchHeadline}
+        </h2>
+        <div className="mt-8">
+          <MerchCarousel onSelect={jumpToTier} />
         </div>
       </section>
     </>
