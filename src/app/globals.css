@@ -502,18 +502,18 @@ body {
 }
 
 .inner-circle-logo {
-  animation: inner-circle-logo-drama 3.4s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation: inner-circle-logo-drama 2.1s cubic-bezier(0.22, 1, 0.36, 1) both;
   transform-origin: center center;
 }
 
 .inner-circle-copy {
-  animation: inner-circle-fade 0.8s ease both;
-  animation-delay: 3.25s;
+  animation: inner-circle-fade 0.55s ease both;
+  animation-delay: 1.95s;
 }
 
 .inner-circle-cta {
-  animation: inner-circle-fade 0.8s ease both;
-  animation-delay: 3.65s;
+  animation: inner-circle-fade 0.55s ease both;
+  animation-delay: 2.2s;
 }
 
 @keyframes inner-circle-logo-drama {
@@ -521,11 +521,11 @@ body {
     opacity: 0;
     transform: translateY(2vh) scale(1.55);
   }
-  19% {
+  22% {
     opacity: 1;
     transform: translateY(2vh) scale(1.5);
   }
-  60% {
+  48% {
     opacity: 1;
     transform: translateY(2vh) scale(1.5);
   }
