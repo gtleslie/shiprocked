@@ -336,8 +336,8 @@ body {
   overflow-x: auto;
   scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
-  padding: 0.15rem 0 0.5rem;
-  scroll-padding-inline: 0;
+  padding: 0.15rem max(0px, calc(50% - min(50%, 170px))) 0.5rem;
+  scroll-padding-inline: max(0px, calc(50% - min(50%, 170px)));
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
 }
@@ -348,7 +348,7 @@ body {
 
 .funding-carousel-card {
   flex: 0 0 min(100%, 340px);
-  scroll-snap-align: start;
+  scroll-snap-align: center;
   cursor: pointer;
   opacity: 0.55;
   transition:

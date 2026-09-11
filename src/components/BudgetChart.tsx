@@ -112,9 +112,9 @@ export function BudgetChart({ items }: BudgetChartProps) {
   const height = 640;
   const cx = width / 2;
   const cy = height / 2;
-  const baseOuter = 176;
-  const activeOuter = 196;
-  const innerRadius = 100;
+  const baseOuter = 188;
+  const activeOuter = 210;
+  const innerRadius = 108;
   const gap = 1.75;
   const labelPadX = 20;
   const labelPadY = 32;
@@ -197,7 +197,7 @@ export function BudgetChart({ items }: BudgetChartProps) {
     const card = track.querySelector<HTMLElement>(`[data-funding-slide="${index}"]`);
     if (!card) return;
 
-    const left = card.offsetLeft;
+    const left = card.offsetLeft - (track.clientWidth - card.offsetWidth) / 2;
     ignoreScrollSync.current = true;
     track.scrollTo({ left: Math.max(0, left), behavior: "smooth" });
 
@@ -232,13 +232,14 @@ export function BudgetChart({ items }: BudgetChartProps) {
         );
         if (!cards.length) return;
 
-        const viewLeft = track.scrollLeft;
+        const trackCenter = track.scrollLeft + track.clientWidth / 2;
         let closest = 0;
         let closestDist = Number.POSITIVE_INFINITY;
 
         cards.forEach((card) => {
           const index = Number(card.dataset.fundingSlide);
-          const dist = Math.abs(card.offsetLeft - viewLeft);
+          const cardCenter = card.offsetLeft + card.offsetWidth / 2;
+          const dist = Math.abs(cardCenter - trackCenter);
           if (dist < closestDist) {
             closestDist = dist;
             closest = index;
@@ -260,7 +261,7 @@ export function BudgetChart({ items }: BudgetChartProps) {
   }, [items.length]);
 
   return (
-    <div className="funding-viz grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.05fr)] lg:items-center lg:gap-12">
+    <div className="funding-viz grid gap-8 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.2fr)] lg:items-center lg:gap-8">
       <div className="funding-carousel min-w-0">
         <p className="mb-4 text-[11px] font-bold tracking-[0.48px] text-accent-gold uppercase">
           Funding goals
@@ -348,10 +349,10 @@ export function BudgetChart({ items }: BudgetChartProps) {
         </div>
       </div>
 
-      <div className="budget-chart flex w-full justify-center lg:justify-end">
+      <div className="budget-chart flex w-full justify-center">
         <svg
           viewBox={`0 0 ${width} ${height}`}
-          className="h-auto w-full max-w-[760px] drop-shadow-[0_0_28px_rgba(210,31,31,0.14)]"
+          className="h-auto w-full max-w-[920px] drop-shadow-[0_0_28px_rgba(210,31,31,0.14)]"
           role="img"
           aria-label={`${active.label}: ${active.percent}% of funding allocation`}
         >
