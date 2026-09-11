@@ -86,25 +86,7 @@ export function CharactersCarousel({ subjects }: CharactersCarouselProps) {
 
   return (
     <div className="characters-carousel">
-      <div
-        ref={trackRef}
-        className="characters-carousel-track"
-        role="region"
-        aria-label="Character voices carousel"
-        tabIndex={0}
-      >
-        {subjects.map((subject, index) => (
-          <div
-            key={`${subject.name}-${index}`}
-            data-carousel-card
-            className="characters-carousel-card"
-          >
-            <CrewFlipCard member={subject} />
-          </div>
-        ))}
-      </div>
-
-      <div className="mt-4 flex items-center justify-end gap-2">
+      <div className="mb-4 flex items-center justify-end gap-2">
         <button
           type="button"
           aria-label="Previous characters"
@@ -123,6 +105,24 @@ export function CharactersCarousel({ subjects }: CharactersCarouselProps) {
         >
           <ChevronRightIcon />
         </button>
+      </div>
+
+      <div
+        ref={trackRef}
+        className="characters-carousel-track"
+        role="region"
+        aria-label="Character voices carousel"
+        tabIndex={0}
+      >
+        {subjects.map((subject, index) => (
+          <div
+            key={`${subject.name}-${index}`}
+            data-carousel-card
+            className="characters-carousel-card"
+          >
+            <CrewFlipCard member={subject} />
+          </div>
+        ))}
       </div>
     </div>
   );

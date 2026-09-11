@@ -102,8 +102,11 @@ function ChevronRightIcon({ className = "h-4 w-4" }: { className?: string }) {
   );
 }
 
+const AUTO_ADVANCE_MS = 5000;
+
 export function BudgetChart({ items }: BudgetChartProps) {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [paused, setPaused] = useState(false);
   const trackRef = useRef<HTMLDivElement>(null);
   const ignoreScrollSync = useRef(false);
   const scrollSyncTimeout = useRef<number | null>(null);
@@ -197,9 +200,8 @@ export function BudgetChart({ items }: BudgetChartProps) {
     const card = track.querySelector<HTMLElement>(`[data-funding-slide="${index}"]`);
     if (!card) return;
 
-    const left = card.offsetLeft - (track.clientWidth - card.offsetWidth) / 2;
     ignoreScrollSync.current = true;
-    track.scrollTo({ left: Math.max(0, left), behavior: "smooth" });
+    track.scrollTo({ left: Math.max(0, card.offsetLeft), behavior: "smooth" });
 
     if (scrollSyncTimeout.current) {
       window.clearTimeout(scrollSyncTimeout.current);
@@ -232,14 +234,13 @@ export function BudgetChart({ items }: BudgetChartProps) {
         );
         if (!cards.length) return;
 
-        const trackCenter = track.scrollLeft + track.clientWidth / 2;
+        const viewportLeft = track.scrollLeft;
         let closest = 0;
         let closestDist = Number.POSITIVE_INFINITY;
 
         cards.forEach((card) => {
           const index = Number(card.dataset.fundingSlide);
-          const cardCenter = card.offsetLeft + card.offsetWidth / 2;
-          const dist = Math.abs(cardCenter - trackCenter);
+          const dist = Math.abs(card.offsetLeft - viewportLeft);
           if (dist < closestDist) {
             closestDist = dist;
             closest = index;
@@ -260,8 +261,29 @@ export function BudgetChart({ items }: BudgetChartProps) {
     };
   }, [items.length]);
 
+  useEffect(() => {
+    if (paused || items.length < 2) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    const timer = window.setTimeout(() => {
+      goTo(activeIndex + 1);
+    }, AUTO_ADVANCE_MS);
+
+    return () => window.clearTimeout(timer);
+  }, [activeIndex, items.length, paused]);
+
   return (
-    <div className="funding-viz grid gap-8 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.2fr)] lg:items-center lg:gap-8">
+    <div
+      className="funding-viz grid gap-8 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.2fr)] lg:items-center lg:gap-8"
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
+      onFocusCapture={() => setPaused(true)}
+      onBlurCapture={(event) => {
+        if (!event.currentTarget.contains(event.relatedTarget as Node | null)) {
+          setPaused(false);
+        }
+      }}
+    >
       <div className="funding-carousel min-w-0">
         <p className="mb-4 text-[11px] font-bold tracking-[0.48px] text-accent-gold uppercase">
           Funding goals
