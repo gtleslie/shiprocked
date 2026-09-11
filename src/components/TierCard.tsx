@@ -1,4 +1,6 @@
+import Image from "next/image";
 import { SiteButton } from "@/components/SiteButton";
+import { ImagePlaceholder } from "@/components/ImagePlaceholder";
 import { siteContent } from "@content/site-content";
 
 type Tier = (typeof siteContent.support.tiers.items)[number];
@@ -36,15 +38,16 @@ type TierCardProps = {
 export function TierCard({ tier, locked = false, index = 0 }: TierCardProps) {
   const { support, links } = siteContent;
   const gold = tier.featured || tier.premium;
-  const path = wavyPath(320, 420, gold ? 8 : 7, 8);
+  const path = wavyPath(320, 540, gold ? 8 : 7, 8);
   const clipId = `${tier.id}-shape`;
   const sheenId = `${tier.id}-sheen`;
+  const imageFit = "imageFit" in tier && tier.imageFit === "contain" ? "contain" : "cover";
 
   return (
-    <article className="relative min-h-[380px] overflow-visible bg-transparent">
+    <article id={tier.id} className="relative min-h-[500px] overflow-visible bg-transparent">
       <svg
         className="absolute inset-0 h-full w-full overflow-visible"
-        viewBox="0 0 320 420"
+        viewBox="0 0 320 540"
         preserveAspectRatio="none"
         overflow="visible"
         aria-hidden
@@ -89,7 +92,7 @@ export function TierCard({ tier, locked = false, index = 0 }: TierCardProps) {
           x="-140"
           y="0"
           width="150"
-          height="420"
+          height="540"
           fill={`url(#${sheenId})`}
           clipPath={`url(#${clipId})`}
           pointerEvents="none"
@@ -102,19 +105,38 @@ export function TierCard({ tier, locked = false, index = 0 }: TierCardProps) {
         </span>
       )}
 
-      <div className="relative z-10 flex h-full flex-col px-10 pt-14 pb-8">
+      <div className="relative z-10 flex h-full flex-col px-8 pt-12 pb-8">
+        <div className="relative mb-5 aspect-[16/10] overflow-hidden bg-[#0c0c0c]">
+          {tier.image ? (
+            <Image
+              src={tier.image}
+              alt={tier.reward}
+              fill
+              sizes="(min-width: 1280px) 30vw, (min-width: 768px) 45vw, 90vw"
+              className={imageFit === "contain" ? "object-contain p-4" : "object-cover"}
+            />
+          ) : (
+            <ImagePlaceholder className="h-full w-full" />
+          )}
+        </div>
+
         <h3 className="text-[16px] font-bold tracking-[0.4px] text-accent-gold uppercase">
           {tier.name}
         </h3>
-        <p
-          className={`teaser-price mt-2 font-black ${
-            tier.premium ? "text-[40px]" : "text-[32px]"
-          } ${locked ? "text-[#3a3a3a] blur-[16px] select-none" : "text-white blur-none"}`}
-          aria-hidden={locked}
-        >
-          ${tier.price.toLocaleString()}
-        </p>
-        <ul className="mt-5 flex-1 space-y-2">
+
+        <div className="mt-3 flex items-start justify-between gap-4">
+          <p className="text-[15px] leading-snug font-semibold text-white">{tier.reward}</p>
+          <p
+            className={`teaser-price shrink-0 text-[18px] font-bold ${
+              locked ? "text-[#3a3a3a] blur-[16px] select-none" : "text-accent-gold blur-none"
+            }`}
+            aria-hidden={locked}
+          >
+            ${tier.price.toLocaleString()}
+          </p>
+        </div>
+
+        <ul className="mt-4 flex-1 space-y-2">
           {tier.perks.map((perk) => (
             <li key={perk} className="flex items-start gap-2 text-[13px] text-text-secondary">
               <span
