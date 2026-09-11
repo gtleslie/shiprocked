@@ -74,6 +74,7 @@ export const siteContent = {
       dates: "JANUARY 2027",
       visualLabel: "HERO STILL / POSTER ART",
       watchTrailer: "WATCH TRAILER",
+      youtubeId: "IPbCpdFxE0k",
     },
     film: {
       overline: "THE FILM",
