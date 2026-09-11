@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Barlow_Condensed, Inter, Pathway_Gothic_One } from "next/font/google";
+import { Inter, Overpass } from "next/font/google";
 import localFont from "next/font/local";
 import { ScrollToTop } from "@/components/ScrollToTop";
 import { siteContent } from "@content/site-content";
@@ -18,17 +18,10 @@ const din = localFont({
   display: "swap",
 });
 
-const industry = Barlow_Condensed({
-  weight: ["600", "700"],
+const overpass = Overpass({
   subsets: ["latin"],
+  weight: "700",
   variable: "--font-overline",
-  display: "swap",
-});
-
-const agency = Pathway_Gothic_One({
-  weight: "400",
-  subsets: ["latin"],
-  variable: "--font-subhead",
   display: "swap",
 });
 
@@ -45,7 +38,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${din.variable} ${industry.variable} ${agency.variable}`}
+      className={`${inter.variable} ${din.variable} ${overpass.variable}`}
     >
       <body className="min-h-screen antialiased">
         <ScrollToTop />

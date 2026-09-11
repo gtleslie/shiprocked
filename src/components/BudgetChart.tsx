@@ -285,7 +285,7 @@ export function BudgetChart({ items }: BudgetChartProps) {
       }}
     >
       <div className="funding-carousel min-w-0">
-        <p className="font-overline mb-4 text-[15px] font-bold tracking-[0.14em] text-accent-gold uppercase">
+        <p className="font-overline mb-4 text-[18px] font-bold tracking-[0.14em] text-accent-gold uppercase">
           Funding goals
         </p>
 

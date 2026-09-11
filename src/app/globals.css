@@ -424,17 +424,23 @@ body {
 .font-header,
 h1:not(.sr-only),
 h2 {
-  font-family: var(--font-header), "DIN Condensed", sans-serif;
+  font-family: "industry", "Industry Test", var(--font-header), sans-serif;
   font-weight: 700;
-  letter-spacing: 0.02em;
+  font-style: normal;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
 }
 
 .font-overline {
-  font-family: "Industry Test", "Industry", var(--font-overline), sans-serif;
+  font-family: "overpass-variable", var(--font-overline), sans-serif;
+  font-weight: 700;
+  font-style: normal;
+  font-variation-settings: "wght" 700;
+  text-transform: uppercase;
 }
 
 .font-subhead {
-  font-family: "Agency FB", "Agency FB Bold", var(--font-subhead), sans-serif;
+  font-family: var(--font-inter), Inter, system-ui, sans-serif;
 }
 
 .teaser-cta {
