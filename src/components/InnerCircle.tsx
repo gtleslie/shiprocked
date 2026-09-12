@@ -41,7 +41,7 @@ export function InnerCircle() {
         <button
           type="button"
           onClick={handleJoin}
-          className="mx-auto mt-5 block w-full max-w-[420px] min-w-0 transition-transform duration-200 hover:scale-[1.03] active:scale-[0.99]"
+          className="mx-auto mt-5 block w-full max-w-[380px] min-w-0 transition-transform duration-200 hover:scale-[1.03] active:scale-[0.99]"
         >
           <Image
             src={innerCircleJoin}
