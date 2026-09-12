@@ -34,21 +34,21 @@ export function InnerCircle() {
         {innerCircle.perks.join("  ·  ")}
       </p>
 
-      <div className="inner-circle-cta mt-7 flex flex-col items-center">
+      <div className="inner-circle-cta mt-7 flex w-full flex-col items-center">
         <p className="text-[12px] font-bold tracking-[0.56px] text-accent-gold uppercase">
           {innerCircle.fundraising}
         </p>
         <button
           type="button"
           onClick={handleJoin}
-          className="mt-5 transition-transform duration-200 hover:scale-[1.03] active:scale-[0.99]"
+          className="mx-auto mt-5 block w-full max-w-[420px] min-w-0 transition-transform duration-200 hover:scale-[1.03] active:scale-[0.99]"
         >
           <Image
             src={innerCircleJoin}
             alt={innerCircle.cta}
             width={950}
             height={250}
-            className="h-auto w-[min(100%,420px)]"
+            className="mx-auto block h-auto w-full"
           />
         </button>
       </div>
