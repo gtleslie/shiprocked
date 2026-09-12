@@ -288,7 +288,7 @@ export function BudgetChart({ items }: BudgetChartProps) {
         Funding goals
       </p>
 
-      <div className="grid gap-8 lg:grid-cols-[minmax(0,0.72fr)_minmax(0,1.4fr)] lg:items-stretch lg:gap-3">
+      <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:items-stretch lg:gap-8">
         <div className="funding-carousel min-w-0">
 
         <div
@@ -373,10 +373,10 @@ export function BudgetChart({ items }: BudgetChartProps) {
         </div>
         </div>
 
-        <div className="budget-chart flex w-full justify-center">
+        <div className="budget-chart flex w-full justify-end">
         <svg
           viewBox={`0 0 ${width} ${height}`}
-          className="h-auto w-full max-w-[1040px] drop-shadow-[0_0_28px_rgba(210,31,31,0.14)]"
+          className="h-auto w-full drop-shadow-[0_0_28px_rgba(210,31,31,0.14)]"
           role="img"
           aria-label={`${active.label}: ${active.percent}% of funding allocation`}
         >
