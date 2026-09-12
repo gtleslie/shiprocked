@@ -1,11 +1,11 @@
 "use client";
 
-import { SiteButton } from "@/components/SiteButton";
+import Image from "next/image";
 import { siteContent } from "@content/site-content";
 
 export function InnerCircle() {
   const { innerCircle } = siteContent.support;
-  const { innerCircleLogo } = siteContent.assets;
+  const { innerCircleLogo, innerCircleJoin } = siteContent.assets;
   const groupHref = siteContent.links.innerCircle;
   const hasGroupLink = groupHref.startsWith("http");
 
@@ -38,9 +38,19 @@ export function InnerCircle() {
         <p className="text-[12px] font-bold tracking-[0.56px] text-accent-gold uppercase">
           {innerCircle.fundraising}
         </p>
-        <SiteButton onClick={handleJoin} className="mt-5 h-14 min-w-[260px] px-10">
-          {innerCircle.cta}
-        </SiteButton>
+        <button
+          type="button"
+          onClick={handleJoin}
+          className="mt-5 transition-transform duration-200 hover:scale-[1.03] active:scale-[0.99]"
+        >
+          <Image
+            src={innerCircleJoin}
+            alt={innerCircle.cta}
+            width={950}
+            height={250}
+            className="h-auto w-[min(100%,420px)]"
+          />
+        </button>
       </div>
     </div>
   );
