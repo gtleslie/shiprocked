@@ -92,7 +92,24 @@ body {
   overflow: hidden;
 }
 
-.hero-video-slot,
+.hero-video-slot {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  background: #050505;
+  container-type: size;
+}
+
+.hero-video-frame {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  width: min(100cqw, calc(100cqh * 16 / 9));
+  height: min(100cqh, calc(100cqw * 9 / 16));
+}
+
+.hero-video-frame iframe,
 .hero-video-slot iframe {
   position: absolute;
   inset: 0;
@@ -101,17 +118,21 @@ body {
   border: 0;
 }
 
-.hero-video-slot iframe {
-  pointer-events: none;
-  transform: scale(1.22);
-  transform-origin: center center;
+.hero-video-wrap {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
 }
 
-.hero-audio-toggle {
-  position: absolute;
-  right: 16px;
-  bottom: 16px;
-  z-index: 3;
+.hero-video-controls {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.hero-video-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -120,6 +141,7 @@ body {
   border: 1px solid rgba(210, 31, 31, 0.55);
   background: rgba(0, 0, 0, 0.62);
   color: #f2f2f2;
+  text-decoration: none;
   cursor: pointer;
   transition:
     background-color 0.2s ease,
@@ -128,15 +150,15 @@ body {
     transform 0.2s ease;
 }
 
-.hero-audio-toggle:hover,
-.hero-audio-toggle:focus-visible {
+.hero-video-btn:hover,
+.hero-video-btn:focus-visible {
   border-color: rgba(210, 31, 31, 0.95);
   background: rgba(210, 31, 31, 0.28);
   color: #ffffff;
   outline: none;
 }
 
-.hero-audio-toggle.is-muted {
+.hero-video-btn.is-muted {
   animation: hero-audio-pulse 2.4s ease-in-out infinite;
 }
 
@@ -151,7 +173,7 @@ body {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .hero-audio-toggle.is-muted {
+  .hero-video-btn.is-muted {
     animation: none;
   }
 }
@@ -395,11 +417,12 @@ body {
 }
 
 @media (min-width: 1024px) {
-  /* Size the pie to the carousel column: top of cards through bottom of arrows. */
+  /* Size the pie to the carousel height and the remaining column width. */
   .budget-chart {
     height: 0;
     min-height: 100%;
     align-items: stretch;
+    justify-content: flex-end;
   }
 
   .budget-chart svg {

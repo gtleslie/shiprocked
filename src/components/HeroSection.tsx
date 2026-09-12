@@ -17,10 +17,8 @@ export function HeroSection() {
           <Logo size="hero" />
         </div>
 
-        <div className="hero-visual relative min-h-[320px] flex-1 lg:min-h-0 lg:basis-[58%]">
-          <div className="hero-visual-frame absolute inset-0 mx-6 my-14 md:mx-10 md:my-20 lg:mx-12 lg:my-28">
-            <HeroVideo videoId={home.hero.youtubeId} />
-          </div>
+        <div className="hero-visual relative flex min-h-[320px] flex-1 items-center justify-center px-6 py-10 md:px-10 md:py-16 lg:min-h-0 lg:basis-[58%] lg:px-12 lg:py-20">
+          <HeroVideo videoId={home.hero.youtubeId} />
         </div>
       </div>
 
