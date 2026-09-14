@@ -1,13 +1,57 @@
 "use client";
 
+import { useEffect, useRef } from "react";
 import Image from "next/image";
 import { siteContent } from "@content/site-content";
+
+/** Skip intro text; start when the central logo begins animating in. */
+const LOGO_ANIM_START_SEC = 0.72;
 
 export function InnerCircle() {
   const { innerCircle } = siteContent.support;
   const { innerCircleLogo, innerCircleJoin } = siteContent.assets;
   const groupHref = siteContent.links.innerCircle;
   const hasGroupLink = groupHref.startsWith("http");
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    const jumpToLogo = () => {
+      if (video.currentTime < LOGO_ANIM_START_SEC) {
+        video.currentTime = LOGO_ANIM_START_SEC;
+      }
+    };
+
+    const startFromLogo = () => {
+      jumpToLogo();
+      void video.play().catch(() => {});
+    };
+
+    const onTimeUpdate = () => {
+      // Keep loop restarts from replaying the text intro.
+      if (video.currentTime < LOGO_ANIM_START_SEC) {
+        video.currentTime = LOGO_ANIM_START_SEC;
+      }
+    };
+
+    video.addEventListener("loadedmetadata", startFromLogo);
+    video.addEventListener("loadeddata", startFromLogo);
+    video.addEventListener("timeupdate", onTimeUpdate);
+    video.addEventListener("seeking", jumpToLogo);
+
+    if (video.readyState >= 1) {
+      startFromLogo();
+    }
+
+    return () => {
+      video.removeEventListener("loadedmetadata", startFromLogo);
+      video.removeEventListener("loadeddata", startFromLogo);
+      video.removeEventListener("timeupdate", onTimeUpdate);
+      video.removeEventListener("seeking", jumpToLogo);
+    };
+  }, []);
 
   function handleJoin() {
     if (!hasGroupLink) return;
@@ -15,16 +59,17 @@ export function InnerCircle() {
   }
 
   return (
-    <div className="inner-circle-stage mx-auto flex w-full max-w-[640px] flex-col items-center text-center">
+    <div className="inner-circle-stage relative mx-auto flex w-full max-w-[860px] flex-col items-center text-center">
       <h1 className="sr-only">{innerCircle.headline}</h1>
 
-      <div className="inner-circle-logo ml-[10px] w-full">
+      <div className="inner-circle-logo ml-[10px] w-full max-w-[780px]">
         <video
+          ref={videoRef}
           className="block h-auto w-full mix-blend-screen"
           src={innerCircleLogo}
-          autoPlay
           muted
           playsInline
+          loop
           preload="auto"
           aria-hidden
         />

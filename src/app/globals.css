@@ -323,13 +323,11 @@ body {
     color 0.2s ease;
 }
 
-.crew-flip-card:hover .crew-flip-badge,
-.crew-flip-card:focus-visible .crew-flip-badge {
-  opacity: 1;
-  transform: scale(1.08);
-  border-color: rgba(210, 31, 31, 0.95);
-  background: rgba(210, 31, 31, 0.22);
-  color: #ffffff;
+.crew-flip-inner.is-flipped .crew-flip-front .crew-flip-badge,
+.crew-flip-card:hover .crew-flip-front .crew-flip-badge,
+.crew-flip-card:focus-visible .crew-flip-front .crew-flip-badge {
+  opacity: 0;
+  pointer-events: none;
   animation: none;
 }
 
@@ -552,14 +550,15 @@ h2 {
   font-weight: 700;
   font-style: normal;
   font-variation-settings: "wght" 700;
-  letter-spacing: 0.04em;
+  letter-spacing: 0;
   line-height: 1;
   text-transform: uppercase;
 }
 
 .font-overline + h1,
-.font-overline + h2 {
-  margin-top: 0.5rem;
+.font-overline + h2,
+.font-overline + .font-header {
+  margin-top: 0.25rem;
 }
 
 .font-subhead {
@@ -640,6 +639,7 @@ h2 {
 .inner-circle-stage {
   min-height: calc(100dvh - 300px);
   padding-top: 2rem;
+  padding-bottom: 2rem;
 }
 
 .campaign-rider {

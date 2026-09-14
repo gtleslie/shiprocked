@@ -25,12 +25,12 @@ export function TeaserOption1({ onReveal, exiting = false }: TeaserOption1Props)
         aria-labelledby="reward-gate-title"
         className="teaser-overlay-card relative z-10 w-full max-w-lg border border-border bg-bg-card px-8 py-10 text-center"
       >
-        <p className="font-overline text-[18px] font-bold text-accent-gold uppercase">
+          <p className="font-overline !tracking-normal text-[18px] font-bold text-accent-gold uppercase">
           {teaser.badge}
         </p>
         <h3
           id="reward-gate-title"
-          className="font-header mt-4 text-[28px] leading-tight text-white md:text-[32px]"
+          className="font-header !mt-1 text-[28px] leading-tight text-white md:text-[32px]"
         >
           {teaser.headline}
         </h3>

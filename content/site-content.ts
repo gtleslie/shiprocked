@@ -122,7 +122,7 @@ export const siteContent = {
     hero: {
       overline: "PRODUCTION DETAILS",
       headline: "30 terabytes",
-      headlineAccent: "and counting.",
+      headlineAccent: "and counting...",
       body: "What started as a film school thesis has become the most ambitious documentation project in ShipRocked's sixteen-year history. Two years of footage, hundreds of interviews, and one voyage left to capture before the story is complete.",
     },
     timeline: {
@@ -130,8 +130,14 @@ export const siteContent = {
       headline: "From dock to deadline.",
       items: [
         {
+          date: "SEPT - NOV 2026",
+          title: "Fundraising campaign",
+          description:
+            "Public campaign to fund post-production and distribution costs.",
+        },
+        {
           date: "JAN 2026",
-          title: "Voyage of the Ronin filming begins",
+          title: "Filming Resumes: Voyage of the Ronin filming begins",
           description:
             "Principal documentary footage captured aboard the first voyage.",
         },
@@ -140,12 +146,6 @@ export const siteContent = {
           title: "Post-production",
           description:
             "Editing, sound design, and color grading the 4K raw footage.",
-        },
-        {
-          date: "SEPT - NOV 2026",
-          title: "Fundraising campaign",
-          description:
-            "Public campaign to fund post-production and distribution costs.",
         },
         {
           date: "2027",
@@ -174,12 +174,6 @@ export const siteContent = {
           role: "MARKETING PRODUCER",
           bio: "Silas Grasse is a Marketer and Producer from Philadelphia, PA. He specializes in creating vivid and interactive promotional campaigns for experiential creative projects.",
         },
-      ],
-    },
-    characters: {
-      overline: "THE VOICES",
-      headline: "The voices of the voyage.",
-      subjects: [
         { name: "ELLIOT CUNNINGHAM", role: "POST SUPERVISOR", bio: "(bio)" },
         { name: "JACK EASTERHAUS", role: "CINEMATOGRAPHY", bio: "(bio)" },
         { name: "WILLIAM BROWN", role: "PRODUCTION SOUND", bio: "(bio)" },

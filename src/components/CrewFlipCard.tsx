@@ -84,22 +84,21 @@ export function CrewFlipCard({ member }: CrewFlipCardProps) {
 
         <div className="crew-flip-face crew-flip-back ship-card overflow-hidden">
           <div className="flex h-full flex-col px-5 py-5">
-            <p className="text-[11px] font-bold tracking-[0.44px] text-accent-gold uppercase">
+            <p className="text-[12px] font-bold tracking-[0.44px] text-accent-gold uppercase">
               Bio
             </p>
-            <h3 className="mt-3 text-[16px] font-bold tracking-[0.2px] text-white">
+            <h3 className="mt-3 text-[17px] font-bold tracking-[0.2px] text-white">
               {member.name}
             </h3>
             {member.role && (
-              <p className="mt-1 text-[11px] font-bold tracking-[0.44px] text-accent-red uppercase">
+              <p className="mt-1 text-[12px] font-bold tracking-[0.44px] text-accent-red uppercase">
                 {member.role}
               </p>
             )}
-            <p className="mt-5 text-[13px] leading-relaxed text-text-muted">
+            <p className="mt-4 text-[15px] leading-relaxed text-text-muted">
               {member.bio}
             </p>
           </div>
-          <FlipBadge />
         </div>
       </div>
     </button>

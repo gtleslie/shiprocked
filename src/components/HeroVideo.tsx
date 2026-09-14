@@ -91,11 +91,8 @@ function ShareIcon() {
       className="h-[18px] w-[18px]"
       aria-hidden
     >
-      <circle cx="18" cy="5" r="3" />
-      <circle cx="6" cy="12" r="3" />
-      <circle cx="18" cy="19" r="3" />
-      <path d="M8.6 13.5l6.8 4" />
-      <path d="M15.4 6.5l-6.8 4" />
+      <path d="M4 19a9 9 0 0 1 9-9h5" />
+      <path d="M14 6l5 4-5 4" />
     </svg>
   );
 }

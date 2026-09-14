@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { PageShell } from "@/components/PageShell";
 import { HeroSection } from "@/components/HeroSection";
 import { SiteButton } from "@/components/SiteButton";
@@ -13,25 +14,36 @@ export default function HomePage() {
       <HeroSection />
 
       <section className="mx-auto max-w-[1440px] px-6 py-20 md:px-12 lg:px-16">
-        <SectionLabel>{home.film.overline}</SectionLabel>
-        <h2 className="mt-4 leading-tight font-black text-white">
-          {home.film.headline.map((line, index) => (
-            <span
-              key={line}
-              className={`block ${
-                index === 0 ? "text-[30px] md:text-[36px]" : "text-[36px] md:text-[42px]"
-              }`}
-            >
-              {line}
-            </span>
-          ))}
-        </h2>
+        <div className="relative max-w-[1080px]">
+          <div className="pointer-events-none select-none" aria-hidden>
+            <Image
+              src="/assets/ghost_cruise_ship-trim.jpeg"
+              alt=""
+              width={1896}
+              height={381}
+              className="h-auto w-full brightness-110 contrast-125"
+              priority
+              unoptimized
+            />
+          </div>
 
-        <div className="mt-12 grid gap-12 lg:grid-cols-[1.05fr_1fr] lg:items-start">
+          <div className="absolute inset-0 z-10 flex flex-col justify-end pb-3 md:pb-4">
+            <SectionLabel>{home.film.overline}</SectionLabel>
+            <h2 className="!mt-1 max-w-[22ch] text-[32px] leading-[1.02] font-black text-white md:text-[40px]">
+              {home.film.headline.map((line) => (
+                <span key={line} className="block">
+                  {line}
+                </span>
+              ))}
+            </h2>
+          </div>
+        </div>
+
+        <div className="mt-2 grid gap-12 lg:grid-cols-[1.05fr_1fr] lg:items-start md:mt-3">
           <ImagePlaceholder className="h-[340px] w-full md:h-[400px]" />
           <div className="space-y-6">
             {home.film.paragraphs.map((paragraph) => (
-              <p key={paragraph} className="text-[16px] leading-relaxed text-text-muted">
+              <p key={paragraph} className="text-[16px] leading-relaxed text-white/90">
                 {paragraph}
               </p>
             ))}
@@ -44,7 +56,7 @@ export default function HomePage() {
 
       <section className="mx-auto max-w-[1440px] px-6 pt-16 pb-10 md:px-12 lg:px-16">
         <SectionLabel>{home.whyItMatters.overline}</SectionLabel>
-        <h2 className="mt-4 max-w-3xl text-[32px] font-black text-white md:text-[36px]">
+        <h2 className="!mt-1 max-w-3xl text-[32px] font-black text-white md:text-[36px]">
           {home.whyItMatters.headline}
         </h2>
 
@@ -66,7 +78,7 @@ export default function HomePage() {
 
       <section className="mx-auto max-w-[1440px] px-6 pt-8 pb-20 md:px-12 lg:px-16">
         <SectionLabel>{home.campaign.overline}</SectionLabel>
-        <h2 className="mt-4 text-[32px] font-black text-white md:text-[36px]">
+        <h2 className="!mt-1 text-[32px] font-black text-white md:text-[36px]">
           {home.campaign.headline}
         </h2>
         <SectionSubhead className="mt-3 text-[16px]">{siteContent.campaign.homeDates}</SectionSubhead>

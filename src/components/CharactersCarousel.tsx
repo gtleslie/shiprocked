@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 import { CrewFlipCard } from "@/components/CrewFlipCard";
 
 type CharacterSubject = {
@@ -12,6 +12,7 @@ type CharacterSubject = {
 type CharactersCarouselProps = {
   subjects: readonly CharacterSubject[];
   label?: string;
+  header?: ReactNode;
 };
 
 function ChevronLeftIcon({ className = "h-4 w-4" }: { className?: string }) {
@@ -51,6 +52,7 @@ function ChevronRightIcon({ className = "h-4 w-4" }: { className?: string }) {
 export function CharactersCarousel({
   subjects,
   label = "Character carousel",
+  header,
 }: CharactersCarouselProps) {
   const trackRef = useRef<HTMLDivElement>(null);
   const [canPrev, setCanPrev] = useState(false);
@@ -89,32 +91,43 @@ export function CharactersCarousel({
     track.scrollBy({ left: direction * amount, behavior: "smooth" });
   };
 
+  const nav = (
+    <div className="flex shrink-0 items-center justify-end gap-2">
+      <button
+        type="button"
+        aria-label="Previous characters"
+        disabled={!canPrev}
+        onClick={() => scrollByCard(-1)}
+        className="characters-carousel-nav"
+      >
+        <ChevronLeftIcon />
+      </button>
+      <button
+        type="button"
+        aria-label="Next characters"
+        disabled={!canNext}
+        onClick={() => scrollByCard(1)}
+        className="characters-carousel-nav"
+      >
+        <ChevronRightIcon />
+      </button>
+    </div>
+  );
+
   return (
     <div className="characters-carousel">
-      <div className="mb-4 flex items-center justify-end gap-2">
-        <button
-          type="button"
-          aria-label="Previous characters"
-          disabled={!canPrev}
-          onClick={() => scrollByCard(-1)}
-          className="characters-carousel-nav"
-        >
-          <ChevronLeftIcon />
-        </button>
-        <button
-          type="button"
-          aria-label="Next characters"
-          disabled={!canNext}
-          onClick={() => scrollByCard(1)}
-          className="characters-carousel-nav"
-        >
-          <ChevronRightIcon />
-        </button>
-      </div>
+      {header ? (
+        <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between sm:gap-6">
+          <div className="min-w-0">{header}</div>
+          {nav}
+        </div>
+      ) : (
+        <div className="mb-4">{nav}</div>
+      )}
 
       <div
         ref={trackRef}
-        className="characters-carousel-track"
+        className={`characters-carousel-track${header ? " mt-6 sm:mt-8" : ""}`}
         role="region"
         aria-label={label}
         tabIndex={0}

@@ -23,14 +23,14 @@ export function TeaserOption3({ onReveal }: TeaserOption3Props) {
       >
         <div className="flex w-[72px] shrink-0 flex-col items-center justify-between border-r border-dashed border-accent-gold/70 bg-black py-6">
           <p
-            className="font-overline text-[10px] font-bold tracking-[0.4px] text-accent-gold uppercase"
+            className="font-overline text-[10px] font-bold !tracking-normal text-accent-gold uppercase"
             style={{ writingMode: "vertical-rl", transform: "rotate(180deg)" }}
           >
             Admit one
           </p>
           <span className="h-1.5 w-1.5 bg-accent-gold" />
           <p
-            className="font-overline text-[10px] font-bold tracking-[0.4px] text-accent-gold uppercase"
+            className="font-overline text-[10px] font-bold !tracking-normal text-accent-gold uppercase"
             style={{ writingMode: "vertical-rl", transform: "rotate(180deg)" }}
           >
             {teaser.badge}

@@ -23,7 +23,7 @@ export function TeaserOption4({ onReveal }: TeaserOption4Props) {
       >
         <div className="flex items-center justify-center gap-4 border-b border-border px-6 py-3">
           <span className="h-px w-10 bg-accent-gold" />
-          <p className="font-overline text-[18px] font-bold text-accent-gold uppercase">
+          <p className="font-overline !tracking-normal text-[18px] font-bold text-accent-gold uppercase">
             {teaser.badge}
           </p>
           <span className="h-px w-10 bg-accent-gold" />

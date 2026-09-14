@@ -119,8 +119,8 @@ export function BudgetChart({ items }: BudgetChartProps) {
   const activeOuter = 252;
   const innerRadius = 126;
   const gap = 1.75;
-  const labelPadX = 20;
-  const labelPadY = 32;
+  const labelPadX = 12;
+  const labelPadY = 40;
 
   let angle = 0;
   const slices = items.map((item, index) => {
@@ -284,7 +284,7 @@ export function BudgetChart({ items }: BudgetChartProps) {
         }
       }}
     >
-      <p className="font-overline mb-4 text-[18px] font-bold text-accent-gold uppercase">
+      <p className="font-overline mb-1 !tracking-normal text-[18px] font-bold text-accent-gold uppercase">
         Funding goals
       </p>
 
@@ -445,10 +445,10 @@ export function BudgetChart({ items }: BudgetChartProps) {
               />
               <text
                 x={slice.labelX}
-                y={slice.labelY - (slice.lines.length > 1 ? 7 : 0)}
+                y={slice.labelY - (slice.lines.length > 1 ? 9 : 0)}
                 textAnchor={slice.textAnchor}
                 fill={slice.isActive ? "#ffffff" : "#bdbdbd"}
-                fontSize={slice.isActive ? "15" : "13"}
+                fontSize={slice.isActive ? "22" : "16"}
                 fontWeight={slice.isActive ? "800" : "600"}
                 style={{ fontFamily: "var(--font-inter), Inter, system-ui, sans-serif" }}
               >
@@ -456,7 +456,7 @@ export function BudgetChart({ items }: BudgetChartProps) {
                   <tspan
                     key={`${slice.label}-${lineIndex}`}
                     x={slice.labelX}
-                    dy={lineIndex === 0 ? 0 : 17}
+                    dy={lineIndex === 0 ? 0 : slice.isActive ? 26 : 20}
                   >
                     {line}
                   </tspan>
@@ -476,11 +476,11 @@ export function BudgetChart({ items }: BudgetChartProps) {
               fontSize={
                 slice.isActive
                   ? slice.percent <= 5
-                    ? "14"
-                    : "17"
+                    ? "18"
+                    : "22"
                   : slice.percent <= 5
-                    ? "12"
-                    : "14"
+                    ? "15"
+                    : "18"
               }
               fontWeight="800"
               opacity={slice.isActive ? 1 : 0.45}
@@ -507,13 +507,13 @@ export function BudgetChart({ items }: BudgetChartProps) {
               style={{ lineHeight: 1 }}
             >
               <span
-                className="block text-[40px] font-black tracking-tight text-white"
+                className="block text-[48px] font-black tracking-tight text-white"
                 style={{ fontFamily: "var(--font-inter), Inter, system-ui, sans-serif" }}
               >
                 {active.percent}%
               </span>
               <span
-                className="mt-2.5 block text-[10px] font-bold tracking-[1.6px] uppercase"
+                className="mt-2.5 block text-[13px] font-bold tracking-[1.6px] uppercase"
                 style={{
                   color: activeColor,
                   fontFamily: "var(--font-inter), Inter, system-ui, sans-serif",
