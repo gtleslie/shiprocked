@@ -39,7 +39,7 @@ export default function HomePage() {
           </div>
         </div>
 
-        <div className="mt-2 grid gap-12 lg:grid-cols-[1.05fr_1fr] lg:items-start md:mt-3">
+        <div className="mt-5 grid gap-12 lg:grid-cols-[1.05fr_1fr] lg:items-start md:mt-6">
           <ImagePlaceholder className="h-[340px] w-full md:h-[400px]" />
           <div className="space-y-6">
             {home.film.paragraphs.map((paragraph) => (

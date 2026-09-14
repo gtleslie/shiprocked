@@ -260,7 +260,7 @@ export const siteContent = {
         "Fun games + rewards",
         "Exclusive ShipRocked content",
       ],
-      fundraising: "Fundraising begins October 14th",
+      fundraising: "Free Entry Until October 14th",
       cta: "Join the Inner Circle",
     },
     tiers: {

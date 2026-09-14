@@ -88,7 +88,7 @@ export default function AboutPage() {
         <h2 className="!mt-1 text-[32px] font-black text-white">
           {about.transparency.headline}
         </h2>
-        <div className="mt-3">
+        <div className="!mt-1">
           <BudgetChart items={about.transparency.breakdown} />
         </div>
       </section>

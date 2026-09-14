@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { ImagePlaceholder } from "@/components/ImagePlaceholder";
+import { ImagePlaceholder, SectionLabel } from "@/components/ImagePlaceholder";
 
 type BreakdownItem = {
   label: string;
@@ -284,11 +284,9 @@ export function BudgetChart({ items }: BudgetChartProps) {
         }
       }}
     >
-      <p className="font-overline mb-1 !tracking-normal text-[18px] font-bold text-accent-gold uppercase">
-        Funding goals
-      </p>
+      <SectionLabel>Funding goals</SectionLabel>
 
-      <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:items-stretch lg:gap-8">
+      <div className="mt-1 grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:items-stretch lg:gap-8">
         <div className="funding-carousel min-w-0">
 
         <div

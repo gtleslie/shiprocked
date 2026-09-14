@@ -131,7 +131,7 @@ export function InnerCircle() {
       </p>
 
       <div className="inner-circle-cta mt-7 flex w-full flex-col items-center">
-        <p className="text-[12px] font-bold tracking-[0.56px] text-accent-gold uppercase">
+        <p className="font-salted text-[22px] leading-none text-accent-turquoise md:text-[26px]">
           {innerCircle.fundraising}
         </p>
         <button
