@@ -21,7 +21,8 @@ export const siteContent = {
     trailer: "#",
     seedAndSpark: "#",
     instagram: "https://www.instagram.com/storyofshiprocked",
-    facebook: "#",
+    facebook:
+      "https://docs.google.com/forms/d/1KZD-Ogcz0iUF5weKBX-_ZGT5Fn_KoVsRfWWu-P8DzF8/viewform",
     innerCircle: "#",
     youtube: "https://www.youtube.com/@ASK4EntertainmentLLC",
     mailingList: "#",
@@ -62,7 +63,11 @@ export const siteContent = {
     },
     connect: [
       { label: "Instagram", href: "https://www.instagram.com/storyofshiprocked", icon: "instagram" as const },
-      { label: "Facebook", href: "#", icon: "facebook" as const },
+      {
+        label: "Facebook",
+        href: "https://docs.google.com/forms/d/1KZD-Ogcz0iUF5weKBX-_ZGT5Fn_KoVsRfWWu-P8DzF8/viewform",
+        icon: "facebook" as const,
+      },
       { label: "YouTube", href: "https://www.youtube.com/@ASK4EntertainmentLLC", icon: "youtube" as const },
     ],
     copyright: "© 2026 THE STORY OF SHIPROCKED | A SENIOR THESIS FILM",
@@ -375,7 +380,11 @@ export const siteContent = {
       overline: "FOLLOW THE FILM",
       buttons: [
         { label: "INSTAGRAM", href: "https://www.instagram.com/storyofshiprocked", variant: "outline" as const },
-        { label: "FACEBOOK", href: "#", variant: "outline" as const },
+        {
+          label: "FACEBOOK",
+          href: "https://docs.google.com/forms/d/1KZD-Ogcz0iUF5weKBX-_ZGT5Fn_KoVsRfWWu-P8DzF8/viewform",
+          variant: "outline" as const,
+        },
         { label: "YOUTUBE", href: "https://www.youtube.com/@ASK4EntertainmentLLC", variant: "outline" as const },
         { label: "JOIN MAILING LIST", href: "#", variant: "gold" as const },
       ],

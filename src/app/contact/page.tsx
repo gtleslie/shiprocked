@@ -53,8 +53,8 @@ export default function ContactPage() {
         <LineRule />
       </div>
 
-      <section className="mx-auto max-w-6xl px-6 py-12 md:px-10 lg:px-12">
-        <div className="flex flex-col gap-8 lg:grid lg:grid-cols-2 lg:items-center lg:gap-12">
+      <section className="mx-auto max-w-[1440px] px-6 py-12 md:px-12 lg:px-16">
+        <div className="flex flex-col gap-8 lg:grid lg:grid-cols-2 lg:items-center lg:gap-16 xl:gap-24">
           <div className="contents lg:flex lg:flex-col lg:gap-6">
             <div className="order-1">
               <SectionLabel>{contact.form.overline}</SectionLabel>

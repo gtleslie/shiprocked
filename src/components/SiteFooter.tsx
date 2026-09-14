@@ -29,7 +29,7 @@ export function SiteFooter() {
           </div>
 
           <div>
-            <p className="mb-3 text-[10px] font-bold tracking-[0.8px] text-accent-gold uppercase">
+            <p className="mb-3 text-[13px] font-bold tracking-[0.8px] text-accent-gold uppercase">
               EXPLORE
             </p>
             <ul className="space-y-1.5">
@@ -37,7 +37,7 @@ export function SiteFooter() {
                 <li key={item.href}>
                   <Link
                     href={item.href}
-                    className="text-[12px] text-text-secondary hover:text-white"
+                    className="text-[14px] text-text-secondary hover:text-white"
                   >
                     {item.label}
                   </Link>
@@ -47,20 +47,20 @@ export function SiteFooter() {
           </div>
 
           <div>
-            <p className="mb-3 text-[10px] font-bold tracking-[0.8px] text-accent-gold uppercase">
+            <p className="mb-3 text-[13px] font-bold tracking-[0.8px] text-accent-gold uppercase">
               CONTACT
             </p>
-            <p className="text-[12px] text-text-secondary">{footer.contact.label}</p>
+            <p className="text-[14px] text-text-secondary">{footer.contact.label}</p>
             <a
               href={`mailto:${footer.contact.email}`}
-              className="mt-0.5 inline-block text-[12px] text-text-secondary underline decoration-white/25 underline-offset-2 transition-colors hover:text-accent-red hover:decoration-accent-red"
+              className="mt-0.5 inline-block text-[14px] text-text-secondary underline decoration-white/25 underline-offset-2 transition-colors hover:text-accent-red hover:decoration-accent-red"
             >
               {footer.contact.email}
             </a>
           </div>
 
           <div>
-            <p className="mb-3 text-[10px] font-bold tracking-[0.8px] text-accent-gold uppercase">
+            <p className="mb-3 text-[13px] font-bold tracking-[0.8px] text-accent-gold uppercase">
               CONNECT
             </p>
             <div className="flex items-center gap-4">
@@ -73,9 +73,9 @@ export function SiteFooter() {
                     aria-label={item.label}
                     target={item.href.startsWith("http") ? "_blank" : undefined}
                     rel={item.href.startsWith("http") ? "noopener noreferrer" : undefined}
-                    className="flex h-9 w-9 items-center justify-center text-text-secondary transition-colors hover:text-white"
+                    className="flex h-10 w-10 items-center justify-center text-text-secondary transition-colors hover:text-white"
                   >
-                    <Icon className="h-5 w-5" />
+                    <Icon className="h-6 w-6" />
                   </a>
                 );
               })}
