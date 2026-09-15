@@ -148,10 +148,10 @@ export function InnerCircle() {
           <Image
             src={innerCircleJoin}
             alt={innerCircle.cta}
-            width={950}
-            height={250}
+            width={848}
+            height={240}
             priority
-            className="mx-auto block h-auto w-full aspect-[950/250]"
+            className="mx-auto block h-auto w-full aspect-[848/240]"
           />
         </button>
       </div>

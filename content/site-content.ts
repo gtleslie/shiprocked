@@ -12,7 +12,7 @@ export const siteContent = {
     ask4Logo: "/assets/logos/ask4-entertainment.png",
     skullyRide: "/assets/logos/skully-riding-cruise.png",
     innerCircleLogo: "/assets/logos/inner-circle-logo.mp4",
-    innerCircleJoin: "/assets/logos/click-to-join.jpg",
+    innerCircleJoin: "/assets/logos/click-to-join.png",
     seedAndSpark: "/assets/seedandsparktransparent.svg",
     dividerVector: "/assets/divider-vector.svg",
   },
