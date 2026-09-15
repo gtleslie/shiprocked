@@ -652,6 +652,18 @@ h2 {
   padding-bottom: 2rem;
 }
 
+.inner-circle-logo {
+  aspect-ratio: 1666 / 456;
+}
+
+.inner-circle-logo video,
+.inner-circle-logo canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
 .campaign-rider {
   bottom: -2px;
   transform: translateX(-42%);

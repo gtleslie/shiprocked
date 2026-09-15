@@ -113,7 +113,7 @@ export function InnerCircle() {
         {/* Keep the video laid out so the browser continues decoding frames. */}
         <video
           ref={videoRef}
-          className="pointer-events-none absolute inset-0 h-auto w-full opacity-0"
+          className="pointer-events-none opacity-0"
           src={innerCircleLogo}
           muted
           playsInline
@@ -123,7 +123,13 @@ export function InnerCircle() {
           aria-hidden
           tabIndex={-1}
         />
-        <canvas ref={canvasRef} className="relative block h-auto w-full" aria-hidden />
+        <canvas
+          ref={canvasRef}
+          width={1666}
+          height={456}
+          className="block"
+          aria-hidden
+        />
       </div>
 
       <p className="inner-circle-copy font-subhead mt-5 max-w-[460px] text-[15px] leading-relaxed text-text-muted">
@@ -144,7 +150,8 @@ export function InnerCircle() {
             alt={innerCircle.cta}
             width={950}
             height={250}
-            className="mx-auto block h-auto w-full"
+            priority
+            className="mx-auto block h-auto w-full aspect-[950/250]"
           />
         </button>
       </div>

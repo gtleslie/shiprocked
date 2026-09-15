@@ -40,7 +40,7 @@ declare global {
   }
 }
 
-function MicOnIcon() {
+function VolumeOnIcon() {
   return (
     <svg
       viewBox="0 0 24 24"
@@ -52,14 +52,14 @@ function MicOnIcon() {
       className="h-[18px] w-[18px]"
       aria-hidden
     >
-      <path d="M12 3a3 3 0 0 0-3 3v5a3 3 0 0 0 6 0V6a3 3 0 0 0-3-3Z" />
-      <path d="M19 10v1a7 7 0 0 1-14 0v-1" />
-      <path d="M12 18v3" />
+      <path d="M11 5 6 9H2v6h4l5 4V5Z" />
+      <path d="M15.54 8.46a5 5 0 0 1 0 7.08" />
+      <path d="M19.07 4.93a10 10 0 0 1 0 14.14" />
     </svg>
   );
 }
 
-function MicOffIcon() {
+function VolumeOffIcon() {
   return (
     <svg
       viewBox="0 0 24 24"
@@ -71,10 +71,9 @@ function MicOffIcon() {
       className="h-[18px] w-[18px]"
       aria-hidden
     >
-      <path d="M12 3a3 3 0 0 0-3 3v5a3 3 0 0 0 6 0V6a3 3 0 0 0-3-3Z" />
-      <path d="M19 10v1a7 7 0 0 1-14 0v-1" />
-      <path d="M12 18v3" />
-      <path d="M4 4l16 16" />
+      <path d="M11 5 6 9H2v6h4l5 4V5Z" />
+      <path d="m22 9-6 6" />
+      <path d="m16 9 6 6" />
     </svg>
   );
 }
@@ -314,7 +313,7 @@ export function HeroVideo({ videoId }: HeroVideoProps) {
           aria-pressed={!muted}
           aria-label={muted ? "Turn trailer sound on" : "Mute trailer sound"}
         >
-          {muted ? <MicOffIcon /> : <MicOnIcon />}
+          {muted ? <VolumeOffIcon /> : <VolumeOnIcon />}
         </button>
       </div>
       <p className="sr-only" aria-live="polite">
