@@ -7,7 +7,7 @@ import { InnerCircle } from "@/components/InnerCircle";
 export function SupportCampaign() {
   return (
     <>
-      <section className="relative isolate overflow-hidden px-6 pt-6 pb-4 md:px-12 lg:px-16">
+      <section className="relative isolate overflow-hidden px-4 pt-4 pb-6 md:px-12 md:pt-6 md:pb-4 lg:px-16">
         <div className="pointer-events-none absolute inset-0 -z-10 bg-black" aria-hidden>
           <Image
             src="/assets/Supportbground.png"

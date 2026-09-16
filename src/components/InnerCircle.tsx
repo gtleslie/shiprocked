@@ -109,11 +109,11 @@ export function InnerCircle() {
     <div className="inner-circle-stage relative mx-auto flex w-full max-w-[860px] flex-col items-center text-center">
       <h1 className="sr-only">{innerCircle.headline}</h1>
 
-      <div className="inner-circle-logo relative ml-[10px] w-full max-w-[780px]">
+      <div className="inner-circle-logo relative w-full max-w-[780px] overflow-hidden">
         {/* Keep the video laid out so the browser continues decoding frames. */}
         <video
           ref={videoRef}
-          className="pointer-events-none opacity-0"
+          className="pointer-events-none absolute inset-0 h-full w-full opacity-0"
           src={innerCircleLogo}
           muted
           playsInline
@@ -127,23 +127,23 @@ export function InnerCircle() {
           ref={canvasRef}
           width={1666}
           height={456}
-          className="block"
+          className="absolute inset-0 block h-full w-full"
           aria-hidden
         />
       </div>
 
-      <p className="inner-circle-copy font-subhead mt-5 max-w-[460px] text-[15px] leading-relaxed text-white">
+      <p className="inner-circle-copy font-subhead mt-4 max-w-[460px] px-1 text-[13px] leading-relaxed text-white md:mt-5 md:text-[15px]">
         {innerCircle.perks.join("  ·  ")}
       </p>
 
-      <div className="inner-circle-cta mt-7 flex w-full flex-col items-center">
-        <p className="font-salted text-[22px] leading-none text-accent-turquoise md:text-[26px]">
+      <div className="inner-circle-cta mt-5 flex w-full flex-col items-center px-1 md:mt-7">
+        <p className="font-salted text-[18px] leading-none text-accent-turquoise md:text-[26px]">
           {innerCircle.fundraising}
         </p>
         <button
           type="button"
           onClick={handleJoin}
-          className="mx-auto mt-5 block w-full max-w-[380px] min-w-0 transition-transform duration-200 hover:scale-[1.03] active:scale-[0.99]"
+          className="mx-auto mt-4 block w-full max-w-[320px] min-w-0 transition-transform duration-200 hover:scale-[1.03] active:scale-[0.99] md:mt-5 md:max-w-[380px]"
         >
           <Image
             src={innerCircleJoin}
@@ -154,7 +154,7 @@ export function InnerCircle() {
             className="mx-auto block h-auto w-full aspect-[848/240]"
           />
         </button>
-        <p className="font-salted mt-10 max-w-[540px] text-[20px] leading-snug text-white md:text-[24px]">
+        <p className="font-salted mt-7 max-w-[34rem] px-1 text-[16px] leading-snug text-white md:mt-10 md:text-[24px]">
           {innerCircle.merchNote}
         </p>
       </div>

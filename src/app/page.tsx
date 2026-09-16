@@ -13,9 +13,9 @@ export default function HomePage() {
     <PageShell activePage="home">
       <HeroSection />
 
-      <section className="mx-auto max-w-[1440px] px-6 py-20 md:px-12 lg:px-16">
+      <section className="mx-auto max-w-[1440px] overflow-x-hidden px-4 py-12 md:overflow-visible md:px-12 md:py-20 lg:px-16">
         <div className="relative max-w-[1080px]">
-          <div className="pointer-events-none w-[97%] origin-left -translate-x-[24%] scale-[0.97] select-none" aria-hidden>
+          <div className="pointer-events-none w-[97%] origin-left -translate-x-[6%] scale-[0.97] select-none md:-translate-x-[24%]" aria-hidden>
             <Image
               src="/assets/ghost_cruise_ship-trim.jpeg"
               alt=""
@@ -29,7 +29,7 @@ export default function HomePage() {
 
           <div className="absolute inset-0 z-10 flex flex-col justify-end pb-3 md:pb-4">
             <SectionLabel>{home.film.overline}</SectionLabel>
-            <h2 className="!mt-1 max-w-[22ch] text-[32px] leading-[1.02] font-black text-white md:text-[40px]">
+            <h2 className="!mt-1 max-w-[22ch] text-[26px] leading-[1.02] font-black text-white md:text-[40px]">
               {home.film.headline.map((line) => (
                 <span key={line} className="block">
                   {line}
@@ -54,9 +54,9 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-[1440px] px-6 pt-16 pb-10 md:px-12 lg:px-16">
+      <section className="mx-auto max-w-[1440px] px-4 pt-12 pb-8 md:px-12 md:pt-16 md:pb-10 lg:px-16">
         <SectionLabel>{home.whyItMatters.overline}</SectionLabel>
-        <h2 className="!mt-1 max-w-3xl text-[32px] font-black text-white md:text-[36px]">
+        <h2 className="!mt-1 max-w-3xl text-[26px] font-black text-white md:text-[36px]">
           {home.whyItMatters.headline}
         </h2>
 
@@ -76,9 +76,9 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-[1440px] px-6 pt-8 pb-20 md:px-12 lg:px-16">
+      <section className="mx-auto max-w-[1440px] px-4 pt-6 pb-16 md:px-12 md:pt-8 md:pb-20 lg:px-16">
         <SectionLabel>{home.campaign.overline}</SectionLabel>
-        <h2 className="!mt-1 text-[32px] font-black text-white md:text-[36px]">
+        <h2 className="!mt-1 text-[26px] font-black text-white md:text-[36px]">
           {home.campaign.headline}
         </h2>
         <SectionSubhead className="mt-3 text-[16px]">{siteContent.campaign.homeDates}</SectionSubhead>

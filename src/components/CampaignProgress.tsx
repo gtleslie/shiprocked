@@ -65,9 +65,9 @@ export function CampaignProgress({
 
   return (
     <div ref={trackRef} className={className}>
-      <div className="relative overflow-visible pt-[110px]">
+      <div className="relative overflow-visible pt-[86px] md:pt-[110px]">
         <div
-          className="campaign-rider pointer-events-none absolute z-[2] h-[120px] w-[200px] overflow-hidden md:h-[132px] md:w-[220px]"
+          className="campaign-rider pointer-events-none absolute z-[2] h-[96px] w-[160px] overflow-hidden md:h-[132px] md:w-[220px]"
           style={{ left: `${ride}%` }}
         >
           <Image

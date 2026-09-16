@@ -19,9 +19,9 @@ export default function ContactPage() {
 
   return (
     <PageShell activePage="contact">
-      <section className="mx-auto max-w-[1440px] px-6 pt-16 pb-10 md:px-12 lg:px-16">
+      <section className="mx-auto max-w-[1440px] px-4 pt-10 pb-8 md:px-12 md:pt-16 md:pb-10 lg:px-16">
         <SectionLabel>{contact.hero.overline}</SectionLabel>
-        <h1 className="!mt-1 text-[42px] font-black text-white md:text-[52px]">
+        <h1 className="!mt-1 text-[32px] font-black text-white md:text-[52px]">
           {contact.hero.headline}
         </h1>
         <SectionSubhead className="mt-4 max-w-3xl text-[16px]">{contact.hero.body}</SectionSubhead>
@@ -29,7 +29,7 @@ export default function ContactPage() {
 
       <SectionDivider />
 
-      <section className="mx-auto max-w-[1440px] px-6 py-12 md:px-12 lg:px-16">
+      <section className="mx-auto max-w-[1440px] px-4 py-8 md:px-12 md:py-12 lg:px-16">
         <div className="grid gap-6 lg:grid-cols-2">
           {contact.blocks.map((block) => {
             const logo =
@@ -39,7 +39,7 @@ export default function ContactPage() {
                     alt: "Koenig Entertainment Co.",
                     width: 3600,
                     height: 3600,
-                    className: "h-[88px] w-auto object-contain object-right md:h-[100px]",
+                    className: "h-[64px] w-auto object-contain object-left sm:object-right md:h-[100px]",
                   }
                 : {
                     src: siteContent.assets.ask4Logo,
@@ -47,20 +47,20 @@ export default function ContactPage() {
                     width: 1244,
                     height: 845,
                     className:
-                      "h-[52px] w-auto object-contain object-right brightness-0 invert md:h-[60px]",
+                      "h-[40px] w-auto object-contain object-left brightness-0 invert sm:object-right md:h-[60px]",
                   };
 
             return (
               <article
                 key={block.overline}
-                className="flex flex-col items-start gap-6 bg-bg-card p-8 sm:flex-row sm:items-center sm:justify-between"
+                className="flex flex-col items-start gap-4 bg-bg-card p-5 sm:flex-row sm:items-center sm:justify-between sm:gap-6 sm:p-8"
               >
                 <div className="min-w-0">
                   <SectionLabel>{block.overline}</SectionLabel>
-                  <h2 className="!mt-1 text-[20px] font-bold text-white">{block.title}</h2>
+                  <h2 className="!mt-1 text-[18px] font-bold text-white md:text-[20px]">{block.title}</h2>
                   <a
                     href={`mailto:${block.email}`}
-                    className="mt-3 inline-block text-[15px] text-text-secondary underline decoration-white/25 underline-offset-2 transition-colors hover:text-accent-red hover:decoration-accent-red"
+                    className="mt-3 inline-block break-all text-[14px] text-text-secondary underline decoration-white/25 underline-offset-2 transition-colors hover:text-accent-red hover:decoration-accent-red md:text-[15px]"
                   >
                     {block.email}
                   </a>
@@ -81,16 +81,16 @@ export default function ContactPage() {
         </div>
       </section>
 
-      <div className="mx-auto max-w-[1440px] px-6 md:px-12 lg:px-16">
+      <div className="mx-auto max-w-[1440px] px-4 md:px-12 lg:px-16">
         <LineRule />
       </div>
 
-      <section className="mx-auto max-w-[1440px] px-6 py-12 md:px-12 lg:px-16">
+      <section className="mx-auto max-w-[1440px] px-4 py-8 md:px-12 md:py-12 lg:px-16">
         <div className="flex flex-col gap-8 lg:grid lg:grid-cols-2 lg:items-center lg:gap-16 xl:gap-24">
           <div className="contents lg:flex lg:flex-col lg:gap-6">
             <div className="order-1">
               <SectionLabel>{contact.form.overline}</SectionLabel>
-              <h2 className="!mt-1 text-[32px] font-black text-white">
+              <h2 className="!mt-1 text-[26px] font-black text-white md:text-[32px]">
                 {contact.form.headline}
               </h2>
             </div>
@@ -142,15 +142,8 @@ export default function ContactPage() {
             </form>
           </div>
 
-          <div className="order-2 flex min-h-[22rem] items-center justify-center overflow-visible sm:min-h-[26rem] lg:min-h-full">
-            <div
-              className="origin-center shrink-0"
-              style={{
-                transform: "rotate(9deg) scale(1.12)",
-                width: "48rem",
-                maxWidth: "98vw",
-              }}
-            >
+          <div className="order-2 flex min-h-[16rem] items-center justify-center overflow-hidden sm:min-h-[26rem] lg:min-h-full lg:overflow-visible">
+            <div className="w-full max-w-[28rem] origin-center rotate-[9deg] shrink-0 sm:max-w-[36rem] lg:max-w-[48rem] lg:scale-[1.12]">
               <Image
                 src="/assets/opening-mail.png"
                 alt="Skeletal hands opening a letter"
@@ -164,11 +157,11 @@ export default function ContactPage() {
         </div>
       </section>
 
-      <div className="mx-auto max-w-[1440px] px-6 md:px-12 lg:px-16">
+      <div className="mx-auto max-w-[1440px] px-4 md:px-12 lg:px-16">
         <LineRule />
       </div>
 
-      <section className="mx-auto max-w-[1440px] px-6 py-12 md:px-12 lg:px-16">
+      <section className="mx-auto max-w-[1440px] px-4 py-8 md:px-12 md:py-12 lg:px-16">
         <SectionLabel>{contact.social.overline}</SectionLabel>
         <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
           {contact.social.buttons.map((button) => {

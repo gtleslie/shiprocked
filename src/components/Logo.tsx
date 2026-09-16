@@ -11,19 +11,19 @@ const variants: Record<
     src: siteContent.assets.logo,
     width: 186,
     height: 120,
-    className: "h-[60px] w-auto",
+    className: "h-[44px] w-auto md:h-[60px]",
   },
   footer: {
     src: siteContent.assets.keLogo,
     width: 3600,
     height: 3600,
-    className: "h-[150px] w-auto object-contain object-left",
+    className: "h-[96px] w-auto object-contain object-left md:h-[150px]",
   },
   hero: {
     src: siteContent.assets.heroLogo,
     width: 1020,
     height: 660,
-    className: "h-auto w-[360px] md:w-[480px]",
+    className: "h-auto w-full max-w-[280px] md:max-w-[360px] lg:max-w-[480px]",
   },
 };
 

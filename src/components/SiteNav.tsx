@@ -15,7 +15,7 @@ export function SiteNav({ activePage }: SiteNavProps) {
 
   return (
     <header className="fixed top-0 right-0 left-0 z-50 h-[84px] border-b border-white/5 bg-black">
-      <div className="mx-auto grid h-full max-w-[1440px] grid-cols-[1fr_auto] items-center px-6 md:grid-cols-3 md:px-12 lg:px-16">
+      <div className="mx-auto grid h-full max-w-[1440px] grid-cols-[1fr_auto] items-center gap-2 px-4 md:grid-cols-3 md:gap-3 md:px-12 lg:px-16">
         <Link href="/" className="shrink-0 justify-self-start" onClick={() => setOpen(false)}>
           <Logo size="nav" />
         </Link>
@@ -43,7 +43,7 @@ export function SiteNav({ activePage }: SiteNavProps) {
         <div className="flex items-center justify-end gap-3 justify-self-end">
           <Link
             href="/support"
-            className="inline-flex h-9 min-w-[132px] items-center justify-center bg-accent-red px-5 text-[11px] font-bold tracking-[0.44px] text-white uppercase"
+            className="inline-flex h-8 shrink-0 items-center justify-center bg-accent-red px-3 text-[10px] font-bold tracking-[0.44px] text-white uppercase md:h-9 md:min-w-[132px] md:px-5 md:text-[11px]"
           >
             {nav.supportCta}
           </Link>
@@ -64,7 +64,7 @@ export function SiteNav({ activePage }: SiteNavProps) {
       </div>
 
       {open && (
-        <div className="border-b border-white/10 bg-black px-6 py-4 md:hidden">
+        <div className="border-b border-white/10 bg-black px-4 py-4 md:hidden">
           <nav className="flex flex-col gap-4">
             {nav.links.map((link) => (
               <Link

@@ -11,9 +11,9 @@ export default function SupportPage() {
     <PageShell activePage="support">
       <SupportCampaign />
 
-      <section className="mx-auto max-w-[1440px] px-6 pt-8 pb-20 md:px-12 lg:px-16">
+      <section className="mx-auto max-w-[1440px] px-4 pt-8 pb-16 md:px-12 md:pt-8 md:pb-20 lg:px-16">
         <SectionLabel>{support.seedAndSpark.overline}</SectionLabel>
-        <h2 className="!mt-1 max-w-3xl text-[32px] font-black text-white md:text-[36px]">
+        <h2 className="!mt-1 max-w-3xl text-[26px] font-black text-white md:text-[36px]">
           {support.seedAndSpark.headline}
         </h2>
         <SectionSubhead className="mt-5 max-w-3xl text-[15px] leading-relaxed text-text-secondary">

@@ -10,14 +10,14 @@ export default function AboutPage() {
 
   return (
     <PageShell activePage="about">
-      <section className="mx-auto max-w-[1440px] px-6 py-12 md:px-12 lg:px-16">
+      <section className="mx-auto max-w-[1440px] px-4 py-10 md:px-12 md:py-12 lg:px-16">
         <div className="grid gap-10 lg:grid-cols-[1.2fr_0.8fr] lg:items-end">
           <div>
             <SectionLabel>{about.hero.overline}</SectionLabel>
-            <h1 className="!mt-1 text-[48px] leading-none font-black text-white md:text-[56px]">
+            <h1 className="!mt-1 text-[36px] leading-none font-black text-white md:text-[56px]">
               {about.hero.headline}
             </h1>
-            <p className="font-header mt-1 text-[48px] leading-none text-accent-red md:text-[56px]">
+            <p className="font-header mt-1 text-[36px] leading-none text-accent-red md:text-[56px]">
               {about.hero.headlineAccent}
             </p>
             <SectionSubhead className="mt-8 max-w-2xl text-[16px] leading-relaxed">
@@ -30,9 +30,9 @@ export default function AboutPage() {
 
       <SectionDivider />
 
-      <section className="mx-auto max-w-[1440px] px-6 py-14 md:px-12 lg:px-16">
+      <section className="mx-auto max-w-[1440px] px-4 py-10 md:px-12 md:py-14 lg:px-16">
         <SectionLabel>{about.timeline.overline}</SectionLabel>
-        <h2 className="!mt-1 text-[32px] font-black text-white">
+        <h2 className="!mt-1 text-[26px] font-black text-white md:text-[32px]">
           {about.timeline.headline}
         </h2>
         <div className="mt-8 grid gap-12 lg:grid-cols-[1fr_1fr] lg:items-stretch">
@@ -53,10 +53,10 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-[1440px] px-8 py-10 md:px-14 md:py-12 lg:px-20 lg:py-14">
+      <section className="mx-auto max-w-[1440px] px-4 py-8 md:px-14 md:py-12 lg:px-20 lg:py-14">
         <CharactersCarousel
           header={
-            <h2 className="text-[32px] font-black text-white">
+            <h2 className="text-[26px] font-black text-white md:text-[32px]">
               {about.crew.headline}
             </h2>
           }
@@ -65,10 +65,10 @@ export default function AboutPage() {
         />
       </section>
 
-      <section className="mx-auto max-w-[1440px] px-8 py-10 md:px-14 md:py-12 lg:px-20 lg:py-14">
+      <section className="mx-auto max-w-[1440px] px-4 py-8 md:px-14 md:py-12 lg:px-20 lg:py-14">
         <CharactersCarousel
           header={
-            <h2 className="text-[32px] font-black text-white">
+            <h2 className="text-[26px] font-black text-white md:text-[32px]">
               {about.meetCharacters.headline}
             </h2>
           }
@@ -77,9 +77,9 @@ export default function AboutPage() {
         />
       </section>
 
-      <section className="mx-auto max-w-[1440px] px-6 pt-8 pb-12 md:px-12 lg:px-16">
+      <section className="mx-auto max-w-[1440px] px-4 pt-6 pb-10 md:px-12 md:pt-8 md:pb-12 lg:px-16">
         <SectionLabel>{about.transparency.overline}</SectionLabel>
-        <h2 className="!mt-1 text-[32px] font-black text-white">
+        <h2 className="!mt-1 text-[26px] font-black text-white md:text-[32px]">
           {about.transparency.headline}
         </h2>
         <div className="!mt-1">
