@@ -132,17 +132,16 @@ export function InnerCircle() {
         />
       </div>
 
-      <ul className="inner-circle-copy mt-5 grid max-w-[34rem] grid-cols-1 gap-y-2 px-3 sm:grid-cols-2 sm:gap-x-8 sm:gap-y-2.5 md:mt-6">
+      <div className="inner-circle-copy mt-5 flex max-w-[40rem] flex-wrap justify-center gap-2 px-3 md:mt-6 md:gap-2.5">
         {innerCircle.perks.map((perk) => (
-          <li
+          <span
             key={perk}
-            className="font-subhead text-[15px] leading-snug font-medium text-white md:text-[16px]"
-            style={{ textShadow: "0 1px 12px rgba(0,0,0,0.95), 0 0 3px rgba(0,0,0,0.8)" }}
+            className="font-subhead border border-accent-gold/70 bg-black/55 px-3.5 py-1.5 text-[13px] leading-snug text-accent-gold md:text-[14px]"
           >
             {perk}
-          </li>
+          </span>
         ))}
-      </ul>
+      </div>
 
       <div className="inner-circle-cta mt-5 flex w-full flex-col items-center px-1 md:mt-7">
         <p className="font-salted text-[18px] leading-none text-accent-turquoise md:text-[26px]">
