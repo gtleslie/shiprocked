@@ -198,8 +198,8 @@ export const siteContent = {
       ],
     },
     transparency: {
-      overline: "TRANSPARENCY",
-      headline: "Where the money goes.",
+      overline: "FUNDING GOALS",
+      headline: "Budget Breakdown.",
       breakdown: [
         {
           label: "Post-production & editing",

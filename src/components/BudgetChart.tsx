@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { ImagePlaceholder, SectionLabel } from "@/components/ImagePlaceholder";
+import { ImagePlaceholder } from "@/components/ImagePlaceholder";
 
 type BreakdownItem = {
   label: string;
@@ -284,8 +284,6 @@ export function BudgetChart({ items }: BudgetChartProps) {
         }
       }}
     >
-      <SectionLabel>Funding goals</SectionLabel>
-
       <div className="mt-1 grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:items-stretch lg:gap-8">
         <div className="funding-carousel min-w-0">
 
@@ -293,7 +291,7 @@ export function BudgetChart({ items }: BudgetChartProps) {
           ref={trackRef}
           className="funding-carousel-track"
           role="region"
-          aria-label="Funding goals carousel"
+          aria-label="Budget breakdown carousel"
           tabIndex={0}
         >
           {items.map((item, index) => {
