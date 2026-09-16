@@ -82,7 +82,7 @@ export function CampaignProgress({
         <div className="campaign-track relative h-[24px] w-full overflow-hidden rounded-full">
           <div
             className="campaign-fill relative h-full overflow-hidden rounded-full"
-            style={{ width: `calc(${ride}% + 8.5rem)` }}
+            style={{ width: `calc(${ride}% + var(--campaign-fill-extra))` }}
           >
             <div className="campaign-wave-body absolute inset-0" />
             <svg
