@@ -158,7 +158,7 @@ export const siteContent = {
     },
     crew: {
       overline: "MEET THE CREW",
-      headline: "The people behind the lens.",
+      headline: "Meet the Crew",
       members: [
         {
           name: "ALBERT KOENIG",
@@ -185,7 +185,7 @@ export const siteContent = {
     },
     meetCharacters: {
       overline: "MEET THE CHARACTERS",
-      headline: "The people of the voyage.",
+      headline: "Meet the Characters",
       subjects: [
         { name: "Al McManus", bio: "(bio)" },
         { name: "Jennifer Zito", bio: "(bio)" },

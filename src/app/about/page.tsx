@@ -56,12 +56,9 @@ export default function AboutPage() {
       <section className="mx-auto max-w-[1440px] px-8 py-10 md:px-14 md:py-12 lg:px-20 lg:py-14">
         <CharactersCarousel
           header={
-            <>
-              <SectionLabel>{about.crew.overline}</SectionLabel>
-              <h2 className="!mt-1 text-[32px] font-black text-white">
-                {about.crew.headline}
-              </h2>
-            </>
+            <h2 className="text-[32px] font-black text-white">
+              {about.crew.headline}
+            </h2>
           }
           subjects={about.crew.members}
           label="Meet the crew carousel"
@@ -71,12 +68,9 @@ export default function AboutPage() {
       <section className="mx-auto max-w-[1440px] px-8 py-10 md:px-14 md:py-12 lg:px-20 lg:py-14">
         <CharactersCarousel
           header={
-            <>
-              <SectionLabel>{about.meetCharacters.overline}</SectionLabel>
-              <h2 className="!mt-1 text-[32px] font-black text-white">
-                {about.meetCharacters.headline}
-              </h2>
-            </>
+            <h2 className="text-[32px] font-black text-white">
+              {about.meetCharacters.headline}
+            </h2>
           }
           subjects={about.meetCharacters.subjects}
           label="Meet the characters carousel"
