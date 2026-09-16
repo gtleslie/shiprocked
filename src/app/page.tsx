@@ -15,7 +15,7 @@ export default function HomePage() {
 
       <section className="mx-auto max-w-[1440px] px-6 py-20 md:px-12 lg:px-16">
         <div className="relative max-w-[1080px]">
-          <div className="pointer-events-none w-[120%] max-w-none -translate-x-[10%] select-none" aria-hidden>
+          <div className="pointer-events-none w-[145%] max-w-none -translate-x-[26%] select-none" aria-hidden>
             <Image
               src="/assets/ghost_cruise_ship-trim.jpeg"
               alt=""
