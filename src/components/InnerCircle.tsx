@@ -132,7 +132,7 @@ export function InnerCircle() {
         />
       </div>
 
-      <p className="inner-circle-copy font-subhead mt-5 max-w-[460px] text-[15px] leading-relaxed text-text-muted">
+      <p className="inner-circle-copy font-subhead mt-5 max-w-[460px] text-[15px] leading-relaxed text-white">
         {innerCircle.perks.join("  ·  ")}
       </p>
 
@@ -154,6 +154,9 @@ export function InnerCircle() {
             className="mx-auto block h-auto w-full aspect-[848/240]"
           />
         </button>
+        <p className="font-salted mt-10 max-w-[540px] text-[20px] leading-snug text-white md:text-[24px]">
+          {innerCircle.merchNote}
+        </p>
       </div>
     </div>
   );

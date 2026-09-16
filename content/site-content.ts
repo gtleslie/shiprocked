@@ -258,6 +258,8 @@ export const siteContent = {
       ],
       fundraising: "Free Entry Until October 14th",
       cta: "Join the Inner Circle",
+      merchNote:
+        "Merchandise previews coming #soon. Inner Circle members get first-looks, and help design the items.",
     },
     tiers: {
       overline: "COME ABOARD",
