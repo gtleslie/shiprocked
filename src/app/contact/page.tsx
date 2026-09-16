@@ -114,9 +114,9 @@ export default function ContactPage() {
             <div
               className="origin-center shrink-0"
               style={{
-                transform: "rotate(9deg)",
-                width: "42rem",
-                maxWidth: "92vw",
+                transform: "rotate(9deg) scale(1.12)",
+                width: "48rem",
+                maxWidth: "98vw",
               }}
             >
               <Image
