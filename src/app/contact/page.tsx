@@ -31,21 +31,53 @@ export default function ContactPage() {
 
       <section className="mx-auto max-w-[1440px] px-6 py-12 md:px-12 lg:px-16">
         <div className="grid gap-6 lg:grid-cols-2">
-          {contact.blocks.map((block) => (
-            <article key={block.overline} className="bg-bg-card p-8">
-              <SectionLabel>{block.overline}</SectionLabel>
-              <h2 className="!mt-1 text-[20px] font-bold text-white">{block.title}</h2>
-              <a
-                href={`mailto:${block.email}`}
-                className="mt-3 inline-block text-[15px] text-text-secondary underline decoration-white/25 underline-offset-2 transition-colors hover:text-accent-red hover:decoration-accent-red"
+          {contact.blocks.map((block) => {
+            const logo =
+              block.logo === "ke"
+                ? {
+                    src: siteContent.assets.keLogo,
+                    alt: "Koenig Entertainment Co.",
+                    width: 3600,
+                    height: 3600,
+                    className: "h-[88px] w-auto object-contain object-right md:h-[100px]",
+                  }
+                : {
+                    src: siteContent.assets.ask4Logo,
+                    alt: "ASK4 Entertainment",
+                    width: 1244,
+                    height: 845,
+                    className:
+                      "h-[52px] w-auto object-contain object-right brightness-0 invert md:h-[60px]",
+                  };
+
+            return (
+              <article
+                key={block.overline}
+                className="flex flex-col items-start gap-6 bg-bg-card p-8 sm:flex-row sm:items-center sm:justify-between"
               >
-                {block.email}
-              </a>
-              {block.note && (
-                <p className="mt-3 text-[13px] text-text-secondary">{block.note}</p>
-              )}
-            </article>
-          ))}
+                <div className="min-w-0">
+                  <SectionLabel>{block.overline}</SectionLabel>
+                  <h2 className="!mt-1 text-[20px] font-bold text-white">{block.title}</h2>
+                  <a
+                    href={`mailto:${block.email}`}
+                    className="mt-3 inline-block text-[15px] text-text-secondary underline decoration-white/25 underline-offset-2 transition-colors hover:text-accent-red hover:decoration-accent-red"
+                  >
+                    {block.email}
+                  </a>
+                  {block.note && (
+                    <p className="mt-3 text-[13px] text-text-secondary">{block.note}</p>
+                  )}
+                </div>
+                <Image
+                  src={logo.src}
+                  alt={logo.alt}
+                  width={logo.width}
+                  height={logo.height}
+                  className={`shrink-0 ${logo.className}`}
+                />
+              </article>
+            );
+          })}
         </div>
       </section>
 

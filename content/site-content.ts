@@ -356,12 +356,14 @@ export const siteContent = {
         title: "Story of ShipRocked Team",
         email: "shiprocked@koenigentertainment.com",
         note: null,
+        logo: "ke" as const,
       },
       {
         overline: "GENERAL INQUIRIES",
         title: "ASK4 Entertainment",
         email: "info@ask4ent.com",
         note: "Response within 2-3 business days",
+        logo: "ask4" as const,
       },
     ],
     form: {
