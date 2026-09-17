@@ -17,7 +17,7 @@ const variants: Record<
     src: siteContent.assets.keLogo,
     width: 3600,
     height: 3600,
-    className: "h-[96px] w-auto object-contain object-left md:h-[150px]",
+    className: "h-[44px] w-[118px] object-cover object-[center_54%] md:h-[68px] md:w-[180px]",
   },
   hero: {
     src: siteContent.assets.heroLogo,

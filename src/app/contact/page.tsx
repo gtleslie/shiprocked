@@ -142,8 +142,8 @@ export default function ContactPage() {
             </form>
           </div>
 
-          <div className="order-2 flex min-h-[16rem] items-center justify-center overflow-hidden sm:min-h-[26rem] lg:min-h-full lg:overflow-visible">
-            <div className="w-full max-w-[28rem] origin-center rotate-[9deg] shrink-0 sm:max-w-[36rem] lg:max-w-[48rem] lg:scale-[1.12]">
+          <div className="order-2 flex min-h-[18rem] items-center justify-center overflow-hidden sm:min-h-[28rem] lg:min-h-full">
+            <div className="w-full max-w-[32rem] origin-center rotate-[9deg] scale-[1.1] shrink-0 sm:max-w-[40rem] sm:scale-[1.14] lg:max-w-[52rem] lg:scale-[1.22]">
               <Image
                 src="/assets/opening-mail.png"
                 alt="Skeletal hands opening a letter"
