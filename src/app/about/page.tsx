@@ -2,6 +2,7 @@ import { PageShell } from "@/components/PageShell";
 import { SectionDivider } from "@/components/SectionDivider";
 import { BudgetChart } from "@/components/BudgetChart";
 import { CharactersCarousel } from "@/components/CharactersCarousel";
+import { TimelinePhotoCarousel } from "@/components/TimelinePhotoCarousel";
 import { ImagePlaceholder, SectionLabel, SectionSubhead } from "@/components/ImagePlaceholder";
 import { siteContent } from "@content/site-content";
 
@@ -49,7 +50,7 @@ export default function AboutPage() {
               </div>
             ))}
           </div>
-          <ImagePlaceholder className="h-[360px] w-full lg:h-full" />
+          <TimelinePhotoCarousel slides={about.timeline.slides} />
         </div>
       </section>
 
