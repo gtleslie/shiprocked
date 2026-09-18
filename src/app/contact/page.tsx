@@ -177,8 +177,8 @@ export default function ContactPage() {
                   ? { target: "_blank", rel: "noopener noreferrer" }
                   : {})}
                 className={`box-border flex h-11 items-center justify-center text-[12px] font-bold tracking-[0.36px] uppercase transition-colors ${
-                  button.variant === "gold"
-                    ? "border border-transparent bg-accent-gold text-black hover:bg-[#c49234]"
+                  button.variant === "turquoise"
+                    ? "border border-white text-accent-turquoise hover:border-accent-turquoise hover:bg-white/5"
                     : "border border-white text-white transition-colors hover:border-accent-gold hover:bg-white/5"
                 }`}
               >

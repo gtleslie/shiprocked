@@ -418,7 +418,11 @@ export const siteContent = {
         { label: "INSTAGRAM", href: "https://www.instagram.com/storyofshiprocked", variant: "outline" as const },
         { label: "FACEBOOK", href: "#", variant: "outline" as const },
         { label: "YOUTUBE", href: "https://www.youtube.com/@ASK4EntertainmentLLC", variant: "outline" as const },
-        { label: "JOIN MAILING LIST", href: "#", variant: "gold" as const },
+        {
+          label: "JOIN THE INNER CIRCLE",
+          href: "https://docs.google.com/forms/d/1KZD-Ogcz0iUF5weKBX-_ZGT5Fn_KoVsRfWWu-P8DzF8/viewform",
+          variant: "turquoise" as const,
+        },
       ],
     },
   },
