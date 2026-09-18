@@ -436,7 +436,7 @@ body {
 }
 
 .funding-carousel-card {
-  flex: 0 0 min(100%, 340px);
+  flex: 0 0 min(280px, 82%);
   scroll-snap-align: start;
   cursor: pointer;
   opacity: 0.55;
@@ -444,6 +444,12 @@ body {
     opacity 0.3s ease,
     transform 0.3s ease,
     border-color 0.3s ease;
+}
+
+@media (min-width: 640px) {
+  .funding-carousel-card {
+    flex-basis: min(100%, 340px);
+  }
 }
 
 .funding-carousel-card.is-active {
@@ -476,6 +482,14 @@ body {
 .budget-chart svg *:focus-visible {
   outline: none !important;
   box-shadow: none !important;
+}
+
+@media (max-width: 1023px) {
+  .budget-chart svg {
+    width: 108%;
+    max-width: none;
+    margin-left: -4%;
+  }
 }
 
 @media (min-width: 1024px) {
@@ -738,9 +752,15 @@ h2 {
 }
 
 .campaign-rider {
-  bottom: -2px;
+  bottom: 38px;
   transform: translateX(-42%);
   transition: left 1.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@media (min-width: 768px) {
+  .campaign-rider {
+    bottom: -2px;
+  }
 }
 
 .campaign-track {
