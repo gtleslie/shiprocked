@@ -3,6 +3,7 @@ import { PageShell } from "@/components/PageShell";
 import { SectionDivider } from "@/components/SectionDivider";
 import { BudgetChart } from "@/components/BudgetChart";
 import { CharactersCarousel } from "@/components/CharactersCarousel";
+import { TimelinePhotoCarousel } from "@/components/TimelinePhotoCarousel";
 import { ImagePlaceholder, SectionLabel, SectionSubhead } from "@/components/ImagePlaceholder";
 import { siteContent } from "@content/site-content";
 
@@ -29,10 +30,11 @@ export default function AboutPage() {
             <Image
               src={siteContent.assets.filmCrewSkeletons}
               alt="Illustrated film crew of skeletons"
-              fill
-              sizes="(min-width: 1024px) 40vw, 100vw"
+              width={1668}
+              height={2388}
               priority
-              className="object-cover object-[76%_48%] -scale-x-[1.28] scale-y-[1.28] lg:object-[80%_50%] lg:-scale-x-[1.06] lg:scale-y-[1.06]"
+              className="pointer-events-none absolute top-1/2 left-1/2 h-[250%] w-auto max-w-none lg:h-[280%]"
+              style={{ transform: "translate(-50%, -42%) scaleX(-1) rotate(-90deg)" }}
             />
           </div>
         </div>
@@ -59,7 +61,7 @@ export default function AboutPage() {
               </div>
             ))}
           </div>
-          <ImagePlaceholder className="h-[360px] w-full lg:h-full" />
+          <TimelinePhotoCarousel slides={about.timeline.slides} />
         </div>
       </section>
 

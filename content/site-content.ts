@@ -164,6 +164,28 @@ export const siteContent = {
             "Submission to documentary festivals, followed by public release.",
         },
       ],
+      slides: [
+        {
+          image: "/assets/photos/ship-1.jpg",
+          alt: "Film crew shooting dancers on the ShipRocked floor",
+        },
+        {
+          image: "/assets/photos/ship-2.jpg",
+          alt: "A subject sits against an elevator while a boom mic records",
+        },
+        {
+          image: "/assets/photos/ship-3.jpg",
+          alt: "Sound and camera crew filming in a kids club aboard the ship",
+        },
+        {
+          image: "/assets/photos/ship-4.jpg",
+          alt: "Camera operators filming in a ship lounge",
+        },
+        {
+          image: "/assets/photos/ship-5.jpg",
+          alt: "The film crew and ship staff gathered in a production room",
+        },
+      ],
     },
     crew: {
       overline: "MEET THE CREW",
