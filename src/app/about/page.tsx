@@ -26,7 +26,7 @@ export default function AboutPage() {
               {about.hero.body}
             </SectionSubhead>
           </div>
-          <div className="relative h-[240px] overflow-hidden lg:h-auto lg:min-h-full">
+          <div className="about-skeletons relative h-[240px] lg:h-auto lg:min-h-full">
             <Image
               src={siteContent.assets.filmCrewSkeletons}
               alt="Illustrated film crew of skeletons"
