@@ -160,32 +160,6 @@ export const siteContent = {
           alt: "Film crew shooting live during a ShipRocked set",
         },
       ],
-      items: [
-        {
-          date: "SEPT - NOV 2026",
-          title: "Fundraising campaign",
-          description:
-            "Public campaign to fund post-production and distribution costs.",
-        },
-        {
-          date: "JAN 2026",
-          title: "Filming Resumes: Voyage of the Ronin filming begins",
-          description:
-            "Principal documentary footage captured aboard the first voyage.",
-        },
-        {
-          date: "FEB - JUN 2026",
-          title: "Post-production",
-          description:
-            "Editing, sound design, and color grading the 4K raw footage.",
-        },
-        {
-          date: "2027",
-          title: "Festival circuit & release",
-          description:
-            "Submission to documentary festivals, followed by public release.",
-        },
-      ],
     },
     crew: {
       overline: "MEET THE CREW",

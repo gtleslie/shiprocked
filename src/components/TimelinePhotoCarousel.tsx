@@ -67,7 +67,7 @@ export function TimelinePhotoCarousel({
 
   return (
     <div
-      className="flex h-[420px] w-full flex-col overflow-hidden border border-border bg-bg-card lg:h-full"
+      className="flex h-[420px] w-full flex-col overflow-hidden border border-border bg-bg-card md:h-[520px] lg:h-[560px]"
       role="region"
       aria-roledescription="carousel"
       aria-label="From dock to deadline photos"
@@ -104,7 +104,7 @@ export function TimelinePhotoCarousel({
             src={item.image}
             alt={slideIndex === index ? item.alt : ""}
             fill
-            sizes="(min-width: 1024px) 42vw, 100vw"
+            sizes="(min-width: 1440px) 1440px, 100vw"
             className={`pointer-events-none object-cover transition-opacity duration-500 ${
               slideIndex === index ? "opacity-100" : "opacity-0"
             }`}
