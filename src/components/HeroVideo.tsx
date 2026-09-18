@@ -6,6 +6,8 @@ import { siteContent } from "@content/site-content";
 
 type HeroVideoProps = {
   videoId: string;
+  autoSound?: boolean;
+  label?: string;
 };
 
 type YouTubePlayer = {
@@ -134,13 +136,62 @@ function loadYouTubeApi(): Promise<YouTubeNamespace> {
   });
 }
 
-export function HeroVideo({ videoId }: HeroVideoProps) {
+export function HeroVideo({
+  videoId,
+  autoSound = false,
+  label = "trailer",
+}: HeroVideoProps) {
+  const wrapRef = useRef<HTMLDivElement>(null);
   const mountRef = useRef<HTMLDivElement>(null);
   const playerRef = useRef<YouTubePlayer | null>(null);
   const copiedTimeout = useRef<number | null>(null);
+  const fadeToken = useRef(0);
+  const inViewRef = useRef(false);
+  const userMutedRef = useRef(false);
   const [muted, setMuted] = useState(true);
   const [copied, setCopied] = useState(false);
   const watchUrl = `https://www.youtube.com/watch?v=${videoId}`;
+
+  const fadeVolume = (player: YouTubePlayer, from: number, to: number, ms: number) => {
+    const token = ++fadeToken.current;
+    const start = performance.now();
+
+    const step = (now: number) => {
+      if (token !== fadeToken.current) return;
+      const t = Math.min((now - start) / ms, 1);
+      player.setVolume(Math.round(from + (to - from) * t));
+      if (t < 1) requestAnimationFrame(step);
+    };
+
+    requestAnimationFrame(step);
+  };
+
+  const applyInViewAudio = (visible: boolean) => {
+    const player = playerRef.current;
+    if (!player || !autoSound) return;
+
+    player.playVideo();
+
+    if (visible && !userMutedRef.current) {
+      try {
+        player.unMute();
+        fadeVolume(player, 0, 100, 420);
+        setMuted(false);
+      } catch {
+        player.mute();
+        setMuted(true);
+      }
+      return;
+    }
+
+    fadeVolume(player, 100, 0, 380);
+    window.setTimeout(() => {
+      if (!inViewRef.current) {
+        player.mute();
+        setMuted(true);
+      }
+    }, 400);
+  };
 
   useEffect(() => {
     const mount = mountRef.current;
@@ -183,6 +234,7 @@ export function HeroVideo({ videoId }: HeroVideoProps) {
             hideCaptions(event.target);
             event.target.mute();
             event.target.playVideo();
+            applyInViewAudio(inViewRef.current);
           },
           onStateChange: (event) => {
             hideCaptions(event.target);
@@ -196,19 +248,37 @@ export function HeroVideo({ videoId }: HeroVideoProps) {
 
     return () => {
       cancelled = true;
+      fadeToken.current += 1;
       playerRef.current?.destroy();
       playerRef.current = null;
       if (copiedTimeout.current) {
         window.clearTimeout(copiedTimeout.current);
       }
     };
-  }, [videoId]);
+  }, [videoId, autoSound]);
+
+  useEffect(() => {
+    const wrap = wrapRef.current;
+    if (!wrap || !autoSound) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        inViewRef.current = entry.isIntersecting && entry.intersectionRatio >= 0.35;
+        applyInViewAudio(inViewRef.current);
+      },
+      { threshold: [0, 0.35, 0.6] },
+    );
+
+    observer.observe(wrap);
+    return () => observer.disconnect();
+  }, [autoSound]);
 
   const toggleAudio = () => {
     const player = playerRef.current;
     if (!player) return;
 
     if (muted) {
+      userMutedRef.current = false;
       player.unMute();
       player.setVolume(100);
       player.playVideo();
@@ -216,6 +286,8 @@ export function HeroVideo({ videoId }: HeroVideoProps) {
       return;
     }
 
+    userMutedRef.current = true;
+    fadeToken.current += 1;
     player.mute();
     setMuted(true);
   };
@@ -277,7 +349,7 @@ export function HeroVideo({ videoId }: HeroVideoProps) {
   };
 
   return (
-    <div className="hero-video-wrap">
+    <div ref={wrapRef} className="hero-video-wrap">
       <div className="hero-visual-frame relative aspect-video w-full">
         <div className="hero-video relative h-full w-full overflow-hidden">
           <div className="hero-video-slot">
@@ -294,7 +366,7 @@ export function HeroVideo({ videoId }: HeroVideoProps) {
           target="_blank"
           rel="noopener noreferrer"
           className="hero-video-btn"
-          aria-label="Watch this trailer on YouTube, opens in a new tab"
+          aria-label={`Watch this ${label} on YouTube, opens in a new tab`}
         >
           <YouTubeIcon className="h-[18px] w-[18px]" />
         </a>
@@ -302,7 +374,7 @@ export function HeroVideo({ videoId }: HeroVideoProps) {
           type="button"
           onClick={shareTrailer}
           className="hero-video-btn"
-          aria-label={copied ? "Trailer link copied" : "Share trailer"}
+          aria-label={copied ? `${label} link copied` : `Share ${label}`}
         >
           {copied ? <CheckIcon /> : <ShareIcon />}
         </button>
@@ -311,7 +383,7 @@ export function HeroVideo({ videoId }: HeroVideoProps) {
           onClick={toggleAudio}
           className={`hero-video-btn ${muted ? "is-muted" : ""}`}
           aria-pressed={!muted}
-          aria-label={muted ? "Turn trailer sound on" : "Mute trailer sound"}
+          aria-label={muted ? `Turn ${label} sound on` : `Mute ${label} sound`}
         >
           {muted ? <VolumeOffIcon /> : <VolumeOnIcon />}
         </button>

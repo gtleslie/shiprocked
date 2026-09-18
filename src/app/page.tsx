@@ -3,7 +3,8 @@ import { PageShell } from "@/components/PageShell";
 import { HeroSection } from "@/components/HeroSection";
 import { SiteButton } from "@/components/SiteButton";
 import { CampaignProgress } from "@/components/CampaignProgress";
-import { ImagePlaceholder, SectionLabel, SectionSubhead } from "@/components/ImagePlaceholder";
+import { HeroVideo } from "@/components/HeroVideo";
+import { ImagePlaceholder, SectionLabel } from "@/components/ImagePlaceholder";
 import { siteContent } from "@content/site-content";
 
 export default function HomePage() {
@@ -13,7 +14,7 @@ export default function HomePage() {
     <PageShell activePage="home">
       <HeroSection />
 
-      <section className="mx-auto max-w-[1440px] overflow-x-hidden px-4 py-12 md:overflow-visible md:px-12 md:py-20 lg:px-16">
+      <section className="mx-auto max-w-[1440px] overflow-x-hidden px-4 pt-12 pb-6 md:overflow-visible md:px-12 md:pt-20 md:pb-8 lg:px-16">
         <div className="relative max-w-[1080px]">
           <div className="pointer-events-none w-[97%] origin-left translate-x-0 scale-[0.97] select-none md:-translate-x-[24%]" aria-hidden>
             <Image
@@ -40,7 +41,11 @@ export default function HomePage() {
         </div>
 
         <div className="mt-5 grid gap-12 lg:grid-cols-[1.05fr_1fr] lg:items-start md:mt-6">
-          <ImagePlaceholder className="h-[340px] w-full md:h-[400px]" />
+          <HeroVideo
+            videoId={home.film.testimonialsYoutubeId}
+            autoSound
+            label="guest testimonials"
+          />
           <div className="space-y-6">
             {home.film.paragraphs.map((paragraph) => (
               <p key={paragraph} className="text-[16px] leading-relaxed text-white/90">
@@ -54,7 +59,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-[1440px] px-4 pt-12 pb-8 md:px-12 md:pt-16 md:pb-10 lg:px-16">
+      <section className="mx-auto max-w-[1440px] px-4 pt-6 pb-8 md:px-12 md:pt-8 md:pb-10 lg:px-16">
         <SectionLabel>{home.whyItMatters.overline}</SectionLabel>
         <h2 className="!mt-1 max-w-3xl text-[26px] font-black text-white md:text-[36px]">
           {home.whyItMatters.headline}
@@ -81,7 +86,14 @@ export default function HomePage() {
         <h2 className="!mt-1 text-[26px] font-black text-white md:text-[36px]">
           {home.campaign.headline}
         </h2>
-        <SectionSubhead className="mt-3 text-[16px]">{siteContent.campaign.homeDates}</SectionSubhead>
+        <p className="mt-3 flex flex-wrap items-baseline gap-x-2 gap-y-1">
+          <span className="font-salted text-[22px] leading-none text-accent-turquoise md:text-[26px]">
+            {siteContent.campaign.homeDatesSoon}
+          </span>
+          <span className="font-subhead text-[16px] text-text-muted">
+            {siteContent.campaign.homeDates}
+          </span>
+        </p>
         <CampaignProgress variant="home" className="mt-8" />
         <SiteButton href="/support" className="mt-8">
           {home.campaign.supportCta}

@@ -18,7 +18,7 @@ export function HeroSection() {
         </div>
 
         <div className="hero-visual relative flex w-full items-center justify-center px-4 pb-8 md:px-10 md:py-16 lg:min-h-0 lg:flex-1 lg:basis-[58%] lg:px-12 lg:py-20">
-          <HeroVideo videoId={home.hero.youtubeId} />
+          <HeroVideo videoId={home.hero.youtubeId} autoSound label="trailer" />
         </div>
       </div>
 

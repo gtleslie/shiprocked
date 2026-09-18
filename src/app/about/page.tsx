@@ -53,7 +53,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-[1440px] px-4 py-8 md:px-14 md:py-12 lg:px-20 lg:py-14">
+      <section className="mx-auto max-w-[1440px] px-4 pt-8 pb-5 md:px-14 md:pt-12 md:pb-7 lg:px-20 lg:pt-14 lg:pb-8">
         <CharactersCarousel
           header={
             <h2 className="text-[26px] font-black text-white md:text-[32px]">
@@ -65,7 +65,7 @@ export default function AboutPage() {
         />
       </section>
 
-      <section className="mx-auto max-w-[1440px] px-4 py-8 md:px-14 md:py-12 lg:px-20 lg:py-14">
+      <section className="mx-auto max-w-[1440px] px-4 pt-5 pb-8 md:px-14 md:pt-7 md:pb-12 lg:px-20 lg:pt-8 lg:pb-14">
         <CharactersCarousel
           header={
             <h2 className="text-[26px] font-black text-white md:text-[32px]">

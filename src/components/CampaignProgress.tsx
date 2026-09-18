@@ -16,7 +16,7 @@ export function CampaignProgress({
   const { campaign, assets } = siteContent;
   const goal = variant === "home" ? campaign.homeGoal : campaign.goal;
   const percent = Math.min((campaign.raised / goal) * 100, 100);
-  const visualPercent = Math.max(percent, 22);
+  const visualPercent = Math.max(percent, 11);
   const [ride, setRide] = useState(0);
   const trackRef = useRef<HTMLDivElement>(null);
 
