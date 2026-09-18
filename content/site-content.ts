@@ -137,27 +137,30 @@ export const siteContent = {
     timeline: {
       overline: "THE TIMELINE",
       headline: "From dock to deadline.",
-      slides: [
+      items: [
         {
-          title: "THE LINEUP",
+          date: "SEPT - NOV 2026",
+          title: "Fundraising campaign",
           description:
-            "30+ artists every voyage, fully integrated into the fan experience, poolside, not roped off.",
-          image: "/assets/photos/lineup.jpg",
-          alt: "ShipRocked lineup performing on the undead deck",
+            "Public campaign to fund post-production and distribution costs.",
         },
         {
-          title: "THE COMMUNITY",
+          date: "JAN 2026",
+          title: "Filming Resumes: Voyage of the Ronin filming begins",
           description:
-            "A distinct culture, 16 years deep. Fans who have sailed every single year, and the crew who keeps it running.",
-          image: "/assets/photos/community.jpg",
-          alt: "ShipRocked fans in costume on a theme night",
+            "Principal documentary footage captured aboard the first voyage.",
         },
         {
-          title: "THE STAKES",
+          date: "FEB - JUN 2026",
+          title: "Post-production",
           description:
-            "A senior thesis film, self-funded, racing toward a January 2027 voyage and a hard deadline.",
-          image: "/assets/photos/stakes.jpg",
-          alt: "Film crew shooting live during a ShipRocked set",
+            "Editing, sound design, and color grading the 4K raw footage.",
+        },
+        {
+          date: "2027",
+          title: "Festival circuit & release",
+          description:
+            "Submission to documentary festivals, followed by public release.",
         },
       ],
     },

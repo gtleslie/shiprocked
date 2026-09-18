@@ -2,7 +2,6 @@ import { PageShell } from "@/components/PageShell";
 import { SectionDivider } from "@/components/SectionDivider";
 import { BudgetChart } from "@/components/BudgetChart";
 import { CharactersCarousel } from "@/components/CharactersCarousel";
-import { TimelinePhotoCarousel } from "@/components/TimelinePhotoCarousel";
 import { ImagePlaceholder, SectionLabel, SectionSubhead } from "@/components/ImagePlaceholder";
 import { siteContent } from "@content/site-content";
 
@@ -36,8 +35,21 @@ export default function AboutPage() {
         <h2 className="!mt-1 text-[26px] font-black text-white md:text-[32px]">
           {about.timeline.headline}
         </h2>
-        <div className="mt-8">
-          <TimelinePhotoCarousel slides={about.timeline.slides} />
+        <div className="mt-8 grid gap-12 lg:grid-cols-[1fr_1fr] lg:items-stretch">
+          <div className="relative space-y-8 border-l-2 border-accent-red pl-6">
+            {about.timeline.items.map((item) => (
+              <div key={item.date}>
+                <p className="text-[12px] font-bold tracking-[0.48px] text-accent-gold uppercase">
+                  {item.date}
+                </p>
+                <h3 className="mt-2 text-[18px] font-bold text-white">{item.title}</h3>
+                <p className="mt-2 text-[15px] leading-relaxed text-text-secondary">
+                  {item.description}
+                </p>
+              </div>
+            ))}
+          </div>
+          <ImagePlaceholder className="h-[360px] w-full lg:h-full" />
         </div>
       </section>
 
