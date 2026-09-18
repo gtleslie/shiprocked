@@ -99,18 +99,24 @@ export const siteContent = {
           title: "THE LINEUP",
           description:
             "30+ artists every voyage, fully integrated into the fan experience, poolside, not roped off.",
+          image: "/assets/photos/lineup.jpg",
+          alt: "ShipRocked lineup performing on the undead deck",
         },
         {
           number: "02",
           title: "THE COMMUNITY",
           description:
             "A distinct culture, 16 years deep. Fans who have sailed every single year, and the crew who keeps it running.",
+          image: "/assets/photos/community.jpg",
+          alt: "ShipRocked fans in costume on a theme night",
         },
         {
           number: "03",
           title: "THE STAKES",
           description:
             "A senior thesis film, self-funded, racing toward a January 2027 voyage and a hard deadline.",
+          image: "/assets/photos/stakes.jpg",
+          alt: "Film crew shooting live during a ShipRocked set",
         },
       ],
     },

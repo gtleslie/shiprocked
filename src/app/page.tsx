@@ -4,7 +4,7 @@ import { HeroSection } from "@/components/HeroSection";
 import { SiteButton } from "@/components/SiteButton";
 import { CampaignProgress } from "@/components/CampaignProgress";
 import { HeroVideo } from "@/components/HeroVideo";
-import { ImagePlaceholder, SectionLabel } from "@/components/ImagePlaceholder";
+import { SectionLabel } from "@/components/ImagePlaceholder";
 import { siteContent } from "@content/site-content";
 
 export default function HomePage() {
@@ -65,17 +65,45 @@ export default function HomePage() {
           {home.whyItMatters.headline}
         </h2>
 
-        <div className="mt-12 grid gap-6 md:grid-cols-3">
+        <div className="why-card-grid mt-12 grid gap-6 md:grid-cols-3">
           {home.whyItMatters.cards.map((card) => (
-            <article key={card.number} className="border border-border bg-bg-card p-6">
-              <p className="text-[13px] font-bold text-accent-red">{card.number}</p>
-              <ImagePlaceholder className="mt-5 h-[140px]" />
-              <h3 className="mt-5 text-[15px] font-bold tracking-[0.2px] text-white">
-                {card.title}
-              </h3>
-              <p className="mt-2 text-[13px] leading-relaxed text-text-secondary">
-                {card.description}
-              </p>
+            <article key={card.number} className="why-card">
+              <div className="why-card-stage relative aspect-[4/3]">
+                <div className="why-card-bloom" aria-hidden>
+                  <div className="relative h-full w-full">
+                    <Image
+                      src={card.image}
+                      alt=""
+                      fill
+                      sizes="(min-width: 768px) 30vw, 100vw"
+                      className="object-cover"
+                    />
+                  </div>
+                </div>
+                <div className="why-card-core">
+                  <div className="relative h-full w-full">
+                    <Image
+                      src={card.image}
+                      alt={card.alt}
+                      fill
+                      sizes="(min-width: 768px) 30vw, 100vw"
+                      className="object-cover"
+                    />
+                  </div>
+                </div>
+                <div className="why-card-scrim" />
+                <p className="absolute top-4 left-5 z-10 text-[13px] font-bold text-accent-red">
+                  {card.number}
+                </p>
+                <div className="absolute inset-x-5 bottom-4 z-10">
+                  <h3 className="text-[15px] font-bold tracking-[0.2px] text-white">
+                    {card.title}
+                  </h3>
+                  <p className="mt-2 text-[13px] leading-relaxed text-white/80">
+                    {card.description}
+                  </p>
+                </div>
+              </div>
             </article>
           ))}
         </div>
