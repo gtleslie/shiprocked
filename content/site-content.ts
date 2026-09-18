@@ -16,6 +16,11 @@ export const siteContent = {
     seedAndSpark: "/assets/seedandsparktransparent.svg",
     dividerVector: "/assets/divider-vector.svg",
     filmCrewSkeletons: "/assets/sr-skeletons-film-crew.png",
+    homeBackground: "/assets/background-1.png",
+    duoBackground: "/assets/duo-background.png",
+    aboutBackground: "/assets/background-2-about.png",
+    dockToDeadline: "/assets/dock-to-deadline.png",
+    meetCharactersCrew: "/assets/meet-the-characters-and-film-crew.jpg",
   },
 
   links: {

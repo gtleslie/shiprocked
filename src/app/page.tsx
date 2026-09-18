@@ -14,47 +14,66 @@ export default function HomePage() {
     <PageShell activePage="home">
       <HeroSection />
 
-      <section className="mx-auto max-w-[1440px] overflow-x-hidden px-4 pt-12 pb-6 md:overflow-visible md:px-12 md:pt-20 md:pb-8 lg:px-16">
-        <div className="relative max-w-[1080px]">
-          <div className="pointer-events-none w-[97%] origin-left translate-x-0 scale-[0.97] select-none md:-translate-x-[24%]" aria-hidden>
-            <Image
-              src="/assets/ghost_cruise_ship-trim.jpeg"
-              alt=""
-              width={1896}
-              height={381}
-              className="h-auto w-full brightness-110 contrast-125"
-              priority
-              unoptimized
+      <section className="relative isolate overflow-hidden">
+        <Image
+          src={siteContent.assets.duoBackground}
+          alt=""
+          fill
+          sizes="100vw"
+          className="pointer-events-none object-cover object-[center_12%]"
+        />
+
+        <div className="relative mx-auto max-w-[1440px] px-4 pt-12 pb-10 md:px-12 md:pt-20 md:pb-12 lg:px-16">
+          <div className="relative max-w-[1080px]">
+            <div
+              className="pointer-events-none absolute -top-10 -bottom-4 -left-[32%] w-[min(120%,48rem)] bg-gradient-to-r from-black/45 via-black/28 to-transparent"
+              aria-hidden
             />
+            <div className="pointer-events-none relative w-[97%] origin-left translate-x-0 scale-[0.97] mix-blend-screen select-none md:-translate-x-[24%]" aria-hidden>
+              <Image
+                src="/assets/ghost_cruise_ship-trim.jpeg"
+                alt=""
+                width={1896}
+                height={381}
+                className="h-auto w-full brightness-125 contrast-125"
+                unoptimized
+              />
+            </div>
+
+            <div className="absolute inset-0 z-10 flex flex-col justify-end pb-3 md:pb-4">
+              <SectionLabel>{home.film.overline}</SectionLabel>
+              <h2 className="!mt-1 max-w-[22ch] text-[26px] leading-[1.02] font-black text-white md:text-[40px]">
+                {home.film.headline.map((line) => (
+                  <span key={line} className="block">
+                    {line}
+                  </span>
+                ))}
+              </h2>
+            </div>
           </div>
 
-          <div className="absolute inset-0 z-10 flex flex-col justify-end pb-3 md:pb-4">
-            <SectionLabel>{home.film.overline}</SectionLabel>
-            <h2 className="!mt-1 max-w-[22ch] text-[26px] leading-[1.02] font-black text-white md:text-[40px]">
-              {home.film.headline.map((line) => (
-                <span key={line} className="block">
-                  {line}
-                </span>
-              ))}
-            </h2>
-          </div>
-        </div>
-
-        <div className="mt-5 grid gap-12 lg:grid-cols-[1.05fr_1fr] lg:items-start md:mt-6">
-          <HeroVideo
-            videoId={home.film.testimonialsYoutubeId}
-            autoSound
-            label="guest testimonials"
-          />
-          <div className="space-y-6">
-            {home.film.paragraphs.map((paragraph) => (
-              <p key={paragraph} className="text-[16px] leading-relaxed text-white/90">
-                {paragraph}
-              </p>
-            ))}
-            <SiteButton href="/about" variant="outline" className="h-12 px-8 text-[12px]">
-              {home.film.readMore}
-            </SiteButton>
+          <div className="relative mt-5 grid gap-12 lg:grid-cols-[1.05fr_1fr] lg:items-start md:mt-6">
+            <HeroVideo
+              videoId={home.film.testimonialsYoutubeId}
+              autoSound
+              label="guest testimonials"
+            />
+            <div className="relative">
+              <div
+                className="pointer-events-none absolute -inset-x-5 -inset-y-4 bg-gradient-to-r from-black/35 via-black/52 to-black/58 md:-inset-x-8 md:-inset-y-6"
+                aria-hidden
+              />
+              <div className="relative space-y-6">
+                {home.film.paragraphs.map((paragraph) => (
+                  <p key={paragraph} className="text-[16px] leading-relaxed text-white/90">
+                    {paragraph}
+                  </p>
+                ))}
+                <SiteButton href="/about" variant="outline" className="h-12 px-8 text-[12px]">
+                  {home.film.readMore}
+                </SiteButton>
+              </div>
+            </div>
           </div>
         </div>
       </section>
