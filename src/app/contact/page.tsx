@@ -182,7 +182,16 @@ export default function ContactPage() {
                     : "border border-white text-white transition-colors hover:border-accent-gold hover:bg-white/5"
                 }`}
               >
-                {button.label}
+                {button.variant === "turquoise" ? (
+                  <>
+                    JOIN THE{" "}
+                    <span className="font-salted text-[17px] leading-none tracking-normal normal-case">
+                      Inner Circle
+                    </span>
+                  </>
+                ) : (
+                  button.label
+                )}
               </a>
             );
           })}

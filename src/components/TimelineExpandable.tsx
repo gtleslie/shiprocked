@@ -19,12 +19,16 @@ export function TimelineExpandable({ items }: TimelineExpandableProps) {
   return (
     <>
       <div className="md:hidden">
-        <div className="relative px-1 pt-1">
-          <div
-            className="pointer-events-none absolute top-[11px] right-6 left-6 h-0.5 bg-accent-red"
-            aria-hidden
-          />
+        <div className="relative px-1">
           <div className="relative flex justify-between gap-1">
+            <div
+              className="pointer-events-none absolute top-[11px] h-0.5 -translate-y-1/2 bg-accent-red"
+              style={{
+                left: `${50 / items.length}%`,
+                right: `${50 / items.length}%`,
+              }}
+              aria-hidden
+            />
             {items.map((item, index) => {
               const isActive = index === activeIndex;
               return (
