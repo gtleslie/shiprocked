@@ -26,7 +26,7 @@ export default function HomePage() {
         <div className="relative mx-auto max-w-[1440px] px-4 pt-12 pb-10 md:px-12 md:pt-20 md:pb-12 lg:px-16">
           <div className="relative max-w-[1080px]">
             <div
-              className="pointer-events-none absolute -top-12 -bottom-6 -left-[34%] w-[min(130%,52rem)] bg-gradient-to-r from-black/75 via-black/50 to-transparent"
+              className="pointer-events-none absolute -top-14 -bottom-8 -left-[36%] w-[min(145%,58rem)] bg-[linear-gradient(90deg,rgba(0,0,0,0.88)_0%,rgba(0,0,0,0.78)_38%,rgba(0,0,0,0.55)_62%,rgba(0,0,0,0.2)_82%,transparent_100%)]"
               aria-hidden
             />
             <div className="pointer-events-none relative w-[97%] origin-left translate-x-0 scale-[0.97] mix-blend-screen select-none md:-translate-x-[24%]" aria-hidden>
