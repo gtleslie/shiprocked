@@ -29,7 +29,15 @@ export default function ContactPage() {
 
       <SectionDivider />
 
-      <section className="mx-auto max-w-[1440px] px-4 py-8 md:px-12 md:py-12 lg:px-16">
+      <section className="relative isolate overflow-hidden">
+        <Image
+          src={siteContent.assets.contactBackground}
+          alt=""
+          fill
+          sizes="100vw"
+          className="pointer-events-none object-cover object-[center_20%]"
+        />
+        <div className="relative mx-auto max-w-[1440px] px-4 py-8 md:px-12 md:py-12 lg:px-16">
         <div className="grid gap-6 lg:grid-cols-2">
           {contact.blocks.map((block) => {
             const logo =
@@ -79,13 +87,11 @@ export default function ContactPage() {
             );
           })}
         </div>
-      </section>
 
-      <div className="mx-auto max-w-[1440px] px-4 md:px-12 lg:px-16">
-        <LineRule />
-      </div>
+        <div className="my-8 md:my-12">
+          <LineRule />
+        </div>
 
-      <section className="mx-auto max-w-[1440px] px-4 py-8 md:px-12 md:py-12 lg:px-16">
         <div className="flex flex-col gap-8 lg:grid lg:grid-cols-2 lg:items-center lg:gap-16 xl:gap-24">
           <div className="contents lg:flex lg:flex-col lg:gap-6">
             <div className="order-1">
@@ -155,11 +161,8 @@ export default function ContactPage() {
             </div>
           </div>
         </div>
+        </div>
       </section>
-
-      <div className="mx-auto max-w-[1440px] px-4 md:px-12 lg:px-16">
-        <LineRule />
-      </div>
 
       <section className="mx-auto max-w-[1440px] px-4 py-8 md:px-12 md:py-12 lg:px-16">
         <SectionLabel>{contact.social.overline}</SectionLabel>

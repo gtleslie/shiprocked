@@ -21,6 +21,7 @@ export const siteContent = {
     aboutBackground: "/assets/background-2-about.png",
     dockToDeadline: "/assets/dock-to-deadline.png",
     meetCharactersCrew: "/assets/meet-the-characters-and-film-crew.jpg",
+    contactBackground: "/assets/contact-artboard.png",
   },
 
   links: {
