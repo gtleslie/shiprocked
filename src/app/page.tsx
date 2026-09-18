@@ -26,7 +26,7 @@ export default function HomePage() {
         <div className="relative mx-auto max-w-[1440px] px-4 pt-12 pb-10 md:px-12 md:pt-20 md:pb-12 lg:px-16">
           <div className="relative max-w-[1080px]">
             <div
-              className="pointer-events-none absolute -top-10 -bottom-4 -left-[32%] w-[min(120%,48rem)] bg-gradient-to-r from-black/45 via-black/28 to-transparent"
+              className="pointer-events-none absolute -top-12 -bottom-6 -left-[34%] w-[min(130%,52rem)] bg-gradient-to-r from-black/75 via-black/50 to-transparent"
               aria-hidden
             />
             <div className="pointer-events-none relative w-[97%] origin-left translate-x-0 scale-[0.97] mix-blend-screen select-none md:-translate-x-[24%]" aria-hidden>
@@ -35,7 +35,7 @@ export default function HomePage() {
                 alt=""
                 width={1896}
                 height={381}
-                className="h-auto w-full brightness-125 contrast-125"
+                className="h-auto w-full brightness-150 contrast-125"
                 unoptimized
               />
             </div>

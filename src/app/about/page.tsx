@@ -46,8 +46,8 @@ export default function AboutPage() {
                 width={1668}
                 height={2388}
                 priority
-                className="pointer-events-none absolute top-1/2 left-1/2 h-[250%] w-auto max-w-none lg:h-[280%]"
-                style={{ transform: "translate(-50%, -42%) scaleX(-1) rotate(-90deg)" }}
+                className="pointer-events-none absolute top-1/2 left-1/2 h-[165%] w-auto max-w-none lg:h-[185%]"
+                style={{ transform: "translate(-42%, -40%) scaleX(-1) rotate(-90deg)" }}
               />
             </div>
           </div>

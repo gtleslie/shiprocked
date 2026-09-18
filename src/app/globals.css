@@ -256,12 +256,12 @@ body {
 }
 
 .about-skeletons {
-  clip-path: inset(-1.75rem 0 0 0);
+  clip-path: inset(-1.75rem 0 0 -1.25rem);
 }
 
 @media (min-width: 1024px) {
   .about-skeletons {
-    clip-path: inset(-5.5rem 0 0 0);
+    clip-path: inset(-5.5rem 0 0 -2.5rem);
   }
 }
 
