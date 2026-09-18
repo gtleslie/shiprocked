@@ -8,13 +8,46 @@ import { SectionDivider } from "@/components/SectionDivider";
 import { LineRule, SectionLabel, SectionSubhead } from "@/components/ImagePlaceholder";
 import { siteContent } from "@content/site-content";
 
+type FormStatus = "idle" | "sending" | "sent" | "error";
+
 export default function ContactPage() {
   const { contact } = siteContent;
-  const [submitted, setSubmitted] = useState(false);
+  const [status, setStatus] = useState<FormStatus>("idle");
+  const [error, setError] = useState("");
 
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    setSubmitted(true);
+    const form = event.currentTarget;
+    const data = new FormData(form);
+
+    setStatus("sending");
+    setError("");
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: data.get("name"),
+          email: data.get("email"),
+          message: data.get("message"),
+          website: data.get("website"),
+        }),
+      });
+      const result = (await response.json()) as { error?: string };
+
+      if (!response.ok) {
+        setStatus("error");
+        setError(result.error || "Couldn't send that message. Please try again.");
+        return;
+      }
+
+      form.reset();
+      setStatus("sent");
+    } catch {
+      setStatus("error");
+      setError("Couldn't send that message. Please try again.");
+    }
   }
 
   return (
@@ -108,7 +141,10 @@ export default function ContactPage() {
                 </span>
                 <input
                   required
+                  name="name"
                   type="text"
+                  autoComplete="name"
+                  maxLength={120}
                   className="mt-2 h-12 w-full border border-border bg-bg-card px-4 text-[15px] text-white outline-none focus:border-accent-red"
                 />
               </label>
@@ -119,7 +155,10 @@ export default function ContactPage() {
                 </span>
                 <input
                   required
+                  name="email"
                   type="email"
+                  autoComplete="email"
+                  maxLength={254}
                   className="mt-2 h-12 w-full border border-border bg-bg-card px-4 text-[15px] text-white outline-none focus:border-accent-red"
                 />
               </label>
@@ -130,18 +169,36 @@ export default function ContactPage() {
                 </span>
                 <textarea
                   required
+                  name="message"
                   rows={6}
+                  maxLength={5000}
                   className="mt-2 min-h-[160px] w-full resize-y border border-border bg-bg-card px-4 py-3 text-[15px] text-white outline-none focus:border-accent-red"
                 />
               </label>
 
+              <div className="absolute -left-[9999px] h-0 w-0 overflow-hidden" aria-hidden>
+                <label>
+                  Website
+                  <input name="website" type="text" tabIndex={-1} autoComplete="off" />
+                </label>
+              </div>
+
               <div>
-                <SiteButton type="submit" className="w-full sm:w-auto">
-                  {contact.form.submit}
+                <SiteButton
+                  type="submit"
+                  disabled={status === "sending"}
+                  className="w-full sm:w-auto"
+                >
+                  {status === "sending" ? "SENDING..." : contact.form.submit}
                 </SiteButton>
-                {submitted && (
-                  <p className="mt-4 text-[14px] text-text-muted">
+                {status === "sent" && (
+                  <p className="mt-4 text-[14px] text-text-muted" aria-live="polite">
                     Thanks for reaching out. We&apos;ll get back to you soon.
+                  </p>
+                )}
+                {status === "error" && (
+                  <p className="mt-4 text-[14px] text-accent-red" aria-live="assertive">
+                    {error}
                   </p>
                 )}
               </div>
