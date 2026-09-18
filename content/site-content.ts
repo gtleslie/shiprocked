@@ -15,6 +15,7 @@ export const siteContent = {
     innerCircleJoin: "/assets/logos/click-to-join.png",
     seedAndSpark: "/assets/seedandsparktransparent.svg",
     dividerVector: "/assets/divider-vector.svg",
+    filmCrewSkeletons: "/assets/sr-skeletons-film-crew.png",
   },
 
   links: {

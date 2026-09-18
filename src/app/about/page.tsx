@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { PageShell } from "@/components/PageShell";
 import { SectionDivider } from "@/components/SectionDivider";
 import { BudgetChart } from "@/components/BudgetChart";
@@ -11,7 +12,7 @@ export default function AboutPage() {
   return (
     <PageShell activePage="about">
       <section className="mx-auto max-w-[1440px] px-4 py-10 md:px-12 md:py-12 lg:px-16">
-        <div className="grid gap-10 lg:grid-cols-[1.2fr_0.8fr] lg:items-end">
+        <div className="grid gap-8 lg:grid-cols-[1.15fr_0.85fr] lg:items-stretch">
           <div>
             <SectionLabel>{about.hero.overline}</SectionLabel>
             <h1 className="!mt-1 text-[36px] leading-none font-black text-white md:text-[56px]">
@@ -24,7 +25,16 @@ export default function AboutPage() {
               {about.hero.body}
             </SectionSubhead>
           </div>
-          <ImagePlaceholder className="h-[180px] w-full lg:h-[200px]" />
+          <div className="relative h-[240px] overflow-hidden lg:h-auto lg:min-h-full">
+            <Image
+              src={siteContent.assets.filmCrewSkeletons}
+              alt="Illustrated film crew of skeletons"
+              fill
+              sizes="(min-width: 1024px) 40vw, 100vw"
+              priority
+              className="object-cover object-[76%_48%] -scale-x-[1.28] scale-y-[1.28] lg:object-[80%_50%] lg:-scale-x-[1.06] lg:scale-y-[1.06]"
+            />
+          </div>
         </div>
       </section>
 
