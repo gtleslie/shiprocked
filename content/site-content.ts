@@ -211,18 +211,34 @@ export const siteContent = {
         {
           name: "MATT DAVIS",
           role: "PRODUCER",
-          bio: "(bio)",
+          bio: "Matt Davis is a film producer from Dallas, TX, with experience across both SCAD productions and independent projects outside the university. As a producer on The Story of ShipRocked, he helps bring together the people, logistics, and creative pieces behind the film—capturing what makes ShipRocked unlike anything else.",
         },
         {
           name: "SILAS GRASSE",
           role: "MARKETING PRODUCER",
           bio: "Silas Grasse is a Marketer and Producer from Philadelphia, PA. He specializes in creating vivid and interactive promotional campaigns for experiential creative projects.",
         },
-        { name: "ELLIOT CUNNINGHAM", role: "POST SUPERVISOR", bio: "(bio)" },
+        {
+          name: "ELLIOT CUNNINGHAM",
+          role: "POST SUPERVISOR",
+          bio: "Elliot Cunningham is a post-production storyteller raised in Dallas, TX, with experience across SCAD productions and professional film work. After interning at HBO this summer, Elliot joins The Story of ShipRocked as Post Supervisor, helping lead the editorial team and build an efficient, collaborative post-production workflow.",
+        },
         { name: "JACK EASTERHAUS", role: "CINEMATOGRAPHY", bio: "(bio)" },
-        { name: "WILLIAM BROWN", role: "PRODUCTION SOUND", bio: "(bio)" },
-        { name: "ARCHER MCCRACKEN", role: "SOUND SUPERVISOR", bio: "(bio)" },
-        { name: "EMILY MOTTA", role: "EDITOR", bio: "(bio)" },
+        {
+          name: "WILLIAM BROWN",
+          role: "PRODUCTION SOUND",
+          bio: "William Brown is a Sound Engineer from Nashville, TN, whose work spans SCAD's film, television, and theater productions. With sound as his specialty, William has built experience across a wide range of live and filmed productions and brings that hands-on expertise to The Story of ShipRocked.",
+        },
+        {
+          name: "ARCHER MCCRACKEN",
+          role: "SOUND SUPERVISOR",
+          bio: "Archer MacCracken is a Sound Supervisor and Recording Engineer from Washington, D.C., deeply involved in SCAD's film and production community. As head of the post-sound team on The Story of ShipRocked, Archer is shaping the sonic world of the film—from live music and crowd energy to the intimate moments in between.",
+        },
+        {
+          name: "EMILY MOTTA",
+          role: "EDITOR",
+          bio: "Emily Motta is a documentary editor from Columbus, Ohio, with extensive experience cutting SCAD film productions. As the editor of The Story of ShipRocked, Emily brings a documentary-focused eye to hours of footage, shaping the performances, people, and stories that make up the ShipRocked experience.",
+        },
       ],
     },
     meetCharacters: {
