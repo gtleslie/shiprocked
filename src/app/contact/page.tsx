@@ -80,7 +80,7 @@ export default function ContactPage() {
                     alt: "Koenig Entertainment Co.",
                     width: 3600,
                     height: 3600,
-                    className: "h-[64px] w-auto object-contain object-left sm:object-right md:h-[100px]",
+                    className: "h-[52px] w-auto object-contain object-left sm:object-right md:h-[80px]",
                   }
                 : {
                     src: siteContent.assets.ask4Logo,
