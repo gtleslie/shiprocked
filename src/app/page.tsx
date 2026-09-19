@@ -43,7 +43,7 @@ export default function HomePage() {
                   width={1920}
                   height={1080}
                   sizes="(min-width: 1024px) 920px, 96vw"
-                  className="block h-auto w-full translate-y-[22%] object-contain object-left-bottom brightness-150 contrast-125 mix-blend-screen [clip-path:inset(36%_0_0_0)]"
+                  className="block h-auto w-full translate-y-[28%] object-contain object-left-bottom brightness-150 contrast-125 mix-blend-screen [clip-path:inset(36%_0_0_0)]"
                   priority
                 />
               </div>
