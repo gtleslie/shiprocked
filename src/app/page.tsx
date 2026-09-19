@@ -22,8 +22,10 @@ export default function HomePage() {
           sizes="100vw"
           className="pointer-events-none object-cover object-[center_12%]"
         />
+        <div className="section-fade-top" aria-hidden />
+        <div className="section-fade-bottom" aria-hidden />
 
-        <div className="relative mx-auto max-w-[1440px] px-4 pt-12 pb-10 md:px-12 md:pt-20 md:pb-12 lg:px-16">
+        <div className="relative z-10 mx-auto max-w-[1440px] px-4 pt-12 pb-10 md:px-12 md:pt-20 md:pb-12 lg:px-16">
           <div className="relative max-w-[1080px]">
             <div className="pointer-events-none relative w-[97%] origin-left translate-x-0 scale-[0.97] mix-blend-screen select-none md:-translate-x-[24%]" aria-hidden>
               <Image
