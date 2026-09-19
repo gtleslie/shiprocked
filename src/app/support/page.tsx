@@ -32,7 +32,7 @@ export default function SupportPage() {
               alt="Seed & Spark"
               width={1800}
               height={1353}
-              className="h-auto w-full max-w-[220px] mix-blend-screen sm:max-w-[260px] md:max-w-[300px] lg:max-w-[380px] xl:max-w-[420px]"
+              className="h-auto w-full max-w-[180px] mix-blend-screen sm:max-w-[210px] md:max-w-[250px] lg:max-w-[300px] xl:max-w-[340px]"
             />
           </div>
         </div>
