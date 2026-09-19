@@ -206,7 +206,7 @@ export const siteContent = {
         {
           name: "ALBERT KOENIG",
           role: "DIRECTOR",
-          bio: "Albert Koenig is a documentary producer and editor from Nashville, TN. With ShipRocked being his dad's livelihood, he's excited to explore the family and world through the lens of cinema.",
+          bio: "Albert Koenig is a documentary producer and editor from Nashville, TN. With ShipRocked being his dad's livelihood, he has grown up around the people, music, and culture that make the event what it is. As Director of The Story of ShipRocked, he's excited to explore that family and world through the lens of cinema.",
         },
         {
           name: "MATT DAVIS",
@@ -216,7 +216,7 @@ export const siteContent = {
         {
           name: "SILAS GRASSE",
           role: "MARKETING PRODUCER",
-          bio: "Silas Grasse is a Marketer and Producer from Philadelphia, PA. He specializes in creating vivid and interactive promotional campaigns for experiential creative projects.",
+          bio: "Silas Grasse is a Marketer and Producer from Philadelphia, PA. He specializes in creating vivid and interactive promotional campaigns for experiential creative projects. As Marketing Producer on The Story of ShipRocked, he leads the film's marketing strategy & execution, and works to bring the ShipRocked story to audiences beyond the ship.",
         },
         {
           name: "ELLIOT CUNNINGHAM",
