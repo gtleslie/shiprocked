@@ -30,7 +30,7 @@ export default function HomePage() {
         <div className="section-fade-top" aria-hidden />
         <div className="section-fade-bottom" aria-hidden />
 
-        <div className="relative mx-auto max-w-[1440px] px-4 pt-12 pb-10 md:px-12 md:pt-20 md:pb-12 lg:px-16">
+        <div className="relative mx-auto max-w-[1440px] px-4 pt-10 pb-10 md:px-12 md:pt-16 md:pb-12 lg:px-16">
           <div className="relative isolate max-w-[1080px] min-h-[11rem] md:min-h-[14rem]">
             <div
               className="pointer-events-none absolute inset-0 z-0 flex items-end pb-3 md:pb-4"
@@ -43,7 +43,7 @@ export default function HomePage() {
                   width={1920}
                   height={1080}
                   sizes="(min-width: 1024px) 920px, 96vw"
-                  className="block h-auto w-full translate-y-[calc(28%+10px)] object-contain object-left-bottom opacity-80 brightness-150 contrast-125 mix-blend-screen [clip-path:inset(36%_0_0_0)]"
+                  className="block h-auto w-full translate-y-[calc(28%+10px)] object-contain object-left-bottom opacity-50 brightness-150 contrast-125 mix-blend-screen [clip-path:inset(36%_0_0_0)]"
                   priority
                 />
               </div>
