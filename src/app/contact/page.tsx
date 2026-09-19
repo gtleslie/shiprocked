@@ -75,7 +75,7 @@ export default function ContactPage() {
           className="pointer-events-none absolute inset-x-0 top-0 z-[1] h-[min(52vh,34rem)] bg-gradient-to-b from-black from-0% via-black/80 via-50% to-transparent to-100% md:h-[min(48vh,38rem)]"
           aria-hidden
         />
-        <div className="relative z-10 mx-auto max-w-[1440px] px-4 py-8 md:px-12 md:py-12 lg:px-16">
+        <div className="relative z-10 mx-auto max-w-[1440px] px-4 pt-8 pb-5 md:px-12 md:pt-12 md:pb-6 lg:px-16">
         <div className="grid gap-6 lg:grid-cols-2">
           {contact.blocks.map((block) => {
             const logo =
@@ -126,7 +126,7 @@ export default function ContactPage() {
           })}
         </div>
 
-        <div className="my-8 md:my-12">
+        <div className="my-4 md:my-6">
           <LineRule />
         </div>
 
@@ -226,7 +226,7 @@ export default function ContactPage() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-[1440px] px-4 py-8 md:px-12 md:py-12 lg:px-16">
+      <section className="mx-auto max-w-[1440px] px-4 pt-5 pb-8 md:px-12 md:pt-6 md:pb-12 lg:px-16">
         <SectionLabel>{contact.social.overline}</SectionLabel>
         <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
           {contact.social.buttons.map((button) => {
