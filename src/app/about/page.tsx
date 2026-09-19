@@ -20,7 +20,7 @@ export default function AboutPage() {
           fill
           priority
           sizes="100vw"
-          className="pointer-events-none object-cover object-[center_42%]"
+          className="pointer-events-none object-cover object-[center_68%]"
         />
         <div
           className="pointer-events-none absolute inset-0 bg-gradient-to-r from-black/55 via-black/20 to-black/25"
