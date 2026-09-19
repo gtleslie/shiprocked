@@ -370,7 +370,7 @@ body {
 
 .ship-card-footer {
   border-top: 1px solid var(--color-border);
-  background: rgba(0, 0, 0, 0.28);
+  background: transparent;
 }
 
 .crew-flip-card {
