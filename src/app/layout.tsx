@@ -45,6 +45,7 @@ export default function RootLayout({
     <html lang="en" className={`${inter.variable} ${industryBold.variable}`}>
       <head>
         <link rel="preconnect" href="https://use.typekit.net" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://p.typekit.net" crossOrigin="anonymous" />
         <link rel="stylesheet" href="https://use.typekit.net/diq5oqx.css" />
       </head>
       <body className="min-h-screen antialiased">
