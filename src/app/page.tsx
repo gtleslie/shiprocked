@@ -31,9 +31,9 @@ export default function HomePage() {
         <div className="section-fade-bottom" aria-hidden />
 
         <div className="relative mx-auto max-w-[1440px] px-4 pt-12 pb-10 md:px-12 md:pt-20 md:pb-12 lg:px-16">
-          <div className="relative max-w-[1080px]">
+          <div className="relative isolate max-w-[1080px] min-h-[11rem] md:min-h-[14rem]">
             <div
-              className="pointer-events-none relative -ml-4 w-[calc(100%+3rem)] max-w-[min(1280px,98vw)] origin-left mix-blend-screen select-none md:-ml-10 md:w-[calc(100%+5rem)] md:-translate-x-[4%] lg:-ml-14 lg:w-[calc(100%+6rem)]"
+              className="pointer-events-none absolute inset-x-0 bottom-0 z-0 -ml-4 w-[calc(100%+3rem)] max-w-[min(1280px,98vw)] origin-left mix-blend-screen select-none md:-ml-10 md:w-[calc(100%+5rem)] md:-translate-x-[4%] lg:-ml-14 lg:w-[calc(100%+6rem)]"
               aria-hidden
             >
               <Image
@@ -42,12 +42,12 @@ export default function HomePage() {
                 width={1920}
                 height={1080}
                 sizes="(min-width: 1024px) 920px, 96vw"
-                className="h-auto w-full object-contain object-left-bottom brightness-150 contrast-125 [clip-path:inset(36%_0_0_0)]"
+                className="block h-auto w-full translate-y-[10%] object-contain object-left-bottom brightness-150 contrast-125 [clip-path:inset(36%_0_0_0)]"
                 priority
               />
             </div>
 
-            <div className="absolute inset-0 z-10 flex flex-col justify-end pb-3 md:pb-4">
+            <div className="relative z-20 flex min-h-[11rem] flex-col justify-end pb-3 md:min-h-[14rem] md:pb-4">
               <SectionLabel>{home.film.overline}</SectionLabel>
               <h2 className="!mt-1 max-w-[22ch] text-[26px] leading-[1.02] font-black text-white md:text-[40px]">
                 {home.film.headline.map((line) => (
