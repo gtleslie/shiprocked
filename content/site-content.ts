@@ -210,7 +210,7 @@ export const siteContent = {
         },
         {
           name: "MATT DAVIS",
-          role: "PRODUCER",
+          role: "FILM PRODUCER",
           bio: "Matt Davis is a film producer from Dallas, TX, with experience across both SCAD productions and independent projects outside the university. As a producer on The Story of ShipRocked, he helps bring together the people, logistics, and creative pieces behind the film—capturing what makes ShipRocked unlike anything else.",
         },
         {
