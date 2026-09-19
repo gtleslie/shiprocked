@@ -285,7 +285,7 @@ export function BudgetChart({ items }: BudgetChartProps) {
       }}
     >
       <div className="mt-1 grid gap-5 sm:gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:items-stretch lg:gap-8">
-        <div className="funding-carousel order-2 min-w-0 lg:order-1">
+        <div className="funding-carousel min-w-0 max-sm:order-2 lg:order-1">
 
         <div
           ref={trackRef}
@@ -375,7 +375,7 @@ export function BudgetChart({ items }: BudgetChartProps) {
         </div>
         </div>
 
-        <div className="budget-chart order-1 flex w-full justify-center lg:order-2 lg:justify-end">
+        <div className="budget-chart flex w-full justify-center max-sm:order-1 lg:order-2 lg:justify-end">
         <svg
           viewBox={`0 0 ${width} ${height}`}
           className="h-auto w-full drop-shadow-[0_0_28px_rgba(210,31,31,0.14)]"

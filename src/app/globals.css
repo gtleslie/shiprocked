@@ -191,6 +191,12 @@ body {
   margin-top: 12px;
 }
 
+@media (max-width: 639px) {
+  .hero-video-controls {
+    justify-content: center;
+  }
+}
+
 .hero-video-btn {
   display: inline-flex;
   align-items: center;
@@ -371,6 +377,14 @@ body {
 
 .ship-card-footer {
   border-top: 1px solid #000;
+  background: #000;
+}
+
+.crew-flip-card .ship-card {
+  background: #000;
+}
+
+.crew-flip-card .image-placeholder {
   background: #000;
 }
 
@@ -816,14 +830,22 @@ h2 {
 }
 
 .campaign-rider {
-  bottom: 22px;
+  bottom: 24px;
   transform: translateX(-42%);
   transition: left 1.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@media (max-width: 767px) {
+  .campaign-rider {
+    bottom: 24px;
+    transform: translateX(-42%) translateY(1px);
+  }
 }
 
 @media (min-width: 768px) {
   .campaign-rider {
     bottom: -2px;
+    transform: translateX(-42%);
   }
 }
 
