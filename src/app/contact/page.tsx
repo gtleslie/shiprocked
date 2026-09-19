@@ -71,13 +71,12 @@ export default function ContactPage() {
           className="pointer-events-none object-cover object-[center_20%]"
         />
         <div className="section-fade-top" aria-hidden />
-        <div className="relative mx-auto max-w-[1440px] px-4 py-8 md:px-12 md:py-12 lg:px-16">
-        <div className="relative">
-          <div
-            className="pointer-events-none absolute -inset-x-4 -top-10 bottom-[-1.75rem] z-[1] bg-gradient-to-b from-black from-0% via-black/90 via-45% to-transparent to-100% md:-inset-x-8 md:-top-14 md:bottom-[-2.25rem] lg:-inset-x-12"
-            aria-hidden
-          />
-          <div className="relative z-10 grid gap-6 lg:grid-cols-2">
+        <div
+          className="pointer-events-none absolute inset-x-0 top-0 z-[1] h-[min(52vh,34rem)] bg-gradient-to-b from-black from-0% via-black/80 via-50% to-transparent to-100% md:h-[min(48vh,38rem)]"
+          aria-hidden
+        />
+        <div className="relative z-10 mx-auto max-w-[1440px] px-4 py-8 md:px-12 md:py-12 lg:px-16">
+        <div className="grid gap-6 lg:grid-cols-2">
           {contact.blocks.map((block) => {
             const logo =
               block.logo === "ke"
@@ -125,7 +124,6 @@ export default function ContactPage() {
               </article>
             );
           })}
-          </div>
         </div>
 
         <div className="my-8 md:my-12">
