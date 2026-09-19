@@ -25,7 +25,7 @@ export default function HomePage() {
         <div className="section-fade-top" aria-hidden />
         <div className="section-fade-bottom" aria-hidden />
 
-        <div className="relative z-10 mx-auto max-w-[1440px] px-4 pt-12 pb-10 md:px-12 md:pt-20 md:pb-12 lg:px-16">
+        <div className="relative mx-auto max-w-[1440px] px-4 pt-12 pb-10 md:px-12 md:pt-20 md:pb-12 lg:px-16">
           <div className="relative max-w-[1080px]">
             <div className="pointer-events-none relative w-[97%] origin-left translate-x-0 scale-[0.97] mix-blend-screen select-none md:-translate-x-[24%]" aria-hidden>
               <Image
@@ -50,7 +50,7 @@ export default function HomePage() {
             </div>
           </div>
 
-          <div className="relative mt-5 grid gap-12 lg:grid-cols-[1.05fr_1fr] lg:items-start md:mt-6">
+          <div className="relative z-10 mt-5 grid gap-12 lg:grid-cols-[1.05fr_1fr] lg:items-start md:mt-6">
             <HeroVideo
               videoId={home.film.testimonialsYoutubeId}
               autoSound
