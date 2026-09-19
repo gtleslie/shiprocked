@@ -10,6 +10,30 @@ import { siteContent } from "@content/site-content";
 
 type FormStatus = "idle" | "sending" | "sent" | "error";
 
+function ContactEmailLink({ email }: { email: string }) {
+  const at = email.indexOf("@");
+  const local = at >= 0 ? email.slice(0, at + 1) : email;
+  const domain = at >= 0 ? email.slice(at + 1) : "";
+
+  return (
+    <a
+      href={`mailto:${email}`}
+      className="mt-3 block max-w-full text-[12.5px] leading-snug text-text-secondary underline decoration-white/25 underline-offset-2 transition-colors hover:text-accent-red hover:decoration-accent-red sm:text-[14px] sm:leading-normal md:text-[15px]"
+    >
+      <span className="hidden sm:inline">{email}</span>
+      {domain ? (
+        <span className="sm:hidden">
+          {local}
+          <wbr />
+          {domain}
+        </span>
+      ) : (
+        <span className="sm:hidden">{email}</span>
+      )}
+    </a>
+  );
+}
+
 export default function ContactPage() {
   const { contact } = siteContent;
   const [status, setStatus] = useState<FormStatus>("idle");
@@ -94,7 +118,7 @@ export default function ContactPage() {
                     width: 1244,
                     height: 845,
                     className:
-                      "h-[28px] w-auto object-contain object-right brightness-0 invert md:h-[60px] sm:h-[40px]",
+                      "h-[32px] w-auto object-contain object-right brightness-0 invert md:h-[60px] sm:h-[40px]",
                   };
 
             return (
@@ -105,12 +129,7 @@ export default function ContactPage() {
                 <div className="min-w-0">
                   <SectionLabel>{block.overline}</SectionLabel>
                   <h2 className="!mt-1 text-[18px] font-bold text-white md:text-[20px]">{block.title}</h2>
-                  <a
-                    href={`mailto:${block.email}`}
-                    className="mt-3 inline-block break-all text-[14px] text-text-secondary underline decoration-white/25 underline-offset-2 transition-colors hover:text-accent-red hover:decoration-accent-red md:text-[15px]"
-                  >
-                    {block.email}
-                  </a>
+                  <ContactEmailLink email={block.email} />
                   {block.note && (
                     <p className="mt-3 text-[13px] text-text-secondary">{block.note}</p>
                   )}

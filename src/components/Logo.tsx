@@ -23,7 +23,8 @@ const variants: Record<
     src: siteContent.assets.heroLogo,
     width: 1020,
     height: 660,
-    className: "h-auto w-full max-w-[280px] md:max-w-[360px] lg:max-w-[480px]",
+    className:
+      "block h-auto w-auto max-w-[min(72vw,268px)] object-contain object-left sm:max-w-[280px] md:max-w-[360px] lg:max-w-[480px]",
   },
 };
 
