@@ -67,10 +67,10 @@ export function CrewFlipCard({ member }: CrewFlipCardProps) {
       className="crew-flip-card group w-full text-left"
     >
       <div className={`crew-flip-inner ${flipped ? "is-flipped" : ""}`}>
-        <div className="crew-flip-face crew-flip-front flex h-full flex-col overflow-hidden bg-black">
-          <div className="ship-card shrink-0 overflow-hidden">
-            <ImagePlaceholder className="h-[200px] w-full sm:h-[280px]" />
-            <div className="ship-card-footer px-5 py-4">
+        <div className="crew-flip-face crew-flip-front flex h-full flex-col overflow-hidden">
+          <div className="ship-card flex h-full min-h-0 flex-col overflow-hidden border-b border-border">
+            <ImagePlaceholder className="h-[200px] w-full shrink-0 sm:h-[280px]" />
+            <div className="ship-card-footer mt-auto shrink-0 px-5 py-4">
             <h3 className="text-[16px] font-bold tracking-[0.2px] text-white">
               {member.name}
             </h3>
