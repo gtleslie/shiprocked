@@ -30,8 +30,8 @@ export default function AboutPage() {
           aria-hidden
         />
         <div className="section-fade-bottom" aria-hidden />
-        <div className="relative z-10 mx-auto max-w-[1440px] px-4 py-10 md:px-12 md:py-16 lg:px-16 lg:py-20">
-          <div className="grid gap-8 lg:min-h-[420px] lg:grid-cols-[1.15fr_0.85fr] lg:items-stretch">
+        <div className="relative z-10 mx-auto max-w-[1440px] px-4 py-8 md:px-12 md:py-12 lg:px-16 lg:py-14">
+          <div className="grid gap-8 lg:min-h-[340px] lg:grid-cols-[1.15fr_0.85fr] lg:items-stretch">
             <div>
               <SectionLabel>{about.hero.overline}</SectionLabel>
               <h1 className="!mt-1 text-[36px] leading-none font-black text-white md:text-[56px]">
@@ -44,15 +44,15 @@ export default function AboutPage() {
                 {about.hero.body}
               </SectionSubhead>
             </div>
-            <div className="about-skeletons relative h-[240px] lg:h-auto lg:min-h-full">
+            <div className="about-skeletons relative h-[220px] lg:h-auto lg:min-h-full">
               <Image
                 src={assets.filmCrewSkeletons}
                 alt="Illustrated film crew of skeletons"
                 width={1668}
                 height={2388}
                 priority
-                className="pointer-events-none absolute top-1/2 left-1/2 h-[165%] w-auto max-w-none lg:h-[185%]"
-                style={{ transform: "translate(-42%, -40%) scaleX(-1) rotate(-90deg)" }}
+                className="pointer-events-none absolute top-1/2 left-1/2 h-[120%] w-auto max-w-none lg:h-[128%]"
+                style={{ transform: "translate(-42%, -46%) scaleX(-1) rotate(-90deg)" }}
               />
             </div>
           </div>
