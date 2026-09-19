@@ -27,7 +27,7 @@ export default function AboutPage() {
           aria-hidden
         />
         <div className="relative z-10 mx-auto max-w-[1440px] px-4 pt-8 pb-4 md:px-12 md:pt-10 md:pb-5 lg:px-16 lg:pt-12 lg:pb-6">
-          <div className="grid items-center gap-x-8 lg:grid-cols-[1.15fr_0.85fr]">
+          <div className="grid items-center gap-x-6 lg:grid-cols-[1fr_1fr]">
             <div>
               <SectionLabel>{about.hero.overline}</SectionLabel>
               <h1 className="!mt-1 text-[36px] leading-none font-black text-white md:text-[56px]">
@@ -48,7 +48,15 @@ export default function AboutPage() {
                 height={2388}
                 priority
                 className="pointer-events-none absolute top-1/2 left-1/2 h-[154%] w-auto max-w-none lg:h-[166%]"
-                style={{ transform: "translate(-42%, -50%) scaleX(-1) rotate(-90deg)" }}
+                style={{ transform: "translate(-62%, -50%) scaleX(-1) rotate(-90deg)" }}
+              />
+              <Image
+                src={assets.skeletonDirector}
+                alt="Illustrated skeleton director in a chair"
+                width={1668}
+                height={2388}
+                priority
+                className="pointer-events-none absolute right-[22%] bottom-[-8%] h-[128%] w-auto max-w-none lg:right-[-2%] lg:bottom-[-14%] lg:h-[158%]"
               />
             </div>
           </div>
