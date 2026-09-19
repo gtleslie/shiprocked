@@ -20,14 +20,14 @@ export default function AboutPage() {
           fill
           priority
           sizes="100vw"
-          className="pointer-events-none object-cover object-[center_58%]"
+          className="pointer-events-none object-cover object-[center_42%]"
         />
         <div
           className="pointer-events-none absolute inset-0 bg-gradient-to-r from-black/55 via-black/20 to-black/25"
           aria-hidden
         />
         <div className="relative z-10 mx-auto max-w-[1440px] px-4 py-8 md:px-12 md:py-12 lg:px-16 lg:py-14">
-          <div className="grid gap-8 lg:min-h-[340px] lg:grid-cols-[1.15fr_0.85fr] lg:items-stretch">
+          <div className="grid gap-x-8 lg:grid-cols-[1.15fr_0.85fr]">
             <div>
               <SectionLabel>{about.hero.overline}</SectionLabel>
               <h1 className="!mt-1 text-[36px] leading-none font-black text-white md:text-[56px]">
@@ -36,21 +36,21 @@ export default function AboutPage() {
               <p className="font-header mt-1 text-[36px] leading-none text-accent-red md:text-[56px]">
                 {about.hero.headlineAccent}
               </p>
-              <SectionSubhead className="mt-8 max-w-2xl text-[16px] leading-relaxed text-white/85">
-                {about.hero.body}
-              </SectionSubhead>
             </div>
-            <div className="about-skeletons relative h-[220px] lg:h-auto lg:min-h-full">
+            <div className="about-skeletons relative mt-6 h-[280px] lg:mt-0 lg:row-span-2 lg:h-[420px] lg:self-center">
               <Image
                 src={assets.filmCrewSkeletons}
                 alt="Illustrated film crew of skeletons"
                 width={1668}
                 height={2388}
                 priority
-                className="pointer-events-none absolute top-1/2 left-1/2 h-[120%] w-auto max-w-none lg:h-[128%]"
-                style={{ transform: "translate(-42%, -46%) scaleX(-1) rotate(-90deg)" }}
+                className="pointer-events-none absolute top-1/2 left-1/2 h-[148%] w-auto max-w-none lg:h-[162%]"
+                style={{ transform: "translate(-42%, -48%) scaleX(-1) rotate(-90deg)" }}
               />
             </div>
+            <SectionSubhead className="mt-8 max-w-2xl text-[16px] leading-relaxed text-white/85">
+              {about.hero.body}
+            </SectionSubhead>
           </div>
         </div>
       </section>
