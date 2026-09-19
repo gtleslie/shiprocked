@@ -32,13 +32,17 @@ export default function HomePage() {
 
         <div className="relative mx-auto max-w-[1440px] px-4 pt-12 pb-10 md:px-12 md:pt-20 md:pb-12 lg:px-16">
           <div className="relative max-w-[1080px]">
-            <div className="pointer-events-none relative aspect-[1896/381] w-[97%] origin-left translate-x-0 scale-[0.97] mix-blend-screen select-none md:-translate-x-[24%]" aria-hidden>
+            <div
+              className="pointer-events-none relative -ml-4 w-[calc(100%+3rem)] max-w-[min(1280px,98vw)] origin-left mix-blend-screen select-none md:-ml-10 md:w-[calc(100%+5rem)] md:-translate-x-[4%] lg:-ml-14 lg:w-[calc(100%+6rem)]"
+              aria-hidden
+            >
               <Image
                 src={siteContent.assets.cruiseShip}
                 alt=""
-                fill
-                sizes="(min-width: 768px) 70vw, 95vw"
-                className="object-cover object-[center_78%] brightness-150 contrast-125"
+                width={1920}
+                height={1080}
+                sizes="(min-width: 1024px) 920px, 96vw"
+                className="h-auto w-full object-contain object-left-bottom brightness-150 contrast-125 [clip-path:inset(36%_0_0_0)]"
                 priority
               />
             </div>

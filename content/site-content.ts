@@ -17,7 +17,7 @@ export const siteContent = {
     dividerVector: "/assets/divider-vector.svg",
     filmCrewSkeletons: "/assets/sr-skeletons-film-crew.png",
     skeletonDirector: "/assets/sr-skeleton-directors-chair.png",
-    cruiseShip: "/assets/cruise-ship.png",
+    cruiseShip: "/assets/cruiseshipfinal.png",
     homeBackground: "/assets/background-1.png",
     duoBackground: "/assets/duo-background.png",
     aboutBackground: "/assets/background-2-about.png",
