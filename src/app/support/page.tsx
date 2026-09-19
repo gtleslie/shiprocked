@@ -30,8 +30,8 @@ export default function SupportPage() {
             <Image
               src={assets.seedAndSpark}
               alt="Seed & Spark"
-              width={1192}
-              height={670}
+              width={1800}
+              height={1353}
               className="h-auto w-full max-w-[280px] mix-blend-screen sm:max-w-[340px] md:max-w-[400px] lg:max-w-[560px] xl:max-w-[640px]"
             />
           </div>
