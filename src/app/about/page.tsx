@@ -26,8 +26,8 @@ export default function AboutPage() {
           className="pointer-events-none absolute inset-0 bg-gradient-to-r from-black/55 via-black/20 to-black/25"
           aria-hidden
         />
-        <div className="relative z-10 mx-auto max-w-[1440px] px-4 py-8 md:px-12 md:py-12 lg:px-16 lg:py-14">
-          <div className="grid gap-x-8 lg:grid-cols-[1.15fr_0.85fr]">
+        <div className="relative z-10 mx-auto max-w-[1440px] px-4 pt-8 pb-4 md:px-12 md:pt-10 md:pb-5 lg:px-16 lg:pt-12 lg:pb-6">
+          <div className="grid items-center gap-x-8 lg:grid-cols-[1.15fr_0.85fr]">
             <div>
               <SectionLabel>{about.hero.overline}</SectionLabel>
               <h1 className="!mt-1 text-[36px] leading-none font-black text-white md:text-[56px]">
@@ -36,21 +36,21 @@ export default function AboutPage() {
               <p className="font-header mt-1 text-[36px] leading-none text-accent-red md:text-[56px]">
                 {about.hero.headlineAccent}
               </p>
+              <SectionSubhead className="mt-3 max-w-2xl text-[16px] leading-relaxed text-white/85">
+                {about.hero.body}
+              </SectionSubhead>
             </div>
-            <div className="about-skeletons relative mt-6 h-[280px] lg:mt-0 lg:row-span-2 lg:h-[420px] lg:self-center">
+            <div className="about-skeletons relative mt-4 h-[240px] lg:mt-0 lg:h-[320px]">
               <Image
                 src={assets.filmCrewSkeletons}
                 alt="Illustrated film crew of skeletons"
                 width={1668}
                 height={2388}
                 priority
-                className="pointer-events-none absolute top-1/2 left-1/2 h-[148%] w-auto max-w-none lg:h-[162%]"
+                className="pointer-events-none absolute top-1/2 left-1/2 h-[148%] w-auto max-w-none lg:h-[158%]"
                 style={{ transform: "translate(-42%, -48%) scaleX(-1) rotate(-90deg)" }}
               />
             </div>
-            <SectionSubhead className="mt-8 max-w-2xl text-[16px] leading-relaxed text-white/85">
-              {about.hero.body}
-            </SectionSubhead>
           </div>
         </div>
       </section>
