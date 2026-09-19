@@ -33,7 +33,7 @@ export default function AboutPage() {
           <h2 className="!mt-1 text-[26px] font-black text-white md:text-[32px]">
             {about.timeline.headline}
           </h2>
-          <div className="mt-8 grid gap-12 lg:grid-cols-[1fr_1fr] lg:items-stretch">
+          <div className="mt-5 grid gap-6 md:mt-8 md:gap-12 lg:grid-cols-[1fr_1fr] lg:items-stretch">
             <TimelineExpandable items={about.timeline.items} />
             <TimelinePhotoCarousel slides={about.timeline.slides} />
           </div>
@@ -54,9 +54,15 @@ export default function AboutPage() {
         <div className="relative z-10 mx-auto max-w-[1440px] px-4 pt-8 pb-5 md:px-14 md:pt-12 md:pb-7 lg:px-20 lg:pt-14 lg:pb-8">
           <CharactersCarousel
             header={
-              <h2 className="text-[26px] font-black text-white md:text-[32px]">
-                {about.crew.headline}
-              </h2>
+              <>
+                <h2 className="text-[26px] leading-[1.02] font-black text-white sm:hidden">
+                  <span className="block">Meet the</span>
+                  <span className="block">Film-Crew</span>
+                </h2>
+                <h2 className="hidden text-[26px] font-black text-white sm:block md:text-[32px]">
+                  {about.crew.headline}
+                </h2>
+              </>
             }
             subjects={about.crew.members}
             label="Meet the crew carousel"
@@ -65,9 +71,15 @@ export default function AboutPage() {
         <div className="relative z-10 mx-auto max-w-[1440px] px-4 pt-5 pb-5 md:px-14 md:pt-7 md:pb-8 lg:px-20 lg:pt-8 lg:pb-10">
           <CharactersCarousel
             header={
-              <h2 className="text-[26px] font-black text-white md:text-[32px]">
-                {about.meetCharacters.headline}
-              </h2>
+              <>
+                <h2 className="text-[26px] leading-[1.02] font-black text-white sm:hidden">
+                  <span className="block">Meet the</span>
+                  <span className="block">Characters</span>
+                </h2>
+                <h2 className="hidden text-[26px] font-black text-white sm:block md:text-[32px]">
+                  {about.meetCharacters.headline}
+                </h2>
+              </>
             }
             subjects={about.meetCharacters.subjects}
             label="Meet the characters carousel"

@@ -284,8 +284,8 @@ export function BudgetChart({ items }: BudgetChartProps) {
         }
       }}
     >
-      <div className="mt-1 grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:items-stretch lg:gap-8">
-        <div className="funding-carousel min-w-0">
+      <div className="mt-1 grid gap-5 sm:gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:items-stretch lg:gap-8">
+        <div className="funding-carousel order-2 min-w-0 lg:order-1">
 
         <div
           ref={trackRef}
@@ -303,7 +303,7 @@ export function BudgetChart({ items }: BudgetChartProps) {
                 className={`funding-carousel-card ship-card overflow-hidden ${isActive ? "is-active" : ""}`}
                 onClick={() => goTo(index)}
               >
-                <div className="relative">
+                <div className="relative hidden sm:block">
                   <ImagePlaceholder className="h-[220px] w-full md:h-[260px]" />
                   <div
                     className="pointer-events-none absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-black via-black/70 to-transparent"
@@ -318,11 +318,17 @@ export function BudgetChart({ items }: BudgetChartProps) {
                     </p>
                   </div>
                 </div>
-                <div className="ship-card-footer px-5 py-4">
-                  <h3 className="text-[16px] font-bold tracking-[0.2px] text-white">
+                <div className="ship-card-footer px-3.5 py-3 sm:px-5 sm:py-4">
+                  <p
+                    className="text-[22px] font-black leading-none sm:hidden"
+                    style={{ color: SLICE_COLORS[index % SLICE_COLORS.length] }}
+                  >
+                    {item.percent}%
+                  </p>
+                  <h3 className="text-[14px] font-bold tracking-[0.2px] text-white sm:mt-0 sm:text-[16px]">
                     {item.label}
                   </h3>
-                  <p className="mt-2 text-[13px] leading-relaxed text-text-secondary">
+                  <p className="mt-1.5 text-[12px] leading-snug text-text-secondary sm:mt-2 sm:text-[13px] sm:leading-relaxed">
                     {item.description}
                   </p>
                 </div>
@@ -369,7 +375,7 @@ export function BudgetChart({ items }: BudgetChartProps) {
         </div>
         </div>
 
-        <div className="budget-chart flex w-full justify-end">
+        <div className="budget-chart order-1 flex w-full justify-center lg:order-2 lg:justify-end">
         <svg
           viewBox={`0 0 ${width} ${height}`}
           className="h-auto w-full drop-shadow-[0_0_28px_rgba(210,31,31,0.14)]"

@@ -376,11 +376,17 @@ body {
 
 .crew-flip-card {
   perspective: 1200px;
-  height: 356px;
+  height: 300px;
   background: transparent;
   border: 0;
   padding: 0;
   cursor: pointer;
+}
+
+@media (min-width: 640px) {
+  .crew-flip-card {
+    height: 356px;
+  }
 }
 
 .crew-flip-inner {
@@ -487,7 +493,7 @@ body {
 }
 
 .funding-carousel-card {
-  flex: 0 0 min(280px, 82%);
+  flex: 0 0 calc((100% - 1.25rem) / 2);
   scroll-snap-align: start;
   cursor: pointer;
   opacity: 0.55;
@@ -535,7 +541,15 @@ body {
   box-shadow: none !important;
 }
 
-@media (max-width: 1023px) {
+@media (max-width: 639px) {
+  .budget-chart svg {
+    width: 100%;
+    max-width: 20rem;
+    margin-left: 0;
+  }
+}
+
+@media (min-width: 640px) and (max-width: 1023px) {
   .budget-chart svg {
     width: 108%;
     max-width: none;
@@ -575,7 +589,7 @@ body {
 }
 
 .characters-carousel-card {
-  flex: 0 0 min(280px, 82%);
+  flex: 0 0 calc((100% - 1.5rem) / 2);
   scroll-snap-align: start;
 }
 

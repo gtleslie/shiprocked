@@ -6,7 +6,14 @@ import { PageShell } from "@/components/PageShell";
 import { SiteButton } from "@/components/SiteButton";
 import { SectionDivider } from "@/components/SectionDivider";
 import { LineRule, SectionLabel, SectionSubhead } from "@/components/ImagePlaceholder";
+import { FacebookIcon, InstagramIcon, YouTubeIcon } from "@/components/SocialIcons";
 import { siteContent } from "@content/site-content";
+
+const connectIcons = {
+  instagram: InstagramIcon,
+  facebook: FacebookIcon,
+  youtube: YouTubeIcon,
+} as const;
 
 type FormStatus = "idle" | "sending" | "sent" | "error";
 
@@ -76,6 +83,42 @@ export default function ContactPage() {
           aria-hidden
         />
         <div className="relative z-10 mx-auto max-w-[1440px] px-4 pt-8 pb-5 md:px-12 md:pt-12 md:pb-6 lg:px-16">
+        <div className="mb-4 flex items-center justify-between gap-3 sm:hidden">
+          <div className="flex min-w-0 items-center gap-2.5">
+            <Image
+              src={siteContent.assets.keLogo}
+              alt="Koenig Entertainment Co."
+              width={3600}
+              height={3600}
+              className="h-[48px] w-auto shrink-0 object-contain object-left"
+            />
+            <Image
+              src={siteContent.assets.ask4Logo}
+              alt="ASK4 Entertainment"
+              width={1244}
+              height={845}
+              className="h-[24px] w-auto shrink-0 object-contain brightness-0 invert"
+            />
+          </div>
+          <div className="flex shrink-0 items-center gap-2">
+            {siteContent.footer.connect.map((item) => {
+              const Icon = connectIcons[item.icon];
+              return (
+                <a
+                  key={item.label}
+                  href={item.href}
+                  aria-label={item.label}
+                  target={item.href.startsWith("http") ? "_blank" : undefined}
+                  rel={item.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                  className="flex h-9 w-9 items-center justify-center border border-white/25 text-text-secondary transition-colors hover:border-white hover:text-white"
+                >
+                  <Icon className="h-4 w-4" />
+                </a>
+              );
+            })}
+          </div>
+        </div>
+
         <div className="grid gap-6 lg:grid-cols-2">
           {contact.blocks.map((block) => {
             const logo =
@@ -85,7 +128,8 @@ export default function ContactPage() {
                     alt: "Koenig Entertainment Co.",
                     width: 3600,
                     height: 3600,
-                    className: "h-[72px] w-auto object-contain object-left sm:object-right md:h-[116px]",
+                    className:
+                      "hidden h-[72px] w-auto object-contain object-left sm:block sm:object-right md:h-[116px]",
                   }
                 : {
                     src: siteContent.assets.ask4Logo,
@@ -93,13 +137,13 @@ export default function ContactPage() {
                     width: 1244,
                     height: 845,
                     className:
-                      "h-[40px] w-auto object-contain object-left brightness-0 invert sm:object-right md:h-[60px]",
+                      "hidden h-[40px] w-auto object-contain object-left brightness-0 invert sm:block sm:object-right md:h-[60px]",
                   };
 
             return (
               <article
                 key={block.overline}
-                className="flex flex-col items-start gap-4 bg-bg-card p-5 sm:flex-row sm:items-center sm:justify-between sm:gap-6 sm:p-8"
+                className="flex flex-col items-start gap-4 bg-bg-card p-4 sm:flex-row sm:items-center sm:justify-between sm:gap-6 sm:p-8"
               >
                 <div className="min-w-0">
                   <SectionLabel>{block.overline}</SectionLabel>
@@ -139,7 +183,7 @@ export default function ContactPage() {
               </h2>
             </div>
 
-            <form onSubmit={handleSubmit} className="order-3 space-y-6">
+            <form onSubmit={handleSubmit} className="order-3 space-y-4 sm:space-y-6">
               <label className="block">
                 <span className="text-[11px] font-bold tracking-[0.44px] text-text-secondary uppercase">
                   {contact.form.name}
@@ -150,7 +194,7 @@ export default function ContactPage() {
                   type="text"
                   autoComplete="name"
                   maxLength={120}
-                  className="mt-2 h-12 w-full border border-border bg-bg-card px-4 text-[15px] text-white outline-none focus:border-accent-red"
+                  className="mt-1.5 h-10 w-full border border-border bg-bg-card px-3 text-[15px] text-white outline-none focus:border-accent-red sm:mt-2 sm:h-12 sm:px-4"
                 />
               </label>
 
@@ -164,7 +208,7 @@ export default function ContactPage() {
                   type="email"
                   autoComplete="email"
                   maxLength={254}
-                  className="mt-2 h-12 w-full border border-border bg-bg-card px-4 text-[15px] text-white outline-none focus:border-accent-red"
+                  className="mt-1.5 h-10 w-full border border-border bg-bg-card px-3 text-[15px] text-white outline-none focus:border-accent-red sm:mt-2 sm:h-12 sm:px-4"
                 />
               </label>
 
@@ -175,9 +219,9 @@ export default function ContactPage() {
                 <textarea
                   required
                   name="message"
-                  rows={6}
+                  rows={5}
                   maxLength={5000}
-                  className="mt-2 min-h-[160px] w-full resize-y border border-border bg-bg-card px-4 py-3 text-[15px] text-white outline-none focus:border-accent-red"
+                  className="mt-1.5 min-h-[120px] w-full resize-y border border-border bg-bg-card px-3 py-2 text-[15px] text-white outline-none focus:border-accent-red sm:mt-2 sm:min-h-[160px] sm:px-4 sm:py-3"
                 />
               </label>
 
@@ -210,8 +254,8 @@ export default function ContactPage() {
             </form>
           </div>
 
-          <div className="order-2 flex min-h-[18rem] items-center justify-center overflow-hidden sm:min-h-[28rem] lg:min-h-full">
-            <div className="w-full max-w-[32rem] origin-center rotate-[9deg] scale-[1.1] shrink-0 sm:max-w-[40rem] sm:scale-[1.14] lg:max-w-[52rem] lg:scale-[1.22]">
+          <div className="order-2 flex min-h-[9rem] items-center justify-center overflow-hidden sm:min-h-[28rem] lg:min-h-full">
+            <div className="w-full max-w-[10.5rem] origin-center rotate-[9deg] scale-[0.88] shrink-0 sm:max-w-[32rem] sm:scale-[1.1] md:max-w-[40rem] md:scale-[1.14] lg:max-w-[52rem] lg:scale-[1.22]">
               <Image
                 src="/assets/opening-mail.png"
                 alt="Skeletal hands opening a letter"
