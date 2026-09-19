@@ -22,6 +22,7 @@ export default function HomePage() {
           sizes="100vw"
           className="pointer-events-none object-cover object-[center_12%]"
         />
+        <div className="pointer-events-none absolute inset-0 bg-black/40" aria-hidden />
         <div className="section-fade-top" aria-hidden />
         <div className="section-fade-bottom" aria-hidden />
 
