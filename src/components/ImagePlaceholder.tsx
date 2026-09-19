@@ -21,5 +21,5 @@ export function SectionSubhead({
 }
 
 export function LineRule() {
-  return <div className="h-px w-full bg-black" />;
+  return <div className="h-px w-full bg-border" />;
 }
