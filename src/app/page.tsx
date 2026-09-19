@@ -30,20 +30,20 @@ export default function HomePage() {
         <div className="section-fade-top" aria-hidden />
         <div className="section-fade-bottom" aria-hidden />
 
-        <div className="relative mx-auto max-w-[1440px] px-4 pt-5 pb-10 max-sm:pt-6 md:px-12 md:pt-16 md:pb-12 lg:px-16">
-          <div className="relative isolate max-w-[1080px] min-h-[11rem] md:min-h-[14rem]">
+        <div className="relative mx-auto max-w-[1440px] px-4 pt-5 pb-10 max-sm:pt-2 md:px-12 md:pt-16 md:pb-12 lg:px-16">
+          <div className="relative isolate max-w-[1080px] min-h-[11rem] max-sm:min-h-[12.5rem] md:min-h-[14rem]">
             <div
               className="pointer-events-none absolute inset-0 z-0 flex items-end pb-3 md:pb-4"
               aria-hidden
             >
-              <div className="-ml-6 w-[calc(100%+3rem)] max-w-[min(1280px,98vw)] origin-left select-none -translate-x-[calc(3%+20px)] max-sm:-ml-[max(1rem,calc(50%-50vw))] max-sm:w-[100vw] max-sm:max-w-[100vw] max-sm:translate-x-0 max-sm:translate-y-[calc(18%+6px)] md:-ml-12 md:w-[calc(100%+5rem)] md:translate-y-[calc(28%+13px)] md:-translate-x-[calc(16%+20px)] lg:-ml-14 lg:w-[calc(100%+6rem)] lg:-translate-x-[calc(18%+20px)]">
+              <div className="-ml-6 w-[calc(100%+3rem)] max-w-[min(1280px,98vw)] origin-left select-none -translate-x-[calc(3%+20px)] max-sm:-ml-[max(1rem,calc(50%-50vw))] max-sm:w-[100vw] max-sm:max-w-[100vw] max-sm:translate-x-0 max-sm:translate-y-2 md:-ml-12 md:w-[calc(100%+5rem)] md:translate-y-[calc(28%+13px)] md:-translate-x-[calc(16%+20px)] lg:-ml-14 lg:w-[calc(100%+6rem)] lg:-translate-x-[calc(18%+20px)]">
                 <Image
                   src={siteContent.assets.cruiseShip}
                   alt=""
                   width={1920}
                   height={1080}
                   sizes="(min-width: 1024px) 920px, 100vw"
-                  className="block h-auto w-full translate-y-[calc(28%+13px)] object-contain object-left-bottom opacity-[0.65] brightness-150 contrast-125 mix-blend-screen [clip-path:inset(36%_0_0_0)] max-sm:translate-y-0 max-sm:scale-[1.08] max-sm:[clip-path:inset(26%_0_0_0)]"
+                  className="block h-auto w-full translate-y-[calc(28%+13px)] object-contain object-left-bottom opacity-[0.65] brightness-150 contrast-125 mix-blend-screen [clip-path:inset(36%_0_0_0)] max-sm:translate-y-0 max-sm:scale-[1.22] max-sm:[clip-path:inset(18%_0_0_0)]"
                   priority
                 />
               </div>
@@ -93,7 +93,7 @@ export default function HomePage() {
           {home.whyItMatters.headline}
         </h2>
 
-        <div className="why-card-grid mt-6 grid gap-6 max-sm:mt-7 md:mt-12 md:grid-cols-3">
+        <div className="why-card-grid mt-6 grid gap-6 max-sm:mt-4 md:mt-12 md:grid-cols-3">
           {home.whyItMatters.cards.map((card) => (
             <article key={card.number} className="why-card">
               <div className="why-card-stage relative aspect-[4/3]">
@@ -150,7 +150,7 @@ export default function HomePage() {
             {siteContent.campaign.homeDates}
           </span>
         </p>
-        <CampaignProgress variant="home" className="mt-4 max-sm:mt-3 md:mt-8" />
+        <CampaignProgress variant="home" className="mt-4 max-sm:mt-1 md:mt-8" />
         <SiteButton href="/support" className="mt-8">
           {home.campaign.supportCta}
         </SiteButton>
