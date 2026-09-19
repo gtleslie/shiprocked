@@ -29,7 +29,7 @@ export const siteContent = {
 
   links: {
     trailer: "https://www.youtube.com/watch?v=rL6LEVvv6Sk",
-    seedAndSpark: "#",
+    seedAndSpark: "https://seedandspark.com/user/shiprocked-01knmpy4554rbz6ppy7xb7y4vk",
     instagram: "https://www.instagram.com/storyofshiprocked",
     facebook: "#",
     innerCircle:
