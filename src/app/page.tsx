@@ -36,7 +36,7 @@ export default function HomePage() {
               className="pointer-events-none absolute inset-0 z-0 flex items-end pb-3 md:pb-4"
               aria-hidden
             >
-              <div className="-ml-6 w-[calc(100%+3rem)] max-w-[min(1280px,98vw)] origin-left select-none -translate-x-[3%] md:-ml-12 md:w-[calc(100%+5rem)] md:-translate-x-[16%] lg:-ml-14 lg:w-[calc(100%+6rem)] lg:-translate-x-[18%]">
+              <div className="-ml-6 w-[calc(100%+3rem)] max-w-[min(1280px,98vw)] origin-left select-none -translate-x-[calc(3%+10px)] md:-ml-12 md:w-[calc(100%+5rem)] md:-translate-x-[calc(16%+10px)] lg:-ml-14 lg:w-[calc(100%+6rem)] lg:-translate-x-[calc(18%+10px)]">
                 <Image
                   src={siteContent.assets.cruiseShip}
                   alt=""
