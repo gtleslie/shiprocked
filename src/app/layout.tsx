@@ -20,8 +20,20 @@ const industryBold = localFont({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://shiprocked.vercel.app"),
   title: siteContent.site.title,
   description: siteContent.site.description,
+  openGraph: {
+    title: siteContent.site.title,
+    description: siteContent.site.description,
+    siteName: siteContent.site.title,
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: siteContent.site.title,
+    description: siteContent.site.description,
+  },
 };
 
 export default function RootLayout({
