@@ -47,8 +47,8 @@ export default function AboutPage() {
                 width={1668}
                 height={2388}
                 priority
-                className="pointer-events-none absolute top-1/2 left-1/2 h-[154%] w-auto max-w-none lg:h-[166%]"
-                style={{ transform: "translate(-62%, -50%) scaleX(-1) rotate(-90deg)" }}
+                className="pointer-events-none absolute top-1/2 left-1/2 z-[1] h-[154%] w-auto max-w-none lg:h-[166%]"
+                style={{ transform: "translate(-70%, -50%) scaleX(-1) rotate(-90deg)" }}
               />
               <Image
                 src={assets.skeletonDirector}
@@ -56,7 +56,7 @@ export default function AboutPage() {
                 width={1668}
                 height={2388}
                 priority
-                className="pointer-events-none absolute right-[22%] bottom-[-8%] h-[128%] w-auto max-w-none lg:right-[-2%] lg:bottom-[-14%] lg:h-[158%]"
+                className="pointer-events-none absolute right-[8%] bottom-[-32%] h-[92%] w-auto max-w-none lg:right-[4%] lg:bottom-[-38%] lg:h-[108%]"
               />
             </div>
           </div>
