@@ -14,6 +14,7 @@ export const siteContent = {
     innerCircleLogo: "/assets/logos/inner-circle-logo.mp4",
     innerCircleJoin: "/assets/logos/click-to-join.png",
     seedAndSpark: "/assets/logos/seed-and-spark.png",
+    seedAndSparkInline: "/assets/seedandsparkinline.png",
     dividerVector: "/assets/divider-vector.svg",
     filmCrewSkeletons: "/assets/sr-skeletons-film-crew.png",
     skeletonDirector: "/assets/sr-skeleton-directors-chair.png",
@@ -398,6 +399,7 @@ export const siteContent = {
     },
     seedAndSpark: {
       overline: "POWERED BY SEED & SPARK",
+      overlinePrefix: "POWERED BY",
       headline: "Built for indie film. Designed for trust.",
       body: "We're running this campaign through Seed & Spark, the platform built specifically for independent filmmakers: transparent fees, direct filmmaker support, and a community that champions indie stories. More info on the campaign, and rewards for our donors coming #soon!",
       cta: "SUPPORT VIA SEED & SPARK →",
