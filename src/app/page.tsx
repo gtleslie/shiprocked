@@ -33,17 +33,17 @@ export default function HomePage() {
         <div className="relative mx-auto max-w-[1440px] px-4 pt-12 pb-10 md:px-12 md:pt-20 md:pb-12 lg:px-16">
           <div className="relative isolate max-w-[1080px] min-h-[11rem] md:min-h-[14rem]">
             <div
-              className="pointer-events-none absolute inset-0 z-0 flex items-end"
+              className="pointer-events-none absolute inset-0 z-0 flex items-end pb-3 md:pb-4"
               aria-hidden
             >
-              <div className="-ml-6 w-[calc(100%+3rem)] max-w-[min(1280px,98vw)] origin-left mix-blend-screen select-none -translate-x-[3%] md:-ml-12 md:w-[calc(100%+5rem)] md:-translate-x-[16%] lg:-ml-14 lg:w-[calc(100%+6rem)] lg:-translate-x-[18%]">
+              <div className="-ml-6 w-[calc(100%+3rem)] max-w-[min(1280px,98vw)] origin-left select-none -translate-x-[3%] md:-ml-12 md:w-[calc(100%+5rem)] md:-translate-x-[16%] lg:-ml-14 lg:w-[calc(100%+6rem)] lg:-translate-x-[18%]">
                 <Image
                   src={siteContent.assets.cruiseShip}
                   alt=""
                   width={1920}
                   height={1080}
                   sizes="(min-width: 1024px) 920px, 96vw"
-                  className="block h-auto w-full translate-y-[8%] object-contain object-left-bottom brightness-150 contrast-125 [clip-path:inset(36%_0_0_0)]"
+                  className="block h-auto w-full translate-y-[22%] object-contain object-left-bottom brightness-150 contrast-125 mix-blend-screen [clip-path:inset(36%_0_0_0)]"
                   priority
                 />
               </div>
