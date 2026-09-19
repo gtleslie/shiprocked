@@ -22,13 +22,13 @@ export default function SupportPage() {
                 alt="Seed & Spark"
                 width={640}
                 height={120}
-                className="h-[1.05rem] w-auto max-w-[9.5rem] object-contain object-left"
+                className="h-[1.05rem] w-auto max-w-[9.5rem] translate-y-[2px] object-contain object-left"
               />
             </p>
             <div className="hidden sm:block">
               <SectionLabel>{support.seedAndSpark.overline}</SectionLabel>
             </div>
-            <h2 className="!mt-1 text-[26px] font-black text-white md:text-[36px]">
+            <h2 className="!mt-[7px] text-[26px] font-black text-white sm:!mt-1 md:text-[36px]">
               {support.seedAndSpark.headline}
             </h2>
             <SectionSubhead className="mt-5 text-[15px] leading-relaxed text-text-secondary">
