@@ -2,6 +2,7 @@
 
 import { useCallback, useState } from "react";
 import Image from "next/image";
+import { CarouselPagerHint } from "@/components/CarouselPagerHint";
 
 type TimelineSlide = {
   image: string;
@@ -109,7 +110,9 @@ export function TimelinePhotoCarousel({
         ))}
       </div>
 
-      <div className="absolute inset-x-0 bottom-0 z-10 flex items-center justify-between bg-gradient-to-t from-black/70 to-transparent p-3 pt-10">
+      <div className="absolute inset-x-0 bottom-0 z-10 bg-gradient-to-t from-black/70 to-transparent px-3 pt-8 pb-3 md:pt-10">
+        <CarouselPagerHint className="mb-2 sm:hidden" />
+        <div className="flex items-center justify-between">
         <button
           type="button"
           aria-label="Previous photo"
@@ -118,15 +121,23 @@ export function TimelinePhotoCarousel({
         >
           <ChevronLeftIcon />
         </button>
-        <div className="flex items-center gap-2" aria-hidden>
-          {slides.map((item, slideIndex) => (
-            <span
-              key={item.image}
-              className={`h-1.5 w-1.5 rounded-full ${
-                slideIndex === index ? "bg-accent-gold" : "bg-white/35"
-              }`}
-            />
-          ))}
+        <div className="flex items-center gap-2.5" role="tablist" aria-label="Photo slides">
+          {slides.map((item, slideIndex) => {
+            const isActive = slideIndex === index;
+            return (
+              <button
+                key={item.image}
+                type="button"
+                role="tab"
+                aria-selected={isActive}
+                aria-label={`Show photo ${slideIndex + 1}`}
+                onClick={() => goTo(slideIndex)}
+                className={`rounded-full transition-colors md:pointer-events-none ${
+                  isActive ? "bg-accent-gold" : "bg-white/35"
+                } h-2.5 w-2.5 p-0 md:h-1.5 md:w-1.5`}
+              />
+            );
+          })}
         </div>
         <button
           type="button"
@@ -136,6 +147,7 @@ export function TimelinePhotoCarousel({
         >
           <ChevronRightIcon />
         </button>
+        </div>
       </div>
 
       <p className="sr-only">

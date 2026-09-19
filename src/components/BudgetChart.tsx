@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { CarouselPagerHint } from "@/components/CarouselPagerHint";
 import { ImagePlaceholder } from "@/components/ImagePlaceholder";
 
 type BreakdownItem = {
@@ -337,8 +338,9 @@ export function BudgetChart({ items }: BudgetChartProps) {
           })}
         </div>
 
-        <div className="mt-4 flex items-center justify-between gap-3">
-          <div className="flex flex-1 items-center justify-center gap-2">
+        <CarouselPagerHint className="mt-3 max-sm:mt-4 sm:hidden" />
+        <div className="mt-2 flex items-center justify-between gap-3 max-sm:mt-1.5 sm:mt-4">
+          <div className="funding-carousel-dots flex flex-1 items-center justify-center gap-2">
             {items.map((item, index) => (
               <button
                 key={`${item.label}-dot`}

@@ -541,6 +541,57 @@ body {
     border-color 0.25s ease;
 }
 
+@media (max-width: 639px) {
+  .funding-carousel-dots .funding-carousel-dot {
+    position: relative;
+    width: 9px;
+    height: 9px;
+  }
+
+  .funding-carousel-dots .funding-carousel-dot:not(.is-active) {
+    animation: carousel-dot-pulse 2.4s ease-in-out infinite;
+  }
+
+  .funding-carousel-dots .funding-carousel-dot::before {
+    content: "";
+    position: absolute;
+    inset: -10px;
+  }
+}
+
+.carousel-pager-hint {
+  animation: carousel-hint-fade 2.8s ease-in-out infinite;
+}
+
+@keyframes carousel-dot-pulse {
+  0%,
+  100% {
+    opacity: 0.45;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.12);
+  }
+}
+
+@keyframes carousel-hint-fade {
+  0%,
+  100% {
+    opacity: 0.72;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .carousel-pager-hint,
+  .funding-carousel-dots .funding-carousel-dot:not(.is-active) {
+    animation: none;
+  }
+}
+
 .funding-carousel-dot.is-active {
   width: 22px;
 }

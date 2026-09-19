@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { CarouselPagerHint } from "@/components/CarouselPagerHint";
 
 type TimelineItem = {
   date: string;
@@ -19,6 +20,7 @@ export function TimelineExpandable({ items }: TimelineExpandableProps) {
   return (
     <>
       <div className="md:hidden">
+        <CarouselPagerHint className="mb-3" />
         <div className="relative px-1">
           <div className="relative flex justify-between gap-1">
             <div
