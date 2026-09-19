@@ -30,7 +30,7 @@ export default function HomePage() {
         <div className="section-fade-top" aria-hidden />
         <div className="section-fade-bottom" aria-hidden />
 
-        <div className="relative mx-auto max-w-[1440px] px-4 pt-5 pb-10 max-sm:pt-2 md:px-12 md:pt-16 md:pb-12 lg:px-16">
+        <div className="relative mx-auto max-w-[1440px] px-4 pt-5 pb-10 max-sm:pt-2 md:px-12 md:pt-11 md:pb-12 lg:px-16 lg:pt-12">
           <div className="relative isolate max-w-[1080px] min-h-[11rem] max-sm:min-h-[12.5rem] md:min-h-[14rem]">
             <div
               className="pointer-events-none absolute inset-0 z-0 flex items-end pb-3 md:pb-4"

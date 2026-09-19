@@ -152,7 +152,7 @@ export function InnerCircle() {
       </p>
 
       <div className="inner-circle-cta mt-5 flex w-full flex-col items-center px-1 md:mt-7">
-        <p className="font-salted text-[18px] leading-none text-accent-turquoise md:text-[26px]">
+        <p className="font-salted tk-salted text-[18px] leading-none tracking-normal normal-case text-accent-turquoise md:text-[26px]">
           {innerCircle.fundraising}
         </p>
         <button
@@ -169,7 +169,7 @@ export function InnerCircle() {
             className="mx-auto block h-auto w-full aspect-[848/240]"
           />
         </button>
-        <p className="font-salted mt-7 max-w-[34rem] px-1 text-[16px] leading-snug text-white md:mt-10 md:text-[24px]">
+        <p className="font-salted tk-salted mt-7 max-w-[34rem] px-1 text-[16px] leading-snug tracking-normal normal-case text-white md:mt-10 md:text-[24px]">
           {innerCircle.merchNote}
         </p>
       </div>

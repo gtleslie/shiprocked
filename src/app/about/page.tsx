@@ -27,6 +27,11 @@ export default function AboutPage() {
           className="pointer-events-none object-cover object-center"
         />
         <div className="pointer-events-none absolute inset-0 bg-black/40" aria-hidden />
+        <div
+          className="pointer-events-none absolute inset-x-0 top-0 z-[1] h-20 bg-gradient-to-b from-black/85 via-black/40 to-transparent md:h-28"
+          aria-hidden
+        />
+        <div className="section-fade-top" aria-hidden />
         <div className="section-fade-bottom" aria-hidden />
         <div className="relative z-10 mx-auto max-w-[1440px] px-4 py-10 md:px-12 md:py-14 lg:px-16">
           <SectionLabel>{about.timeline.overline}</SectionLabel>

@@ -43,6 +43,57 @@ function ChevronRightIcon({ className = "h-4 w-4" }: { className?: string }) {
   );
 }
 
+function TimelineCarouselControls({
+  slideCount,
+  index,
+  goTo,
+  className = "",
+}: {
+  slideCount: number;
+  index: number;
+  goTo: (next: number) => void;
+  className?: string;
+}) {
+  return (
+    <div className={`flex items-center justify-between gap-3 ${className}`}>
+      <button
+        type="button"
+        aria-label="Previous photo"
+        onClick={() => goTo(index - 1)}
+        className="hero-video-btn"
+      >
+        <ChevronLeftIcon />
+      </button>
+      <div className="flex items-center gap-2.5" role="tablist" aria-label="Photo slides">
+        {Array.from({ length: slideCount }, (_, slideIndex) => {
+          const isActive = slideIndex === index;
+          return (
+            <button
+              key={slideIndex}
+              type="button"
+              role="tab"
+              aria-selected={isActive}
+              aria-label={`Show photo ${slideIndex + 1}`}
+              onClick={() => goTo(slideIndex)}
+              className={`rounded-full p-0 transition-colors ${
+                isActive ? "bg-accent-gold" : "bg-white/35"
+              } h-2.5 w-2.5 md:h-2 md:w-2`}
+            />
+          );
+        })}
+      </div>
+      <button
+        type="button"
+        aria-label="Next photo"
+        onClick={() => goTo(index + 1)}
+        className="hero-video-btn"
+      >
+        <ChevronRightIcon />
+      </button>
+    </div>
+  );
+}
+
 export function TimelinePhotoCarousel({
   slides,
 }: {
@@ -81,6 +132,12 @@ export function TimelinePhotoCarousel({
       }}
     >
       <div
+        className="absolute inset-x-0 top-0 z-10 hidden bg-gradient-to-b from-black/80 via-black/45 to-transparent px-3 pt-3 pb-10 md:block"
+      >
+        <TimelineCarouselControls slideCount={slides.length} index={index} goTo={goTo} />
+      </div>
+
+      <div
         className="absolute inset-0 touch-pan-y select-none"
         onPointerDown={(event) => {
           if ((event.target as HTMLElement).closest("button")) return;
@@ -110,44 +167,9 @@ export function TimelinePhotoCarousel({
         ))}
       </div>
 
-      <div className="absolute inset-x-0 bottom-0 z-10 bg-gradient-to-t from-black/70 to-transparent px-3 pt-8 pb-3 md:pt-10">
-        <CarouselPagerHint className="mb-2 sm:hidden" />
-        <div className="flex items-center justify-between">
-        <button
-          type="button"
-          aria-label="Previous photo"
-          onClick={() => goTo(index - 1)}
-          className="characters-carousel-nav"
-        >
-          <ChevronLeftIcon />
-        </button>
-        <div className="flex items-center gap-2.5" role="tablist" aria-label="Photo slides">
-          {slides.map((item, slideIndex) => {
-            const isActive = slideIndex === index;
-            return (
-              <button
-                key={item.image}
-                type="button"
-                role="tab"
-                aria-selected={isActive}
-                aria-label={`Show photo ${slideIndex + 1}`}
-                onClick={() => goTo(slideIndex)}
-                className={`rounded-full transition-colors md:pointer-events-none ${
-                  isActive ? "bg-accent-gold" : "bg-white/35"
-                } h-2.5 w-2.5 p-0 md:h-1.5 md:w-1.5`}
-              />
-            );
-          })}
-        </div>
-        <button
-          type="button"
-          aria-label="Next photo"
-          onClick={() => goTo(index + 1)}
-          className="characters-carousel-nav"
-        >
-          <ChevronRightIcon />
-        </button>
-        </div>
+      <div className="absolute inset-x-0 bottom-0 z-10 bg-gradient-to-t from-black/70 to-transparent px-3 pt-8 pb-3 md:hidden">
+        <CarouselPagerHint className="mb-2" />
+        <TimelineCarouselControls slideCount={slides.length} index={index} goTo={goTo} />
       </div>
 
       <p className="sr-only">
