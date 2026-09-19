@@ -36,9 +36,9 @@ export function AboutTerabytesHero() {
       const visualLeft = crewRect.left + crewRect.width * 0.14 - applied;
       const maxShift = Math.max(0, visualLeft - textRight - TEXT_GAP_PX);
 
-      const range = 220;
+      const range = 520;
       const raw = Math.min(1, Math.max(0, window.scrollY / range));
-      const progress = 1 - (1 - raw) * (1 - raw);
+      const progress = raw * raw * (3 - 2 * raw);
       const nextX = -(progress * maxShift);
 
       slide.dataset.slideX = String(nextX);
