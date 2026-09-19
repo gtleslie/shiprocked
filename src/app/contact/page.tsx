@@ -150,16 +150,30 @@ export default function ContactPage() {
           <LineRule />
         </div>
 
-        <div className="flex flex-col gap-8 lg:grid lg:grid-cols-2 lg:items-center lg:gap-16 xl:gap-24">
-          <div className="contents lg:flex lg:flex-col lg:gap-6">
-            <div className="order-1">
+        <div className="flex flex-col lg:grid lg:grid-cols-2 lg:items-center lg:gap-16 xl:gap-24">
+          <div className="flex flex-col gap-3 sm:gap-4 lg:gap-6">
+            <div>
               <SectionLabel>{contact.form.overline}</SectionLabel>
-              <h2 className="!mt-1 text-[26px] font-black text-white md:text-[32px]">
-                {contact.form.headline}
-              </h2>
+              <div className="mt-5 flex items-center justify-between gap-3 sm:mt-6 lg:mt-1 lg:block">
+                <h2 className="min-w-0 flex-1 text-[26px] leading-[1.05] font-black text-white lg:!mt-1 md:text-[32px]">
+                  {contact.form.headline}
+                </h2>
+                <div className="flex shrink-0 items-center justify-end lg:hidden">
+                  <div className="w-[min(36vw,8.75rem)] origin-center rotate-[9deg] scale-[1.02] sm:w-[10.25rem] sm:scale-[1.06]">
+                    <Image
+                      src="/assets/opening-mail.png"
+                      alt=""
+                      width={2388}
+                      height={1668}
+                      className="h-auto w-full"
+                      aria-hidden
+                    />
+                  </div>
+                </div>
+              </div>
             </div>
 
-            <form onSubmit={handleSubmit} className="order-3 space-y-4 sm:space-y-6">
+            <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
               <label className="block">
                 <span className="text-[11px] font-bold tracking-[0.44px] text-text-secondary uppercase">
                   {contact.form.name}
@@ -230,8 +244,8 @@ export default function ContactPage() {
             </form>
           </div>
 
-          <div className="order-2 flex min-h-[9rem] items-center justify-center overflow-hidden sm:min-h-[28rem] lg:min-h-full">
-            <div className="w-full max-w-[10.5rem] origin-center rotate-[9deg] scale-[0.88] shrink-0 sm:max-w-[32rem] sm:scale-[1.1] md:max-w-[40rem] md:scale-[1.14] lg:max-w-[52rem] lg:scale-[1.22]">
+          <div className="hidden min-h-[28rem] items-center justify-center overflow-hidden lg:flex lg:min-h-full">
+            <div className="w-full max-w-[32rem] origin-center rotate-[9deg] scale-[1.1] shrink-0 md:max-w-[40rem] md:scale-[1.14] lg:max-w-[52rem] lg:scale-[1.22]">
               <Image
                 src="/assets/opening-mail.png"
                 alt="Skeletal hands opening a letter"
