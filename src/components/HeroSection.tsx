@@ -36,11 +36,16 @@ export function HeroSection() {
           <Logo size="hero" />
         </div>
 
-        <div className="hero-visual relative z-10 flex w-full items-center justify-center px-4 pt-6 pb-8 md:px-10 md:py-16 lg:min-h-0 lg:flex-1 lg:basis-[58%] lg:px-12 lg:py-20">
-          <div className="pointer-events-none absolute inset-x-0 top-6 z-20 flex justify-center sm:top-8 lg:hidden">
-            <Logo size="hero" />
+        <div className="hero-visual relative z-10 flex w-full flex-col items-center px-4 pt-6 pb-8 md:px-10 md:py-16 lg:min-h-0 lg:flex-1 lg:basis-[58%] lg:px-12 lg:py-20">
+          <div className="mb-4 flex w-full shrink-0 justify-center sm:mb-5 lg:hidden">
+            <Logo
+              size="hero"
+              className="!max-w-[min(58vw,200px)] object-center sm:!max-w-[230px]"
+            />
           </div>
-          <HeroVideo videoId={home.hero.youtubeId} autoSound label="trailer" />
+          <div className="w-full min-w-0">
+            <HeroVideo videoId={home.hero.youtubeId} autoSound label="trailer" />
+          </div>
         </div>
       </div>
     </section>

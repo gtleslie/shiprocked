@@ -28,7 +28,13 @@ const variants: Record<
   },
 };
 
-export function Logo({ size = "nav" }: { size?: LogoSize }) {
+export function Logo({
+  size = "nav",
+  className = "",
+}: {
+  size?: LogoSize;
+  className?: string;
+}) {
   const variant = variants[size];
 
   return (
@@ -37,7 +43,7 @@ export function Logo({ size = "nav" }: { size?: LogoSize }) {
       alt={size === "footer" ? "Koenig Entertainment Co." : siteContent.site.title}
       width={variant.width}
       height={variant.height}
-      className={variant.className}
+      className={className ? `${variant.className} ${className}` : variant.className}
       priority={size !== "footer"}
     />
   );
