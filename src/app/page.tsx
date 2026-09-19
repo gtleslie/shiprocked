@@ -23,6 +23,10 @@ export default function HomePage() {
           className="pointer-events-none object-cover object-[center_12%]"
         />
         <div className="pointer-events-none absolute inset-0 bg-black/40" aria-hidden />
+        <div
+          className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/35"
+          aria-hidden
+        />
         <div className="section-fade-top" aria-hidden />
         <div className="section-fade-bottom" aria-hidden />
 
