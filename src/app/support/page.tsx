@@ -12,7 +12,7 @@ export default function SupportPage() {
     <PageShell activePage="support">
       <SupportCampaign />
 
-      <section className="mx-auto max-w-[1440px] px-4 pt-8 pb-16 md:px-12 md:pt-8 md:pb-20 lg:px-16">
+      <section className="mx-auto max-w-[1440px] px-4 pt-10 pb-16 md:px-12 md:pt-12 md:pb-20 lg:px-16">
         <div className="grid items-center gap-10 lg:grid-cols-[minmax(0,1.35fr)_minmax(0,0.65fr)] lg:gap-x-8 xl:gap-x-10">
           <div className="min-w-0 max-w-xl lg:max-w-none lg:pr-4 xl:pr-6">
             <SectionLabel>{support.seedAndSpark.overline}</SectionLabel>
