@@ -603,7 +603,7 @@ body {
 }
 
 .characters-carousel-card {
-  flex: 0 0 calc((100% - 1.5rem) / 2);
+  flex: 0 0 75%;
   scroll-snap-align: start;
 }
 

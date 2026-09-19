@@ -117,8 +117,8 @@ export function CharactersCarousel({
   return (
     <div className="characters-carousel">
       {header ? (
-        <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between sm:gap-6">
-          <div className="min-w-0">{header}</div>
+        <div className="flex flex-row items-center justify-between gap-3 sm:items-end sm:gap-6">
+          <div className="min-w-0 pr-1">{header}</div>
           {nav}
         </div>
       ) : (
