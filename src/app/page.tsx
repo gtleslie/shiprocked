@@ -137,7 +137,7 @@ export default function HomePage() {
           {home.campaign.headline}
         </h2>
         <p className="mt-3 flex flex-wrap items-baseline gap-x-2 gap-y-1">
-          <span className="font-overline !tracking-normal text-[18px] font-bold text-accent-turquoise uppercase">
+          <span className="font-overline !tracking-normal text-[18px] font-bold !italic text-accent-red uppercase">
             {siteContent.campaign.homeDatesSoon}
           </span>
           <span className="font-subhead text-[16px] text-text-muted">
