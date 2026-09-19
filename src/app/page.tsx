@@ -34,11 +34,18 @@ export default function HomePage() {
           <div className="relative max-w-[1080px]">
             <div className="pointer-events-none relative w-[97%] origin-left translate-x-0 scale-[0.97] mix-blend-screen select-none md:-translate-x-[24%]" aria-hidden>
               <Image
+                src={siteContent.assets.ovalShadow}
+                alt=""
+                width={350}
+                height={350}
+                className="absolute top-[86%] left-1/2 z-0 w-[100%] max-w-none -translate-x-1/2 -translate-y-1/2 scale-y-75 opacity-90"
+              />
+              <Image
                 src="/assets/ghost_cruise_ship-trim.jpeg"
                 alt=""
                 width={1896}
                 height={381}
-                className="h-auto w-full brightness-150 contrast-125"
+                className="relative z-[1] h-auto w-full brightness-150 contrast-125"
                 unoptimized
               />
             </div>
