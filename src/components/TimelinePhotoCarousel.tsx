@@ -2,8 +2,6 @@
 
 import { useCallback, useState } from "react";
 import Image from "next/image";
-import { CarouselPagerHint } from "@/components/CarouselPagerHint";
-
 type TimelineSlide = {
   image: string;
   alt: string;
@@ -168,7 +166,6 @@ export function TimelinePhotoCarousel({
       </div>
 
       <div className="absolute inset-x-0 bottom-0 z-10 bg-gradient-to-t from-black/70 to-transparent px-3 pt-8 pb-3 md:hidden">
-        <CarouselPagerHint className="mb-2" />
         <TimelineCarouselControls slideCount={slides.length} index={index} goTo={goTo} />
       </div>
 

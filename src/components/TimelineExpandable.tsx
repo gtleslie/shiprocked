@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { CarouselPagerHint } from "@/components/CarouselPagerHint";
 
 type TimelineItem = {
   date: string;
@@ -13,15 +12,60 @@ type TimelineExpandableProps = {
   items: readonly TimelineItem[];
 };
 
+function ChevronLeftIcon({ className = "h-4 w-4" }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={className}
+      aria-hidden
+    >
+      <path d="M15 18l-6-6 6-6" />
+    </svg>
+  );
+}
+
+function ChevronRightIcon({ className = "h-4 w-4" }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={className}
+      aria-hidden
+    >
+      <path d="M9 18l6-6-6-6" />
+    </svg>
+  );
+}
+
 export function TimelineExpandable({ items }: TimelineExpandableProps) {
   const [activeIndex, setActiveIndex] = useState(0);
   const active = items[activeIndex] ?? items[0];
+  const atStart = activeIndex <= 0;
+  const atEnd = activeIndex >= items.length - 1;
 
   return (
     <>
       <div className="md:hidden">
-        <CarouselPagerHint className="mb-3" />
-        <div className="relative px-1">
+        <div className="flex items-start gap-2">
+          <button
+            type="button"
+            aria-label="Previous milestone"
+            disabled={atStart}
+            onClick={() => setActiveIndex((index) => Math.max(0, index - 1))}
+            className="characters-carousel-nav mt-0.5 shrink-0"
+          >
+            <ChevronLeftIcon />
+          </button>
+          <div className="relative min-w-0 flex-1 px-0.5">
           <div className="relative flex justify-between gap-1">
             <div
               className="pointer-events-none absolute top-[11px] h-0.5 -translate-y-1/2 bg-accent-red"
@@ -60,6 +104,16 @@ export function TimelineExpandable({ items }: TimelineExpandableProps) {
               );
             })}
           </div>
+          </div>
+          <button
+            type="button"
+            aria-label="Next milestone"
+            disabled={atEnd}
+            onClick={() => setActiveIndex((index) => Math.min(items.length - 1, index + 1))}
+            className="characters-carousel-nav mt-0.5 shrink-0"
+          >
+            <ChevronRightIcon />
+          </button>
         </div>
 
         <div className="mt-6 min-h-[7.5rem]">
