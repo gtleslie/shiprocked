@@ -67,9 +67,9 @@ export function CrewFlipCard({ member }: CrewFlipCardProps) {
       className="crew-flip-card group w-full text-left"
     >
       <div className={`crew-flip-inner ${flipped ? "is-flipped" : ""}`}>
-        <div className="crew-flip-face crew-flip-front ship-card overflow-hidden">
-          <ImagePlaceholder className="h-[280px] w-full" />
-          <div className="ship-card-footer px-5 py-4">
+        <div className="crew-flip-face crew-flip-front ship-card flex h-full flex-col overflow-hidden">
+          <ImagePlaceholder className="h-[280px] w-full shrink-0" />
+          <div className="ship-card-footer mt-auto px-5 py-4">
             <h3 className="text-[16px] font-bold tracking-[0.2px] text-white">
               {member.name}
             </h3>
@@ -82,7 +82,7 @@ export function CrewFlipCard({ member }: CrewFlipCardProps) {
           <FlipBadge />
         </div>
 
-        <div className="crew-flip-face crew-flip-back ship-card overflow-hidden">
+        <div className="crew-flip-face crew-flip-back ship-card h-full overflow-hidden border-b border-border">
           <div className="flex h-full flex-col px-5 py-5">
             <p className="text-[12px] font-bold tracking-[0.44px] text-accent-gold uppercase">
               Bio

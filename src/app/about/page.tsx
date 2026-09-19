@@ -62,7 +62,7 @@ export default function AboutPage() {
             label="Meet the crew carousel"
           />
         </div>
-        <div className="relative z-10 mx-auto max-w-[1440px] px-4 pt-5 pb-8 md:px-14 md:pt-7 md:pb-12 lg:px-20 lg:pt-8 lg:pb-14">
+        <div className="relative z-10 mx-auto max-w-[1440px] px-4 pt-5 pb-5 md:px-14 md:pt-7 md:pb-8 lg:px-20 lg:pt-8 lg:pb-10">
           <CharactersCarousel
             header={
               <h2 className="text-[26px] font-black text-white md:text-[32px]">
