@@ -835,10 +835,10 @@ h2 {
   transition: left 1.8s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-@media (max-width: 767px) {
+@media (max-width: 639px) {
   .campaign-rider {
     bottom: 24px;
-    transform: translateX(-42%) translateY(1px);
+    transform: translateX(-42%) translateY(16px);
   }
 }
 
