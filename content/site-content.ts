@@ -13,7 +13,7 @@ export const siteContent = {
     skullyRide: "/assets/logos/skully-riding-cruise.png",
     innerCircleLogo: "/assets/logos/inner-circle-logo.mp4",
     innerCircleJoin: "/assets/logos/click-to-join.png",
-    seedAndSpark: "/assets/seedandsparktransparent.svg",
+    seedAndSpark: "/assets/logos/seed-and-spark.png",
     dividerVector: "/assets/divider-vector.svg",
     filmCrewSkeletons: "/assets/sr-skeletons-film-crew.png",
     skeletonDirector: "/assets/sr-skeleton-directors-chair.png",
