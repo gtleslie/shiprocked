@@ -32,18 +32,18 @@ export default function HomePage() {
 
         <div className="relative mx-auto max-w-[1440px] px-4 pt-12 pb-10 md:px-12 md:pt-20 md:pb-12 lg:px-16">
           <div className="relative max-w-[1080px]">
-            <div className="pointer-events-none relative w-full origin-left mix-blend-screen select-none md:-translate-x-[4%]" aria-hidden>
+            <div className="pointer-events-none relative aspect-[1896/381] w-[97%] origin-left translate-x-0 scale-[0.97] mix-blend-screen select-none md:-translate-x-[24%]" aria-hidden>
               <Image
                 src={siteContent.assets.cruiseShip}
                 alt=""
-                width={1920}
-                height={1080}
-                className="relative h-auto w-full brightness-125 [mask-image:radial-gradient(ellipse_78%_58%_at_54%_50%,#000_30%,transparent_72%)] [-webkit-mask-image:radial-gradient(ellipse_78%_58%_at_54%_50%,#000_30%,transparent_72%)]"
+                fill
+                sizes="(min-width: 768px) 70vw, 95vw"
+                className="object-cover object-[center_78%] brightness-150 contrast-125"
                 priority
               />
             </div>
 
-            <div className="absolute inset-0 z-10 flex flex-col justify-center pb-10 md:pb-16">
+            <div className="absolute inset-0 z-10 flex flex-col justify-end pb-3 md:pb-4">
               <SectionLabel>{home.film.overline}</SectionLabel>
               <h2 className="!mt-1 max-w-[22ch] text-[26px] leading-[1.02] font-black text-white md:text-[40px]">
                 {home.film.headline.map((line) => (
