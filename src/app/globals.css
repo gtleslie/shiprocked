@@ -56,6 +56,37 @@ body {
   );
 }
 
+.section-fade-top,
+.section-fade-bottom {
+  pointer-events: none;
+  position: absolute;
+  right: 0;
+  left: 0;
+  z-index: 1;
+}
+
+.section-fade-top {
+  top: 0;
+  height: 6.5rem;
+  background: linear-gradient(to bottom, #000000 0%, transparent 100%);
+}
+
+.section-fade-bottom {
+  bottom: 0;
+  height: 7.5rem;
+  background: linear-gradient(to top, #000000 0%, transparent 100%);
+}
+
+@media (min-width: 768px) {
+  .section-fade-top {
+    height: 8.5rem;
+  }
+
+  .section-fade-bottom {
+    height: 10rem;
+  }
+}
+
 .hero-cinematic {
   background:
     radial-gradient(ellipse 80% 60% at 80% 50%, rgba(210, 31, 31, 0.14), transparent 60%),
