@@ -37,7 +37,7 @@ export const siteContent = {
 
   campaign: {
     goal: 30000,
-    homeGoal: 25000,
+    homeGoal: 30000,
     raised: 0,
     dates: "October 14 - November 13, 2026",
     homeDatesSoon: "Coming #Soon:",
