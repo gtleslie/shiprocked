@@ -8,7 +8,7 @@ export function HeroSection() {
   const { home, assets } = siteContent;
 
   return (
-    <section className="hero-cinematic relative flex flex-col overflow-hidden lg:h-[calc(100vh-84px)]">
+    <section className="hero-cinematic relative flex flex-col overflow-hidden lg:h-[calc(100dvh-84px-6rem)]">
       <Image
         src={assets.homeBackground}
         alt=""
