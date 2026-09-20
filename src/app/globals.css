@@ -397,6 +397,28 @@ body {
   cursor: pointer;
 }
 
+@media (max-width: 639px) {
+  /* 200px photo + tight name strip; taller when a role line is present (film crew). */
+  .crew-flip-card {
+    height: calc(200px + 2.375rem);
+  }
+
+  .crew-flip-card:has(.ship-card-footer p) {
+    height: calc(200px + 3.625rem);
+  }
+
+  .crew-flip-front-card {
+    display: grid;
+    grid-template-rows: 200px max-content;
+    align-content: start;
+    height: 100%;
+  }
+
+  .crew-flip-front-card .ship-card-footer {
+    padding-bottom: 0.5rem;
+  }
+}
+
 @media (min-width: 640px) {
   .crew-flip-card {
     height: 356px;
