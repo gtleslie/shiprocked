@@ -157,6 +157,7 @@ export const siteContent = {
         {
           date: "JAN 2026",
           title: "Filming Resumes: Voyage of the Ronin filming begins",
+          mobileTitle: "Filming resumes",
           description:
             "Principal documentary footage captured aboard the first voyage.",
         },
