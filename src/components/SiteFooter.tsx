@@ -90,14 +90,14 @@ export function SiteFooter() {
                 alt="Koenig Entertainment Co."
                 width={3600}
                 height={3600}
-                className="h-[52px] w-auto shrink-0 object-contain object-left"
+                className="h-[58px] w-auto shrink-0 object-contain object-left"
               />
               <Image
                 src={siteContent.assets.ask4Logo}
                 alt="ASK4 Entertainment"
                 width={1244}
                 height={845}
-                className="h-[26px] w-auto shrink-0 object-contain brightness-0 invert"
+                className="h-[30px] w-auto shrink-0 object-contain brightness-0 invert"
               />
             </div>
             <FooterConnectLinks compact />

@@ -30,8 +30,8 @@ export default function HomePage() {
         <div className="section-fade-top" aria-hidden />
         <div className="section-fade-bottom" aria-hidden />
 
-        <div className="relative mx-auto max-w-[1440px] px-4 pt-3 pb-10 max-sm:pt-1.5 md:px-12 md:pt-8 md:pb-12 lg:px-16 lg:pt-9">
-          <div className="relative isolate max-w-[1080px] min-h-[11rem] max-sm:min-h-[12.5rem] md:min-h-[14rem]">
+        <div className="relative mx-auto max-w-[1440px] px-4 pt-3 pb-10 max-sm:pt-0 md:px-12 md:pt-8 md:pb-12 lg:px-16 lg:pt-9">
+          <div className="relative isolate max-w-[1080px] min-h-[11rem] max-sm:min-h-[10.5rem] md:min-h-[14rem]">
             <div
               className="pointer-events-none absolute inset-0 z-0 flex items-end pb-3 md:pb-4"
               aria-hidden
@@ -43,13 +43,13 @@ export default function HomePage() {
                   width={1920}
                   height={1080}
                   sizes="(min-width: 1024px) 920px, 100vw"
-                  className="block h-auto w-full translate-y-[calc(28%+13px)] object-contain object-left-bottom opacity-[0.65] brightness-150 contrast-125 mix-blend-screen [clip-path:inset(36%_0_0_0)] max-sm:translate-y-0 max-sm:scale-[1.22] max-sm:[clip-path:inset(18%_0_0_0)]"
+                  className="block h-auto w-full translate-y-[calc(28%+13px)] object-contain object-left-bottom opacity-[0.65] brightness-150 contrast-125 mix-blend-screen [clip-path:inset(36%_0_0_0)] max-sm:translate-y-1 max-sm:scale-[1.42] max-sm:[clip-path:inset(10%_0_0_0)]"
                   priority
                 />
               </div>
             </div>
 
-            <div className="relative z-10 flex min-h-[11rem] flex-col justify-end pb-3 mix-blend-normal md:min-h-[14rem] md:pb-4">
+            <div className="relative z-10 flex min-h-[11rem] flex-col justify-end pb-3 mix-blend-normal max-sm:pb-1 md:min-h-[14rem] md:pb-4">
               <SectionLabel>{home.film.overline}</SectionLabel>
               <h2 className="!mt-1 max-w-[22ch] text-[26px] leading-[1.02] font-black text-white md:text-[40px]">
                 {home.film.headline.map((line) => (
@@ -87,13 +87,13 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-[1440px] px-4 pt-6 pb-8 md:px-12 md:pt-8 md:pb-10 lg:px-16">
+      <section className="mx-auto max-w-[1440px] px-4 pt-6 pb-8 max-sm:pt-4 md:px-12 md:pt-8 md:pb-10 lg:px-16">
         <SectionLabel>{home.whyItMatters.overline}</SectionLabel>
         <h2 className="!mt-1 max-w-3xl text-[26px] font-black text-white md:text-[36px]">
           {home.whyItMatters.headline}
         </h2>
 
-        <div className="why-card-grid mt-6 grid gap-6 max-sm:mt-4 md:mt-12 md:grid-cols-3">
+        <div className="why-card-grid mt-6 grid gap-6 max-sm:mt-2 md:mt-12 md:grid-cols-3">
           {home.whyItMatters.cards.map((card) => (
             <article key={card.number} className="why-card">
               <div className="why-card-stage relative aspect-[4/3]">
@@ -142,7 +142,7 @@ export default function HomePage() {
         <h2 className="!mt-1 text-[26px] font-black text-white md:text-[36px]">
           {home.campaign.headline}
         </h2>
-        <p className="mt-3 flex flex-wrap items-baseline gap-x-2 gap-y-1 max-sm:mt-2">
+        <p className="mt-3 flex flex-wrap items-baseline gap-x-2 gap-y-1 max-sm:mt-2 max-sm:mb-4">
           <span className="font-overline !tracking-normal text-[18px] font-bold !italic text-accent-red uppercase">
             {siteContent.campaign.homeDatesSoon}
           </span>
@@ -150,7 +150,7 @@ export default function HomePage() {
             {siteContent.campaign.homeDates}
           </span>
         </p>
-        <CampaignProgress variant="home" className="mt-4 max-sm:mt-1 md:mt-8" />
+        <CampaignProgress variant="home" className="mt-4 max-sm:mt-0 md:mt-8" />
         <SiteButton href="/support" className="mt-8">
           {home.campaign.supportCta}
         </SiteButton>
