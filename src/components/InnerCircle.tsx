@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { siteContent } from "@content/site-content";
 
@@ -18,14 +18,29 @@ export function InnerCircle() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const rafRef = useRef(0);
   const lastTimeRef = useRef(-1);
-  const logoVisibleRef = useRef(false);
-  const [logoVisible, setLogoVisible] = useState(false);
+  const canvasReadyRef = useRef(false);
+  const [showVideoFallback, setShowVideoFallback] = useState(false);
 
-  const revealLogo = () => {
-    if (logoVisibleRef.current) return;
-    logoVisibleRef.current = true;
-    setLogoVisible(true);
-  };
+  useLayoutEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+    video.pause();
+    if (video.readyState >= 1 && video.currentTime < LOGO_ANIM_START_SEC) {
+      video.currentTime = LOGO_ANIM_START_SEC;
+    }
+  }, []);
+
+  useEffect(() => {
+    const preload = document.createElement("link");
+    preload.rel = "preload";
+    preload.as = "fetch";
+    preload.href = innerCircleLogo;
+    preload.crossOrigin = "anonymous";
+    document.head.appendChild(preload);
+    return () => {
+      preload.remove();
+    };
+  }, [innerCircleLogo]);
 
   useEffect(() => {
     const video = videoRef.current;
@@ -67,7 +82,7 @@ export function InnerCircle() {
       }
 
       if (video.currentTime === lastTimeRef.current) {
-        return logoVisibleRef.current;
+        return canvasReadyRef.current;
       }
 
       lastTimeRef.current = video.currentTime;
@@ -106,8 +121,10 @@ export function InnerCircle() {
       await seekToLogoStart();
       if (cancelled) return;
 
+      setShowVideoFallback(true);
       if (paintFrame() && !cancelled) {
-        revealLogo();
+        canvasReadyRef.current = true;
+        setShowVideoFallback(false);
       }
 
       try {
@@ -130,8 +147,9 @@ export function InnerCircle() {
     };
 
     const tick = () => {
-      if (paintFrame() && !cancelled) {
-        revealLogo();
+      if (paintFrame() && !cancelled && !canvasReadyRef.current) {
+        canvasReadyRef.current = true;
+        setShowVideoFallback(false);
       }
       rafRef.current = requestAnimationFrame(tick);
     };
@@ -140,7 +158,12 @@ export function InnerCircle() {
       void bootstrap();
     };
 
+    const onLoadedMetadata = () => {
+      void bootstrap();
+    };
+
     video.addEventListener("loadeddata", onLoadedData);
+    video.addEventListener("loadedmetadata", onLoadedMetadata);
     video.addEventListener("timeupdate", onTimeUpdate);
     video.addEventListener("ended", loopFromLogo);
 
@@ -154,6 +177,7 @@ export function InnerCircle() {
       cancelled = true;
       cancelAnimationFrame(rafRef.current);
       video.removeEventListener("loadeddata", onLoadedData);
+      video.removeEventListener("loadedmetadata", onLoadedMetadata);
       video.removeEventListener("timeupdate", onTimeUpdate);
       video.removeEventListener("ended", loopFromLogo);
       video.pause();
@@ -172,24 +196,24 @@ export function InnerCircle() {
       <h1 className="sr-only">{innerCircle.headline}</h1>
 
       <div className="inner-circle-logo relative w-full max-w-[780px] overflow-hidden">
+        <canvas
+          ref={canvasRef}
+          width={1666}
+          height={456}
+          className="absolute inset-0 z-[1] block h-full w-full"
+          aria-hidden
+        />
         <video
           ref={videoRef}
-          className="pointer-events-none absolute inset-0 h-full w-full opacity-0"
+          className={`pointer-events-none absolute inset-0 z-[2] h-full w-full transition-opacity duration-75 ${
+            showVideoFallback ? "opacity-100" : "opacity-0"
+          }`}
           src={videoSrc}
           muted
           playsInline
           preload="auto"
           aria-hidden
           tabIndex={-1}
-        />
-        <canvas
-          ref={canvasRef}
-          width={1666}
-          height={456}
-          className={`absolute inset-0 block h-full w-full transition-opacity duration-150 ${
-            logoVisible ? "opacity-100" : "opacity-0"
-          }`}
-          aria-hidden
         />
       </div>
 
