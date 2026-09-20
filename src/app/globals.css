@@ -766,8 +766,18 @@ h2 {
   font-family: var(--font-inter), Inter, system-ui, sans-serif;
 }
 
+@font-face {
+  font-family: "salted";
+  src: url("https://use.typekit.net/af/ebffcc/0000000000000000775c748d/31/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n4&v=3")
+    format("woff2");
+  font-display: swap;
+  font-style: normal;
+  font-weight: 400;
+}
+
 .font-salted,
-.tk-salted {
+.tk-salted,
+.inner-circle-salted {
   font-family: "salted", sans-serif;
   font-weight: 400;
   font-style: normal;

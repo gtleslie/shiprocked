@@ -149,7 +149,7 @@ export function InnerCircle() {
       </p>
 
       <div className="inner-circle-cta mt-5 flex w-full flex-col items-center px-1 md:mt-7">
-        <p className="font-salted tk-salted text-[18px] leading-none tracking-normal normal-case text-accent-turquoise md:text-[26px]">
+        <p className="inner-circle-salted font-salted tk-salted text-[18px] leading-none tracking-normal normal-case text-accent-turquoise md:text-[26px]">
           {innerCircle.fundraising}
         </p>
         <button
@@ -168,10 +168,29 @@ export function InnerCircle() {
         </button>
         <div className="font-shiprocked-neue mt-7 max-w-[34rem] px-1 md:mt-10">
           <p className="text-[17px] leading-snug text-white md:text-[27px]">
-            {innerCircle.merchNoteLead}
+            {innerCircle.merchNoteLead.includes("#soon") ? (
+              <>
+                {innerCircle.merchNoteLead.replace(/\s#soon\.?\s*$/, "").trim()}{" "}
+                <span className="inner-circle-salted font-salted tk-salted tracking-normal normal-case text-accent-turquoise">
+                  #soon
+                </span>
+                .
+              </>
+            ) : (
+              innerCircle.merchNoteLead
+            )}
           </p>
           <p className="text-[16px] leading-snug text-white md:text-[24px]">
-            {innerCircle.merchNoteDetail}
+            {innerCircle.merchNoteDetail.startsWith("Inner Circle") ? (
+              <>
+                <span className="inner-circle-salted font-salted tk-salted tracking-normal normal-case">
+                  Inner Circle
+                </span>
+                {innerCircle.merchNoteDetail.slice("Inner Circle".length)}
+              </>
+            ) : (
+              innerCircle.merchNoteDetail
+            )}
           </p>
         </div>
       </div>
