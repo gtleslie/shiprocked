@@ -65,9 +65,9 @@ export function CampaignProgress({
 
   return (
     <div ref={trackRef} className={className}>
-      <div className="relative overflow-visible pt-[72px] max-sm:pt-[46px] md:pt-[110px]">
+      <div className="relative overflow-visible pt-[72px] max-sm:pt-[58px] md:pt-[110px]">
         <div
-          className="campaign-rider pointer-events-none absolute z-[2] h-[78px] w-[104px] overflow-hidden max-sm:h-[46px] max-sm:w-[62px] md:h-[132px] md:w-[220px]"
+          className="campaign-rider pointer-events-none absolute z-[2] h-[78px] w-[104px] overflow-hidden max-sm:h-[58px] max-sm:w-[78px] md:h-[132px] md:w-[220px]"
           style={{ left: `${ride}%` }}
         >
           <Image
@@ -75,7 +75,7 @@ export function CampaignProgress({
             alt=""
             width={2388}
             height={1668}
-            className="absolute top-0 left-1/2 h-full w-full max-w-none -translate-x-1/2 object-contain object-bottom max-sm:translate-y-0 max-sm:scale-100 md:h-[154%] md:w-[132%] md:translate-y-0 md:scale-100 md:object-cover md:object-top"
+            className="absolute top-0 left-1/2 h-full w-full max-w-none -translate-x-1/2 object-contain object-bottom max-sm:translate-y-0 max-sm:scale-[1.06] md:h-[154%] md:w-[132%] md:translate-y-0 md:scale-100 md:object-cover md:object-top"
           />
         </div>
 
