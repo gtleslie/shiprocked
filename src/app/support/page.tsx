@@ -22,7 +22,7 @@ export default function SupportPage() {
                 alt="Seed & Spark"
                 width={640}
                 height={120}
-                className="h-[1.1875rem] w-auto max-w-[9.5rem] object-contain object-left"
+                className="h-[1.1875rem] w-auto max-w-[9.5rem] -translate-x-[2px] object-contain object-left"
               />
             </p>
             <div className="hidden sm:block">
