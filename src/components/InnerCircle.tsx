@@ -45,10 +45,21 @@ export function InnerCircle() {
       }
     };
 
+    const loopFromLogo = () => {
+      video.currentTime = LOGO_ANIM_START_SEC;
+      void video.play().catch(() => {});
+    };
+
     const paintFrame = () => {
       const w = video.videoWidth;
       const h = video.videoHeight;
-      if (w && h && video.readyState >= 2 && video.currentTime !== lastTimeRef.current) {
+      if (
+        w &&
+        h &&
+        video.readyState >= 2 &&
+        video.currentTime >= LOGO_ANIM_START_SEC &&
+        video.currentTime !== lastTimeRef.current
+      ) {
         lastTimeRef.current = video.currentTime;
 
         if (canvas.width !== w || canvas.height !== h) {
@@ -84,6 +95,7 @@ export function InnerCircle() {
     video.addEventListener("loadeddata", startFromLogo);
     video.addEventListener("timeupdate", onTimeUpdate);
     video.addEventListener("seeking", jumpToLogo);
+    video.addEventListener("ended", loopFromLogo);
 
     if (video.readyState >= 1) {
       startFromLogo();
@@ -97,6 +109,7 @@ export function InnerCircle() {
       video.removeEventListener("loadeddata", startFromLogo);
       video.removeEventListener("timeupdate", onTimeUpdate);
       video.removeEventListener("seeking", jumpToLogo);
+      video.removeEventListener("ended", loopFromLogo);
     };
   }, []);
 
@@ -117,7 +130,6 @@ export function InnerCircle() {
           src={innerCircleLogo}
           muted
           playsInline
-          loop
           autoPlay
           preload="auto"
           aria-hidden
