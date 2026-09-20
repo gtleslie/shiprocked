@@ -225,16 +225,10 @@ export const siteContent = {
           bio: "Silas Grasse is a Marketer and Producer from Philadelphia, PA. He specializes in creating vivid and interactive promotional campaigns for experiential creative projects. As Marketing Producer on The Story of ShipRocked, he leads the film's marketing strategy & execution, and works to bring the ShipRocked story to audiences beyond the ship.",
         },
         {
-          name: "ELLIOT CUNNINGHAM",
-          role: "POST SUPERVISOR",
-          image: "/assets/Elliot Cunningham.png",
-          bio: "Elliot Cunningham is a post-production storyteller raised in Dallas, TX, with experience across SCAD productions and professional film work. After interning at HBO this summer, Elliot joins The Story of ShipRocked as Post Supervisor, helping lead the editorial team and build an efficient, collaborative post-production workflow.",
-        },
-        {
-          name: "JACK EASTERHAUS",
-          role: "CINEMATOGRAPHY",
-          image: "/assets/Jack Easterhaus.png",
-          bio: "Jack Easterhaus is a Director-Cinematographer based out of Savannah, focusing on narrative short films and advertising. Jack is the Supervising Director of Photography for ShipRocked, helping coordinate film crews and overseeing the visual look across the sailings.",
+          name: "ARCHER MCCRACKEN",
+          role: "SOUND SUPERVISOR",
+          image: "/assets/Archer MackCracken.png",
+          bio: "Archer MacCracken is a Sound Supervisor and Recording Engineer from Washington, D.C., deeply involved in SCAD's film and production community. As head of the post-sound team on The Story of ShipRocked, Archer is shaping the sonic world of the film—from live music and crowd energy to the intimate moments in between.",
         },
         {
           name: "WILLIAM BROWN",
@@ -243,10 +237,16 @@ export const siteContent = {
           bio: "William Brown is a Sound Engineer from Nashville, TN, whose work spans SCAD's film, television, and theater productions. With sound as his specialty, William has built experience across a wide range of live and filmed productions and brings that hands-on expertise to The Story of ShipRocked.",
         },
         {
-          name: "ARCHER MCCRACKEN",
-          role: "SOUND SUPERVISOR",
-          image: "/assets/Archer MackCracken.png",
-          bio: "Archer MacCracken is a Sound Supervisor and Recording Engineer from Washington, D.C., deeply involved in SCAD's film and production community. As head of the post-sound team on The Story of ShipRocked, Archer is shaping the sonic world of the film—from live music and crowd energy to the intimate moments in between.",
+          name: "JACK EASTERHAUS",
+          role: "CINEMATOGRAPHY",
+          image: "/assets/Jack Easterhaus.png",
+          bio: "Jack Easterhaus is a Director-Cinematographer based out of Savannah, focusing on narrative short films and advertising. Jack is the Supervising Director of Photography for ShipRocked, helping coordinate film crews and overseeing the visual look across the sailings.",
+        },
+        {
+          name: "ELLIOT CUNNINGHAM",
+          role: "POST SUPERVISOR",
+          image: "/assets/Elliot Cunningham.png",
+          bio: "Elliot Cunningham is a post-production storyteller raised in Dallas, TX, with experience across SCAD productions and professional film work. After interning at HBO this summer, Elliot joins The Story of ShipRocked as Post Supervisor, helping lead the editorial team and build an efficient, collaborative post-production workflow.",
         },
         {
           name: "EMILY MOTTA",
@@ -267,7 +267,6 @@ export const siteContent = {
         },
         {
           name: "COOKIE",
-          nameSuffix: "(JONATHAN ADAMS)",
           image: "/assets/Cookie.png",
           bio: 'Jonathan "Cookie" Adams serves as the high-energy onboard personality and guest host who keeps the vacation vibe dialed up around the clock. Backed by a background in live theater, he leads fan-favorite events and deck parties to cultivate the legendary family atmosphere unique to ShipRocked.',
         },
@@ -278,6 +277,7 @@ export const siteContent = {
         },
         {
           name: "EMI GRACE",
+          image: "/assets/Emmie Grace.jpeg",
           bio: "Emi Grace is a self-taught guitar prodigy known for her heavy electronic riffs, a distinct Stratocaster shred style, and backing from rock legends like Brian May. Aboard ShipRocked, she channels that exact raw energy into high-octane solo sets and guest appearances with the cruise’s all-star band, The Stowaways.",
         },
         {

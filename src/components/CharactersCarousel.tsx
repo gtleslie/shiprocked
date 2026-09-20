@@ -121,7 +121,11 @@ export function CharactersCarousel({
 
   return (
     <div
-      className={`characters-carousel${characterPhotoFocus ? " characters-carousel--character-focus" : ""}`}
+      className={`characters-carousel${
+        characterPhotoFocus
+          ? " characters-carousel--character-focus"
+          : " characters-carousel--crew-bio"
+      }`}
     >
       {header ? (
         <div className="flex flex-row items-center justify-between gap-2 sm:items-end sm:gap-6">

@@ -253,8 +253,12 @@ export function InnerCircle() {
               innerCircle.merchNoteLead
             )}
           </p>
-          <p className="inner-circle-copy font-subhead mt-0.5 text-[15px] leading-snug whitespace-nowrap text-white max-sm:text-[12px] md:mt-1">
-            {innerCircle.merchNoteDetail}
+          <p className="inner-circle-copy font-subhead relative mt-0.5 text-[15px] leading-snug whitespace-nowrap text-white max-sm:text-[12px] md:mt-1">
+            <span
+              className="pointer-events-none absolute -inset-x-3 -inset-y-1 rounded-sm bg-black/45"
+              aria-hidden
+            />
+            <span className="relative">{innerCircle.merchNoteDetail}</span>
           </p>
         </div>
       </div>

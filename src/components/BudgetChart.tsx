@@ -312,12 +312,10 @@ export function BudgetChart({ items, leading }: BudgetChartProps) {
         }
       }}
     >
-      {leading ? <div className="funding-viz-leading mb-4 hidden sm:block">{leading}</div> : null}
-
-      <div className="funding-viz-shell mt-1 max-sm:flex max-sm:items-stretch max-sm:gap-2.5 sm:grid sm:gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:items-stretch">
-        <div className="funding-viz-copy min-w-0 flex-1 max-sm:flex max-sm:flex-col">
-        {leading ? <div className="funding-viz-leading mb-3 shrink-0 sm:hidden">{leading}</div> : null}
-        <div className="funding-carousel min-w-0 lg:order-1">
+      <div className="funding-viz-shell mt-1 max-sm:flex max-sm:items-stretch max-sm:gap-2.5 sm:grid sm:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] sm:items-stretch sm:gap-8">
+        <div className="funding-viz-copy flex min-w-0 flex-1 flex-col max-sm:max-w-none sm:min-h-0">
+        {leading ? <div className="funding-viz-leading mb-3 shrink-0">{leading}</div> : null}
+        <div className="funding-carousel flex min-h-0 min-w-0 flex-1 flex-col lg:order-1">
 
         <div
           ref={trackRef}
@@ -418,7 +416,7 @@ export function BudgetChart({ items, leading }: BudgetChartProps) {
         </div>
         </div>
 
-        <div className="budget-chart flex w-full shrink-0 justify-center max-sm:w-[min(46vw,11.75rem)] max-sm:items-start max-sm:self-stretch max-sm:pb-0 lg:order-2 lg:justify-end">
+        <div className="budget-chart flex w-full shrink-0 justify-center max-sm:w-[min(52vw,13rem)] max-sm:items-stretch max-sm:self-stretch max-sm:pb-0 sm:h-full sm:min-h-0 sm:items-stretch sm:justify-end lg:order-2">
         <svg
           viewBox={`0 0 ${width} ${height}`}
           className="h-auto w-full drop-shadow-[0_0_28px_rgba(210,31,31,0.14)]"
