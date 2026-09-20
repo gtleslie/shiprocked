@@ -347,9 +347,9 @@ export const siteContent = {
       ],
       fundraising: "Free Entry Until October 14th",
       cta: "Join the Inner Circle",
-      merchNoteLead: "FILM MERCHANDISE ITEMS previews coming #soon.",
+      merchNoteLead: "FILM MERCHANDISE previews coming #soon.",
       merchNoteDetail:
-        "Inner Circle members get first-looks and help design the items.",
+        "Inner Circle members get first-looks and help design.",
     },
     tiers: {
       overline: "COME ABOARD",
