@@ -87,6 +87,20 @@ body {
   .about-section-fade-bottom {
     height: 2.75rem;
   }
+
+  /* Home film cruise ship — vw/clamp so position matches across phone widths. */
+  .home-film-cruise-ship {
+    transform: translate3d(
+      calc(-1 * clamp(2rem, 13.5vw, 3.625rem)),
+      clamp(2.5rem, 11.25vw, 3.125rem),
+      0
+    );
+  }
+
+  .home-film-cruise-ship__img {
+    transform: scale(1.44);
+    transform-origin: left bottom;
+  }
 }
 
 @media (min-width: 768px) {

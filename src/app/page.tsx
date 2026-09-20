@@ -36,14 +36,14 @@ export default function HomePage() {
               className="pointer-events-none absolute inset-0 z-0 flex items-end pb-3 md:pb-4"
               aria-hidden
             >
-              <div className="-ml-6 w-[calc(100%+3rem)] max-w-[min(1280px,98vw)] origin-left select-none -translate-x-[calc(3%+20px)] max-sm:-ml-[max(1rem,calc(50%-50vw))] max-sm:w-[100vw] max-sm:max-w-[100vw] max-sm:-translate-x-[58px] max-sm:translate-y-[44px] md:-ml-12 md:w-[calc(100%+5rem)] md:-translate-x-[calc(16%+20px)] lg:-ml-14 lg:w-[calc(100%+6rem)] lg:-translate-x-[calc(18%+20px)]">
+              <div className="home-film-cruise-ship -ml-6 w-[calc(100%+3rem)] max-w-[min(1280px,98vw)] origin-left select-none -translate-x-[calc(3%+20px)] max-sm:-ml-[max(1rem,calc(50%-50vw))] max-sm:w-[100vw] max-sm:max-w-[100vw] md:-ml-12 md:w-[calc(100%+5rem)] md:-translate-x-[calc(16%+20px)] lg:-ml-14 lg:w-[calc(100%+6rem)] lg:-translate-x-[calc(18%+20px)]">
                 <Image
                   src={siteContent.assets.cruiseShip}
                   alt=""
                   width={1920}
                   height={1080}
                   sizes="(min-width: 1024px) 920px, 100vw"
-                  className="block h-auto w-full translate-y-[calc(28%+13px)] object-contain object-left-bottom opacity-[0.65] brightness-150 contrast-125 mix-blend-screen [clip-path:inset(36%_0_0_0)] max-sm:-translate-y-3 max-sm:scale-[1.44] max-sm:[clip-path:inset(4%_0_0_0)]"
+                  className="home-film-cruise-ship__img block h-auto w-full translate-y-[calc(28%+13px)] object-contain object-left-bottom opacity-[0.65] brightness-150 contrast-125 mix-blend-screen [clip-path:inset(36%_0_0_0)] max-sm:translate-y-0 max-sm:[clip-path:inset(4%_0_0_0)]"
                   priority
                 />
               </div>
