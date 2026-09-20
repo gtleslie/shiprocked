@@ -88,13 +88,13 @@ body {
     height: 2.75rem;
   }
 
-  /* Home film cruise ship — vw/clamp so position matches across phone widths. */
-  .home-film-cruise-ship {
-    transform: translate3d(
-      calc(-1 * clamp(2rem, 13.5vw, 3.625rem)),
-      clamp(2.5rem, 11.25vw, 3.125rem),
-      0
-    );
+  /* Home film cruise ship — anchored to headline baseline, behind copy. */
+  .home-film-headline-anchor {
+    isolation: isolate;
+  }
+
+  .home-film-cruise-ship-frame {
+    transform: translate3d(calc(-1 * clamp(2rem, 13.5vw, 3.625rem)), 0, 0);
   }
 
   .home-film-cruise-ship__img {
