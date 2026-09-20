@@ -80,9 +80,8 @@ export default function AboutPage() {
           <CharactersCarousel
             header={
               <>
-                <h2 className="text-[26px] leading-[1.02] font-black text-white sm:hidden">
-                  <span className="block">Meet the</span>
-                  <span className="block">Characters</span>
+                <h2 className="text-[22px] leading-tight font-black text-white sm:hidden">
+                  {about.meetCharacters.headline}
                 </h2>
                 <h2 className="hidden text-[26px] font-black text-white sm:block md:text-[32px]">
                   {about.meetCharacters.headline}
@@ -97,13 +96,17 @@ export default function AboutPage() {
       </section>
 
       <section className="mx-auto max-w-[1440px] px-4 pt-6 pb-10 md:px-12 md:pt-8 md:pb-12 lg:px-16">
-        <SectionLabel>{about.transparency.overline}</SectionLabel>
-        <h2 className="!mt-1 text-[26px] font-black text-white md:text-[32px]">
-          {about.transparency.headline}
-        </h2>
-        <div className="!mt-1">
-          <BudgetChart items={about.transparency.breakdown} />
-        </div>
+        <BudgetChart
+          leading={
+            <>
+              <SectionLabel>{about.transparency.overline}</SectionLabel>
+              <h2 className="!mt-1 text-[26px] font-black text-white md:text-[32px]">
+                {about.transparency.headline}
+              </h2>
+            </>
+          }
+          items={about.transparency.breakdown}
+        />
       </section>
     </PageShell>
   );

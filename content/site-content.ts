@@ -265,8 +265,13 @@ export const siteContent = {
           image: "/assets/Alan Koenig.png",
           bio: "(bio)",
         },
-        { name: "COOKIE", image: "/assets/Cookie.png", bio: "(bio)" },
-        { name: "GANG!", bio: "(bio)" },
+        {
+          name: "COOKIE",
+          nameSuffix: "(Jonathan Adams)",
+          image: "/assets/Cookie.png",
+          bio: "(bio)",
+        },
+        { name: "GANG!", image: "/assets/Gang.png", bio: "(bio)" },
         { name: "EMI GRACE", bio: "(bio)" },
         {
           name: "JENNIFER ZITO",
@@ -283,7 +288,11 @@ export const siteContent = {
           image: "/assets/The Swedes.png",
           bio: "(bio)",
         },
-        { name: "THE SHIPROCKED FAMILY", bio: "(bio)" },
+        {
+          name: "THE SHIPROCKED FAMILY",
+          image: "/assets/The ShipRocked Family.png",
+          bio: "(bio)",
+        },
       ],
     },
     transparency: {

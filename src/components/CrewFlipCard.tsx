@@ -6,6 +6,7 @@ import { ImagePlaceholder } from "@/components/ImagePlaceholder";
 
 type CrewMember = {
   name: string;
+  nameSuffix?: string;
   role?: string;
   bio: string;
   image?: string;
@@ -87,6 +88,9 @@ export function CrewFlipCard({ member }: CrewFlipCardProps) {
             <div className="ship-card-footer shrink-0 px-5 pt-2.5 pb-2 sm:mt-auto sm:py-4">
             <h3 className="text-[16px] font-bold tracking-[0.2px] text-white">
               {member.name}
+              {member.nameSuffix ? (
+                <span className="font-semibold text-white/80"> {member.nameSuffix}</span>
+              ) : null}
             </h3>
             {member.role && (
               <p className="mt-1 text-[11px] font-bold tracking-[0.44px] text-accent-red uppercase">
@@ -106,6 +110,9 @@ export function CrewFlipCard({ member }: CrewFlipCardProps) {
               </p>
               <h3 className="mt-2 text-[17px] font-bold tracking-[0.2px] text-white md:mt-1.5 md:text-[16px]">
                 {member.name}
+                {member.nameSuffix ? (
+                  <span className="font-semibold text-white/80"> {member.nameSuffix}</span>
+                ) : null}
               </h3>
               {member.role && (
                 <p className="mt-0.5 text-[12px] font-bold tracking-[0.44px] text-accent-red uppercase md:text-[11px]">

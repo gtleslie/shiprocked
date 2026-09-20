@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 import { ImagePlaceholder } from "@/components/ImagePlaceholder";
 
 type BreakdownItem = {
@@ -11,6 +11,7 @@ type BreakdownItem = {
 
 type BudgetChartProps = {
   items: readonly BreakdownItem[];
+  leading?: ReactNode;
 };
 
 const SLICE_COLORS = [
@@ -104,7 +105,7 @@ function ChevronRightIcon({ className = "h-4 w-4" }: { className?: string }) {
 
 const AUTO_ADVANCE_MS = 5000;
 
-export function BudgetChart({ items }: BudgetChartProps) {
+export function BudgetChart({ items, leading }: BudgetChartProps) {
   const [activeIndex, setActiveIndex] = useState(0);
   const [paused, setPaused] = useState(false);
   const [compactChart, setCompactChart] = useState(false);
@@ -309,8 +310,12 @@ export function BudgetChart({ items }: BudgetChartProps) {
         }
       }}
     >
-      <div className="mt-1 grid gap-5 sm:gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:items-stretch lg:gap-8">
-        <div className="funding-carousel min-w-0 max-sm:order-2 lg:order-1">
+      {leading ? <div className="funding-viz-leading mb-4 hidden sm:block">{leading}</div> : null}
+
+      <div className="funding-viz-shell mt-1 max-sm:flex max-sm:items-stretch max-sm:gap-2.5 sm:grid sm:gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:items-stretch">
+        <div className="funding-viz-copy min-w-0 flex-1 max-sm:flex max-sm:flex-col">
+        {leading ? <div className="funding-viz-leading mb-3 shrink-0 sm:hidden">{leading}</div> : null}
+        <div className="funding-carousel min-w-0 lg:order-1">
 
         <div
           ref={trackRef}
@@ -399,8 +404,9 @@ export function BudgetChart({ items }: BudgetChartProps) {
           </div>
         </div>
         </div>
+        </div>
 
-        <div className="budget-chart flex w-full justify-center max-sm:order-1 max-sm:pb-2 lg:order-2 lg:justify-end">
+        <div className="budget-chart flex w-full shrink-0 justify-center max-sm:w-[min(46vw,11.75rem)] max-sm:items-start max-sm:self-stretch max-sm:pb-0 lg:order-2 lg:justify-end">
         <svg
           viewBox={`0 0 ${width} ${height}`}
           className="h-auto w-full drop-shadow-[0_0_28px_rgba(210,31,31,0.14)]"

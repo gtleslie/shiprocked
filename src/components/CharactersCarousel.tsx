@@ -5,6 +5,7 @@ import { CrewFlipCard } from "@/components/CrewFlipCard";
 
 type CharacterSubject = {
   name: string;
+  nameSuffix?: string;
   role?: string;
   bio: string;
   image?: string;
@@ -123,8 +124,8 @@ export function CharactersCarousel({
       className={`characters-carousel${characterPhotoFocus ? " characters-carousel--character-focus" : ""}`}
     >
       {header ? (
-        <div className="flex flex-row items-center justify-between gap-3 sm:items-end sm:gap-6">
-          <div className="min-w-0 pr-1">{header}</div>
+        <div className="flex flex-row items-center justify-between gap-2 sm:items-end sm:gap-6">
+          <div className="min-w-0 flex-1 pr-0.5">{header}</div>
           {nav}
         </div>
       ) : (
@@ -133,7 +134,7 @@ export function CharactersCarousel({
 
       <div
         ref={trackRef}
-        className={`characters-carousel-track${header ? " mt-6 sm:mt-8" : ""}`}
+        className={`characters-carousel-track${header ? " mt-4 sm:mt-8" : ""}`}
         role="region"
         aria-label={label}
         tabIndex={0}

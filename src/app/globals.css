@@ -635,10 +635,23 @@ body {
 }
 
 @media (max-width: 639px) {
-  .budget-chart svg {
+  .funding-viz-shell .budget-chart {
+    display: flex;
+    min-height: 0;
+    align-items: flex-start;
+    justify-content: center;
+  }
+
+  .funding-viz-shell .budget-chart svg {
     width: 100%;
-    max-width: 20rem;
+    height: 100%;
+    max-width: none;
+    max-height: none;
     margin-left: 0;
+  }
+
+  .characters-carousel--character-focus .characters-carousel-card {
+    flex-basis: 78%;
   }
 }
 
