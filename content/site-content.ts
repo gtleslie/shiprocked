@@ -303,7 +303,7 @@ export const siteContent = {
       ],
     },
     transparency: {
-      overline: "FUNDING GOALS",
+      overline: "CAMPAIGN FUNDING GOALS",
       headline: "Budget Breakdown.",
       breakdown: [
         {
