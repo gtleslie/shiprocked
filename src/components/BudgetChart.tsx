@@ -317,7 +317,7 @@ export function BudgetChart({ items, leading }: BudgetChartProps) {
           <div className="funding-viz-leading shrink-0 sm:col-start-1 sm:row-start-1">{leading}</div>
         ) : null}
 
-        <div className="budget-chart flex w-full justify-center max-sm:mx-auto max-sm:max-w-[min(17.5rem,92vw)] sm:col-start-2 sm:row-start-1 sm:row-span-2 sm:h-full sm:min-h-0 sm:min-w-0 sm:flex-1 sm:shrink-0 sm:self-stretch">
+        <div className="budget-chart flex w-full justify-center max-sm:mx-auto max-sm:max-w-[min(21rem,96vw)] sm:col-start-2 sm:row-start-1 sm:row-span-2 sm:h-full sm:min-h-0 sm:min-w-0 sm:flex-1 sm:shrink-0 sm:self-stretch">
         <svg
           viewBox={`0 0 ${width} ${height}`}
           preserveAspectRatio="xMidYMid meet"
