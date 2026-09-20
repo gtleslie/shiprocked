@@ -220,11 +220,11 @@ export function InnerCircle() {
       <p className="inner-circle-copy font-subhead mt-5 max-w-[560px] text-[15px] leading-relaxed text-white">
         {innerCircle.perks.join("  ·  ")}
       </p>
-      <p className="inner-circle-copy font-subhead mt-3 max-w-[560px] text-[15px] leading-relaxed whitespace-nowrap text-white max-sm:text-[13px]">
-        {innerCircle.fundraising}
-      </p>
 
       <div className="inner-circle-cta mt-5 flex w-full flex-col items-center px-1 md:mt-7">
+        <p className="inner-circle-salted font-salted tk-salted text-[18px] leading-none tracking-normal normal-case text-accent-turquoise md:text-[26px]">
+          {innerCircle.fundraising}
+        </p>
         <button
           type="button"
           onClick={handleJoin}
@@ -253,17 +253,8 @@ export function InnerCircle() {
               innerCircle.merchNoteLead
             )}
           </p>
-          <p className="text-[16px] leading-snug text-white md:text-[24px]">
-            {innerCircle.merchNoteDetail.startsWith("Inner Circle") ? (
-              <>
-                <span className="inner-circle-salted font-salted tk-salted tracking-normal normal-case">
-                  Inner Circle
-                </span>
-                {innerCircle.merchNoteDetail.slice("Inner Circle".length)}
-              </>
-            ) : (
-              innerCircle.merchNoteDetail
-            )}
+          <p className="inner-circle-copy font-subhead mt-3 text-[15px] leading-relaxed whitespace-nowrap text-white max-sm:text-[12px] md:mt-4">
+            {innerCircle.merchNoteDetail}
           </p>
         </div>
       </div>
