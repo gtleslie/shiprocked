@@ -154,21 +154,19 @@ export default function ContactPage() {
           <div className="flex flex-col gap-3 sm:gap-4 lg:gap-6">
             <div>
               <SectionLabel>{contact.form.overline}</SectionLabel>
-              <div className="mt-2 flex items-start justify-between gap-2 sm:mt-6 sm:items-center sm:gap-3 lg:mt-1 lg:block">
-                <h2 className="min-w-0 flex-1 text-[26px] leading-[1.05] font-black text-white lg:!mt-1 md:text-[32px]">
+              <div className="relative mt-2 sm:mt-6 lg:mt-1">
+                <h2 className="min-w-0 pr-[calc(min(44vw,10rem)+0.35rem)] text-[26px] leading-[1.05] font-black text-white sm:pr-[11rem] lg:!mt-1 lg:pr-0 md:text-[32px]">
                   {contact.form.headline}
                 </h2>
-                <div className="flex shrink-0 items-start justify-end lg:hidden">
-                  <div className="w-[min(44vw,10rem)] origin-center rotate-[9deg] scale-[1.08] sm:w-[10.25rem] sm:scale-[1.06]">
-                    <Image
-                      src="/assets/opening-mail.png"
-                      alt=""
-                      width={2388}
-                      height={1668}
-                      className="h-auto w-full"
-                      aria-hidden
-                    />
-                  </div>
+                <div className="pointer-events-none absolute top-0 right-0 w-[min(44vw,10rem)] origin-center rotate-[9deg] scale-[1.08] sm:w-[10.25rem] sm:scale-[1.06] lg:hidden">
+                  <Image
+                    src="/assets/opening-mail.png"
+                    alt=""
+                    width={2388}
+                    height={1668}
+                    className="h-auto w-full"
+                    aria-hidden
+                  />
                 </div>
               </div>
             </div>
