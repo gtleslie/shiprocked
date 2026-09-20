@@ -40,7 +40,7 @@ export function HeroSection() {
           <div className="mb-4 flex w-full shrink-0 justify-center max-sm:-translate-x-[3px] max-sm:translate-y-0.5 sm:mb-5 sm:translate-x-0 sm:translate-y-0 lg:hidden">
             <Logo
               size="hero"
-              className="mx-auto !max-w-[min(74vw,252px)] object-center sm:!max-w-[230px]"
+              className="mx-auto !max-w-[min(78vw,268px)] object-center sm:!max-w-[230px]"
             />
           </div>
           <div className="w-full min-w-0">
