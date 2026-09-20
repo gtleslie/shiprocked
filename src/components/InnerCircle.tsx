@@ -169,9 +169,14 @@ export function InnerCircle() {
             className="mx-auto block h-auto w-full aspect-[848/240]"
           />
         </button>
-        <p className="font-salted tk-salted mt-7 max-w-[34rem] px-1 text-[16px] leading-snug tracking-normal normal-case text-white md:mt-10 md:text-[24px]">
-          {innerCircle.merchNote}
-        </p>
+        <div className="font-shiprocked-neue mt-7 max-w-[34rem] px-1 md:mt-10">
+          <p className="text-[17px] leading-snug text-white md:text-[27px]">
+            {innerCircle.merchNoteLead}
+          </p>
+          <p className="text-[16px] leading-snug text-white md:text-[24px]">
+            {innerCircle.merchNoteDetail}
+          </p>
+        </div>
       </div>
     </div>
   );

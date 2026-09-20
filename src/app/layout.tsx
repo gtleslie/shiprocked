@@ -19,6 +19,23 @@ const industryBold = localFont({
   display: "swap",
 });
 
+const shiprockedNeue = localFont({
+  src: [
+    {
+      path: "../fonts/ShiprockedNeue-Regular.otf",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "../fonts/ShiprockedNeue-Regular.ttf",
+      weight: "400",
+      style: "normal",
+    },
+  ],
+  variable: "--font-shiprocked-neue",
+  display: "swap",
+});
+
 export const metadata: Metadata = {
   metadataBase: new URL("https://shiprocked.vercel.app"),
   title: siteContent.site.title,
@@ -42,7 +59,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${industryBold.variable}`}>
+    <html
+      lang="en"
+      className={`${inter.variable} ${industryBold.variable} ${shiprockedNeue.variable}`}
+    >
       <head>
         <link rel="preconnect" href="https://use.typekit.net" crossOrigin="anonymous" />
         <link rel="preconnect" href="https://p.typekit.net" crossOrigin="anonymous" />

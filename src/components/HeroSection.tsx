@@ -36,7 +36,7 @@ export function HeroSection() {
           <Logo size="hero" />
         </div>
 
-        <div className="hero-visual relative z-10 flex w-full flex-col items-center px-4 pt-6 pb-8 max-sm:pb-5 md:px-10 md:py-16 lg:min-h-0 lg:flex-1 lg:basis-[58%] lg:px-12 lg:py-20">
+        <div className="hero-visual relative z-10 flex w-full flex-col items-center px-4 pt-6 pb-6 max-sm:pb-5 md:px-10 md:pt-16 md:pb-10 lg:min-h-0 lg:flex-1 lg:basis-[58%] lg:px-12 lg:pt-20 lg:pb-12">
           <div className="mb-4 flex w-full shrink-0 justify-center sm:mb-5 lg:hidden">
             <Logo
               size="hero"
