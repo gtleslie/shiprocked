@@ -345,7 +345,7 @@ export const siteContent = {
         "Fun games + rewards",
         "Exclusive ShipRocked content",
       ],
-      fundraising: "Free Entry Until October 14th",
+      fundraising: "Inner Circle members get free entry until October 14th",
       cta: "Join the Inner Circle",
       merchNoteLead: "FILM MERCHANDISE ITEMS previews coming #soon.",
       merchNoteDetail:

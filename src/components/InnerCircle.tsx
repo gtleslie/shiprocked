@@ -217,14 +217,14 @@ export function InnerCircle() {
         />
       </div>
 
-      <p className="inner-circle-copy font-subhead mt-5 max-w-[460px] text-[15px] leading-relaxed text-white">
+      <p className="inner-circle-copy font-subhead mt-5 max-w-[560px] text-[15px] leading-relaxed text-white">
         {innerCircle.perks.join("  ·  ")}
+      </p>
+      <p className="inner-circle-copy font-subhead mt-3 max-w-[560px] text-[15px] leading-relaxed whitespace-nowrap text-white max-sm:text-[13px]">
+        {innerCircle.fundraising}
       </p>
 
       <div className="inner-circle-cta mt-5 flex w-full flex-col items-center px-1 md:mt-7">
-        <p className="inner-circle-salted font-salted tk-salted text-[18px] leading-none tracking-normal normal-case text-accent-turquoise md:text-[26px]">
-          {innerCircle.fundraising}
-        </p>
         <button
           type="button"
           onClick={handleJoin}
