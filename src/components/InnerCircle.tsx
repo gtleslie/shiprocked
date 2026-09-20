@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
-import Image from "next/image";
 import { siteContent } from "@content/site-content";
 
 /** Skip intro text; start when the central logo begins animating in. */
@@ -11,7 +10,7 @@ const BLACK_LUMA_CUTOFF = 28;
 
 export function InnerCircle() {
   const { innerCircle } = siteContent.support;
-  const { innerCircleLogo, innerCircleJoin } = siteContent.assets;
+  const { innerCircleLogo } = siteContent.assets;
   const groupHref = siteContent.links.innerCircle;
   const hasGroupLink = groupHref.startsWith("http");
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -228,18 +227,17 @@ export function InnerCircle() {
         <button
           type="button"
           onClick={handleJoin}
-          className="mx-auto mt-4 block w-full max-w-[320px] min-w-0 transition-transform duration-200 hover:scale-[1.03] active:scale-[0.99] md:mt-5 md:max-w-[380px]"
+          aria-label={innerCircle.cta}
+          className="mx-auto mt-4 box-border flex h-12 w-full max-w-[320px] min-w-0 items-center justify-center border border-white text-[12px] font-bold tracking-[0.36px] uppercase text-accent-turquoise transition-colors hover:border-accent-turquoise hover:bg-white/5 md:mt-5 md:h-[52px] md:max-w-[380px] md:text-[13px]"
         >
-          <Image
-            src={innerCircleJoin}
-            alt={innerCircle.cta}
-            width={848}
-            height={240}
-            priority
-            className="mx-auto block h-auto w-full aspect-[848/240]"
-          />
+          <span className="inline-flex items-baseline justify-center gap-2.5 md:gap-3">
+            <span>JOIN THE</span>
+            <span className="font-salted text-[13px] leading-none tracking-normal normal-case md:text-[15px]">
+              Inner Circle
+            </span>
+          </span>
         </button>
-        <div className="font-shiprocked-neue mt-4 max-w-[34rem] px-1 md:mt-5">
+        <div className="font-shiprocked-neue mt-2.5 max-w-[34rem] px-1 md:mt-3">
           <p className="text-[17px] leading-tight whitespace-nowrap uppercase text-white max-sm:text-[13px] sm:text-[15px] md:text-[27px]">
             {innerCircle.merchNoteLead.includes("#soon") ? (
               <>
