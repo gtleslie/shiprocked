@@ -637,53 +637,30 @@ body {
 }
 
 @media (max-width: 639px) {
-  .funding-viz-shell .budget-chart {
-    display: flex;
-    min-height: 0;
-    align-items: stretch;
-    justify-content: center;
-  }
-
-  .funding-viz-shell .budget-chart svg {
-    width: 100%;
-    height: 100%;
-    max-width: none;
-    max-height: none;
-    margin-left: 0;
-  }
-
   .characters-carousel--character-focus .characters-carousel-card {
     flex-basis: 78%;
   }
 }
 
-@media (min-width: 640px) and (max-width: 1023px) {
-  .budget-chart svg {
-    width: 108%;
-    max-width: none;
-    margin-left: -4%;
-  }
+.funding-viz-shell {
+  align-items: stretch;
 }
 
-@media (min-width: 640px) {
-  /* Size the pie to the full left column (headline through carousel controls). */
-  .funding-viz-shell {
-    align-items: stretch;
-  }
+.funding-viz-copy {
+  min-height: 0;
+}
 
-  .budget-chart {
-    height: 100%;
-    min-height: 0;
-    align-items: stretch;
-    justify-content: flex-end;
-  }
+.budget-chart {
+  display: flex;
+  min-height: 0;
+  align-items: stretch;
+  align-self: stretch;
+  justify-content: center;
+}
 
-  .budget-chart svg {
-    height: 100%;
-    width: auto;
-    max-height: 100%;
-    max-width: 100%;
-  }
+.funding-pie-svg {
+  flex: 1 1 auto;
+  min-height: 0;
 }
 
 /* Meet the Characters — focal crop only; card size unchanged. */
