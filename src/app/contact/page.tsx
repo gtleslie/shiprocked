@@ -277,7 +277,7 @@ export default function ContactPage() {
                 }`}
               >
                 {button.variant === "turquoise" ? (
-                  <span className="inline-flex items-baseline justify-center gap-2.5">
+                  <span className="inline-flex items-baseline justify-center gap-0.5">
                     <span>JOIN THE</span>
                     <span className="font-salted text-[12px] leading-none tracking-normal normal-case">
                       Inner Circle

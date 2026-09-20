@@ -89,7 +89,10 @@ export function CrewFlipCard({ member }: CrewFlipCardProps) {
             <h3 className="text-[16px] font-bold tracking-[0.2px] text-white">
               {member.name}
               {member.nameSuffix ? (
-                <span className="font-semibold text-white/80"> {member.nameSuffix}</span>
+                <span className="text-[13px] font-semibold italic uppercase tracking-[0.2px] text-white/80 sm:text-[14px]">
+                  {" "}
+                  {member.nameSuffix}
+                </span>
               ) : null}
             </h3>
             {member.role && (
@@ -111,7 +114,10 @@ export function CrewFlipCard({ member }: CrewFlipCardProps) {
               <h3 className="mt-2 text-[17px] font-bold tracking-[0.2px] text-white md:mt-1.5 md:text-[16px]">
                 {member.name}
                 {member.nameSuffix ? (
-                  <span className="font-semibold text-white/80"> {member.nameSuffix}</span>
+                  <span className="text-[13px] font-semibold italic uppercase tracking-[0.2px] text-white/80 sm:text-[14px]">
+                    {" "}
+                    {member.nameSuffix}
+                  </span>
                 ) : null}
               </h3>
               {member.role && (

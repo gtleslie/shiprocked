@@ -1,12 +1,14 @@
 "use client";
 
 import { useEffect, useRef, useState, type ReactNode } from "react";
+import Image from "next/image";
 import { ImagePlaceholder } from "@/components/ImagePlaceholder";
 
 type BreakdownItem = {
   label: string;
   percent: number;
   description: string;
+  image?: string;
 };
 
 type BudgetChartProps = {
@@ -334,7 +336,17 @@ export function BudgetChart({ items, leading }: BudgetChartProps) {
                 onClick={() => goTo(index)}
               >
                 <div className="relative hidden sm:block">
-                  <ImagePlaceholder className="h-[220px] w-full md:h-[260px]" />
+                  {item.image ? (
+                    <Image
+                      src={item.image}
+                      alt=""
+                      width={680}
+                      height={520}
+                      className="h-[220px] w-full object-cover md:h-[260px]"
+                    />
+                  ) : (
+                    <ImagePlaceholder className="h-[220px] w-full md:h-[260px]" />
+                  )}
                   <div
                     className="pointer-events-none absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-black via-black/70 to-transparent"
                     aria-hidden

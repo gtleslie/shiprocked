@@ -267,7 +267,7 @@ export const siteContent = {
         },
         {
           name: "COOKIE",
-          nameSuffix: "(Jonathan Adams)",
+          nameSuffix: "(JONATHAN ADAMS)",
           image: "/assets/Cookie.png",
           bio: "(bio)",
         },
@@ -302,30 +302,35 @@ export const siteContent = {
         {
           label: "Post-production & editing",
           percent: 40,
+          image: "/assets/post production.png",
           description:
             "Cutting hours of voyage footage into a finished documentary — editors, assembly, and picture lock.",
         },
         {
           label: "Festival submission fees",
           percent: 20,
+          image: "/assets/festival.png",
           description:
             "Entry fees and materials to get the film in front of festival programmers and audiences.",
         },
         {
           label: "Sound design & color grade",
           percent: 20,
+          image: "/assets/sound design.png",
           description:
             "Mixing the roar of the sea and grading every frame so the voyage feels cinematic.",
         },
         {
           label: "Travel & final voyage capture",
           percent: 15,
+          image: "/assets/travel.png",
           description:
             "Getting the crew back on board for the last critical shoots and pickup interviews.",
         },
         {
           label: "Distribution & marketing",
           percent: 5,
+          image: "/assets/3 (1).png",
           description:
             "Trailers, press kits, and the outreach that helps the story find its audience.",
         },
@@ -358,7 +363,7 @@ export const siteContent = {
       cta: "Join the Inner Circle",
       merchNoteLead: "FILM MERCHANDISE previews coming #soon.",
       merchNoteDetail:
-        "Inner Circle members get first-looks and help design.",
+        "Inner Circle members get first-looks and help design the items.",
     },
     tiers: {
       overline: "COME ABOARD",
