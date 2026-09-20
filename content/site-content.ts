@@ -95,7 +95,7 @@ export const siteContent = {
       testimonialsYoutubeId: "IPbCpdFxE0k",
       paragraphs: [
         "For sixteen years, ShipRocked has been building something bigger than a music festival: a family. Four thousand people come together for one week in the Caribbean, but the friendships, traditions, and stories continue long after the ship docks.",
-        "The Story of ShipRocked follows the people who make that family possible — from ASK4 Entertainment navigating impossible problems more than a year before sailing, to artists becoming part of the community, to fans whose ShipRocked relationships have carried into weddings, funerals, road trips, and everyday life.",
+        "The Story of ShipRocked follows the people who make that family possible - from ASK4 Entertainment navigating impossible problems more than a year before sailing, to artists becoming part of the community, to fans whose ShipRocked relationships have carried into weddings, funerals, road trips, and everyday life.",
         "Through pandemics, near-disasters, changing music, and the beautiful chaos of life onboard, the film explores what happens when thousands of people find a place where they can truly belong.",
       ],
       readMore: "READ MORE →",
@@ -216,7 +216,7 @@ export const siteContent = {
           name: "MATT DAVIS",
           role: "FILM PRODUCER",
           image: "/assets/Matt Davis.png",
-          bio: "Matt Davis is a film producer from Dallas, TX, with experience across both SCAD productions and independent projects outside the university. As a producer on The Story of ShipRocked, he helps bring together the people, logistics, and creative pieces behind the film—capturing what makes ShipRocked unlike anything else.",
+          bio: "Matt Davis is a film producer from Dallas, TX, with experience across both SCAD productions and independent projects outside the university. As a producer on The Story of ShipRocked, he helps bring together the people, logistics, and creative pieces behind the film-capturing what makes ShipRocked unlike anything else.",
         },
         {
           name: "SILAS GRASSE",
@@ -228,7 +228,7 @@ export const siteContent = {
           name: "ARCHER MCCRACKEN",
           role: "SOUND SUPERVISOR",
           image: "/assets/Archer MackCracken.png",
-          bio: "Archer MacCracken is a Sound Supervisor and Recording Engineer from Washington, D.C., deeply involved in SCAD's film and production community. As head of the post-sound team on The Story of ShipRocked, Archer is shaping the sonic world of the film—from live music and crowd energy to the intimate moments in between.",
+          bio: "Archer MacCracken is a Sound Supervisor and Recording Engineer from Washington, D.C., deeply involved in SCAD's film and production community. As head of the post-sound team on The Story of ShipRocked, Archer is shaping the sonic world of the film-from live music and crowd energy to the intimate moments in between.",
         },
         {
           name: "WILLIAM BROWN",
@@ -298,7 +298,7 @@ export const siteContent = {
         {
           name: "THE SHIPROCKED FAMILY",
           image: "/assets/The ShipRocked Family.png",
-          bio: "The ShipRocked Family represents the core heartbeat of the entire cruise—a massive, global community of passionate rock fans who reunite at sea year after year. Bonded by a shared love for heavy music and vacation vibes, this inclusive, high-energy family turns a standard vacation into a legendary, lifelong community.",
+          bio: "The ShipRocked Family represents the core heartbeat of the entire cruise-a massive, global community of passionate rock fans who reunite at sea year after year. Bonded by a shared love for heavy music and vacation vibes, this inclusive, high-energy family turns a standard vacation into a legendary, lifelong community.",
         },
       ],
     },
@@ -311,7 +311,7 @@ export const siteContent = {
           percent: 40,
           image: "/assets/post production.png",
           description:
-            "Cutting hours of voyage footage into a finished documentary — editors, assembly, and picture lock.",
+            "Cutting hours of voyage footage into a finished documentary - editors, assembly, and picture lock.",
         },
         {
           label: "Festival submission fees",

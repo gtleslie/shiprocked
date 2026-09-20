@@ -76,7 +76,7 @@ export async function POST(request: Request) {
       from: CONTACT_FROM,
       to: CONTACT_TO,
       replyTo: email,
-      subject: `ShipRocked contact form — ${name}`,
+      subject: `ShipRocked contact form - ${name}`,
       text: `Name: ${name}\nEmail: ${email}\n\n${message}`,
       html: `<p><strong>Name:</strong> ${safeName}</p>
 <p><strong>Email:</strong> ${safeEmail}</p>

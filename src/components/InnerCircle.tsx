@@ -239,7 +239,7 @@ export function InnerCircle() {
             className="mx-auto block h-auto w-full aspect-[848/240]"
           />
         </button>
-        <div className="font-shiprocked-neue mt-7 max-w-[34rem] px-1 md:mt-10">
+        <div className="font-shiprocked-neue mt-4 max-w-[34rem] px-1 md:mt-5">
           <p className="text-[17px] leading-tight whitespace-nowrap uppercase text-white max-sm:text-[13px] sm:text-[15px] md:text-[27px]">
             {innerCircle.merchNoteLead.includes("#soon") ? (
               <>
