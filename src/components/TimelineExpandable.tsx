@@ -101,27 +101,6 @@ export function TimelineExpandable({ items }: TimelineExpandableProps) {
                 );
               })}
             </div>
-            <div className="mt-0.5 flex h-6 items-center justify-between gap-0.5">
-              {items.map((item, index) => {
-                const isActive = index === activeIndex;
-                return (
-                  <button
-                    key={`${item.date}-label`}
-                    type="button"
-                    onClick={() => setActiveIndex(index)}
-                    className="flex min-h-0 min-w-0 flex-1 items-center justify-center px-0.5"
-                  >
-                    <span
-                      className={`block w-full truncate text-[10px] leading-none font-bold tracking-[0.2px] uppercase ${
-                        isActive ? "text-accent-gold" : "text-white/45"
-                      }`}
-                    >
-                      {item.date}
-                    </span>
-                  </button>
-                );
-              })}
-            </div>
           </div>
 
           <button
@@ -139,6 +118,9 @@ export function TimelineExpandable({ items }: TimelineExpandableProps) {
           <h3 className="text-[18px] leading-snug font-bold text-white">
             {active.mobileTitle ?? active.title}
           </h3>
+          <p className="mt-1.5 text-[12px] font-bold tracking-[0.48px] text-accent-gold uppercase">
+            {active.date}
+          </p>
           <p className="mt-2 text-[15px] leading-relaxed text-white/80">
             {active.description}
           </p>

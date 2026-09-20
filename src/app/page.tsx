@@ -30,20 +30,20 @@ export default function HomePage() {
         <div className="section-fade-top" aria-hidden />
         <div className="section-fade-bottom" aria-hidden />
 
-        <div className="relative mx-auto max-w-[1440px] px-4 pt-3 pb-10 max-sm:pt-0 md:px-12 md:pt-8 md:pb-12 lg:px-16 lg:pt-9">
-          <div className="relative isolate max-w-[1080px] min-h-[11rem] max-sm:min-h-[10.5rem] md:min-h-[14rem]">
+        <div className="relative mx-auto max-w-[1440px] px-4 pt-3 pb-10 max-sm:-mt-5 max-sm:pt-0 md:px-12 md:mt-0 md:pt-8 md:pb-12 lg:px-16 lg:pt-9">
+          <div className="relative isolate max-w-[1080px] min-h-[11rem] max-sm:min-h-[12.5rem] md:min-h-[14rem]">
             <div
               className="pointer-events-none absolute inset-0 z-0 flex items-end pb-3 md:pb-4"
               aria-hidden
             >
-              <div className="-ml-6 w-[calc(100%+3rem)] max-w-[min(1280px,98vw)] origin-left select-none -translate-x-[calc(3%+20px)] max-sm:-ml-[max(1rem,calc(50%-50vw))] max-sm:w-[100vw] max-sm:max-w-[100vw] max-sm:-translate-x-[58px] max-sm:translate-y-[53px] md:-ml-12 md:w-[calc(100%+5rem)] md:-translate-x-[calc(16%+20px)] lg:-ml-14 lg:w-[calc(100%+6rem)] lg:-translate-x-[calc(18%+20px)]">
+              <div className="-ml-6 w-[calc(100%+3rem)] max-w-[min(1280px,98vw)] origin-left select-none -translate-x-[calc(3%+20px)] max-sm:-ml-[max(1rem,calc(50%-50vw))] max-sm:w-[100vw] max-sm:max-w-[100vw] max-sm:-translate-x-[58px] max-sm:translate-y-[22px] md:-ml-12 md:w-[calc(100%+5rem)] md:-translate-x-[calc(16%+20px)] lg:-ml-14 lg:w-[calc(100%+6rem)] lg:-translate-x-[calc(18%+20px)]">
                 <Image
                   src={siteContent.assets.cruiseShip}
                   alt=""
                   width={1920}
                   height={1080}
                   sizes="(min-width: 1024px) 920px, 100vw"
-                  className="block h-auto w-full translate-y-[calc(28%+13px)] object-contain object-left-bottom opacity-[0.65] brightness-150 contrast-125 mix-blend-screen [clip-path:inset(36%_0_0_0)] max-sm:translate-y-1 max-sm:scale-[1.42] max-sm:[clip-path:inset(10%_0_0_0)]"
+                  className="block h-auto w-full translate-y-[calc(28%+13px)] object-contain object-left-bottom opacity-[0.65] brightness-150 contrast-125 mix-blend-screen [clip-path:inset(36%_0_0_0)] max-sm:-translate-y-3 max-sm:scale-[1.44] max-sm:[clip-path:inset(4%_0_0_0)]"
                   priority
                 />
               </div>
