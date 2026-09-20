@@ -182,10 +182,19 @@ export function BudgetChart({ items }: BudgetChartProps) {
     };
     labelPoint.x = Math.min(width - labelPadX, Math.max(labelPadX, labelPoint.x));
 
-    // Mobile: active festival slice label sits on the expanded ring (~4px screen nudge).
-    if (compactChart && index === 1 && isActive) {
-      const pxToViewBox = height / 250;
-      labelPoint.y += 4 * pxToViewBox;
+    if (isActive && index === 1) {
+      // Festival submission fees — pull label below expanded slice.
+      labelPoint.y += compactChart ? 5 * (height / 250) : 14;
+      leaderEnd.y += 6;
+    }
+
+    if (isActive && index === 4) {
+      // Distribution & marketing — small slice; keep multiline label off the ring.
+      labelPoint.x += isRight ? 12 : -12;
+      labelPoint.y -= lines.length > 1 ? 18 : 12;
+      leaderEnd.x += isRight ? 8 : -8;
+      leaderEnd.y -= 6;
+      labelPoint.x = Math.min(width - labelPadX, Math.max(labelPadX, labelPoint.x));
     }
 
     return {
