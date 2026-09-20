@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { siteContent } from "@content/site-content";
 
@@ -18,6 +18,14 @@ export function InnerCircle() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const rafRef = useRef(0);
   const lastTimeRef = useRef(-1);
+  const logoVisibleRef = useRef(false);
+  const [logoVisible, setLogoVisible] = useState(false);
+
+  const revealLogo = () => {
+    if (logoVisibleRef.current) return;
+    logoVisibleRef.current = true;
+    setLogoVisible(true);
+  };
 
   useEffect(() => {
     const video = videoRef.current;
@@ -27,89 +35,128 @@ export function InnerCircle() {
     const ctx = canvas.getContext("2d", { willReadFrequently: true });
     if (!ctx) return;
 
-    const jumpToLogo = () => {
-      if (video.currentTime < LOGO_ANIM_START_SEC) {
+    let cancelled = false;
+    let bootstrapped = false;
+
+    const seekToLogoStart = (): Promise<void> =>
+      new Promise((resolve) => {
+        if (video.currentTime >= LOGO_ANIM_START_SEC - 0.02) {
+          resolve();
+          return;
+        }
+
+        const onSeeked = () => {
+          video.removeEventListener("seeked", onSeeked);
+          resolve();
+        };
+
+        video.addEventListener("seeked", onSeeked);
         video.currentTime = LOGO_ANIM_START_SEC;
+      });
+
+    const paintFrame = (): boolean => {
+      const w = video.videoWidth;
+      const h = video.videoHeight;
+      if (
+        !w ||
+        !h ||
+        video.readyState < 2 ||
+        video.currentTime < LOGO_ANIM_START_SEC - 0.02
+      ) {
+        return false;
+      }
+
+      if (video.currentTime === lastTimeRef.current) {
+        return logoVisibleRef.current;
+      }
+
+      lastTimeRef.current = video.currentTime;
+
+      if (canvas.width !== w || canvas.height !== h) {
+        canvas.width = w;
+        canvas.height = h;
+      }
+
+      try {
+        ctx.drawImage(video, 0, 0, w, h);
+        const frame = ctx.getImageData(0, 0, w, h);
+        const data = frame.data;
+        for (let i = 0; i < data.length; i += 4) {
+          const r = data[i];
+          const g = data[i + 1];
+          const b = data[i + 2];
+          const luma = 0.299 * r + 0.587 * g + 0.114 * b;
+          if (luma <= BLACK_LUMA_CUTOFF) {
+            data[i + 3] = 0;
+          }
+        }
+        ctx.putImageData(frame, 0, 0);
+      } catch {
+        ctx.drawImage(video, 0, 0, w, h);
+      }
+
+      return true;
+    };
+
+    const bootstrap = async () => {
+      if (bootstrapped || cancelled) return;
+      bootstrapped = true;
+
+      video.pause();
+      await seekToLogoStart();
+      if (cancelled) return;
+
+      if (paintFrame() && !cancelled) {
+        revealLogo();
+      }
+
+      try {
+        await video.play();
+      } catch {
+        // Autoplay may be blocked until interaction; first frame is still shown.
       }
     };
 
-    const startFromLogo = () => {
-      jumpToLogo();
-      void video.play().catch(() => {});
-    };
-
     const onTimeUpdate = () => {
-      // Keep loop restarts from replaying the text intro.
       if (video.currentTime < LOGO_ANIM_START_SEC) {
         video.currentTime = LOGO_ANIM_START_SEC;
       }
     };
 
     const loopFromLogo = () => {
+      lastTimeRef.current = -1;
       video.currentTime = LOGO_ANIM_START_SEC;
       void video.play().catch(() => {});
     };
 
-    const paintFrame = () => {
-      const w = video.videoWidth;
-      const h = video.videoHeight;
-      if (
-        w &&
-        h &&
-        video.readyState >= 2 &&
-        video.currentTime >= LOGO_ANIM_START_SEC &&
-        video.currentTime !== lastTimeRef.current
-      ) {
-        lastTimeRef.current = video.currentTime;
-
-        if (canvas.width !== w || canvas.height !== h) {
-          canvas.width = w;
-          canvas.height = h;
-        }
-
-        try {
-          ctx.drawImage(video, 0, 0, w, h);
-          const frame = ctx.getImageData(0, 0, w, h);
-          const data = frame.data;
-          for (let i = 0; i < data.length; i += 4) {
-            const r = data[i];
-            const g = data[i + 1];
-            const b = data[i + 2];
-            // Rec. 601 luma — knock out the solid black plate.
-            const luma = 0.299 * r + 0.587 * g + 0.114 * b;
-            if (luma <= BLACK_LUMA_CUTOFF) {
-              data[i + 3] = 0;
-            }
-          }
-          ctx.putImageData(frame, 0, 0);
-        } catch {
-          // If the canvas is tainted, fall back to the raw frame.
-          ctx.drawImage(video, 0, 0, w, h);
-        }
+    const tick = () => {
+      if (paintFrame() && !cancelled) {
+        revealLogo();
       }
-
-      rafRef.current = requestAnimationFrame(paintFrame);
+      rafRef.current = requestAnimationFrame(tick);
     };
 
-    video.addEventListener("loadedmetadata", startFromLogo);
-    video.addEventListener("loadeddata", startFromLogo);
+    const onLoadedData = () => {
+      void bootstrap();
+    };
+
+    video.addEventListener("loadeddata", onLoadedData);
     video.addEventListener("timeupdate", onTimeUpdate);
-    video.addEventListener("seeking", jumpToLogo);
     video.addEventListener("ended", loopFromLogo);
 
-    if (video.readyState >= 1) {
-      startFromLogo();
+    if (video.readyState >= 2) {
+      void bootstrap();
     }
 
-    rafRef.current = requestAnimationFrame(paintFrame);
+    rafRef.current = requestAnimationFrame(tick);
 
     return () => {
+      cancelled = true;
       cancelAnimationFrame(rafRef.current);
-      video.removeEventListener("loadedmetadata", startFromLogo);
-      video.removeEventListener("loadeddata", startFromLogo);
+      video.removeEventListener("loadeddata", onLoadedData);
       video.removeEventListener("timeupdate", onTimeUpdate);
-      video.removeEventListener("seeking", jumpToLogo);
       video.removeEventListener("ended", loopFromLogo);
+      video.pause();
     };
   }, []);
 
@@ -118,19 +165,19 @@ export function InnerCircle() {
     window.open(groupHref, "_blank", "noopener,noreferrer");
   }
 
+  const videoSrc = `${innerCircleLogo}#t=${LOGO_ANIM_START_SEC}`;
+
   return (
     <div className="inner-circle-stage relative mx-auto flex w-full max-w-[860px] flex-col items-center text-center">
       <h1 className="sr-only">{innerCircle.headline}</h1>
 
       <div className="inner-circle-logo relative w-full max-w-[780px] overflow-hidden">
-        {/* Keep the video laid out so the browser continues decoding frames. */}
         <video
           ref={videoRef}
           className="pointer-events-none absolute inset-0 h-full w-full opacity-0"
-          src={innerCircleLogo}
+          src={videoSrc}
           muted
           playsInline
-          autoPlay
           preload="auto"
           aria-hidden
           tabIndex={-1}
@@ -139,7 +186,9 @@ export function InnerCircle() {
           ref={canvasRef}
           width={1666}
           height={456}
-          className="absolute inset-0 block h-full w-full"
+          className={`absolute inset-0 block h-full w-full transition-opacity duration-150 ${
+            logoVisible ? "opacity-100" : "opacity-0"
+          }`}
           aria-hidden
         />
       </div>
