@@ -637,6 +637,22 @@ body {
 }
 
 @media (max-width: 639px) {
+  .funding-viz-shell .budget-chart {
+    display: flex;
+    min-height: 0;
+    align-items: flex-start;
+    justify-content: center;
+  }
+
+  .funding-viz-shell .budget-chart svg {
+    width: 100%;
+    height: auto;
+    max-width: none;
+    max-height: none;
+    margin-left: 0;
+    flex: none;
+  }
+
   .characters-carousel--character-focus .characters-carousel-card {
     flex-basis: 78%;
   }
@@ -650,17 +666,43 @@ body {
   min-height: 0;
 }
 
-.budget-chart {
-  display: flex;
-  min-height: 0;
-  align-items: stretch;
-  align-self: stretch;
-  justify-content: center;
+@media (min-width: 640px) {
+  .budget-chart {
+    display: flex;
+    min-height: 0;
+    align-items: stretch;
+    align-self: stretch;
+    justify-content: center;
+  }
+
+  .funding-pie-svg {
+    flex: 1 1 auto;
+    min-height: 0;
+  }
 }
 
-.funding-pie-svg {
-  flex: 1 1 auto;
-  min-height: 0;
+@media (min-width: 640px) and (max-width: 1023px) {
+  .budget-chart svg {
+    width: 108%;
+    max-width: none;
+    margin-left: -4%;
+  }
+}
+
+@media (min-width: 1024px) {
+  .budget-chart {
+    height: 0;
+    min-height: 100%;
+    align-items: stretch;
+    justify-content: flex-end;
+  }
+
+  .budget-chart svg {
+    height: 100%;
+    width: auto;
+    max-height: 100%;
+    max-width: 100%;
+  }
 }
 
 /* Meet the Characters — focal crop only; card size unchanged. */

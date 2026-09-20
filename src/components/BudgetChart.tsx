@@ -312,7 +312,7 @@ export function BudgetChart({ items, leading }: BudgetChartProps) {
         }
       }}
     >
-      <div className="funding-viz-shell mt-1 max-sm:flex max-sm:items-stretch max-sm:gap-3 sm:grid sm:grid-cols-[minmax(0,1fr)_minmax(0,1.08fr)] sm:items-stretch sm:gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.12fr)]">
+      <div className="funding-viz-shell mt-1 max-sm:flex max-sm:items-stretch max-sm:gap-2.5 sm:grid sm:grid-cols-[minmax(0,1fr)_minmax(0,1.08fr)] sm:items-stretch sm:gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.12fr)]">
         <div className="funding-viz-copy flex min-h-0 min-w-0 flex-1 flex-col max-sm:max-w-none">
         {leading ? <div className="funding-viz-leading mb-3 shrink-0">{leading}</div> : null}
         <div className="funding-carousel flex min-h-0 min-w-0 flex-1 flex-col">
@@ -416,11 +416,11 @@ export function BudgetChart({ items, leading }: BudgetChartProps) {
         </div>
         </div>
 
-        <div className="budget-chart flex min-h-0 w-full min-w-0 flex-1 shrink-0 self-stretch max-sm:w-[min(58vw,15.5rem)] sm:h-full">
+        <div className="budget-chart flex w-full shrink-0 justify-center max-sm:w-[min(46vw,11.75rem)] max-sm:items-start max-sm:self-stretch max-sm:pb-0 sm:h-full sm:min-h-0 sm:min-w-0 sm:flex-1 sm:shrink-0 sm:self-stretch">
         <svg
           viewBox={`0 0 ${width} ${height}`}
           preserveAspectRatio="xMidYMid meet"
-          className="funding-pie-svg m-auto block h-full w-auto max-h-full max-w-full drop-shadow-[0_0_28px_rgba(210,31,31,0.14)]"
+          className="funding-pie-svg h-auto w-full drop-shadow-[0_0_28px_rgba(210,31,31,0.14)] sm:m-auto sm:block sm:h-full sm:w-auto sm:max-h-full sm:max-w-full"
           role="img"
           aria-label={`${active.label}: ${active.percent}% of funding allocation`}
         >
