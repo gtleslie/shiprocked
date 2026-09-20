@@ -1,7 +1,10 @@
 "use client";
 
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import Image from "next/image";
+
+const AUTO_ADVANCE_MS = 8000;
+
 type TimelineSlide = {
   image: string;
   alt: string;
@@ -122,6 +125,7 @@ export function TimelinePhotoCarousel({
 }) {
   const [index, setIndex] = useState(0);
   const [dragStart, setDragStart] = useState<number | null>(null);
+  const [paused, setPaused] = useState(false);
 
   const goTo = useCallback(
     (next: number) => {
@@ -132,6 +136,17 @@ export function TimelinePhotoCarousel({
     [slides.length],
   );
 
+  useEffect(() => {
+    if (paused || slides.length < 2) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    const timer = window.setTimeout(() => {
+      goTo(index + 1);
+    }, AUTO_ADVANCE_MS);
+
+    return () => window.clearTimeout(timer);
+  }, [goTo, index, paused, slides.length]);
+
   if (slides.length === 0) return null;
 
   return (
@@ -141,6 +156,14 @@ export function TimelinePhotoCarousel({
       aria-roledescription="carousel"
       aria-label="From dock to deadline photos"
       tabIndex={0}
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
+      onFocusCapture={() => setPaused(true)}
+      onBlurCapture={(event) => {
+        if (!event.currentTarget.contains(event.relatedTarget as Node | null)) {
+          setPaused(false);
+        }
+      }}
       onKeyDown={(event) => {
         if (event.key === "ArrowLeft") {
           event.preventDefault();
@@ -162,16 +185,21 @@ export function TimelinePhotoCarousel({
         className="absolute inset-0 touch-pan-y select-none"
         onPointerDown={(event) => {
           if ((event.target as HTMLElement).closest("button")) return;
+          setPaused(true);
           setDragStart(event.clientX);
         }}
         onPointerUp={(event) => {
+          setPaused(false);
           if (dragStart == null) return;
           const delta = event.clientX - dragStart;
           if (delta > 40) goTo(index - 1);
           if (delta < -40) goTo(index + 1);
           setDragStart(null);
         }}
-        onPointerCancel={() => setDragStart(null)}
+        onPointerCancel={() => {
+          setPaused(false);
+          setDragStart(null);
+        }}
       >
         {slides.map((item, slideIndex) => (
           <Image
