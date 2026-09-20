@@ -1,12 +1,14 @@
 "use client";
 
 import { useRef, useState } from "react";
+import Image from "next/image";
 import { ImagePlaceholder } from "@/components/ImagePlaceholder";
 
 type CrewMember = {
   name: string;
   role?: string;
   bio: string;
+  image?: string;
 };
 
 type CrewFlipCardProps = {
@@ -69,7 +71,19 @@ export function CrewFlipCard({ member }: CrewFlipCardProps) {
       <div className={`crew-flip-inner ${flipped ? "is-flipped" : ""}`}>
         <div className="crew-flip-face crew-flip-front flex h-full flex-col overflow-hidden">
           <div className="ship-card flex h-full min-h-0 flex-col overflow-hidden border-b border-border">
-            <ImagePlaceholder className="h-[200px] w-full shrink-0 sm:h-[280px]" />
+            <div className="relative h-[200px] w-full shrink-0 overflow-hidden bg-bg-card sm:h-[280px]">
+              {member.image ? (
+                <Image
+                  src={member.image}
+                  alt=""
+                  fill
+                  sizes="(min-width: 640px) 33vw, 85vw"
+                  className="object-cover object-top"
+                />
+              ) : (
+                <ImagePlaceholder className="h-full w-full" />
+              )}
+            </div>
             <div className="ship-card-footer mt-auto shrink-0 px-5 py-4">
             <h3 className="text-[16px] font-bold tracking-[0.2px] text-white">
               {member.name}

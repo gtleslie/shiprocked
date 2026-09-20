@@ -208,41 +208,49 @@ export const siteContent = {
         {
           name: "ALBERT KOENIG",
           role: "DIRECTOR",
+          image: "/assets/Albert Koenig.png",
           bio: "Albert Koenig is a documentary producer and editor from Nashville, TN. With ShipRocked being his dad's livelihood, he has grown up around the people, music, and culture that make the event what it is. As Director of The Story of ShipRocked, he's excited to explore that family and world through the lens of cinema.",
         },
         {
           name: "MATT DAVIS",
           role: "FILM PRODUCER",
+          image: "/assets/Matt Davis.png",
           bio: "Matt Davis is a film producer from Dallas, TX, with experience across both SCAD productions and independent projects outside the university. As a producer on The Story of ShipRocked, he helps bring together the people, logistics, and creative pieces behind the film—capturing what makes ShipRocked unlike anything else.",
         },
         {
           name: "SILAS GRASSE",
           role: "MARKETING PRODUCER",
+          image: "/assets/Silas Grasse.png",
           bio: "Silas Grasse is a Marketer and Producer from Philadelphia, PA. He specializes in creating vivid and interactive promotional campaigns for experiential creative projects. As Marketing Producer on The Story of ShipRocked, he leads the film's marketing strategy & execution, and works to bring the ShipRocked story to audiences beyond the ship.",
         },
         {
           name: "ELLIOT CUNNINGHAM",
           role: "POST SUPERVISOR",
+          image: "/assets/Elliot Cunningham.png",
           bio: "Elliot Cunningham is a post-production storyteller raised in Dallas, TX, with experience across SCAD productions and professional film work. After interning at HBO this summer, Elliot joins The Story of ShipRocked as Post Supervisor, helping lead the editorial team and build an efficient, collaborative post-production workflow.",
         },
         {
           name: "JACK EASTERHAUS",
           role: "CINEMATOGRAPHY",
+          image: "/assets/Jack Easterhaus.png",
           bio: "Jack Easterhaus is a Director-Cinematographer based out of Savannah, focusing on narrative short films and advertising. Jack is the Supervising Director of Photography for ShipRocked, helping coordinate film crews and overseeing the visual look across the sailings.",
         },
         {
           name: "WILLIAM BROWN",
           role: "PRODUCTION SOUND",
+          image: "/assets/William Brown.png",
           bio: "William Brown is a Sound Engineer from Nashville, TN, whose work spans SCAD's film, television, and theater productions. With sound as his specialty, William has built experience across a wide range of live and filmed productions and brings that hands-on expertise to The Story of ShipRocked.",
         },
         {
           name: "ARCHER MCCRACKEN",
           role: "SOUND SUPERVISOR",
+          image: "/assets/Archer MackCracken.png",
           bio: "Archer MacCracken is a Sound Supervisor and Recording Engineer from Washington, D.C., deeply involved in SCAD's film and production community. As head of the post-sound team on The Story of ShipRocked, Archer is shaping the sonic world of the film—from live music and crowd energy to the intimate moments in between.",
         },
         {
           name: "EMILY MOTTA",
           role: "EDITOR",
+          image: "/assets/Emily Motta.png",
           bio: "Emily Motta is a documentary editor from Columbus, Ohio, with extensive experience cutting SCAD film productions. As the editor of The Story of ShipRocked, Emily brings a documentary-focused eye to hours of footage, shaping the performances, people, and stories that make up the ShipRocked experience.",
         },
       ],
@@ -322,7 +330,7 @@ export const siteContent = {
       ],
       fundraising: "Free Entry Until October 14th",
       cta: "Join the Inner Circle",
-      merchNoteLead: "Film merchandise previews coming #soon.",
+      merchNoteLead: "FILM MERCHANDISE ITEMS previews coming #soon.",
       merchNoteDetail:
         "Inner Circle members get first-looks, and help design the items.",
     },
@@ -445,14 +453,14 @@ export const siteContent = {
     social: {
       overline: "FOLLOW THE FILM",
       buttons: [
-        { label: "INSTAGRAM", href: "https://www.instagram.com/storyofshiprocked", variant: "outline" as const },
-        { label: "FACEBOOK", href: "#", variant: "outline" as const },
-        { label: "YOUTUBE", href: "https://www.youtube.com/@ASK4EntertainmentLLC", variant: "outline" as const },
         {
           label: "JOIN THE INNER CIRCLE",
           href: "https://docs.google.com/forms/d/1KZD-Ogcz0iUF5weKBX-_ZGT5Fn_KoVsRfWWu-P8DzF8/viewform",
           variant: "turquoise" as const,
         },
+        { label: "INSTAGRAM", href: "https://www.instagram.com/storyofshiprocked", variant: "outline" as const },
+        { label: "FACEBOOK", href: "#", variant: "outline" as const },
+        { label: "YOUTUBE", href: "https://www.youtube.com/@ASK4EntertainmentLLC", variant: "outline" as const },
       ],
     },
   },

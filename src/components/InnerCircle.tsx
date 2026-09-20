@@ -216,7 +216,7 @@ export function InnerCircle() {
           />
         </button>
         <div className="font-shiprocked-neue mt-7 max-w-[34rem] px-1 md:mt-10">
-          <p className="text-[17px] leading-snug text-white md:text-[27px]">
+          <p className="text-[17px] leading-snug uppercase text-white md:text-[27px]">
             {innerCircle.merchNoteLead.includes("#soon") ? (
               <>
                 {innerCircle.merchNoteLead.replace(/\s#soon\.?\s*$/, "").trim()}{" "}

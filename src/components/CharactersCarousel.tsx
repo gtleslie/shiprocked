@@ -7,6 +7,7 @@ type CharacterSubject = {
   name: string;
   role?: string;
   bio: string;
+  image?: string;
 };
 
 type CharactersCarouselProps = {

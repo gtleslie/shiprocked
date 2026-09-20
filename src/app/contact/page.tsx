@@ -277,12 +277,12 @@ export default function ContactPage() {
                 }`}
               >
                 {button.variant === "turquoise" ? (
-                  <>
-                    JOIN THE{" "}
-                    <span className="font-salted text-[17px] leading-none tracking-normal normal-case">
+                  <span className="inline-flex items-baseline justify-center gap-2.5">
+                    <span>JOIN THE</span>
+                    <span className="font-salted text-[12px] leading-none tracking-normal normal-case">
                       Inner Circle
                     </span>
-                  </>
+                  </span>
                 ) : (
                   button.label
                 )}
