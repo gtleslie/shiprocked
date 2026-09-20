@@ -206,6 +206,8 @@ body {
 @media (max-width: 639px) {
   .hero-video-controls {
     justify-content: center;
+    margin-top: 1.25rem;
+    margin-bottom: 0.75rem;
   }
 }
 

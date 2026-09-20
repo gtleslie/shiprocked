@@ -360,7 +360,7 @@ export function HeroVideo({
           <div className="hero-visual-sheen pointer-events-none absolute inset-0" aria-hidden />
         </div>
       </div>
-      <div className="hero-video-controls">
+      <div className="hero-video-controls max-sm:relative max-sm:z-30">
         <a
           href={watchUrl}
           target="_blank"
