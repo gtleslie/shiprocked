@@ -39,66 +39,51 @@ export function InnerCircle() {
     };
 
     const onTimeUpdate = () => {
-      if (video.ended) return;
+      // Keep loop restarts from replaying the text intro.
       if (video.currentTime < LOGO_ANIM_START_SEC) {
         video.currentTime = LOGO_ANIM_START_SEC;
       }
     };
 
-    const paintOnce = () => {
+    const paintFrame = () => {
       const w = video.videoWidth;
       const h = video.videoHeight;
-      if (!w || !h || video.readyState < 2) return;
-
-      if (canvas.width !== w || canvas.height !== h) {
-        canvas.width = w;
-        canvas.height = h;
-      }
-
-      try {
-        ctx.drawImage(video, 0, 0, w, h);
-        const frame = ctx.getImageData(0, 0, w, h);
-        const data = frame.data;
-        for (let i = 0; i < data.length; i += 4) {
-          const r = data[i];
-          const g = data[i + 1];
-          const b = data[i + 2];
-          // Rec. 601 luma — knock out the solid black plate.
-          const luma = 0.299 * r + 0.587 * g + 0.114 * b;
-          if (luma <= BLACK_LUMA_CUTOFF) {
-            data[i + 3] = 0;
-          }
-        }
-        ctx.putImageData(frame, 0, 0);
-      } catch {
-        // If the canvas is tainted, fall back to the raw frame.
-        ctx.drawImage(video, 0, 0, w, h);
-      }
-    };
-
-    const paintFrame = () => {
-      if (video.readyState >= 2 && video.currentTime !== lastTimeRef.current) {
+      if (w && h && video.readyState >= 2 && video.currentTime !== lastTimeRef.current) {
         lastTimeRef.current = video.currentTime;
-        paintOnce();
+
+        if (canvas.width !== w || canvas.height !== h) {
+          canvas.width = w;
+          canvas.height = h;
+        }
+
+        try {
+          ctx.drawImage(video, 0, 0, w, h);
+          const frame = ctx.getImageData(0, 0, w, h);
+          const data = frame.data;
+          for (let i = 0; i < data.length; i += 4) {
+            const r = data[i];
+            const g = data[i + 1];
+            const b = data[i + 2];
+            // Rec. 601 luma — knock out the solid black plate.
+            const luma = 0.299 * r + 0.587 * g + 0.114 * b;
+            if (luma <= BLACK_LUMA_CUTOFF) {
+              data[i + 3] = 0;
+            }
+          }
+          ctx.putImageData(frame, 0, 0);
+        } catch {
+          // If the canvas is tainted, fall back to the raw frame.
+          ctx.drawImage(video, 0, 0, w, h);
+        }
       }
 
-      if (!video.ended) {
-        rafRef.current = requestAnimationFrame(paintFrame);
-      }
-    };
-
-    const onEnded = () => {
-      video.pause();
-      lastTimeRef.current = -1;
-      paintOnce();
-      cancelAnimationFrame(rafRef.current);
+      rafRef.current = requestAnimationFrame(paintFrame);
     };
 
     video.addEventListener("loadedmetadata", startFromLogo);
     video.addEventListener("loadeddata", startFromLogo);
     video.addEventListener("timeupdate", onTimeUpdate);
     video.addEventListener("seeking", jumpToLogo);
-    video.addEventListener("ended", onEnded);
 
     if (video.readyState >= 1) {
       startFromLogo();
@@ -112,7 +97,6 @@ export function InnerCircle() {
       video.removeEventListener("loadeddata", startFromLogo);
       video.removeEventListener("timeupdate", onTimeUpdate);
       video.removeEventListener("seeking", jumpToLogo);
-      video.removeEventListener("ended", onEnded);
     };
   }, []);
 
@@ -133,6 +117,7 @@ export function InnerCircle() {
           src={innerCircleLogo}
           muted
           playsInline
+          loop
           autoPlay
           preload="auto"
           aria-hidden
