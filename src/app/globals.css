@@ -667,26 +667,9 @@ body {
   }
 }
 
-/* Meet the Characters: mobile head framing; desktop/full width — slightly zoomed out. */
-@media (max-width: 639px) {
-  .characters-carousel--character-focus .crew-flip-card .object-cover {
-    object-position: 50% 16%;
-  }
-}
-
-@media (min-width: 640px) {
-  .characters-carousel--character-focus .crew-flip-card .object-cover {
-    object-position: 50% 12%;
-    transform: scale(0.9);
-    transform-origin: 50% 18%;
-  }
-}
-
-@media (min-width: 1024px) {
-  .characters-carousel--character-focus .crew-flip-card .object-cover {
-    transform: scale(0.86);
-    object-position: 50% 14%;
-  }
+/* Meet the Characters — focal crop only; card size unchanged. */
+.characters-carousel--character-focus .crew-flip-card .object-cover {
+  object-position: 50% 16%;
 }
 
 .characters-carousel-track {
