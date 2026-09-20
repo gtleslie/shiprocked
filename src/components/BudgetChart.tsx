@@ -312,111 +312,12 @@ export function BudgetChart({ items, leading }: BudgetChartProps) {
         }
       }}
     >
-      <div className="funding-viz-shell mt-1 max-sm:flex max-sm:items-stretch max-sm:gap-2.5 sm:grid sm:grid-cols-[minmax(0,1fr)_minmax(0,1.08fr)] sm:items-stretch sm:gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.12fr)]">
-        <div className="funding-viz-copy flex min-h-0 min-w-0 flex-1 flex-col max-sm:max-w-none">
-        {leading ? <div className="funding-viz-leading mb-3 shrink-0">{leading}</div> : null}
-        <div className="funding-carousel flex min-h-0 min-w-0 flex-1 flex-col">
+      <div className="funding-viz-shell mt-1 grid grid-cols-1 gap-5 sm:grid-cols-[minmax(0,1fr)_minmax(0,1.08fr)] sm:items-stretch sm:gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.12fr)]">
+        {leading ? (
+          <div className="funding-viz-leading shrink-0 sm:col-start-1 sm:row-start-1">{leading}</div>
+        ) : null}
 
-        <div
-          ref={trackRef}
-          className="funding-carousel-track"
-          role="region"
-          aria-label="Budget breakdown carousel"
-          tabIndex={0}
-        >
-          {items.map((item, index) => {
-            const isActive = index === activeIndex;
-            return (
-              <article
-                key={item.label}
-                data-funding-slide={index}
-                className={`funding-carousel-card ship-card overflow-hidden ${isActive ? "is-active" : ""}`}
-                onClick={() => goTo(index)}
-              >
-                <div className="relative hidden sm:block">
-                  {item.image ? (
-                    <Image
-                      src={item.image}
-                      alt=""
-                      width={680}
-                      height={520}
-                      className="h-[220px] w-full object-cover md:h-[260px]"
-                    />
-                  ) : (
-                    <ImagePlaceholder className="h-[220px] w-full md:h-[260px]" />
-                  )}
-                  <div
-                    className="pointer-events-none absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-black via-black/70 to-transparent"
-                    aria-hidden
-                  />
-                  <div className="absolute right-4 bottom-4 left-4">
-                    <p
-                      className="text-[28px] font-black leading-none"
-                      style={{ color: SLICE_COLORS[index % SLICE_COLORS.length] }}
-                    >
-                      {item.percent}%
-                    </p>
-                  </div>
-                </div>
-                <div className="ship-card-footer px-3.5 py-3 sm:px-5 sm:py-4">
-                  <p
-                    className="text-[22px] font-black leading-none sm:hidden"
-                    style={{ color: SLICE_COLORS[index % SLICE_COLORS.length] }}
-                  >
-                    {item.percent}%
-                  </p>
-                  <h3 className="text-[14px] font-bold tracking-[0.2px] text-white sm:mt-0 sm:text-[16px]">
-                    {item.label}
-                  </h3>
-                  <p className="mt-1.5 text-[12px] leading-snug text-text-secondary sm:mt-2 sm:text-[13px] sm:leading-relaxed">
-                    {item.description}
-                  </p>
-                </div>
-              </article>
-            );
-          })}
-        </div>
-
-        <div className="mt-4 flex items-center justify-between gap-3">
-          <div className="funding-carousel-dots flex flex-1 items-center justify-center gap-2">
-            {items.map((item, index) => (
-              <button
-                key={`${item.label}-dot`}
-                type="button"
-                aria-label={`Show ${item.label}`}
-                onClick={() => goTo(index)}
-                className={`funding-carousel-dot ${index === activeIndex ? "is-active" : ""}`}
-                style={
-                  index === activeIndex
-                    ? { backgroundColor: activeColor, borderColor: activeColor }
-                    : undefined
-                }
-              />
-            ))}
-          </div>
-          <div className="flex items-center gap-2">
-            <button
-              type="button"
-              aria-label="Previous funding goal"
-              onClick={() => goTo(activeIndex - 1)}
-              className="characters-carousel-nav"
-            >
-              <ChevronLeftIcon />
-            </button>
-            <button
-              type="button"
-              aria-label="Next funding goal"
-              onClick={() => goTo(activeIndex + 1)}
-              className="characters-carousel-nav"
-            >
-              <ChevronRightIcon />
-            </button>
-          </div>
-        </div>
-        </div>
-        </div>
-
-        <div className="budget-chart flex w-full shrink-0 justify-center max-sm:w-[min(46vw,11.75rem)] max-sm:items-start max-sm:self-stretch max-sm:pb-0 sm:h-full sm:min-h-0 sm:min-w-0 sm:flex-1 sm:shrink-0 sm:self-stretch">
+        <div className="budget-chart flex w-full justify-center max-sm:mx-auto max-sm:max-w-[min(17.5rem,92vw)] sm:col-start-2 sm:row-start-1 sm:row-span-2 sm:h-full sm:min-h-0 sm:min-w-0 sm:flex-1 sm:shrink-0 sm:self-stretch">
         <svg
           viewBox={`0 0 ${width} ${height}`}
           preserveAspectRatio="xMidYMid meet"
@@ -569,6 +470,108 @@ export function BudgetChart({ items, leading }: BudgetChartProps) {
           </foreignObject>
         </svg>
       </div>
+
+        <div className="funding-viz-copy flex min-h-0 min-w-0 flex-col sm:col-start-1 sm:row-start-2">
+        <div className="funding-carousel flex min-h-0 min-w-0 flex-col">
+
+        <div
+          ref={trackRef}
+          className="funding-carousel-track"
+          role="region"
+          aria-label="Budget breakdown carousel"
+          tabIndex={0}
+        >
+          {items.map((item, index) => {
+            const isActive = index === activeIndex;
+            return (
+              <article
+                key={item.label}
+                data-funding-slide={index}
+                className={`funding-carousel-card ship-card overflow-hidden ${isActive ? "is-active" : ""}`}
+                onClick={() => goTo(index)}
+              >
+                <div className="relative hidden sm:block">
+                  {item.image ? (
+                    <Image
+                      src={item.image}
+                      alt=""
+                      width={680}
+                      height={520}
+                      className="h-[220px] w-full object-cover md:h-[260px]"
+                    />
+                  ) : (
+                    <ImagePlaceholder className="h-[220px] w-full md:h-[260px]" />
+                  )}
+                  <div
+                    className="pointer-events-none absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-black via-black/70 to-transparent"
+                    aria-hidden
+                  />
+                  <div className="absolute right-4 bottom-4 left-4">
+                    <p
+                      className="text-[28px] font-black leading-none"
+                      style={{ color: SLICE_COLORS[index % SLICE_COLORS.length] }}
+                    >
+                      {item.percent}%
+                    </p>
+                  </div>
+                </div>
+                <div className="ship-card-footer px-3.5 py-3 sm:px-5 sm:py-4">
+                  <p
+                    className="text-[22px] font-black leading-none sm:hidden"
+                    style={{ color: SLICE_COLORS[index % SLICE_COLORS.length] }}
+                  >
+                    {item.percent}%
+                  </p>
+                  <h3 className="text-[14px] font-bold tracking-[0.2px] text-white sm:mt-0 sm:text-[16px]">
+                    {item.label}
+                  </h3>
+                  <p className="mt-1.5 text-[12px] leading-snug text-text-secondary sm:mt-2 sm:text-[13px] sm:leading-relaxed">
+                    {item.description}
+                  </p>
+                </div>
+              </article>
+            );
+          })}
+        </div>
+
+        <div className="mt-4 flex items-center justify-between gap-3">
+          <div className="funding-carousel-dots flex flex-1 items-center justify-center gap-2">
+            {items.map((item, index) => (
+              <button
+                key={`${item.label}-dot`}
+                type="button"
+                aria-label={`Show ${item.label}`}
+                onClick={() => goTo(index)}
+                className={`funding-carousel-dot ${index === activeIndex ? "is-active" : ""}`}
+                style={
+                  index === activeIndex
+                    ? { backgroundColor: activeColor, borderColor: activeColor }
+                    : undefined
+                }
+              />
+            ))}
+          </div>
+          <div className="flex items-center gap-2">
+            <button
+              type="button"
+              aria-label="Previous funding goal"
+              onClick={() => goTo(activeIndex - 1)}
+              className="characters-carousel-nav"
+            >
+              <ChevronLeftIcon />
+            </button>
+            <button
+              type="button"
+              aria-label="Next funding goal"
+              onClick={() => goTo(activeIndex + 1)}
+              className="characters-carousel-nav"
+            >
+              <ChevronRightIcon />
+            </button>
+          </div>
+        </div>
+        </div>
+        </div>
       </div>
     </div>
   );
