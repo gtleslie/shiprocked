@@ -16,7 +16,11 @@ export function SiteNav({ activePage }: SiteNavProps) {
   return (
     <header className="fixed top-0 right-0 left-0 z-50 h-[84px] border-b border-white/5 bg-black">
       <div className="mx-auto grid h-full max-w-[1440px] grid-cols-[1fr_auto] items-center gap-2 px-4 md:grid-cols-3 md:gap-3 md:px-12 lg:px-16">
-        <Link href="/" className="shrink-0 justify-self-start" onClick={() => setOpen(false)}>
+        <Link
+          href="/"
+          className="flex shrink-0 items-center justify-self-start max-md:translate-y-1.5 md:translate-y-0"
+          onClick={() => setOpen(false)}
+        >
           <Logo size="nav" />
         </Link>
 
@@ -74,14 +78,11 @@ export function SiteNav({ activePage }: SiteNavProps) {
                   key={link.key}
                   href={link.href}
                   onClick={() => setOpen(false)}
-                  className={`relative flex min-h-[48px] items-center rounded-sm px-3 py-3 text-[13px] font-semibold tracking-[0.48px] uppercase active:bg-white/5 ${
+                  className={`flex min-h-[48px] items-center rounded-sm px-3 py-3 text-[13px] font-semibold tracking-[0.48px] uppercase active:bg-white/5 ${
                     isActive ? "text-accent-red" : "text-white"
                   }`}
                 >
                   {link.label}
-                  {isActive && (
-                    <span className="absolute bottom-2 left-3 right-3 h-[2px] bg-accent-red md:hidden" />
-                  )}
                 </Link>
               );
             })}
