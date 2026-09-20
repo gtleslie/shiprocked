@@ -94,9 +94,8 @@ export const siteContent = {
       headline: ["A floating world,", "finally documented."],
       testimonialsYoutubeId: "IPbCpdFxE0k",
       paragraphs: [
-        "For sixteen years, ShipRocked has been building something bigger than a music festival: a family. Four thousand people come together for one week in the Caribbean, but the friendships, traditions, and stories continue long after the ship docks.",
-        "The Story of ShipRocked follows the people who make that family possible - from ASK4 Entertainment navigating impossible problems more than a year before sailing, to artists becoming part of the community, to fans whose ShipRocked relationships have carried into weddings, funerals, road trips, and everyday life.",
-        "Through pandemics, near-disasters, changing music, and the beautiful chaos of life onboard, the film explores what happens when thousands of people find a place where they can truly belong.",
+        "For sixteen years, ShipRocked has built something bigger than a music festival: a family. Four thousand people come together for one week in the Caribbean, but the friendships, traditions, and stories live on long after the ship docks.",
+        "The Story of ShipRocked follows the people who make that family possible - from ASK4 Entertainment navigating impossible problems more than a year before sailing, to artists becoming part of the community, to fans whose ShipRocked relationships have carried into weddings, funerals, road trips, and everyday life. Through pandemics, near-disasters, changing music, and the beautiful chaos onboard, the film explores what happens when thousands of people find a place where they truly belong.",
       ],
       readMore: "READ MORE →",
     },
