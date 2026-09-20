@@ -655,6 +655,11 @@ body {
   }
 }
 
+/* Lower object-position Y shifts crop upward so heads sit higher; card size unchanged. */
+.characters-carousel--character-focus .crew-flip-card .object-cover {
+  object-position: 50% 16%;
+}
+
 .characters-carousel-track {
   display: flex;
   gap: 1.5rem;

@@ -14,7 +14,8 @@ type CharactersCarouselProps = {
   subjects: readonly CharacterSubject[];
   label?: string;
   header?: ReactNode;
-  photoObjectPosition?: string;
+  /** Applies a slightly lower photo focal point so faces sit higher in the card. */
+  characterPhotoFocus?: boolean;
 };
 
 function ChevronLeftIcon({ className = "h-4 w-4" }: { className?: string }) {
@@ -55,7 +56,7 @@ export function CharactersCarousel({
   subjects,
   label = "Character carousel",
   header,
-  photoObjectPosition,
+  characterPhotoFocus = false,
 }: CharactersCarouselProps) {
   const trackRef = useRef<HTMLDivElement>(null);
   const [canPrev, setCanPrev] = useState(false);
@@ -118,7 +119,9 @@ export function CharactersCarousel({
   );
 
   return (
-    <div className="characters-carousel">
+    <div
+      className={`characters-carousel${characterPhotoFocus ? " characters-carousel--character-focus" : ""}`}
+    >
       {header ? (
         <div className="flex flex-row items-center justify-between gap-3 sm:items-end sm:gap-6">
           <div className="min-w-0 pr-1">{header}</div>
@@ -141,10 +144,7 @@ export function CharactersCarousel({
             data-carousel-card
             className="characters-carousel-card"
           >
-            <CrewFlipCard
-              member={subject}
-              photoObjectPosition={photoObjectPosition}
-            />
+            <CrewFlipCard member={subject} />
           </div>
         ))}
       </div>
