@@ -31,12 +31,12 @@ export function HeroSection() {
         <SectionDivider />
       </div>
 
-      <div className="relative z-10 mx-auto flex min-h-0 w-full max-w-[1440px] flex-1 flex-col lg:flex-row">
+      <div className="relative z-10 mx-auto flex min-h-0 w-full max-w-[1440px] flex-1 flex-col lg:flex-row lg:items-center">
         <div className="relative z-10 hidden flex-col justify-center px-4 py-8 md:px-12 md:py-12 lg:flex lg:flex-1 lg:basis-[42%] lg:px-10 lg:py-16 xl:px-14">
           <Logo size="hero" />
         </div>
 
-        <div className="hero-visual relative z-10 flex w-full flex-col items-center px-4 pt-6 pb-6 max-sm:pt-4 max-sm:pb-5 md:px-10 md:pt-16 md:pb-10 lg:min-h-0 lg:flex-1 lg:basis-[58%] lg:px-12 lg:pt-20 lg:pb-12">
+        <div className="hero-visual relative z-10 flex w-full flex-col items-center px-4 pt-6 pb-6 max-sm:pt-4 max-sm:pb-5 md:px-10 md:py-16 lg:min-h-0 lg:flex-1 lg:basis-[58%] lg:justify-center lg:px-12 lg:py-20">
           <div className="mb-4 flex w-full shrink-0 justify-center max-sm:mb-2.5 max-sm:-translate-x-[3px] max-sm:translate-y-0.5 sm:mb-5 lg:hidden">
             <Logo
               size="hero"
