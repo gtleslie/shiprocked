@@ -15,10 +15,10 @@ export function SiteNav({ activePage }: SiteNavProps) {
 
   return (
     <header className="fixed top-0 right-0 left-0 z-50 h-[84px] border-b border-white/5 bg-black">
-      <div className="mx-auto grid h-full max-w-[1440px] grid-cols-[auto_1fr] items-center gap-2 px-4 md:grid-cols-3 md:gap-3 md:px-12 lg:px-16">
+      <div className="mx-auto grid h-full max-w-[1440px] grid-cols-[auto_auto_1fr] items-center gap-x-2 px-4 md:grid-cols-3 md:gap-3 md:px-12 lg:px-16">
         <button
           type="button"
-          className="-ml-1 flex h-11 w-11 shrink-0 items-center justify-center justify-self-start text-white md:hidden"
+          className="-ml-1 flex h-11 w-11 shrink-0 items-center justify-center text-white md:hidden"
           aria-label="Toggle menu"
           aria-expanded={open}
           onClick={() => setOpen((value) => !value)}
@@ -59,21 +59,20 @@ export function SiteNav({ activePage }: SiteNavProps) {
           })}
         </nav>
 
-        <div className="flex items-center justify-end gap-3 justify-self-end md:col-start-3">
-          <Link
-            href="/support"
-            className="inline-flex h-10 shrink-0 items-center justify-center bg-accent-red px-4 text-[10px] font-bold tracking-[0.44px] text-white uppercase md:h-9 md:min-w-[132px] md:px-5 md:text-[11px]"
-          >
-            {nav.supportCta}
-          </Link>
-          <Link
-            href="/"
-            className="flex shrink-0 items-center max-md:translate-y-1.5 md:hidden"
-            onClick={() => setOpen(false)}
-          >
-            <Logo size="nav" />
-          </Link>
-        </div>
+        <Link
+          href="/support"
+          className="inline-flex h-10 shrink-0 items-center justify-center bg-accent-red px-4 text-[10px] font-bold tracking-[0.44px] text-white uppercase max-md:justify-self-start md:col-start-3 md:h-9 md:min-w-[132px] md:justify-self-end md:px-5 md:text-[11px]"
+        >
+          {nav.supportCta}
+        </Link>
+
+        <Link
+          href="/"
+          className="flex h-10 shrink-0 items-center justify-self-end md:hidden"
+          onClick={() => setOpen(false)}
+        >
+          <Logo size="nav" />
+        </Link>
       </div>
 
       {open && (
