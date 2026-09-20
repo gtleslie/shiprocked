@@ -75,7 +75,7 @@ export function CampaignProgress({
             alt=""
             width={2388}
             height={1668}
-            className="absolute top-0 left-1/2 h-full w-full max-w-none -translate-x-1/2 object-contain object-bottom max-sm:translate-y-0 max-sm:scale-[1.06] md:h-[154%] md:w-[132%] md:translate-y-0 md:scale-100 md:object-cover md:object-top"
+            className="absolute top-0 left-1/2 h-full w-full max-w-none -translate-x-1/2 object-contain object-bottom max-sm:translate-y-0 max-sm:scale-[1.08] md:h-[154%] md:w-[132%] md:translate-y-0 md:scale-100 md:object-cover md:object-top"
           />
         </div>
 
