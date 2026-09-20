@@ -68,7 +68,7 @@ export default function AboutPage() {
                 <h2 className="!mt-1 hidden text-[26px] font-black text-white sm:block md:text-[32px]">
                   {about.crew.headline}
                 </h2>
-                <SectionSubhead className="!mt-2 max-w-md text-[15px] leading-snug lowercase md:!mt-2.5 md:text-[16px]">
+                <SectionSubhead className="!mt-2 max-w-md text-[15px] leading-snug md:!mt-2.5 md:text-[16px]">
                   {about.crew.kicker}
                 </SectionSubhead>
               </>
