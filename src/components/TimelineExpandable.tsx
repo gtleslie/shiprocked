@@ -55,7 +55,7 @@ export function TimelineExpandable({ items }: TimelineExpandableProps) {
   return (
     <>
       <div className="md:hidden">
-        <div className="flex items-center gap-2">
+        <div className="flex items-start gap-2">
           <button
             type="button"
             aria-label="Previous milestone"
@@ -66,16 +66,8 @@ export function TimelineExpandable({ items }: TimelineExpandableProps) {
             <ChevronLeftIcon />
           </button>
 
-          <div className="relative min-w-0 flex-1 px-0.5">
-            <div
-              className="pointer-events-none absolute top-1/2 h-0.5 -translate-y-1/2 bg-accent-red"
-              style={{
-                left: `${50 / items.length}%`,
-                right: `${50 / items.length}%`,
-              }}
-              aria-hidden
-            />
-            <div className="relative flex h-10 items-center justify-between gap-1">
+          <div className="min-w-0 flex-1 px-0.5">
+            <div className="flex h-10 items-center justify-between gap-1">
               {items.map((item, index) => {
                 const isActive = index === activeIndex;
                 return (
