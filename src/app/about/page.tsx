@@ -4,7 +4,7 @@ import { BudgetChart } from "@/components/BudgetChart";
 import { CharactersCarousel } from "@/components/CharactersCarousel";
 import { TimelineExpandable } from "@/components/TimelineExpandable";
 import { TimelinePhotoCarousel } from "@/components/TimelinePhotoCarousel";
-import { SectionLabel } from "@/components/ImagePlaceholder";
+import { SectionLabel, SectionSubhead } from "@/components/ImagePlaceholder";
 import { SectionDivider } from "@/components/SectionDivider";
 import { AboutTerabytesHero } from "@/components/AboutTerabytesHero";
 import { siteContent } from "@content/site-content";
@@ -60,16 +60,17 @@ export default function AboutPage() {
           <CharactersCarousel
             header={
               <>
-                <p className="mb-2 max-w-md text-[13px] font-bold leading-snug text-accent-gold md:mb-2.5 md:text-[14px]">
-                  {about.crew.kicker}
-                </p>
-                <h2 className="text-[26px] leading-[1.02] font-black text-white sm:hidden">
+                <SectionLabel>{about.crew.overline}</SectionLabel>
+                <h2 className="!mt-1 text-[26px] leading-[1.02] font-black text-white sm:hidden">
                   <span className="block">Meet the</span>
                   <span className="block">Film-Crew</span>
                 </h2>
-                <h2 className="hidden text-[26px] font-black text-white sm:block md:text-[32px]">
+                <h2 className="!mt-1 hidden text-[26px] font-black text-white sm:block md:text-[32px]">
                   {about.crew.headline}
                 </h2>
+                <SectionSubhead className="!mt-2 max-w-md text-[15px] leading-snug lowercase md:!mt-2.5 md:text-[16px]">
+                  {about.crew.kicker}
+                </SectionSubhead>
               </>
             }
             subjects={about.crew.members}

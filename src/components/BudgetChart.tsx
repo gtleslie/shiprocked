@@ -416,10 +416,10 @@ export function BudgetChart({ items, leading }: BudgetChartProps) {
         </div>
         </div>
 
-        <div className="budget-chart flex w-full shrink-0 justify-center max-sm:w-[min(52vw,13rem)] max-sm:items-stretch max-sm:self-stretch max-sm:pb-0 sm:h-full sm:min-h-0 sm:items-stretch sm:justify-end lg:order-2">
+        <div className="budget-chart flex w-full shrink-0 justify-center max-sm:w-[min(56vw,14rem)] max-sm:min-h-0 max-sm:flex-1 max-sm:items-stretch max-sm:self-stretch max-sm:pb-0 sm:h-full sm:min-h-0 sm:items-stretch sm:justify-end lg:order-2">
         <svg
           viewBox={`0 0 ${width} ${height}`}
-          className="h-auto w-full drop-shadow-[0_0_28px_rgba(210,31,31,0.14)]"
+          className="h-full w-full max-h-full drop-shadow-[0_0_28px_rgba(210,31,31,0.14)] sm:w-auto"
           role="img"
           aria-label={`${active.label}: ${active.percent}% of funding allocation`}
         >
