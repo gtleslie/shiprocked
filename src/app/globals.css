@@ -891,7 +891,7 @@ h2 {
 @media (max-width: 639px) {
   .campaign-rider {
     bottom: -2px;
-    transform: translateX(calc(-42% - 4px));
+    transform: translateX(calc(-42% - 5px));
   }
 }
 
