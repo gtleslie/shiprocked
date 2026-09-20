@@ -142,7 +142,7 @@ export default function HomePage() {
         <h2 className="!mt-1 text-[26px] font-black text-white md:text-[36px]">
           {home.campaign.headline}
         </h2>
-        <p className="mt-3 flex flex-wrap items-baseline gap-x-2 gap-y-1 max-sm:mt-2 max-sm:mb-4">
+        <p className="mt-3 flex flex-wrap items-baseline gap-x-2 gap-y-1 max-sm:mt-2 max-sm:mb-2">
           <span className="font-overline !tracking-normal text-[18px] font-bold !italic text-accent-red uppercase">
             {siteContent.campaign.homeDatesSoon}
           </span>
