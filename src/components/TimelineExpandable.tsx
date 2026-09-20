@@ -67,7 +67,15 @@ export function TimelineExpandable({ items }: TimelineExpandableProps) {
           </button>
 
           <div className="min-w-0 flex-1 px-0.5">
-            <div className="flex h-10 items-center justify-between gap-1">
+            <div className="relative flex h-10 items-center justify-between gap-1">
+              <div
+                className="pointer-events-none absolute top-1/2 h-0.5 -translate-y-1/2 bg-accent-red"
+                style={{
+                  left: `${50 / items.length}%`,
+                  right: `${50 / items.length}%`,
+                }}
+                aria-hidden
+              />
               {items.map((item, index) => {
                 const isActive = index === activeIndex;
                 return (
