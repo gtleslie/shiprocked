@@ -106,26 +106,9 @@ export function CrewFlipCard({ member }: CrewFlipCardProps) {
         </div>
 
         <div className="crew-flip-face crew-flip-back ship-card h-full overflow-hidden border-b border-border">
-          <div
-            className={`flex h-full min-h-0 flex-col ${
-              member.role
-                ? "px-4 py-3.5 sm:px-4 sm:py-3"
-                : "px-5 py-5 md:px-4 md:py-4"
-            }`}
-          >
-            <div className={member.role ? "shrink-0 pb-2" : "shrink-0"}>
-              {!member.role ? (
-                <p className="text-[12px] font-bold tracking-[0.44px] text-accent-gold uppercase">
-                  Bio
-                </p>
-              ) : null}
-              <h3
-                className={`font-bold tracking-[0.2px] text-white ${
-                  member.role
-                    ? "text-[15px] leading-tight sm:text-[16px]"
-                    : "mt-2 text-[17px] md:mt-1.5 md:text-[16px]"
-                }`}
-              >
+          <div className="flex h-full min-h-0 flex-col px-4 py-3.5 sm:px-4 sm:py-3">
+            <div className="shrink-0 pb-2">
+              <h3 className="text-[15px] leading-tight font-bold tracking-[0.2px] text-white sm:text-[16px]">
                 {member.name}
                 {member.nameSuffix ? (
                   <span className="text-[13px] font-semibold italic uppercase tracking-[0.2px] text-white/80 sm:text-[14px]">
@@ -140,13 +123,7 @@ export function CrewFlipCard({ member }: CrewFlipCardProps) {
                 </p>
               ) : null}
             </div>
-            <p
-              className={`min-h-0 flex-1 overflow-y-auto overscroll-contain text-text-muted ${
-                member.role
-                  ? "text-[13px] leading-snug sm:text-[14px] sm:leading-relaxed"
-                  : "mt-3 pb-0.5 text-[15px] leading-relaxed md:mt-2 md:text-[13px] md:leading-snug"
-              }`}
-            >
+            <p className="min-h-0 flex-1 overflow-y-auto overscroll-contain text-[13px] leading-snug text-text-muted sm:text-[14px] sm:leading-relaxed">
               {member.bio}
             </p>
           </div>
