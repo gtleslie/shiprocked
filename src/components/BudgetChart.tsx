@@ -182,6 +182,12 @@ export function BudgetChart({ items }: BudgetChartProps) {
     };
     labelPoint.x = Math.min(width - labelPadX, Math.max(labelPadX, labelPoint.x));
 
+    // Mobile: active festival slice label sits on the expanded ring (~4px screen nudge).
+    if (compactChart && index === 1 && isActive) {
+      const pxToViewBox = height / 250;
+      labelPoint.y += 4 * pxToViewBox;
+    }
+
     return {
       ...item,
       index,

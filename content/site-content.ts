@@ -19,12 +19,12 @@ export const siteContent = {
     filmCrewSkeletons: "/assets/sr-skeletons-film-crew.png",
     skeletonDirector: "/assets/sr-skeleton-directors-chair.png",
     cruiseShip: "/assets/curiseshipfinalfinal.png",
-    homeBackground: "/assets/background-1.png",
-    duoBackground: "/assets/duo-background.png",
-    aboutBackground: "/assets/background-2-about.png",
-    dockToDeadline: "/assets/dock-to-deadline.png",
+    homeBackground: "/assets/background-1.jpg",
+    duoBackground: "/assets/duo-background.jpg",
+    aboutBackground: "/assets/background-2-about.jpg",
+    dockToDeadline: "/assets/dock-to-deadline.jpg",
     meetCharactersCrew: "/assets/meet-the-characters-and-film-crew.jpg",
-    contactBackground: "/assets/contact-artboard.png",
+    contactBackground: "/assets/contact-artboard.jpg",
   },
 
   links: {
