@@ -77,6 +77,18 @@ body {
   background: linear-gradient(to top, #000000 0%, transparent 100%);
 }
 
+@media (max-width: 639px) {
+  /* Keep section fades from covering carousel controls at section boundaries. */
+  .about-section-fade-top {
+    top: 3.25rem;
+    height: 3rem;
+  }
+
+  .about-section-fade-bottom {
+    height: 2.75rem;
+  }
+}
+
 @media (min-width: 768px) {
   .section-fade-top {
     height: 8.5rem;

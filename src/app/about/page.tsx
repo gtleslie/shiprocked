@@ -18,7 +18,7 @@ export default function AboutPage() {
 
       <SectionDivider />
 
-      <section className="relative isolate overflow-hidden">
+      <section className="about-timeline-section relative isolate overflow-hidden max-md:z-[2]">
         <Image
           src={assets.dockToDeadline}
           alt=""
@@ -31,21 +31,21 @@ export default function AboutPage() {
           className="pointer-events-none absolute inset-x-0 top-0 z-[1] h-20 bg-gradient-to-b from-black/85 via-black/40 to-transparent md:h-28"
           aria-hidden
         />
-        <div className="section-fade-top" aria-hidden />
-        <div className="section-fade-bottom" aria-hidden />
+        <div className="section-fade-top about-section-fade-top" aria-hidden />
+        <div className="section-fade-bottom about-section-fade-bottom" aria-hidden />
         <div className="relative z-10 mx-auto max-w-[1440px] px-4 py-10 md:px-12 md:py-14 lg:px-16">
           <SectionLabel>{about.timeline.overline}</SectionLabel>
           <h2 className="!mt-1 text-[26px] font-black text-white md:text-[32px]">
             {about.timeline.headline}
           </h2>
-          <div className="mt-5 grid gap-6 md:mt-8 md:gap-12 lg:grid-cols-[1fr_1fr] lg:items-stretch">
+          <div className="mt-5 grid gap-6 max-md:gap-8 md:mt-8 md:gap-12 lg:grid-cols-[1fr_1fr] lg:items-stretch">
             <TimelineExpandable items={about.timeline.items} />
             <TimelinePhotoCarousel slides={about.timeline.slides} />
           </div>
         </div>
       </section>
 
-      <section className="relative isolate overflow-hidden">
+      <section className="about-meet-section relative isolate overflow-hidden max-md:z-[1]">
         <Image
           src={assets.meetCharactersCrew}
           alt=""
@@ -54,8 +54,8 @@ export default function AboutPage() {
           className="pointer-events-none object-cover object-center"
         />
         <div className="pointer-events-none absolute inset-0 bg-black/55" aria-hidden />
-        <div className="section-fade-top" aria-hidden />
-        <div className="section-fade-bottom" aria-hidden />
+        <div className="section-fade-top about-section-fade-top" aria-hidden />
+        <div className="section-fade-bottom about-section-fade-bottom" aria-hidden />
         <div className="relative z-10 mx-auto max-w-[1440px] px-4 pt-8 pb-5 md:px-14 md:pt-12 md:pb-7 lg:px-20 lg:pt-14 lg:pb-8">
           <CharactersCarousel
             header={

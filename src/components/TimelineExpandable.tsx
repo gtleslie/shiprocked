@@ -56,7 +56,19 @@ export function TimelineExpandable({ items }: TimelineExpandableProps) {
   return (
     <>
       <div className="md:hidden">
-        <div className="flex items-start gap-2">
+        <div>
+          <h3 className="text-[18px] leading-snug font-bold text-white">
+            {active.mobileTitle ?? active.title}
+          </h3>
+          <p className="mt-1.5 text-[12px] font-bold tracking-[0.48px] text-accent-gold uppercase">
+            {active.date}
+          </p>
+          <p className="mt-2 text-[15px] leading-relaxed text-white/80">
+            {active.description}
+          </p>
+        </div>
+
+        <div className="relative z-20 mt-5 flex items-start gap-2">
           <button
             type="button"
             aria-label="Previous milestone"
@@ -112,18 +124,6 @@ export function TimelineExpandable({ items }: TimelineExpandableProps) {
           >
             <ChevronRightIcon />
           </button>
-        </div>
-
-        <div className="mt-4">
-          <h3 className="text-[18px] leading-snug font-bold text-white">
-            {active.mobileTitle ?? active.title}
-          </h3>
-          <p className="mt-1.5 text-[12px] font-bold tracking-[0.48px] text-accent-gold uppercase">
-            {active.date}
-          </p>
-          <p className="mt-2 text-[15px] leading-relaxed text-white/80">
-            {active.description}
-          </p>
         </div>
       </div>
 
