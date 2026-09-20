@@ -224,7 +224,11 @@ export const siteContent = {
           role: "POST SUPERVISOR",
           bio: "Elliot Cunningham is a post-production storyteller raised in Dallas, TX, with experience across SCAD productions and professional film work. After interning at HBO this summer, Elliot joins The Story of ShipRocked as Post Supervisor, helping lead the editorial team and build an efficient, collaborative post-production workflow.",
         },
-        { name: "JACK EASTERHAUS", role: "CINEMATOGRAPHY", bio: "(bio)" },
+        {
+          name: "JACK EASTERHAUS",
+          role: "CINEMATOGRAPHY",
+          bio: "Jack Easterhaus is a Director-Cinematographer based out of Savannah, focusing on narrative short films and advertising. Jack is the Supervising Director of Photography for ShipRocked, helping coordinate film crews and overseeing the visual look across the sailings.",
+        },
         {
           name: "WILLIAM BROWN",
           role: "PRODUCTION SOUND",
