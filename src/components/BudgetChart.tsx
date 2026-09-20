@@ -107,9 +107,18 @@ const AUTO_ADVANCE_MS = 5000;
 export function BudgetChart({ items }: BudgetChartProps) {
   const [activeIndex, setActiveIndex] = useState(0);
   const [paused, setPaused] = useState(false);
+  const [compactChart, setCompactChart] = useState(false);
   const trackRef = useRef<HTMLDivElement>(null);
   const ignoreScrollSync = useRef(false);
   const scrollSyncTimeout = useRef<number | null>(null);
+
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 639px)");
+    const update = () => setCompactChart(mq.matches);
+    update();
+    mq.addEventListener("change", update);
+    return () => mq.removeEventListener("change", update);
+  }, []);
 
   const width = 920;
   const height = 640;
@@ -119,8 +128,9 @@ export function BudgetChart({ items }: BudgetChartProps) {
   const activeOuter = 252;
   const innerRadius = 126;
   const gap = 1.75;
-  const labelPadX = 12;
-  const labelPadY = 40;
+  const labelPadX = compactChart ? 18 : 12;
+  const labelPadY = compactChart ? 52 : 40;
+  const labelGap = compactChart ? 22 : 14;
 
   let angle = 0;
   const slices = items.map((item, index) => {
@@ -134,14 +144,14 @@ export function BudgetChart({ items }: BudgetChartProps) {
     const outerRadius = isActive ? activeOuter : baseOuter;
     const percentRadius = (outerRadius + innerRadius) / 2;
     const leaderInner = outerRadius + 12;
-    const leaderOuter = outerRadius + (isActive ? 34 : 26);
+    const leaderOuter =
+      outerRadius + (isActive ? 34 : 26) + (compactChart ? 10 : 0);
     const lines = wrapLabel(item.label);
 
     const percentPoint = polarToCartesian(cx, cy, percentRadius, midAngle);
     const leaderStart = polarToCartesian(cx, cy, leaderInner, midAngle);
     let leaderEnd = polarToCartesian(cx, cy, leaderOuter, midAngle);
     const isRight = leaderEnd.x >= cx;
-    const labelGap = 14;
 
     // Place text beside the leader tip with a clear gap (not on top of the dot).
     let labelPoint = {
@@ -375,7 +385,7 @@ export function BudgetChart({ items }: BudgetChartProps) {
         </div>
         </div>
 
-        <div className="budget-chart flex w-full justify-center max-sm:order-1 lg:order-2 lg:justify-end">
+        <div className="budget-chart flex w-full justify-center max-sm:order-1 max-sm:pb-2 lg:order-2 lg:justify-end">
         <svg
           viewBox={`0 0 ${width} ${height}`}
           className="h-auto w-full drop-shadow-[0_0_28px_rgba(210,31,31,0.14)]"
