@@ -43,14 +43,15 @@ export function SiteNav({ activePage }: SiteNavProps) {
         <div className="flex items-center justify-end gap-3 justify-self-end">
           <Link
             href="/support"
-            className="inline-flex h-8 shrink-0 items-center justify-center bg-accent-red px-3 text-[10px] font-bold tracking-[0.44px] text-white uppercase md:h-9 md:min-w-[132px] md:px-5 md:text-[11px]"
+            className="inline-flex h-10 shrink-0 items-center justify-center bg-accent-red px-4 text-[10px] font-bold tracking-[0.44px] text-white uppercase md:h-9 md:min-w-[132px] md:px-5 md:text-[11px]"
           >
             {nav.supportCta}
           </Link>
           <button
             type="button"
-            className="flex h-9 w-9 items-center justify-center text-white md:hidden"
+            className="-mr-1 flex h-11 w-11 shrink-0 items-center justify-center text-white md:hidden"
             aria-label="Toggle menu"
+            aria-expanded={open}
             onClick={() => setOpen((value) => !value)}
           >
             <span className="sr-only">Menu</span>
@@ -64,20 +65,26 @@ export function SiteNav({ activePage }: SiteNavProps) {
       </div>
 
       {open && (
-        <div className="border-b border-white/10 bg-black px-4 py-4 md:hidden">
-          <nav className="flex flex-col gap-4">
-            {nav.links.map((link) => (
-              <Link
-                key={link.key}
-                href={link.href}
-                onClick={() => setOpen(false)}
-                className={`text-[12px] font-semibold tracking-[0.48px] uppercase ${
-                  activePage === link.key ? "text-accent-red" : "text-white"
-                }`}
-              >
-                {link.label}
-              </Link>
-            ))}
+        <div className="border-b border-white/10 bg-black px-4 py-3 md:hidden">
+          <nav className="flex flex-col gap-1">
+            {nav.links.map((link) => {
+              const isActive = activePage === link.key;
+              return (
+                <Link
+                  key={link.key}
+                  href={link.href}
+                  onClick={() => setOpen(false)}
+                  className={`relative flex min-h-[48px] items-center rounded-sm px-3 py-3 text-[13px] font-semibold tracking-[0.48px] uppercase active:bg-white/5 ${
+                    isActive ? "text-accent-red" : "text-white"
+                  }`}
+                >
+                  {link.label}
+                  {isActive && (
+                    <span className="absolute bottom-2 left-3 right-3 h-[2px] bg-accent-red md:hidden" />
+                  )}
+                </Link>
+              );
+            })}
           </nav>
         </div>
       )}
