@@ -31,34 +31,33 @@ export default function HomePage() {
         <div className="section-fade-bottom" aria-hidden />
 
         <div className="relative mx-auto max-w-[1440px] px-4 pt-3 pb-10 max-sm:-mt-5 max-sm:pt-0 md:px-12 md:mt-0 md:pt-8 md:pb-12 lg:px-16 lg:pt-9">
-          <div className="relative isolate max-w-[1080px] min-h-[11rem] max-sm:min-h-0 md:min-h-[14rem]">
-            <div className="relative z-10 flex min-h-[11rem] flex-col justify-end pb-3 mix-blend-normal max-sm:min-h-0 max-sm:justify-start max-sm:pb-1 md:min-h-[14rem] md:pb-4">
-              <SectionLabel>{home.film.overline}</SectionLabel>
-              <div className="home-film-headline-anchor relative mt-1 sm:static">
-                <div
-                  className="home-film-cruise-ship pointer-events-none absolute inset-x-0 bottom-0 z-0 flex items-end sm:inset-0 sm:pb-3 md:pb-4"
-                  aria-hidden
-                >
-                  <div className="home-film-cruise-ship-frame -ml-6 w-[calc(100%+3rem)] max-w-[min(1280px,98vw)] origin-left select-none max-sm:-ml-[max(1rem,calc(50%-50vw))] max-sm:w-[100vw] max-sm:max-w-[100vw] sm:-translate-x-[calc(3%+20px)] md:-ml-12 md:w-[calc(100%+5rem)] md:-translate-x-[calc(16%+20px)] lg:-ml-14 lg:w-[calc(100%+6rem)] lg:-translate-x-[calc(18%+20px)]">
-                    <Image
-                      src={siteContent.assets.cruiseShip}
-                      alt=""
-                      width={1920}
-                      height={1080}
-                      sizes="(min-width: 1024px) 920px, 100vw"
-                      className="home-film-cruise-ship__img block h-auto w-full translate-y-[calc(28%+13px)] object-contain object-left-bottom opacity-[0.65] brightness-150 contrast-125 mix-blend-screen [clip-path:inset(36%_0_0_0)] max-sm:translate-y-0 max-sm:[clip-path:inset(4%_0_0_0)]"
-                      priority
-                    />
-                  </div>
-                </div>
-                <h2 className="relative z-10 max-w-[22ch] text-[26px] leading-[1.02] font-black text-white md:text-[40px]">
-                  {home.film.headline.map((line) => (
-                    <span key={line} className="block">
-                      {line}
-                    </span>
-                  ))}
-                </h2>
+          <div className="relative isolate max-w-[1080px] min-h-[11rem] max-sm:min-h-[12.5rem] md:min-h-[14rem]">
+            <div
+              className="pointer-events-none absolute inset-0 z-0 flex items-end pb-3 md:pb-4"
+              aria-hidden
+            >
+              <div className="home-film-cruise-ship -ml-6 w-[calc(100%+3rem)] max-w-[min(1280px,98vw)] origin-left select-none -translate-x-[calc(3%+20px)] max-sm:-ml-[max(1rem,calc(50%-50vw))] max-sm:w-[100vw] max-sm:max-w-[100vw] md:-ml-12 md:w-[calc(100%+5rem)] md:-translate-x-[calc(16%+20px)] lg:-ml-14 lg:w-[calc(100%+6rem)] lg:-translate-x-[calc(18%+20px)]">
+                <Image
+                  src={siteContent.assets.cruiseShip}
+                  alt=""
+                  width={1920}
+                  height={1080}
+                  sizes="(min-width: 1024px) 920px, 100vw"
+                  className="home-film-cruise-ship__img block h-auto w-full translate-y-[calc(28%+13px)] object-contain object-left-bottom opacity-[0.65] brightness-150 contrast-125 mix-blend-screen [clip-path:inset(36%_0_0_0)] max-sm:translate-y-0 max-sm:[clip-path:inset(4%_0_0_0)]"
+                  priority
+                />
               </div>
+            </div>
+
+            <div className="relative z-10 flex min-h-[11rem] flex-col justify-end pb-3 mix-blend-normal max-sm:pb-1 md:min-h-[14rem] md:pb-4">
+              <SectionLabel>{home.film.overline}</SectionLabel>
+              <h2 className="!mt-1 max-w-[22ch] text-[26px] leading-[1.02] font-black text-white md:text-[40px]">
+                {home.film.headline.map((line) => (
+                  <span key={line} className="block">
+                    {line}
+                  </span>
+                ))}
+              </h2>
             </div>
           </div>
 
