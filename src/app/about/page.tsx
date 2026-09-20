@@ -60,6 +60,9 @@ export default function AboutPage() {
           <CharactersCarousel
             header={
               <>
+                <p className="mb-2 max-w-md text-[13px] font-bold leading-snug text-accent-gold md:mb-2.5 md:text-[14px]">
+                  {about.crew.kicker}
+                </p>
                 <h2 className="text-[26px] leading-[1.02] font-black text-white sm:hidden">
                   <span className="block">Meet the</span>
                   <span className="block">Film-Crew</span>
