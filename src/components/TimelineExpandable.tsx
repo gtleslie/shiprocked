@@ -55,18 +55,18 @@ export function TimelineExpandable({ items }: TimelineExpandableProps) {
   return (
     <>
       <div className="md:hidden">
-        <div className="grid grid-cols-[auto_1fr_auto] items-center gap-x-2 gap-y-2">
+        <div className="flex items-center gap-2">
           <button
             type="button"
             aria-label="Previous milestone"
             disabled={atStart}
             onClick={() => setActiveIndex((index) => Math.max(0, index - 1))}
-            className="characters-carousel-nav shrink-0 self-center"
+            className="characters-carousel-nav shrink-0"
           >
             <ChevronLeftIcon />
           </button>
 
-          <div className="relative min-w-0 px-0.5">
+          <div className="relative min-w-0 flex-1 px-0.5">
             <div
               className="pointer-events-none absolute top-1/2 h-0.5 -translate-y-1/2 bg-accent-red"
               style={{
@@ -100,6 +100,27 @@ export function TimelineExpandable({ items }: TimelineExpandableProps) {
                 );
               })}
             </div>
+            <div className="mt-0.5 flex justify-between gap-1">
+              {items.map((item, index) => {
+                const isActive = index === activeIndex;
+                return (
+                  <button
+                    key={`${item.date}-label`}
+                    type="button"
+                    onClick={() => setActiveIndex(index)}
+                    className="min-w-0 flex-1 text-center"
+                  >
+                    <span
+                      className={`block max-w-full text-[10px] leading-none font-bold tracking-[0.2px] uppercase ${
+                        isActive ? "text-accent-gold" : "text-white/45"
+                      }`}
+                    >
+                      {item.date}
+                    </span>
+                  </button>
+                );
+              })}
+            </div>
           </div>
 
           <button
@@ -107,37 +128,13 @@ export function TimelineExpandable({ items }: TimelineExpandableProps) {
             aria-label="Next milestone"
             disabled={atEnd}
             onClick={() => setActiveIndex((index) => Math.min(items.length - 1, index + 1))}
-            className="characters-carousel-nav shrink-0 self-center"
+            className="characters-carousel-nav shrink-0"
           >
             <ChevronRightIcon />
           </button>
-
-          <div aria-hidden />
-          <div className="flex justify-between gap-1 px-0.5">
-            {items.map((item, index) => {
-              const isActive = index === activeIndex;
-              return (
-                <button
-                  key={`${item.date}-label`}
-                  type="button"
-                  onClick={() => setActiveIndex(index)}
-                  className="min-w-0 flex-1 text-center"
-                >
-                  <span
-                    className={`max-w-full text-[10px] leading-tight font-bold tracking-[0.24px] uppercase ${
-                      isActive ? "text-accent-gold" : "text-white/45"
-                    }`}
-                  >
-                    {item.date}
-                  </span>
-                </button>
-              );
-            })}
-          </div>
-          <div aria-hidden />
         </div>
 
-        <div className="mt-6 min-h-[7.5rem]">
+        <div className="mt-4">
           <h3 className="text-[18px] font-bold text-white">{active.title}</h3>
           <p className="mt-2 text-[15px] leading-relaxed text-white/80">
             {active.description}
