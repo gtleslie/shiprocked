@@ -99,19 +99,21 @@ export function CrewFlipCard({ member }: CrewFlipCardProps) {
         </div>
 
         <div className="crew-flip-face crew-flip-back ship-card h-full overflow-hidden border-b border-border">
-          <div className="flex h-full flex-col px-5 py-5">
-            <p className="text-[12px] font-bold tracking-[0.44px] text-accent-gold uppercase">
-              Bio
-            </p>
-            <h3 className="mt-3 text-[17px] font-bold tracking-[0.2px] text-white">
-              {member.name}
-            </h3>
-            {member.role && (
-              <p className="mt-1 text-[12px] font-bold tracking-[0.44px] text-accent-red uppercase">
-                {member.role}
+          <div className="flex h-full min-h-0 flex-col px-5 py-5 md:px-4 md:py-4">
+            <div className="shrink-0">
+              <p className="text-[12px] font-bold tracking-[0.44px] text-accent-gold uppercase">
+                Bio
               </p>
-            )}
-            <p className="mt-4 text-[15px] leading-relaxed text-text-muted">
+              <h3 className="mt-2 text-[17px] font-bold tracking-[0.2px] text-white md:mt-1.5 md:text-[16px]">
+                {member.name}
+              </h3>
+              {member.role && (
+                <p className="mt-0.5 text-[12px] font-bold tracking-[0.44px] text-accent-red uppercase md:text-[11px]">
+                  {member.role}
+                </p>
+              )}
+            </div>
+            <p className="mt-3 min-h-0 flex-1 overflow-y-auto overscroll-contain pb-0.5 text-[15px] leading-relaxed text-text-muted md:mt-2 md:text-[13px] md:leading-snug">
               {member.bio}
             </p>
           </div>
