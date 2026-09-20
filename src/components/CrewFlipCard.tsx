@@ -13,6 +13,8 @@ type CrewMember = {
 
 type CrewFlipCardProps = {
   member: CrewMember;
+  /** CSS object-position for the front photo (e.g. `50% 15%` to raise faces). */
+  photoObjectPosition?: string;
 };
 
 function FlipCardIcon({ className = "h-4 w-4" }: { className?: string }) {
@@ -43,7 +45,10 @@ function FlipBadge() {
   );
 }
 
-export function CrewFlipCard({ member }: CrewFlipCardProps) {
+export function CrewFlipCard({
+  member,
+  photoObjectPosition = "50% 0%",
+}: CrewFlipCardProps) {
   const [flipped, setFlipped] = useState(false);
   const hoverFlip = useRef(false);
 
@@ -78,7 +83,8 @@ export function CrewFlipCard({ member }: CrewFlipCardProps) {
                   alt=""
                   fill
                   sizes="(min-width: 640px) 33vw, 85vw"
-                  className="object-cover object-top"
+                  className="object-cover"
+                  style={{ objectPosition: photoObjectPosition }}
                 />
               ) : (
                 <ImagePlaceholder className="h-full w-full" />

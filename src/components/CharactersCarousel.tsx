@@ -14,6 +14,7 @@ type CharactersCarouselProps = {
   subjects: readonly CharacterSubject[];
   label?: string;
   header?: ReactNode;
+  photoObjectPosition?: string;
 };
 
 function ChevronLeftIcon({ className = "h-4 w-4" }: { className?: string }) {
@@ -54,6 +55,7 @@ export function CharactersCarousel({
   subjects,
   label = "Character carousel",
   header,
+  photoObjectPosition,
 }: CharactersCarouselProps) {
   const trackRef = useRef<HTMLDivElement>(null);
   const [canPrev, setCanPrev] = useState(false);
@@ -139,7 +141,10 @@ export function CharactersCarousel({
             data-carousel-card
             className="characters-carousel-card"
           >
-            <CrewFlipCard member={subject} />
+            <CrewFlipCard
+              member={subject}
+              photoObjectPosition={photoObjectPosition}
+            />
           </div>
         ))}
       </div>

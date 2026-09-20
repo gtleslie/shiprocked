@@ -91,6 +91,7 @@ export default function AboutPage() {
             }
             subjects={about.meetCharacters.subjects}
             label="Meet the characters carousel"
+            photoObjectPosition="50% -6%"
           />
         </div>
       </section>
