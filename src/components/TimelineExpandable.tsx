@@ -86,13 +86,15 @@ export function TimelineExpandable({ items }: TimelineExpandableProps) {
                   aria-pressed={isActive}
                   aria-label={`${item.date}: ${item.title}`}
                 >
-                  <span
-                    className={`relative z-[1] block h-[22px] w-[22px] rounded-full border-2 transition-colors ${
-                      isActive
-                        ? "border-accent-red bg-accent-red"
-                        : "border-accent-red/70 bg-black"
-                    }`}
-                  />
+                  <span className="relative z-[1] flex h-[22px] w-[22px] items-center justify-center">
+                    <span
+                      className={`block h-3.5 w-3.5 rotate-45 border-2 transition-all duration-200 ${
+                        isActive
+                          ? "scale-110 border-accent-red bg-accent-red shadow-[0_0_10px_rgba(210,31,31,0.45)]"
+                          : "border-accent-red/80 bg-black"
+                      }`}
+                    />
+                  </span>
                   <span
                     className={`mt-2 max-w-full text-[10px] leading-tight font-bold tracking-[0.24px] uppercase ${
                       isActive ? "text-accent-gold" : "text-white/45"

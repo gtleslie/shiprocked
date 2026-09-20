@@ -46,11 +46,13 @@ function TimelineCarouselControls({
   index,
   goTo,
   className = "",
+  dotStyle = "circle",
 }: {
   slideCount: number;
   index: number;
   goTo: (next: number) => void;
   className?: string;
+  dotStyle?: "circle" | "diamond";
 }) {
   return (
     <div className={`flex items-center justify-between gap-3 ${className}`}>
@@ -65,6 +67,27 @@ function TimelineCarouselControls({
       <div className="flex items-center gap-2.5" role="tablist" aria-label="Photo slides">
         {Array.from({ length: slideCount }, (_, slideIndex) => {
           const isActive = slideIndex === index;
+          if (dotStyle === "diamond") {
+            return (
+              <button
+                key={slideIndex}
+                type="button"
+                role="tab"
+                aria-selected={isActive}
+                aria-label={`Show photo ${slideIndex + 1}`}
+                onClick={() => goTo(slideIndex)}
+                className="flex h-5 w-5 items-center justify-center p-0"
+              >
+                <span
+                  className={`block h-2.5 w-2.5 rotate-45 border transition-all duration-200 ${
+                    isActive
+                      ? "scale-110 border-accent-red bg-accent-red shadow-[0_0_8px_rgba(210,31,31,0.45)]"
+                      : "border-accent-red/70 bg-black"
+                  }`}
+                />
+              </button>
+            );
+          }
           return (
             <button
               key={slideIndex}
@@ -166,7 +189,12 @@ export function TimelinePhotoCarousel({
       </div>
 
       <div className="absolute inset-x-0 bottom-0 z-10 bg-gradient-to-t from-black/70 to-transparent px-3 pt-8 pb-3 md:hidden">
-        <TimelineCarouselControls slideCount={slides.length} index={index} goTo={goTo} />
+        <TimelineCarouselControls
+          slideCount={slides.length}
+          index={index}
+          goTo={goTo}
+          dotStyle="diamond"
+        />
       </div>
 
       <p className="sr-only">
