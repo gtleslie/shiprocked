@@ -84,7 +84,7 @@ export function CrewFlipCard({ member }: CrewFlipCardProps) {
                 <ImagePlaceholder className="h-full w-full" />
               )}
             </div>
-            <div className="ship-card-footer mt-auto shrink-0 px-5 py-4">
+            <div className="ship-card-footer shrink-0 px-5 py-2.5 sm:mt-auto sm:py-4">
             <h3 className="text-[16px] font-bold tracking-[0.2px] text-white">
               {member.name}
             </h3>
