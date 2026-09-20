@@ -61,7 +61,7 @@ export default function HomePage() {
             </div>
           </div>
 
-          <div className="relative z-10 mt-5 grid gap-12 lg:grid-cols-[1.05fr_1fr] lg:items-start md:mt-6">
+          <div className="relative z-10 mt-5 grid gap-12 max-sm:mt-4 max-sm:gap-5 lg:grid-cols-[1.05fr_1fr] lg:items-start md:mt-6">
             <HeroVideo
               videoId={home.film.testimonialsYoutubeId}
               autoSound
