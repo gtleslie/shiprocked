@@ -78,14 +78,28 @@ body {
 }
 
 @media (max-width: 639px) {
-  /* Keep section fades from covering carousel controls at section boundaries. */
-  .about-section-fade-top {
-    top: 3.25rem;
-    height: 3rem;
+  /* About full-bleed sections: soft edge fades (offset fades read as a grey box on phones). */
+  .about-timeline-section .about-section-fade-top,
+  .about-meet-section .about-section-fade-top {
+    top: 0;
+    height: 4.5rem;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.8) 0%, transparent 100%);
   }
 
-  .about-section-fade-bottom {
-    height: 2.75rem;
+  .about-timeline-section .about-section-fade-bottom,
+  .about-meet-section .about-section-fade-bottom {
+    height: 4rem;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, transparent 100%);
+  }
+
+  /* One blend between timeline and meet crew blocks — not two stacked fade bars. */
+  .about-timeline-section .about-section-fade-bottom,
+  .about-meet-section .about-section-fade-top {
+    display: none;
+  }
+
+  .about-meet-section .about-section-fade-bottom {
+    display: block;
   }
 }
 

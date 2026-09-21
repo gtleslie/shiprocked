@@ -18,7 +18,7 @@ export default function AboutPage() {
 
       <SectionDivider />
 
-      <section className="about-timeline-section relative isolate overflow-hidden max-md:z-[2]">
+      <section className="about-timeline-section relative isolate overflow-hidden">
         <Image
           src={assets.dockToDeadline}
           alt=""
@@ -45,7 +45,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="about-meet-section relative isolate overflow-hidden max-md:z-[1]">
+      <section className="about-meet-section relative isolate overflow-hidden">
         <Image
           src={assets.meetCharactersCrew}
           alt=""
