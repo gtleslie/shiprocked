@@ -654,7 +654,32 @@ body {
   }
 
   .characters-carousel--character-focus .characters-carousel-card {
-    flex-basis: 78%;
+    flex: 0 0 78%;
+    min-width: 0;
+    max-width: 78%;
+    overflow: hidden;
+  }
+
+  .characters-carousel-card {
+    min-width: 0;
+    overflow: hidden;
+  }
+
+  .crew-flip-front-image {
+    contain: paint;
+    isolation: isolate;
+    transform: translateZ(0);
+  }
+
+  .crew-flip-front-image img {
+    max-width: 100%;
+    max-height: 100%;
+  }
+
+  .crew-flip-card,
+  .crew-flip-inner,
+  .crew-flip-face {
+    max-width: 100%;
   }
 }
 

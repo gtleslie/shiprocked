@@ -300,7 +300,8 @@ export const siteContent = {
         },
         {
           name: "THE SHIPROCKED FAMILY",
-          image: "/assets/The ShipRocked Family.png",
+          image: "/assets/the-shiprocked-family.png",
+          imageFit: "contain",
           bio: "The ShipRocked Family represents the core heartbeat of the entire cruise-a massive, global community of passionate rock fans who reunite at sea year after year. Bonded by a shared love for heavy music and vacation vibes, this inclusive, high-energy family turns a standard vacation into a legendary, lifelong community.",
         },
       ],

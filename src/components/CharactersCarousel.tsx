@@ -9,6 +9,7 @@ type CharacterSubject = {
   role?: string;
   bio: string;
   image?: string;
+  imageFit?: "cover" | "contain";
 };
 
 type CharactersCarouselProps = {

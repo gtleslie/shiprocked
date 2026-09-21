@@ -10,6 +10,7 @@ type CrewMember = {
   role?: string;
   bio: string;
   image?: string;
+  imageFit?: "cover" | "contain";
 };
 
 type CrewFlipCardProps = {
@@ -72,14 +73,18 @@ export function CrewFlipCard({ member }: CrewFlipCardProps) {
       <div className={`crew-flip-inner ${flipped ? "is-flipped" : ""}`}>
         <div className="crew-flip-face crew-flip-front flex h-full flex-col overflow-hidden">
           <div className="ship-card crew-flip-front-card flex h-full min-h-0 flex-col overflow-hidden border-b border-border">
-            <div className="relative h-[200px] w-full shrink-0 overflow-hidden bg-bg-card sm:h-[280px]">
+            <div className="crew-flip-front-image relative h-[200px] w-full max-h-[200px] shrink-0 overflow-hidden bg-bg-card sm:h-[280px] sm:max-h-[280px]">
               {member.image ? (
                 <Image
                   src={member.image}
                   alt=""
                   fill
-                  sizes="(min-width: 640px) 33vw, 85vw"
-                  className="object-cover object-top"
+                  sizes="(max-width: 639px) 78vw, (min-width: 640px) 33vw, 85vw"
+                  className={
+                    member.imageFit === "contain"
+                      ? "object-contain object-center max-sm:scale-[0.98]"
+                      : "object-cover object-top"
+                  }
                 />
               ) : (
                 <ImagePlaceholder className="h-full w-full" />
