@@ -56,6 +56,7 @@ export const siteContent = {
     links: [
       { label: "HOME", href: "/", key: "home" as const },
       { label: "ABOUT", href: "/about", key: "about" as const },
+      { label: "SUPPORT", href: "/support", key: "support" as const },
       { label: "CONTACT", href: "/contact", key: "contact" as const },
     ],
   },
@@ -523,4 +524,4 @@ export const siteContent = {
   },
 } as const;
 
-export type NavKey = "home" | "about" | "support" | "contact";
+export type NavKey = (typeof siteContent.nav.links)[number]["key"];
