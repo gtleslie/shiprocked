@@ -1088,6 +1088,7 @@ h2 {
 .inner-circle-logo {
   aspect-ratio: 1666 / 456;
   overflow: hidden;
+  background: transparent;
 }
 
 .inner-circle-logo video,

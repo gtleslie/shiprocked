@@ -21,7 +21,13 @@ export function InnerCircle() {
   const lastTimeRef = useRef(-1);
   const canvasReadyRef = useRef(false);
   const shouldAnimateRef = useRef(false);
-  const [showVideoFallback, setShowVideoFallback] = useState(false);
+  const [logoReady, setLogoReady] = useState(false);
+
+  const markLogoReady = () => {
+    if (canvasReadyRef.current) return;
+    canvasReadyRef.current = true;
+    setLogoReady(true);
+  };
 
   useLayoutEffect(() => {
     const video = videoRef.current;
@@ -163,10 +169,8 @@ export function InnerCircle() {
       await seekToLogoStart();
       if (cancelled) return;
 
-      setShowVideoFallback(true);
       if (paintFrame() && !cancelled) {
-        canvasReadyRef.current = true;
-        setShowVideoFallback(false);
+        markLogoReady();
       }
 
       shouldAnimateRef.current = true;
@@ -221,8 +225,7 @@ export function InnerCircle() {
 
     const tick = () => {
       if (paintFrame() && !cancelled && !canvasReadyRef.current) {
-        canvasReadyRef.current = true;
-        setShowVideoFallback(false);
+        markLogoReady();
       }
       rafRef.current = requestAnimationFrame(tick);
     };
@@ -233,8 +236,7 @@ export function InnerCircle() {
       const onVideoFrame = () => {
         if (cancelled) return;
         if (paintFrame() && !canvasReadyRef.current) {
-          canvasReadyRef.current = true;
-          setShowVideoFallback(false);
+          markLogoReady();
         }
         rvfcRef.current = video.requestVideoFrameCallback(onVideoFrame);
       };
@@ -327,19 +329,19 @@ export function InnerCircle() {
     <div className="inner-circle-stage relative mx-auto flex w-full max-w-[860px] flex-col items-center text-center">
       <h1 className="sr-only">{innerCircle.headline}</h1>
 
-      <div className="inner-circle-logo relative w-full max-w-[780px] overflow-hidden">
+      <div className="inner-circle-logo relative w-full max-w-[780px] overflow-hidden bg-transparent">
         <canvas
           ref={canvasRef}
           width={1666}
           height={456}
-          className="absolute inset-0 z-[1] block h-full w-full pointer-events-none"
+          className={`absolute inset-0 z-[1] block h-full w-full pointer-events-none transition-opacity duration-300 ${
+            logoReady ? "opacity-100" : "opacity-0"
+          }`}
           aria-hidden
         />
         <video
           ref={videoRef}
-          className={`pointer-events-none absolute inset-0 z-0 h-full w-full transition-opacity duration-75 ${
-            showVideoFallback ? "z-[2] opacity-100" : "opacity-[0.01]"
-          }`}
+          className="pointer-events-none absolute inset-0 -z-10 h-full w-full opacity-0 invisible"
           src={videoSrc}
           muted
           playsInline
