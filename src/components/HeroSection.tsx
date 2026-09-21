@@ -44,7 +44,7 @@ export function HeroSection() {
             />
           </div>
           <div className="w-full min-w-0">
-            <HeroVideo videoId={home.hero.youtubeId} autoSound label="trailer" />
+            <HeroVideo videoId={home.hero.youtubeId} label="trailer" />
           </div>
         </div>
       </div>
