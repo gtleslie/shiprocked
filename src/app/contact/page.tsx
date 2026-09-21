@@ -7,7 +7,7 @@ import { SiteButton } from "@/components/SiteButton";
 import { SectionDivider } from "@/components/SectionDivider";
 import { LineRule, SectionLabel, SectionSubhead } from "@/components/ImagePlaceholder";
 import { siteContent } from "@content/site-content";
-import { MailtoLink } from "@/components/MailtoLink";
+import { CopyEmailButton } from "@/components/CopyEmailButton";
 
 type FormStatus = "idle" | "sending" | "sent" | "activation" | "error";
 
@@ -15,34 +15,14 @@ function formSubmitSucceeded(value: unknown): boolean {
   return value === true || value === "true";
 }
 
-function ContactEmailLink({
-  email,
-  subject,
-}: {
-  email: string;
-  subject?: string;
-}) {
-  const at = email.indexOf("@");
-  const local = at >= 0 ? email.slice(0, at + 1) : email;
-  const domain = at >= 0 ? email.slice(at + 1) : "";
-
+function ContactEmailLink({ email }: { email: string }) {
   return (
-    <MailtoLink
+    <CopyEmailButton
       email={email}
-      subject={subject}
-      className="mt-3 block max-w-full text-[12.5px] leading-snug text-text-secondary underline decoration-white/25 underline-offset-2 transition-colors hover:text-accent-red hover:decoration-accent-red sm:text-[14px] sm:leading-normal md:text-[15px]"
-    >
-      <span className="hidden sm:inline">{email}</span>
-      {domain ? (
-        <span className="sm:hidden">
-          {local}
-          <wbr />
-          {domain}
-        </span>
-      ) : (
-        <span className="sm:hidden">{email}</span>
-      )}
-    </MailtoLink>
+      breakOnMobile
+      className="mt-3 block max-w-full text-left text-[12.5px] leading-snug underline decoration-white/25 underline-offset-2 transition-colors hover:text-accent-red hover:decoration-accent-red sm:text-[14px] sm:leading-normal md:text-[15px]"
+      emailClassName="text-text-secondary"
+    />
   );
 }
 
@@ -186,10 +166,7 @@ export default function ContactPage() {
                 <div className="min-w-0">
                   <SectionLabel>{block.overline}</SectionLabel>
                   <h2 className="!mt-1 text-[18px] font-bold text-white md:text-[20px]">{block.title}</h2>
-                  <ContactEmailLink
-                    email={block.email}
-                    subject={"emailSubject" in block ? block.emailSubject : undefined}
-                  />
+                  <ContactEmailLink email={block.email} />
                   {block.note && (
                     <p className="mt-3 text-[13px] text-text-secondary">{block.note}</p>
                   )}

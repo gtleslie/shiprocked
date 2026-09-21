@@ -3,7 +3,7 @@ import Image from "next/image";
 import { Logo } from "@/components/Logo";
 import { FacebookIcon, InstagramIcon, YouTubeIcon } from "@/components/SocialIcons";
 import { siteContent } from "@content/site-content";
-import { MailtoLink } from "@/components/MailtoLink";
+import { CopyEmailButton } from "@/components/CopyEmailButton";
 
 const connectIcons = {
   instagram: InstagramIcon,
@@ -68,16 +68,13 @@ function FooterContactColumn() {
       <p className="mb-3 text-[13px] font-bold tracking-[0.8px] text-accent-gold uppercase">
         CONTACT
       </p>
-      <MailtoLink
+      <CopyEmailButton
         email={contact.email}
-        subject={contact.emailSubject}
-        className="group block max-w-full"
-      >
-        <span className="block text-[14px] text-text-secondary group-hover:text-white">
-          {contact.label}
-        </span>
-        <span className={`mt-0.5 inline-block ${linkClass}`}>{contact.email}</span>
-      </MailtoLink>
+        label={contact.label}
+        className="group block max-w-full text-left"
+        labelClassName="block text-[14px] text-text-secondary group-hover:text-white"
+        emailClassName={`mt-0.5 inline-flex min-h-[1.25rem] items-center gap-2 ${linkClass}`}
+      />
     </>
   );
 }
