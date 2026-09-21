@@ -310,26 +310,12 @@ export function HeroVideo({
     }
   };
 
-  const resumeIfStuck = (player: YouTubePlayer, state?: number) => {
+  const resumeIfStuck = (player: YouTubePlayer) => {
     if (userPausedRef.current || !inViewRef.current) return;
     if (isPlayerActive(player)) return;
     const now = performance.now();
     if (now - resumeAttemptRef.current < 900) return;
     resumeAttemptRef.current = now;
-
-    const YT = window.YT;
-    const isPaused = YT !== undefined && state === YT.PlayerState.PAUSED;
-
-    // After playback has started, never mute+replay — that causes visible stutter when unmuting.
-    if (everPlayedRef.current && (autoSound || isPaused)) {
-      try {
-        player.playVideo();
-      } catch {
-        // ignore
-      }
-      return;
-    }
-
     ensureAutoplay(player);
   };
 
@@ -475,12 +461,8 @@ export function HeroVideo({
             } else if (event.data === PAUSED) {
               setPlaying(false);
             }
-            if (
-              event.data === PAUSED ||
-              event.data === UNSTARTED ||
-              event.data === CUED
-            ) {
-              resumeIfStuck(event.target, event.data);
+            if (event.data === UNSTARTED || event.data === CUED) {
+              resumeIfStuck(event.target);
             }
             if (event.data === ENDED && !userPausedRef.current && inViewRef.current) {
               try {
@@ -590,9 +572,12 @@ export function HeroVideo({
     const player = playerRef.current;
     if (!player) return;
 
-    if (playing) {
+    const currentlyActive = isPlayerActive(player);
+
+    if (currentlyActive) {
       userPausedRef.current = true;
       clearUnmuteTimer();
+      clearPlayRetries();
       try {
         player.pauseVideo();
       } catch {
