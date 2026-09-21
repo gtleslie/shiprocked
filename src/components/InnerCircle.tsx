@@ -1,367 +1,108 @@
 "use client";
 
-import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import Image from "next/image";
 import { siteContent } from "@content/site-content";
 
-/** Skip intro text; start when the central logo begins animating in. */
+/** Skip intro; emblem animation starts here. */
 const LOGO_ANIM_START_SEC = 0.72;
-/** Luminance at or below this becomes transparent (video black plate). */
-const BLACK_LUMA_CUTOFF = 42;
-/** Center emblem mask — matches the hole in inner-circle-text.png (not CSS clip-path). */
-const LOGO_MASK_CENTER_X = 0.4856;
-const LOGO_MASK_CENTER_Y = 0.5;
-const LOGO_MASK_RADIUS = 0.198;
 
 export function InnerCircle() {
   const { innerCircle } = siteContent.support;
-  const { innerCircleLogo, innerCircleLogoText, innerCircleJoin } = siteContent.assets;
+  const { innerCircleLogo, innerCircleJoin } = siteContent.assets;
   const groupHref = siteContent.links.innerCircle;
   const hasGroupLink = groupHref.startsWith("http");
   const videoRef = useRef<HTMLVideoElement>(null);
   const logoStageRef = useRef<HTMLDivElement>(null);
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-  const rafRef = useRef(0);
-  const rvfcRef = useRef<number>(0);
-  const lastTimeRef = useRef(-1);
-  const canvasReadyRef = useRef(false);
-  const shouldAnimateRef = useRef(false);
-  const [logoReady, setLogoReady] = useState(false);
+  const finishedRef = useRef(false);
 
-  const markLogoReady = () => {
-    if (canvasReadyRef.current) return;
-    canvasReadyRef.current = true;
-    setLogoReady(true);
-  };
-
-  useLayoutEffect(() => {
+  useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
-    video.pause();
-    if (video.readyState >= 1 && video.currentTime < LOGO_ANIM_START_SEC) {
-      video.currentTime = LOGO_ANIM_START_SEC;
-    }
-  }, []);
-
-  useEffect(() => {
-    const preload = document.createElement("link");
-    preload.rel = "preload";
-    preload.as = "fetch";
-    preload.href = innerCircleLogo;
-    preload.crossOrigin = "anonymous";
-    document.head.appendChild(preload);
-    return () => {
-      preload.remove();
-    };
-  }, [innerCircleLogo]);
-
-  useEffect(() => {
-    const video = videoRef.current;
-    const canvas = canvasRef.current;
-    if (!video || !canvas) return;
-
-    const ctx = canvas.getContext("2d", { willReadFrequently: true });
-    if (!ctx) return;
 
     let cancelled = false;
-    let bootstrapped = false;
-    let isSeekingLoop = false;
-    let playRetryTimer = 0;
-    let watchId = 0;
-    const playbackFinishedRef = { current: false };
 
-    const seekToLogoStart = (): Promise<void> =>
-      new Promise((resolve) => {
+    const seekToStart = () =>
+      new Promise<void>((resolve) => {
         if (Math.abs(video.currentTime - LOGO_ANIM_START_SEC) <= 0.02) {
           resolve();
           return;
         }
-
         const onSeeked = () => {
           video.removeEventListener("seeked", onSeeked);
           resolve();
         };
-
         video.addEventListener("seeked", onSeeked);
         video.currentTime = LOGO_ANIM_START_SEC;
       });
 
-    const paintFrame = (): boolean => {
-      if (isSeekingLoop) {
-        return canvasReadyRef.current;
-      }
-
-      const w = video.videoWidth;
-      const h = video.videoHeight;
-      if (
-        !w ||
-        !h ||
-        video.readyState < 2 ||
-        video.currentTime < LOGO_ANIM_START_SEC - 0.02
-      ) {
-        return false;
-      }
-
-      if (
-        !playbackFinishedRef.current &&
-        video.currentTime === lastTimeRef.current
-      ) {
-        return canvasReadyRef.current;
-      }
-
-      lastTimeRef.current = video.currentTime;
-
-      if (canvas.width !== w || canvas.height !== h) {
-        canvas.width = w;
-        canvas.height = h;
-      }
-
-      try {
-        ctx.drawImage(video, 0, 0, w, h);
-        const frame = ctx.getImageData(0, 0, w, h);
-        const data = frame.data;
-        const cx = w * LOGO_MASK_CENTER_X;
-        const cy = h * LOGO_MASK_CENTER_Y;
-        const radius = Math.hypot(w / 2, h / 2) * LOGO_MASK_RADIUS;
-        const radiusSq = radius * radius;
-        for (let i = 0; i < data.length; i += 4) {
-          const px = (i / 4) % w;
-          const py = (i / 4 / w) | 0;
-          const dx = px - cx;
-          const dy = py - cy;
-          if (dx * dx + dy * dy > radiusSq) {
-            data[i + 3] = 0;
-            continue;
-          }
-          const r = data[i];
-          const g = data[i + 1];
-          const b = data[i + 2];
-          const luma = 0.299 * r + 0.587 * g + 0.114 * b;
-          if (luma <= BLACK_LUMA_CUTOFF) {
-            data[i + 3] = 0;
-          }
-        }
-        ctx.putImageData(frame, 0, 0);
-      } catch {
-        ctx.drawImage(video, 0, 0, w, h);
-      }
-
-      return true;
-    };
-
-    const finishPlayback = () => {
-      if (playbackFinishedRef.current || cancelled) return;
-      playbackFinishedRef.current = true;
-      shouldAnimateRef.current = false;
-      window.clearInterval(watchId);
-      window.clearTimeout(playRetryTimer);
-      if ("cancelVideoFrameCallback" in video && rvfcRef.current) {
-        video.cancelVideoFrameCallback(rvfcRef.current);
-        rvfcRef.current = 0;
-      }
-      cancelAnimationFrame(rafRef.current);
-      video.pause();
-      lastTimeRef.current = -1;
-      paintFrame();
-    };
-
-    const ensurePlaying = () => {
-      if (cancelled || isSeekingLoop || !shouldAnimateRef.current || playbackFinishedRef.current) {
-        return;
-      }
+    const playOnce = async () => {
+      if (cancelled || finishedRef.current) return;
       if (document.visibilityState !== "visible") return;
-      if (video.readyState < 2) return;
-
-      if (video.currentTime < LOGO_ANIM_START_SEC - 0.01) {
-        void seekToLogoAndPlay();
-        return;
-      }
-
-      const duration = video.duration;
-      if (
-        Number.isFinite(duration) &&
-        duration > LOGO_ANIM_START_SEC + 0.25 &&
-        video.currentTime >= duration - 0.05
-      ) {
-        finishPlayback();
-        return;
-      }
-
-      if (video.paused) {
-        void video.play().catch(() => {
-          // Autoplay may stay blocked until interaction.
-        });
-      }
-    };
-
-    const schedulePlayRetry = () => {
-      window.clearTimeout(playRetryTimer);
-      playRetryTimer = window.setTimeout(() => {
-        ensurePlaying();
-      }, 80);
-    };
-
-    const bootstrap = async () => {
-      if (bootstrapped || cancelled) return;
-      bootstrapped = true;
-
-      video.pause();
-      await seekToLogoStart();
-      if (cancelled) return;
-
-      if (paintFrame() && !cancelled) {
-        markLogoReady();
-      }
-
-      shouldAnimateRef.current = true;
 
       try {
-        await video.play();
-      } catch {
-        // Autoplay may be blocked until interaction; first frame is still shown.
-      }
-
-      ensurePlaying();
-      scheduleVideoFrameLoop();
-    };
-
-    const seekToLogoAndPlay = async () => {
-      if (cancelled || isSeekingLoop || playbackFinishedRef.current) return;
-      isSeekingLoop = true;
-      video.pause();
-      lastTimeRef.current = -1;
-
-      try {
-        await seekToLogoStart();
-        if (cancelled || playbackFinishedRef.current) return;
-        paintFrame();
-        await video.play();
-        scheduleVideoFrameLoop();
-      } catch {
-        // Autoplay blocked or seek interrupted; keep last good canvas frame.
-      } finally {
-        isSeekingLoop = false;
-        ensurePlaying();
-      }
-    };
-
-    const onTimeUpdate = () => {
-      if (isSeekingLoop || playbackFinishedRef.current) return;
-
-      if (video.currentTime < LOGO_ANIM_START_SEC - 0.01) {
-        void seekToLogoAndPlay();
-        return;
-      }
-
-      const duration = video.duration;
-      if (
-        Number.isFinite(duration) &&
-        duration > LOGO_ANIM_START_SEC + 0.25 &&
-        video.currentTime >= duration - 0.05
-      ) {
-        finishPlayback();
-      }
-    };
-
-    const tick = () => {
-      if (cancelled || playbackFinishedRef.current) return;
-      if (paintFrame() && !cancelled && !canvasReadyRef.current) {
-        markLogoReady();
-      }
-      rafRef.current = requestAnimationFrame(tick);
-    };
-
-    const scheduleVideoFrameLoop = () => {
-      if (cancelled || !("requestVideoFrameCallback" in video)) return;
-
-      const onVideoFrame = () => {
-        if (cancelled || playbackFinishedRef.current) return;
-        if (paintFrame() && !canvasReadyRef.current) {
-          markLogoReady();
+        if (video.currentTime < LOGO_ANIM_START_SEC - 0.01) {
+          await seekToStart();
         }
-        if (playbackFinishedRef.current) return;
-        rvfcRef.current = video.requestVideoFrameCallback(onVideoFrame);
-      };
-
-      rvfcRef.current = video.requestVideoFrameCallback(onVideoFrame);
-    };
-
-    const onPause = () => {
-      if (!isSeekingLoop && shouldAnimateRef.current && !playbackFinishedRef.current) {
-        schedulePlayRetry();
+        if (cancelled || finishedRef.current) return;
+        await video.play();
+      } catch {
+        // Autoplay may stay blocked until interaction.
       }
     };
 
-    const onVisibilityChange = () => {
-      if (document.visibilityState === "visible" && !playbackFinishedRef.current) {
-        lastTimeRef.current = -1;
-        ensurePlaying();
-        schedulePlayRetry();
-      }
+    const finish = () => {
+      if (finishedRef.current) return;
+      finishedRef.current = true;
+      video.pause();
+    };
+
+    const onLoaded = () => {
+      void seekToStart().then(() => playOnce());
     };
 
     const onEnded = () => {
-      finishPlayback();
+      finish();
     };
 
-    const onLoadedData = () => {
-      void bootstrap();
+    const onTimeUpdate = () => {
+      if (finishedRef.current) return;
+      const duration = video.duration;
+      if (
+        Number.isFinite(duration) &&
+        duration > LOGO_ANIM_START_SEC + 0.2 &&
+        video.currentTime >= duration - 0.04
+      ) {
+        finish();
+      }
     };
 
-    const onLoadedMetadata = () => {
-      void bootstrap();
-    };
-
-    video.addEventListener("loadeddata", onLoadedData);
-    video.addEventListener("loadedmetadata", onLoadedMetadata);
-    video.addEventListener("timeupdate", onTimeUpdate);
+    video.addEventListener("loadeddata", onLoaded);
+    video.addEventListener("loadedmetadata", onLoaded);
     video.addEventListener("ended", onEnded);
-    video.addEventListener("pause", onPause);
-    video.addEventListener("stalled", schedulePlayRetry);
-    video.addEventListener("waiting", schedulePlayRetry);
-    document.addEventListener("visibilitychange", onVisibilityChange);
-    window.addEventListener("focus", ensurePlaying);
+    video.addEventListener("timeupdate", onTimeUpdate);
 
-    const intersection = new IntersectionObserver(
+    const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry?.isIntersecting && !playbackFinishedRef.current) {
-          ensurePlaying();
-          schedulePlayRetry();
+        if (entry?.isIntersecting && !finishedRef.current) {
+          void playOnce();
         }
       },
       { threshold: 0.05 },
     );
-    const observeTarget = logoStageRef.current ?? video;
-    intersection.observe(observeTarget);
+    observer.observe(logoStageRef.current ?? video);
 
-    watchId = window.setInterval(ensurePlaying, 2000);
-
-    if (video.readyState >= 2) {
-      void bootstrap();
+    if (video.readyState >= 1) {
+      onLoaded();
     }
-
-    rafRef.current = requestAnimationFrame(tick);
 
     return () => {
       cancelled = true;
-      shouldAnimateRef.current = false;
-      window.clearTimeout(playRetryTimer);
-      window.clearInterval(watchId);
-      cancelAnimationFrame(rafRef.current);
-      if ("cancelVideoFrameCallback" in video && rvfcRef.current) {
-        video.cancelVideoFrameCallback(rvfcRef.current);
-      }
-      intersection.disconnect();
-      video.removeEventListener("loadeddata", onLoadedData);
-      video.removeEventListener("loadedmetadata", onLoadedMetadata);
-      video.removeEventListener("timeupdate", onTimeUpdate);
+      observer.disconnect();
+      video.removeEventListener("loadeddata", onLoaded);
+      video.removeEventListener("loadedmetadata", onLoaded);
       video.removeEventListener("ended", onEnded);
-      video.removeEventListener("pause", onPause);
-      video.removeEventListener("stalled", schedulePlayRetry);
-      video.removeEventListener("waiting", schedulePlayRetry);
-      document.removeEventListener("visibilitychange", onVisibilityChange);
-      window.removeEventListener("focus", ensurePlaying);
-      video.pause();
+      video.removeEventListener("timeupdate", onTimeUpdate);
     };
   }, []);
 
@@ -380,36 +121,15 @@ export function InnerCircle() {
         ref={logoStageRef}
         className="inner-circle-logo relative w-full max-w-[780px] overflow-hidden bg-transparent aspect-[1666/456]"
       >
-        {/* Static INNER / CIRCLE text — hole in center so emblem sits flush. */}
-        <Image
-          src={innerCircleLogoText}
-          alt=""
-          width={1666}
-          height={456}
-          priority
-          className="pointer-events-none absolute inset-0 z-0 h-full w-full object-contain"
-          aria-hidden
-        />
-        <canvas
-          ref={canvasRef}
-          width={1666}
-          height={456}
-          className={`pointer-events-none absolute inset-0 z-[1] block h-full w-full object-contain object-center transition-opacity duration-300 ${
-            logoReady ? "opacity-100" : "opacity-0"
-          }`}
-          aria-hidden
-        />
         <video
           ref={videoRef}
-          className="pointer-events-none absolute inset-0 -z-10 h-full w-full opacity-0 invisible"
+          className="inner-circle-logo-video pointer-events-none block h-full w-full object-contain object-center"
           src={videoSrc}
           muted
-          autoPlay
           playsInline
           preload="auto"
           disablePictureInPicture
-          aria-hidden
-          tabIndex={-1}
+          aria-label={innerCircle.headline}
         />
       </div>
 
