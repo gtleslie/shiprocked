@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import localFont from "next/font/local";
+import { Analytics } from "@vercel/analytics/next";
 import { ScrollToTop } from "@/components/ScrollToTop";
 import { siteContent } from "@content/site-content";
 import "./globals.css";
@@ -78,6 +79,7 @@ export default function RootLayout({
       <body className="min-h-screen antialiased">
         <ScrollToTop />
         {children}
+        <Analytics />
       </body>
     </html>
   );
