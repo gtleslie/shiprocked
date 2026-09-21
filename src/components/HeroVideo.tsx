@@ -246,7 +246,7 @@ export function HeroVideo({
 
   const scheduleAutoplaySound = (player: YouTubePlayer) => {
     if (!autoSound || userMutedRef.current) return;
-    for (const delay of [120, 400, 900, 1800]) {
+    for (const delay of [0, 80, 200, 450, 900, 1600, 2800, 4500]) {
       window.setTimeout(() => enableAutoplaySound(player), delay);
     }
   };
@@ -254,6 +254,9 @@ export function HeroVideo({
   const ensureAutoplay = (player: YouTubePlayer) => {
     if (userPausedRef.current) return;
     if (isPlayerActive(player)) {
+      if (autoSound && !userMutedRef.current) {
+        enableAutoplaySound(player);
+      }
       return;
     }
     try {
@@ -389,6 +392,7 @@ export function HeroVideo({
               everPlayedRef.current = true;
               setEverPlayed(true);
               setPlaying(true);
+              enableAutoplaySound(event.target);
               scheduleAutoplaySound(event.target);
             } else if (event.data === BUFFERING) {
               setPlaying(true);
