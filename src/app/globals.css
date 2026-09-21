@@ -278,6 +278,10 @@ body {
   padding-top: var(--site-nav-height);
 }
 
+.site-support-offset {
+  padding-top: calc(var(--site-nav-height) + var(--site-fundraising-banner-height));
+}
+
 .fundraising-banner-bleed {
   position: relative;
   left: 50%;
@@ -290,6 +294,12 @@ body {
 
 .fundraising-banner-bleed--under-nav {
   top: var(--site-nav-height);
+  left: 0;
+  right: 0;
+  width: 100%;
+  max-width: none;
+  margin-left: 0;
+  margin-right: 0;
 }
 
 .fundraising-banner {
