@@ -770,7 +770,7 @@ export function HeroVideo({
         <button
           type="button"
           onClick={shareTrailer}
-          className="hero-video-btn"
+          className="hero-video-btn hidden max-sm:inline-flex"
           aria-label={copied ? `${label} link copied` : `Share ${label}`}
         >
           {copied ? <CheckIcon /> : <ShareIcon />}
