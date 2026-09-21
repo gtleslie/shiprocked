@@ -32,7 +32,13 @@ type YouTubeNamespace = {
       };
     },
   ) => YouTubePlayer;
-  PlayerState: { ENDED: number };
+  PlayerState: {
+    ENDED: number;
+    PAUSED: number;
+    PLAYING: number;
+    UNSTARTED: number;
+    CUED: number;
+  };
 };
 
 declare global {
@@ -147,6 +153,7 @@ export function HeroVideo({
   const copiedTimeout = useRef<number | null>(null);
   const fadeToken = useRef(0);
   const inViewRef = useRef(false);
+  const audioInViewRef = useRef(false);
   const userMutedRef = useRef(false);
   const [muted, setMuted] = useState(true);
   const [copied, setCopied] = useState(false);
@@ -166,13 +173,31 @@ export function HeroVideo({
     requestAnimationFrame(step);
   };
 
-  const applyInViewAudio = (visible: boolean) => {
+  const ensurePlaying = (player: YouTubePlayer) => {
+    try {
+      player.playVideo();
+    } catch {
+      // Autoplay may be blocked until the player is fully ready.
+    }
+  };
+
+  const applyInViewPlayback = (visible: boolean, audioEligible: boolean) => {
     const player = playerRef.current;
-    if (!player || !autoSound) return;
+    if (!player) return;
 
-    player.playVideo();
+    if (visible) {
+      ensurePlaying(player);
+    }
 
-    if (visible && !userMutedRef.current) {
+    if (!autoSound) {
+      if (visible) {
+        player.mute();
+        setMuted(true);
+      }
+      return;
+    }
+
+    if (audioEligible && !userMutedRef.current) {
       try {
         player.unMute();
         fadeVolume(player, 0, 100, 420);
@@ -186,7 +211,7 @@ export function HeroVideo({
 
     fadeVolume(player, 100, 0, 380);
     window.setTimeout(() => {
-      if (!inViewRef.current) {
+      if (!audioInViewRef.current) {
         player.mute();
         setMuted(true);
       }
@@ -219,6 +244,7 @@ export function HeroVideo({
           mute: 1,
           controls: 1,
           disablekb: 0,
+          enablejsapi: 1,
           fs: 1,
           modestbranding: 1,
           playsinline: 1,
@@ -233,13 +259,21 @@ export function HeroVideo({
           onReady: (event) => {
             hideCaptions(event.target);
             event.target.mute();
-            event.target.playVideo();
-            applyInViewAudio(inViewRef.current);
+            ensurePlaying(event.target);
+            applyInViewPlayback(inViewRef.current, audioInViewRef.current);
           },
           onStateChange: (event) => {
             hideCaptions(event.target);
-            if (event.data === YT.PlayerState.ENDED) {
-              event.target.playVideo();
+            const { ENDED, PAUSED, UNSTARTED, CUED } = YT.PlayerState;
+            if (event.data === ENDED) {
+              ensurePlaying(event.target);
+              return;
+            }
+            if (
+              inViewRef.current &&
+              (event.data === PAUSED || event.data === UNSTARTED || event.data === CUED)
+            ) {
+              ensurePlaying(event.target);
             }
           },
         },
@@ -259,19 +293,33 @@ export function HeroVideo({
 
   useEffect(() => {
     const wrap = wrapRef.current;
-    if (!wrap || !autoSound) return;
+    if (!wrap) return;
 
     const observer = new IntersectionObserver(
       ([entry]) => {
-        inViewRef.current = entry.isIntersecting && entry.intersectionRatio >= 0.35;
-        applyInViewAudio(inViewRef.current);
+        inViewRef.current = entry.isIntersecting;
+        audioInViewRef.current =
+          entry.isIntersecting && entry.intersectionRatio >= 0.35;
+        applyInViewPlayback(inViewRef.current, audioInViewRef.current);
       },
-      { threshold: [0, 0.35, 0.6] },
+      { threshold: [0, 0.01, 0.35, 0.6], rootMargin: "64px 0px" },
     );
 
     observer.observe(wrap);
     return () => observer.disconnect();
-  }, [autoSound]);
+  }, [autoSound, videoId]);
+
+  useEffect(() => {
+    const resumeIfVisible = () => {
+      if (document.visibilityState !== "visible") return;
+      const player = playerRef.current;
+      if (!player || !inViewRef.current) return;
+      ensurePlaying(player);
+    };
+
+    document.addEventListener("visibilitychange", resumeIfVisible);
+    return () => document.removeEventListener("visibilitychange", resumeIfVisible);
+  }, [videoId]);
 
   const toggleAudio = () => {
     const player = playerRef.current;
