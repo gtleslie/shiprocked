@@ -73,6 +73,7 @@ export const siteContent = {
     contact: {
       label: "Marketing inquiries",
       email: "info@ask4ent.com",
+      emailSubject: "Story of ShipRocked — Marketing inquiry",
     },
     connect: [
       { label: "Instagram", href: "https://www.instagram.com/storyofshiprocked", icon: "instagram" as const },
@@ -478,6 +479,7 @@ export const siteContent = {
         overline: "MARKETING & PRESS",
         title: "Story of ShipRocked Team",
         email: "shiprocked@koenigentertainment.com",
+        emailSubject: "Story of ShipRocked — Marketing & press",
         note: null,
         logo: "ke" as const,
       },
@@ -485,6 +487,7 @@ export const siteContent = {
         overline: "GENERAL INQUIRIES",
         title: "ASK4 Entertainment",
         email: "info@ask4ent.com",
+        emailSubject: "Story of ShipRocked — General inquiry",
         note: "Response within 2-3 business days",
         logo: "ask4" as const,
       },
