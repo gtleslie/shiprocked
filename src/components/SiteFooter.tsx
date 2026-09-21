@@ -3,7 +3,7 @@ import Image from "next/image";
 import { Logo } from "@/components/Logo";
 import { FacebookIcon, InstagramIcon, YouTubeIcon } from "@/components/SocialIcons";
 import { siteContent } from "@content/site-content";
-import { mailtoHref } from "@/lib/mailto";
+import { MailtoLink } from "@/components/MailtoLink";
 
 const connectIcons = {
   instagram: InstagramIcon,
@@ -60,9 +60,6 @@ function FooterExploreColumn() {
 
 function FooterContactColumn() {
   const { contact } = siteContent.footer;
-  const mailHref = mailtoHref(contact.email, {
-    subject: contact.emailSubject,
-  });
   const linkClass =
     "text-[14px] text-text-secondary underline decoration-white/25 underline-offset-2 transition-colors hover:text-accent-red hover:decoration-accent-red";
 
@@ -71,12 +68,16 @@ function FooterContactColumn() {
       <p className="mb-3 text-[13px] font-bold tracking-[0.8px] text-accent-gold uppercase">
         CONTACT
       </p>
-      <a href={mailHref} className="group block max-w-full">
+      <MailtoLink
+        email={contact.email}
+        subject={contact.emailSubject}
+        className="group block max-w-full"
+      >
         <span className="block text-[14px] text-text-secondary group-hover:text-white">
           {contact.label}
         </span>
         <span className={`mt-0.5 inline-block ${linkClass}`}>{contact.email}</span>
-      </a>
+      </MailtoLink>
     </>
   );
 }

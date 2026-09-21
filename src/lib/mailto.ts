@@ -1,4 +1,4 @@
-/** Build a mailto: href (opens the visitor’s default email app — do not use target="_blank"). */
+/** Build a mailto: href for the visitor’s default email app. */
 export function mailtoHref(
   email: string,
   options?: { subject?: string; body?: string },
