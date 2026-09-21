@@ -272,8 +272,8 @@ body {
 }
 
 .fundraising-banner--support {
-  border-bottom: 1px solid rgba(0, 0, 0, 0.28);
-  background: var(--color-accent-red);
+  border-bottom: 1px solid rgba(212, 162, 60, 0.28);
+  background: linear-gradient(180deg, #0c0c0c 0%, #050505 100%);
 }
 
 .fundraising-banner-viewport {
@@ -310,8 +310,8 @@ body {
 }
 
 .fundraising-banner--support .fundraising-banner-text {
-  color: #ffffff;
-  animation: fundraising-headline-flash-support 1.35s ease-in-out infinite;
+  color: var(--color-accent-gold);
+  animation: fundraising-headline-flash 1.35s ease-in-out infinite;
 }
 
 @keyframes fundraising-ticker {
@@ -323,17 +323,17 @@ body {
   }
 }
 
-@keyframes fundraising-headline-flash-support {
+@keyframes fundraising-headline-flash {
   0%,
   100% {
     opacity: 1;
-    color: #ffffff;
+    color: var(--color-accent-gold);
     text-shadow: 0 0 0 transparent;
   }
   50% {
-    opacity: 0.82;
-    color: #fff5f5;
-    text-shadow: 0 0 12px rgba(255, 255, 255, 0.35);
+    opacity: 0.62;
+    color: #f2cf7a;
+    text-shadow: 0 0 14px rgba(212, 162, 60, 0.45);
   }
 }
 

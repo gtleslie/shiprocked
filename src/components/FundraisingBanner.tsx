@@ -23,11 +23,11 @@ export function FundraisingBanner() {
     <div className="fundraising-banner fundraising-banner--support" role="marquee" aria-live="off">
       <div className="fundraising-banner-viewport">
         <div className="fundraising-banner-track">
-          <span className="fundraising-banner-text font-overline !tracking-normal text-[13px] font-bold uppercase md:text-[14px]">
+          <span className="fundraising-banner-text font-overline !tracking-normal text-[13px] font-bold text-accent-gold uppercase md:text-[14px]">
             <TickerSequence />
           </span>
           <span
-            className="fundraising-banner-text font-overline !tracking-normal text-[13px] font-bold uppercase md:text-[14px]"
+            className="fundraising-banner-text font-overline !tracking-normal text-[13px] font-bold text-accent-gold uppercase md:text-[14px]"
             aria-hidden
           >
             <TickerSequence />
