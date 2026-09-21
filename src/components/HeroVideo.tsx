@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { YouTubeIcon } from "@/components/SocialIcons";
 import { siteContent } from "@content/site-content";
@@ -151,33 +152,6 @@ function CheckIcon() {
   );
 }
 
-function YouTubePosterThumb({ videoId }: { videoId: string }) {
-  const [src, setSrc] = useState(
-    () => `https://i.ytimg.com/vi/${videoId}/maxresdefault.jpg`,
-  );
-
-  return (
-    // eslint-disable-next-line @next/next/no-img-element
-    <img
-      src={src}
-      alt=""
-      className="hero-video-poster-thumb"
-      decoding="async"
-      onError={() => {
-        setSrc((current) => {
-          if (current.includes("maxresdefault")) {
-            return `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`;
-          }
-          if (current.includes("hqdefault")) {
-            return `https://i.ytimg.com/vi/${videoId}/mqdefault.jpg`;
-          }
-          return current;
-        });
-      }}
-    />
-  );
-}
-
 function loadYouTubeApi(): Promise<YouTubeNamespace> {
   if (window.YT?.Player) {
     return Promise.resolve(window.YT);
@@ -223,6 +197,7 @@ export function HeroVideo({
   const [embedFailed, setEmbedFailed] = useState(false);
   const [copied, setCopied] = useState(false);
   const watchUrl = `https://www.youtube.com/watch?v=${videoId}`;
+  const posterThumbUrl = `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`;
   const showPoster = embedFailed || !everPlayed;
 
   const syncViewport = () => {
@@ -639,7 +614,22 @@ export function HeroVideo({
               className={`hero-video-poster${showPoster ? " is-visible" : ""}`}
               aria-hidden={!showPoster}
             >
-              <YouTubePosterThumb videoId={videoId} />
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={posterThumbUrl}
+                alt=""
+                className="hero-video-poster-thumb"
+                decoding="async"
+              />
+              <div className="hero-video-poster-scrim" aria-hidden />
+              <Image
+                src={siteContent.assets.heroLogo}
+                alt=""
+                width={1020}
+                height={660}
+                className="hero-video-poster-logo"
+                priority
+              />
             </div>
           </div>
           <div className="hero-visual-sheen pointer-events-none absolute inset-0" aria-hidden />
