@@ -233,8 +233,11 @@ export function HeroVideo({
     return { visible: true, audioEligible: ratio >= 0.35 };
   };
 
-  const ensurePlaying = (player: YouTubePlayer) => {
+  const ensureMutedAutoplay = (player: YouTubePlayer) => {
+    if (userPausedRef.current) return;
     try {
+      player.mute();
+      player.setVolume(0);
       player.playVideo();
     } catch {
       // Autoplay may be blocked until the player is fully ready.
@@ -242,9 +245,23 @@ export function HeroVideo({
   };
 
   const schedulePlayRetries = (player: YouTubePlayer) => {
-    for (const delay of [0, 250, 700, 1500]) {
-      window.setTimeout(() => ensurePlaying(player), delay);
+    for (const delay of [0, 120, 350, 700, 1500, 2800, 4500]) {
+      window.setTimeout(() => {
+        if (userPausedRef.current) return;
+        ensureMutedAutoplay(player);
+      }, delay);
     }
+  };
+
+  const startAutoplayWatchdog = (player: YouTubePlayer) => {
+    const startedAt = performance.now();
+    const tick = () => {
+      if (userPausedRef.current || everPlayedRef.current) return;
+      if (performance.now() - startedAt > 12_000) return;
+      ensureMutedAutoplay(player);
+      window.setTimeout(tick, 600);
+    };
+    window.setTimeout(tick, 600);
   };
 
   const clearUnmuteTimer = () => {
@@ -278,8 +295,8 @@ export function HeroVideo({
       return;
     }
 
-    ensurePlaying(player);
-    if (enteredView) {
+    ensureMutedAutoplay(player);
+    if (enteredView || !everPlayedRef.current) {
       schedulePlayRetries(player);
     }
 
@@ -365,12 +382,16 @@ export function HeroVideo({
           onReady: (event) => {
             hideCaptions(event.target);
             userPausedRef.current = false;
+            inViewRef.current = syncViewport().visible;
             updateViewportPlayback();
+            ensureMutedAutoplay(event.target);
             schedulePlayRetries(event.target);
+            startAutoplayWatchdog(event.target);
           },
           onStateChange: (event) => {
             hideCaptions(event.target);
-            const { ENDED, PAUSED, PLAYING, BUFFERING } = YT.PlayerState;
+            const { ENDED, PAUSED, PLAYING, BUFFERING, UNSTARTED, CUED } =
+              YT.PlayerState;
             if (event.data === PLAYING) {
               everPlayedRef.current = true;
               setEverPlayed(true);
@@ -380,8 +401,17 @@ export function HeroVideo({
             } else if (event.data === PAUSED) {
               setPlaying(false);
             }
+            if (
+              !userPausedRef.current &&
+              inViewRef.current &&
+              (event.data === PAUSED ||
+                event.data === UNSTARTED ||
+                event.data === CUED)
+            ) {
+              ensureMutedAutoplay(event.target);
+            }
             if (event.data === ENDED && !userPausedRef.current && inViewRef.current) {
-              ensurePlaying(event.target);
+              ensureMutedAutoplay(event.target);
             }
           },
           onError: () => {
@@ -415,6 +445,7 @@ export function HeroVideo({
     if (!wrap) return;
 
     updateViewportPlayback();
+    requestAnimationFrame(() => updateViewportPlayback());
 
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -423,7 +454,7 @@ export function HeroVideo({
           entry.isIntersecting && entry.intersectionRatio >= 0.35;
         applyInViewPlayback(inViewRef.current, audioInViewRef.current);
       },
-      { threshold: [0, 0.15, 0.35, 0.6], rootMargin: "0px 0px 12% 0px" },
+      { threshold: [0, 0.01, 0.2, 0.35], rootMargin: "48px 0px" },
     );
 
     observer.observe(wrap);
@@ -438,7 +469,7 @@ export function HeroVideo({
       if (document.visibilityState !== "visible") return;
       const player = playerRef.current;
       if (!player || !inViewRef.current || userPausedRef.current) return;
-      ensurePlaying(player);
+      ensureMutedAutoplay(player);
     };
 
     document.addEventListener("visibilitychange", resumeIfVisible);
