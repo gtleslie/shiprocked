@@ -437,12 +437,14 @@ body {
 }
 
 .crew-flip-card {
-  perspective: 1200px;
+  perspective: 1600px;
+  perspective-origin: 50% 50%;
   height: 288px;
   background: transparent;
   border: 0;
   padding: 0;
   cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
 }
 
 @media (max-width: 639px) {
@@ -504,17 +506,26 @@ body {
   width: 100%;
   height: 100%;
   transform-style: preserve-3d;
-  transition: transform 0.65s cubic-bezier(0.4, 0.2, 0.2, 1);
+  transform: rotateY(0deg) translateZ(0);
+  transition: transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
 }
 
 .crew-flip-inner.is-flipped,
 .crew-flip-card:focus-visible .crew-flip-inner {
-  transform: rotateY(180deg);
+  transform: rotateY(180deg) translateZ(0);
 }
 
 @media (hover: hover) and (pointer: fine) {
   .crew-flip-card:hover .crew-flip-inner {
-    transform: rotateY(180deg);
+    transform: rotateY(180deg) translateZ(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .crew-flip-inner {
+    transition-duration: 0.25s;
+    transition-timing-function: ease;
   }
 }
 
@@ -523,10 +534,11 @@ body {
   inset: 0;
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
+  transform: translateZ(0.1px);
 }
 
 .crew-flip-back {
-  transform: rotateY(180deg);
+  transform: rotateY(180deg) translateZ(0.1px);
 }
 
 .crew-flip-badge {
