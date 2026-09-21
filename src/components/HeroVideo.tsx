@@ -191,6 +191,9 @@ export function HeroVideo({
   const embedFailedRef = useRef(false);
   const resumeAttemptRef = useRef(0);
   const unmuteTimerRef = useRef<number | null>(null);
+  const playRetryTimersRef = useRef<number[]>([]);
+  const soundAutoplayQueuedRef = useRef(false);
+  const soundUnlockedRef = useRef(false);
   // Always start muted in UI until playback is running and unmute succeeds.
   const [muted, setMuted] = useState(true);
   const [playing, setPlaying] = useState(false);
@@ -243,35 +246,51 @@ export function HeroVideo({
     }
   };
 
+  const clearPlayRetries = () => {
+    for (const id of playRetryTimersRef.current) {
+      window.clearTimeout(id);
+    }
+    playRetryTimersRef.current = [];
+  };
+
+  const addPlayRetry = (callback: () => void, delay: number) => {
+    const id = window.setTimeout(callback, delay);
+    playRetryTimersRef.current.push(id);
+  };
+
   const enableAutoplaySound = (player: YouTubePlayer) => {
     if (!autoSound || userMutedRef.current || userPausedRef.current) return;
+    if (soundUnlockedRef.current) return;
     if (!audioInViewRef.current) return;
     if (!isPlayerPlaying(player)) return;
     try {
       player.unMute();
       player.setVolume(100);
       setMuted(false);
+      soundUnlockedRef.current = true;
     } catch {
-      player.mute();
+      // Keep playing muted; do not call mute() here — that retriggers pause/play loops.
       setMuted(true);
     }
   };
 
   const scheduleAutoplaySound = (player: YouTubePlayer) => {
-    if (!autoSound || userMutedRef.current) return;
-    for (const delay of [400, 900, 1600, 2800, 4500]) {
+    if (!autoSound || userMutedRef.current || soundUnlockedRef.current) return;
+    for (const delay of [900, 2000, 3500]) {
       window.setTimeout(() => enableAutoplaySound(player), delay);
     }
   };
 
   const queueAutoplaySound = (player: YouTubePlayer) => {
-    if (!autoSound || userMutedRef.current) return;
+    if (!autoSound || userMutedRef.current || soundUnlockedRef.current) return;
+    if (soundAutoplayQueuedRef.current) return;
+    soundAutoplayQueuedRef.current = true;
     clearUnmuteTimer();
     unmuteTimerRef.current = window.setTimeout(() => {
       unmuteTimerRef.current = null;
       enableAutoplaySound(player);
       scheduleAutoplaySound(player);
-    }, 450);
+    }, 650);
   };
 
   const ensureAutoplay = (player: YouTubePlayer) => {
@@ -281,27 +300,44 @@ export function HeroVideo({
     }
     try {
       // Browsers allow muted autoplay; unmute only after PLAYING (see onStateChange).
-      player.mute();
-      setMuted(true);
+      if (!everPlayedRef.current) {
+        player.mute();
+        setMuted(true);
+      }
       player.playVideo();
     } catch {
       // Autoplay may be blocked until the player is fully ready.
     }
   };
 
-  const resumeIfStuck = (player: YouTubePlayer) => {
+  const resumeIfStuck = (player: YouTubePlayer, state?: number) => {
     if (userPausedRef.current || !inViewRef.current) return;
     if (isPlayerActive(player)) return;
     const now = performance.now();
     if (now - resumeAttemptRef.current < 900) return;
     resumeAttemptRef.current = now;
+
+    const YT = window.YT;
+    const isPaused = YT !== undefined && state === YT.PlayerState.PAUSED;
+
+    // After playback has started, never mute+replay — that causes visible stutter when unmuting.
+    if (everPlayedRef.current && (autoSound || isPaused)) {
+      try {
+        player.playVideo();
+      } catch {
+        // ignore
+      }
+      return;
+    }
+
     ensureAutoplay(player);
   };
 
   const schedulePlayRetries = (player: YouTubePlayer) => {
+    clearPlayRetries();
     for (const delay of [0, 120, 350, 700, 1500, 2800, 4500, 7000, 10_000]) {
-      window.setTimeout(() => {
-        if (userPausedRef.current) return;
+      addPlayRetry(() => {
+        if (userPausedRef.current || everPlayedRef.current) return;
         ensureAutoplay(player);
       }, delay);
     }
@@ -335,15 +371,6 @@ export function HeroVideo({
     if (!visible) {
       clearUnmuteTimer();
       return;
-    }
-
-    if (
-      audioEligible &&
-      autoSound &&
-      !userMutedRef.current &&
-      everPlayedRef.current
-    ) {
-      enableAutoplaySound(player);
     }
 
     if (userPausedRef.current) {
@@ -421,6 +448,7 @@ export function HeroVideo({
               everPlayedRef.current = true;
               setEverPlayed(true);
               setPlaying(true);
+              clearPlayRetries();
               queueAutoplaySound(event.target);
             } else if (event.data === BUFFERING) {
               setPlaying(true);
@@ -432,10 +460,14 @@ export function HeroVideo({
               event.data === UNSTARTED ||
               event.data === CUED
             ) {
-              resumeIfStuck(event.target);
+              resumeIfStuck(event.target, event.data);
             }
             if (event.data === ENDED && !userPausedRef.current && inViewRef.current) {
-              ensureAutoplay(event.target);
+              try {
+                event.target.playVideo();
+              } catch {
+                ensureAutoplay(event.target);
+              }
             }
           },
           onError: () => {
@@ -452,6 +484,9 @@ export function HeroVideo({
       everPlayedRef.current = false;
       embedFailedRef.current = false;
       wasInViewRef.current = false;
+      soundAutoplayQueuedRef.current = false;
+      soundUnlockedRef.current = false;
+      clearPlayRetries();
       setEverPlayed(false);
       setEmbedFailed(false);
       playerRef.current?.destroy();
@@ -484,8 +519,9 @@ export function HeroVideo({
 
     const kickAfterInteraction = () => {
       const player = playerRef.current;
-      if (player && !userPausedRef.current && inViewRef.current) {
-        ensureAutoplay(player);
+      if (!player || userPausedRef.current || !inViewRef.current) return;
+      ensureAutoplay(player);
+      if (!everPlayedRef.current) {
         schedulePlayRetries(player);
       }
     };
@@ -569,6 +605,8 @@ export function HeroVideo({
 
     if (muted) {
       userMutedRef.current = false;
+      soundUnlockedRef.current = true;
+      soundAutoplayQueuedRef.current = true;
       if (userPausedRef.current) {
         userPausedRef.current = false;
       }
@@ -583,6 +621,7 @@ export function HeroVideo({
     }
 
     userMutedRef.current = true;
+    soundUnlockedRef.current = false;
     player.mute();
     setMuted(true);
   };
