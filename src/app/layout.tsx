@@ -40,6 +40,11 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://shiprocked.vercel.app"),
   title: siteContent.site.title,
   description: siteContent.site.description,
+  icons: {
+    icon: [{ url: "/assets/logos/skully-logo-1.png", type: "image/png" }],
+    shortcut: [{ url: "/assets/logos/skully-logo-1.png", type: "image/png" }],
+    apple: [{ url: "/assets/logos/skully-logo-1.png", type: "image/png" }],
+  },
   openGraph: {
     title: siteContent.site.title,
     description: siteContent.site.description,
