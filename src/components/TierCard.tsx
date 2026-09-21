@@ -153,6 +153,7 @@ export function TierCard({ tier, locked = false, index = 0 }: TierCardProps) {
           variant="dark"
           className="mt-6 h-11 w-full text-[11px]"
           disabled={locked}
+          newTab
         >
           {support.tiers.selectCta}
         </SiteButton>

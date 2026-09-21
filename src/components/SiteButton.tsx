@@ -18,6 +18,7 @@ type SiteButtonProps = {
   type?: "button" | "submit";
   disabled?: boolean;
   onClick?: () => void;
+  newTab?: boolean;
 };
 
 export function SiteButton({
@@ -28,12 +29,18 @@ export function SiteButton({
   type = "button",
   disabled = false,
   onClick,
+  newTab = false,
 }: SiteButtonProps) {
   const classes = `inline-flex h-[48px] items-center justify-center px-7 text-[12px] font-bold tracking-[0.32px] uppercase transition-[color,background-color,box-shadow] duration-200 ${variantClasses[variant]} ${className} ${disabled ? "pointer-events-none cursor-not-allowed opacity-50" : ""}`;
 
   if (href && !disabled) {
     return (
-      <Link href={href} className={classes} onClick={onClick}>
+      <Link
+        href={href}
+        className={classes}
+        onClick={onClick}
+        {...(newTab ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+      >
         {children}
       </Link>
     );

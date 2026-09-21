@@ -38,7 +38,7 @@ export default function SupportPage() {
             <SectionSubhead className="mt-5 text-[15px] leading-relaxed text-text-secondary">
               {support.seedAndSpark.body}
             </SectionSubhead>
-            <SiteButton href={links.seedAndSpark} className="mt-8">
+            <SiteButton href={links.seedAndSpark} newTab className="mt-8">
               {support.seedAndSpark.cta}
             </SiteButton>
           </div>
