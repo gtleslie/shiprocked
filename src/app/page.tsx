@@ -130,15 +130,15 @@ export default function HomePage() {
                     />
                   </div>
                 </div>
-                <div className="why-card-scrim" aria-hidden />
-                <p className="absolute top-4 left-4 z-10 sm:left-5">
-                  <span className="why-card-index">{card.number}</span>
+                <div className="why-card-scrim" />
+                <p className="absolute top-4 left-5 z-10 text-[13px] font-bold text-accent-red">
+                  {card.number}
                 </p>
-                <div className="why-card-copy">
-                  <h3 className="text-[15px] font-bold tracking-[0.2px] text-white sm:text-[16px]">
+                <div className="absolute inset-x-5 bottom-4 z-10">
+                  <h3 className="text-[15px] font-bold tracking-[0.2px] text-white">
                     {card.title}
                   </h3>
-                  <p className="mt-2 text-[13px] leading-relaxed text-white/90 sm:text-[14px]">
+                  <p className="mt-2 text-[13px] leading-relaxed text-white/80">
                     {card.description}
                   </p>
                 </div>
