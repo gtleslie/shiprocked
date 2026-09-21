@@ -980,6 +980,11 @@ body {
 }
 
 @media (max-width: 639px) {
+  .funding-carousel-track {
+    scroll-snap-type: none;
+    scroll-behavior: auto;
+  }
+
   .funding-viz-shell .budget-chart {
     display: flex;
     min-height: 0;

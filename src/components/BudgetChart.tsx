@@ -109,6 +109,38 @@ function ChevronRightIcon({ className = "h-4 w-4" }: { className?: string }) {
 
 const AUTO_ADVANCE_MS = 5000;
 
+function measureCarouselStep(track: HTMLElement): number {
+  const cards = Array.from(track.querySelectorAll<HTMLElement>("[data-funding-slide]"));
+  if (cards.length >= 2) {
+    return cards[1].offsetLeft - cards[0].offsetLeft;
+  }
+  const first = cards[0];
+  if (!first) return track.clientWidth;
+  const gap = parseFloat(getComputedStyle(track).columnGap || getComputedStyle(track).gap || "20");
+  return first.offsetWidth + gap;
+}
+
+function scrollLeftForIndex(track: HTMLElement, index: number): number {
+  const card = track.querySelector<HTMLElement>(`[data-funding-slide="${index}"]`);
+  if (card) return card.offsetLeft;
+  return Math.max(0, index * measureCarouselStep(track));
+}
+
+function indexFromScroll(track: HTMLElement): number {
+  const cards = Array.from(track.querySelectorAll<HTMLElement>("[data-funding-slide]"));
+  if (!cards.length) return 0;
+
+  const scrollLeft = track.scrollLeft;
+  let matched = 0;
+  cards.forEach((card) => {
+    const index = Number(card.dataset.fundingSlide);
+    if (card.offsetLeft <= scrollLeft + 8) {
+      matched = index;
+    }
+  });
+  return matched;
+}
+
 export function BudgetChart({ items, leading }: BudgetChartProps) {
   const [activeIndex, setActiveIndex] = useState(0);
   const [paused, setPaused] = useState(false);
@@ -125,6 +157,18 @@ export function BudgetChart({ items, leading }: BudgetChartProps) {
     mq.addEventListener("change", update);
     return () => mq.removeEventListener("change", update);
   }, []);
+
+  useEffect(() => {
+    const track = trackRef.current;
+    if (!track) return;
+
+    ignoreScrollSync.current = true;
+    track.scrollLeft = 0;
+    setActiveIndex(0);
+    requestAnimationFrame(() => {
+      ignoreScrollSync.current = false;
+    });
+  }, [items.length]);
 
   const width = 920;
   const height = 640;
@@ -231,7 +275,9 @@ export function BudgetChart({ items, leading }: BudgetChartProps) {
   const activeColor = SLICE_COLORS[activeIndex % SLICE_COLORS.length];
 
   const releaseScrollSync = (track: HTMLElement) => {
-    track.style.scrollSnapType = "";
+    if (!compactChart) {
+      track.style.scrollSnapType = "";
+    }
     ignoreScrollSync.current = false;
   };
 
@@ -239,23 +285,22 @@ export function BudgetChart({ items, leading }: BudgetChartProps) {
     const track = trackRef.current;
     if (!track) return;
 
-    const card = track.querySelector<HTMLElement>(`[data-funding-slide="${index}"]`);
-    if (!card) return;
-
     ignoreScrollSync.current = true;
     if (scrollSyncTimeout.current) {
       window.clearTimeout(scrollSyncTimeout.current);
     }
 
     track.style.scrollSnapType = "none";
-    track.scrollTo({ left: Math.max(0, card.offsetLeft), behavior: "auto" });
+    const targetLeft = scrollLeftForIndex(track, index);
 
-    const finish = () => releaseScrollSync(track);
-    if ("onscrollend" in track) {
-      track.addEventListener("scrollend", finish, { once: true });
-    } else {
-      scrollSyncTimeout.current = window.setTimeout(finish, 48);
-    }
+    const applyScroll = () => {
+      track.scrollLeft = targetLeft;
+    };
+    applyScroll();
+    requestAnimationFrame(() => {
+      applyScroll();
+      releaseScrollSync(track);
+    });
   };
 
   const goTo = (index: number) => {
@@ -276,20 +321,9 @@ export function BudgetChart({ items, leading }: BudgetChartProps) {
       frame = requestAnimationFrame(() => {
         if (ignoreScrollSync.current) return;
 
-        const cards = Array.from(
-          track.querySelectorAll<HTMLElement>("[data-funding-slide]"),
-        );
-        if (!cards.length) return;
+        if (!track.querySelector("[data-funding-slide]")) return;
 
-        const viewportLeft = track.scrollLeft;
-        let leftmostActive = 0;
-
-        cards.forEach((card) => {
-          const index = Number(card.dataset.fundingSlide);
-          if (card.offsetLeft <= viewportLeft + 4) {
-            leftmostActive = index;
-          }
-        });
+        const leftmostActive = indexFromScroll(track);
 
         setActiveIndex((current) => (current === leftmostActive ? current : leftmostActive));
       });
