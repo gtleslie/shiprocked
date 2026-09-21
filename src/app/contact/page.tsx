@@ -8,7 +8,11 @@ import { SectionDivider } from "@/components/SectionDivider";
 import { LineRule, SectionLabel, SectionSubhead } from "@/components/ImagePlaceholder";
 import { siteContent } from "@content/site-content";
 
-type FormStatus = "idle" | "sending" | "sent" | "error";
+type FormStatus = "idle" | "sending" | "sent" | "activation" | "error";
+
+function formSubmitFailed(value: unknown): boolean {
+  return value === false || value === "false";
+}
 
 function ContactEmailLink({ email }: { email: string }) {
   const at = email.indexOf("@");
@@ -38,6 +42,7 @@ export default function ContactPage() {
   const { contact } = siteContent;
   const [status, setStatus] = useState<FormStatus>("idle");
   const [error, setError] = useState("");
+  const formLocked = status === "sent";
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -59,33 +64,43 @@ export default function ContactPage() {
 
     try {
       const endpoint = `https://formsubmit.co/ajax/${encodeURIComponent(contact.form.deliverTo)}`;
+      const payload = new FormData();
+      payload.append("name", name);
+      payload.append("email", email);
+      payload.append("message", message);
+      payload.append("_subject", `${contact.form.subject} — ${name}`);
+      payload.append("_replyto", email);
+      payload.append("_template", "table");
+      payload.append("_captcha", "false");
+
       const response = await fetch(endpoint, {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-        body: JSON.stringify({
-          name,
-          email,
-          message,
-          _subject: `${contact.form.subject} — ${name}`,
-          _replyto: email,
-          _template: "table",
-        }),
+        headers: { Accept: "application/json" },
+        body: payload,
       });
 
-      let result: { success?: string; message?: string } = {};
+      let result: { success?: string | boolean; message?: string } = {};
       try {
         result = (await response.json()) as typeof result;
       } catch {
         result = {};
       }
 
-      if (!response.ok) {
+      const messageText = result.message?.trim() ?? "";
+      const needsActivation =
+        messageText.toLowerCase().includes("activation") ||
+        messageText.toLowerCase().includes("activate form");
+
+      if (needsActivation) {
+        setStatus("activation");
+        setError(contact.form.activationMessage);
+        return;
+      }
+
+      if (!response.ok || formSubmitFailed(result.success)) {
         setStatus("error");
         setError(
-          result.message ||
+          messageText ||
             "Couldn't send that message. Please try again or email us directly.",
         );
         return;
@@ -196,75 +211,117 @@ export default function ContactPage() {
               </div>
             </div>
 
-            <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
-              <label className="block">
-                <span className="text-[11px] font-bold tracking-[0.44px] text-text-secondary uppercase">
-                  {contact.form.name}
-                </span>
-                <input
-                  required
-                  name="name"
-                  type="text"
-                  autoComplete="name"
-                  maxLength={120}
-                  className="mt-1.5 h-10 w-full border border-border bg-bg-card px-3 text-[15px] text-white outline-none focus:border-accent-red sm:mt-2 sm:h-12 sm:px-4"
-                />
-              </label>
+            <div className="relative">
+              <form
+                onSubmit={handleSubmit}
+                aria-busy={status === "sending"}
+                className={`space-y-4 transition-[opacity,filter] duration-500 sm:space-y-6 ${
+                  formLocked
+                    ? "pointer-events-none opacity-[0.38] grayscale-[0.35]"
+                    : ""
+                }`}
+              >
+                <fieldset disabled={formLocked || status === "sending"} className="space-y-4 border-0 p-0 sm:space-y-6">
+                  <label className="block">
+                    <span className="text-[11px] font-bold tracking-[0.44px] text-text-secondary uppercase">
+                      {contact.form.name}
+                    </span>
+                    <input
+                      required
+                      name="name"
+                      type="text"
+                      autoComplete="name"
+                      maxLength={120}
+                      className="mt-1.5 h-10 w-full border border-border bg-bg-card px-3 text-[15px] text-white outline-none focus:border-accent-red sm:mt-2 sm:h-12 sm:px-4"
+                    />
+                  </label>
 
-              <label className="block">
-                <span className="text-[11px] font-bold tracking-[0.44px] text-text-secondary uppercase">
-                  {contact.form.email}
-                </span>
-                <input
-                  required
-                  name="email"
-                  type="email"
-                  autoComplete="email"
-                  maxLength={254}
-                  className="mt-1.5 h-10 w-full border border-border bg-bg-card px-3 text-[15px] text-white outline-none focus:border-accent-red sm:mt-2 sm:h-12 sm:px-4"
-                />
-              </label>
+                  <label className="block">
+                    <span className="text-[11px] font-bold tracking-[0.44px] text-text-secondary uppercase">
+                      {contact.form.email}
+                    </span>
+                    <input
+                      required
+                      name="email"
+                      type="email"
+                      autoComplete="email"
+                      maxLength={254}
+                      className="mt-1.5 h-10 w-full border border-border bg-bg-card px-3 text-[15px] text-white outline-none focus:border-accent-red sm:mt-2 sm:h-12 sm:px-4"
+                    />
+                  </label>
 
-              <label className="block">
-                <span className="text-[11px] font-bold tracking-[0.44px] text-text-secondary uppercase">
-                  {contact.form.message}
-                </span>
-                <textarea
-                  required
-                  name="message"
-                  rows={5}
-                  maxLength={5000}
-                  className="mt-1.5 min-h-[120px] w-full resize-y border border-border bg-bg-card px-3 py-2 text-[15px] text-white outline-none focus:border-accent-red sm:mt-2 sm:min-h-[160px] sm:px-4 sm:py-3"
-                />
-              </label>
+                  <label className="block">
+                    <span className="text-[11px] font-bold tracking-[0.44px] text-text-secondary uppercase">
+                      {contact.form.message}
+                    </span>
+                    <textarea
+                      required
+                      name="message"
+                      rows={5}
+                      maxLength={5000}
+                      className="mt-1.5 min-h-[120px] w-full resize-y border border-border bg-bg-card px-3 py-2 text-[15px] text-white outline-none focus:border-accent-red sm:mt-2 sm:min-h-[160px] sm:px-4 sm:py-3"
+                    />
+                  </label>
+                </fieldset>
 
-              <div className="absolute -left-[9999px] h-0 w-0 overflow-hidden" aria-hidden>
-                <label>
-                  Leave blank
-                  <input name="_gotcha" type="text" tabIndex={-1} autoComplete="off" />
-                </label>
-              </div>
+                <div className="absolute -left-[9999px] h-0 w-0 overflow-hidden" aria-hidden>
+                  <label>
+                    Leave blank
+                    <input name="_gotcha" type="text" tabIndex={-1} autoComplete="off" />
+                  </label>
+                </div>
 
-              <div>
-                <SiteButton
-                  type="submit"
-                  disabled={status === "sending"}
-                  className="w-full sm:w-auto"
+                <div className={formLocked ? "invisible h-0 overflow-hidden" : ""}>
+                  <SiteButton
+                    type="submit"
+                    disabled={status === "sending"}
+                    className="w-full sm:w-auto"
+                  >
+                    {status === "sending" ? "SENDING..." : contact.form.submit}
+                  </SiteButton>
+                  {status === "activation" && (
+                    <p
+                      className="mt-4 text-[14px] leading-relaxed text-accent-gold"
+                      aria-live="polite"
+                    >
+                      {error}
+                    </p>
+                  )}
+                  {status === "error" && (
+                    <p className="mt-4 text-[14px] text-accent-red" aria-live="assertive">
+                      {error}
+                    </p>
+                  )}
+                </div>
+              </form>
+
+              {formLocked ? (
+                <div
+                  className="absolute inset-0 flex items-center justify-center px-2 py-6 sm:px-4"
+                  role="status"
+                  aria-live="polite"
                 >
-                  {status === "sending" ? "SENDING..." : contact.form.submit}
-                </SiteButton>
-                {status === "sent" && (
-                  <p className="mt-4 text-[14px] text-text-muted" aria-live="polite">
-                    Thanks for reaching out. We&apos;ll get back to you soon.
-                  </p>
-                )}
-                {status === "error" && (
-                  <p className="mt-4 text-[14px] text-accent-red" aria-live="assertive">
-                    {error}
-                  </p>
-                )}
-              </div>
-            </form>
+                  <div className="w-full max-w-md border border-white/15 bg-black/75 px-6 py-8 text-center shadow-[0_24px_60px_rgba(0,0,0,0.55)] backdrop-blur-md sm:px-8 sm:py-10">
+                    <p className="font-overline text-[13px] font-bold tracking-[0.5px] text-accent-gold uppercase">
+                      Message sent
+                    </p>
+                    <h3 className="mt-2 text-[28px] font-black text-white sm:text-[32px]">
+                      {contact.form.sentHeadline}
+                    </h3>
+                    <p className="font-subhead mt-3 text-[15px] leading-relaxed text-text-muted sm:text-[16px]">
+                      {contact.form.sentMessage}
+                    </p>
+                    <button
+                      type="button"
+                      onClick={() => setStatus("idle")}
+                      className="mt-6 text-[13px] font-bold tracking-[0.36px] text-white/70 uppercase underline decoration-white/25 underline-offset-4 transition-colors hover:text-white hover:decoration-accent-red"
+                    >
+                      {contact.form.sendAnother}
+                    </button>
+                  </div>
+                </div>
+              ) : null}
+            </div>
           </div>
 
           <div className="hidden min-h-[28rem] items-center justify-center overflow-hidden lg:flex lg:min-h-full">

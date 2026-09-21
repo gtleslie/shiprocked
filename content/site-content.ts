@@ -475,7 +475,7 @@ export const siteContent = {
       {
         overline: "MARKETING & PRESS",
         title: "Story of ShipRocked Team",
-        email: "storyofshiprocked@koenigentertainment.com",
+        email: "shiprocked@koenigentertainment.com",
         note: null,
         logo: "ke" as const,
       },
@@ -495,8 +495,13 @@ export const siteContent = {
       message: "MESSAGE",
       submit: "SEND MESSAGE",
       /** FormSubmit.co delivery address (activate once via their confirmation email). */
-      deliverTo: "storyofshiprocked@koenigentertainment.com",
+      deliverTo: "shiprocked@koenigentertainment.com",
       subject: "ShipRocked contact form",
+      sentHeadline: "Thank you!",
+      sentMessage: "Your message is on its way. We'll get back to you soon.",
+      sendAnother: "Send another message",
+      activationMessage:
+        "Almost there — FormSubmit sent an activation link to our inbox. Someone on the team needs to open that email and click Activate Form (check spam). After that, submit again and messages will come through.",
     },
     social: {
       overline: "FOLLOW THE FILM",
