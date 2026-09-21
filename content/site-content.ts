@@ -292,12 +292,12 @@ export const siteContent = {
         {
           name: "AL MCMANUS",
           image: "/assets/Al McManus.png",
-          bio: "Al McManus serves as the Vice President of Operations and Talent Booker for ASK4 Entertainment, managing heavy-hitting artist relations and event coordination. He also produces Making Waves: The ShipRocked Podcast, keeping the cruise community engaged year-round.",
+          bio: "Al McManus serves as the Vice President of ASK4 & Buffet, as well as talent booking for The Stowaways. He manages heavy-hitting artist relations and overall event coordination. He co-produces Making Waves: The ShipRocked, Podcast, helping to keep the cruise community engaged year round.",
         },
         {
           name: "JENNIFER ZITO",
           image: "/assets/Jennifer Zito.png",
-          bio: "Jennifer Zito serves as the Vice President of Operations for ASK4 Entertainment, managing all logistics, event planning, and production behind the scenes. She directs the complex shipboard operations required to execute ShipRocked seamlessly year after year.",
+          bio: "Jennifer Zito serves as VP of Operations 'N Stuff for ASK4 Entertainment, managing logistics, staff management, and event production behind the scenes. She directs complex shipboard operations required to execute ShipRocked seamlessly year after year.",
         },
         {
           name: "THE SWEDES",
