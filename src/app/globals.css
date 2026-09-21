@@ -493,6 +493,16 @@ body {
   outline: none;
 }
 
+.hero-video-btn.hero-video-share {
+  display: none;
+}
+
+@media (max-width: 639px) {
+  .hero-video-btn.hero-video-share {
+    display: inline-flex;
+  }
+}
+
 .hero-video-btn.is-muted {
   animation: hero-audio-pulse 2.4s ease-in-out infinite;
 }
