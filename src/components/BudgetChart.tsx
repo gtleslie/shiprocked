@@ -158,6 +158,18 @@ export function BudgetChart({ items, leading }: BudgetChartProps) {
     return () => mq.removeEventListener("change", update);
   }, []);
 
+  useEffect(() => {
+    const track = trackRef.current;
+    if (!track) return;
+
+    ignoreScrollSync.current = true;
+    track.scrollLeft = 0;
+    setActiveIndex(0);
+    requestAnimationFrame(() => {
+      ignoreScrollSync.current = false;
+    });
+  }, [items.length]);
+
   const width = 920;
   const height = 640;
   const cx = width / 2;
@@ -262,39 +274,33 @@ export function BudgetChart({ items, leading }: BudgetChartProps) {
   const active = items[activeIndex] ?? items[0];
   const activeColor = SLICE_COLORS[activeIndex % SLICE_COLORS.length];
 
-  const isMobileCarousel = () =>
-    window.matchMedia("(max-width: 639px)").matches;
+  const releaseScrollSync = (track: HTMLElement) => {
+    if (!compactChart) {
+      track.style.scrollSnapType = "";
+    }
+    ignoreScrollSync.current = false;
+  };
 
   const scrollToIndex = (index: number) => {
     const track = trackRef.current;
     if (!track) return;
-
-    const card = track.querySelector<HTMLElement>(`[data-funding-slide="${index}"]`);
-    if (!card) return;
 
     ignoreScrollSync.current = true;
     if (scrollSyncTimeout.current) {
       window.clearTimeout(scrollSyncTimeout.current);
     }
 
-    if (isMobileCarousel()) {
-      track.style.scrollSnapType = "none";
-      const targetLeft = scrollLeftForIndex(track, index);
-      const applyScroll = () => {
-        track.scrollLeft = targetLeft;
-      };
-      applyScroll();
-      requestAnimationFrame(() => {
-        applyScroll();
-        ignoreScrollSync.current = false;
-      });
-      return;
-    }
+    track.style.scrollSnapType = "none";
+    const targetLeft = scrollLeftForIndex(track, index);
 
-    track.scrollTo({ left: Math.max(0, card.offsetLeft), behavior: "smooth" });
-    scrollSyncTimeout.current = window.setTimeout(() => {
-      ignoreScrollSync.current = false;
-    }, 520);
+    const applyScroll = () => {
+      track.scrollLeft = targetLeft;
+    };
+    applyScroll();
+    requestAnimationFrame(() => {
+      applyScroll();
+      releaseScrollSync(track);
+    });
   };
 
   const goTo = (index: number) => {
@@ -315,31 +321,11 @@ export function BudgetChart({ items, leading }: BudgetChartProps) {
       frame = requestAnimationFrame(() => {
         if (ignoreScrollSync.current) return;
 
-        const cards = Array.from(
-          track.querySelectorAll<HTMLElement>("[data-funding-slide]"),
-        );
-        if (!cards.length) return;
+        if (!track.querySelector("[data-funding-slide]")) return;
 
-        if (isMobileCarousel()) {
-          const leftmostActive = indexFromScroll(track);
-          setActiveIndex((current) => (current === leftmostActive ? current : leftmostActive));
-          return;
-        }
+        const leftmostActive = indexFromScroll(track);
 
-        const viewportLeft = track.scrollLeft;
-        let closest = 0;
-        let closestDist = Number.POSITIVE_INFINITY;
-
-        cards.forEach((card) => {
-          const slideIndex = Number(card.dataset.fundingSlide);
-          const dist = Math.abs(card.offsetLeft - viewportLeft);
-          if (dist < closestDist) {
-            closestDist = dist;
-            closest = slideIndex;
-          }
-        });
-
-        setActiveIndex((current) => (current === closest ? current : closest));
+        setActiveIndex((current) => (current === leftmostActive ? current : leftmostActive));
       });
     };
 
