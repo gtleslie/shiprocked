@@ -141,6 +141,17 @@ function indexFromScroll(track: HTMLElement): number {
   return matched;
 }
 
+function indexFromScrollDesktop(track: HTMLElement): number {
+  const cards = Array.from(track.querySelectorAll<HTMLElement>("[data-funding-slide]"));
+  if (!cards.length) return 0;
+
+  const step = measureCarouselStep(track);
+  if (step <= 0) return 0;
+
+  const raw = Math.round(track.scrollLeft / step);
+  return Math.min(cards.length - 1, Math.max(0, raw));
+}
+
 export function BudgetChart({ items, leading }: BudgetChartProps) {
   const [activeIndex, setActiveIndex] = useState(0);
   const [paused, setPaused] = useState(false);
@@ -274,12 +285,8 @@ export function BudgetChart({ items, leading }: BudgetChartProps) {
   const active = items[activeIndex] ?? items[0];
   const activeColor = SLICE_COLORS[activeIndex % SLICE_COLORS.length];
 
-  const releaseScrollSync = (track: HTMLElement) => {
-    if (!compactChart) {
-      track.style.scrollSnapType = "";
-    }
-    ignoreScrollSync.current = false;
-  };
+  const isMobileCarousel = () =>
+    window.matchMedia("(max-width: 639px)").matches;
 
   const scrollToIndex = (index: number) => {
     const track = trackRef.current;
@@ -290,8 +297,9 @@ export function BudgetChart({ items, leading }: BudgetChartProps) {
       window.clearTimeout(scrollSyncTimeout.current);
     }
 
-    track.style.scrollSnapType = "none";
-    const targetLeft = scrollLeftForIndex(track, index);
+    const step = measureCarouselStep(track);
+    const card = track.querySelector<HTMLElement>(`[data-funding-slide="${index}"]`);
+    const targetLeft = card?.offsetLeft ?? Math.max(0, index * step);
 
     const applyScroll = () => {
       track.scrollLeft = targetLeft;
@@ -299,7 +307,7 @@ export function BudgetChart({ items, leading }: BudgetChartProps) {
     applyScroll();
     requestAnimationFrame(() => {
       applyScroll();
-      releaseScrollSync(track);
+      ignoreScrollSync.current = false;
     });
   };
 
@@ -323,9 +331,11 @@ export function BudgetChart({ items, leading }: BudgetChartProps) {
 
         if (!track.querySelector("[data-funding-slide]")) return;
 
-        const leftmostActive = indexFromScroll(track);
+        const synced = isMobileCarousel()
+          ? indexFromScroll(track)
+          : indexFromScrollDesktop(track);
 
-        setActiveIndex((current) => (current === leftmostActive ? current : leftmostActive));
+        setActiveIndex((current) => (current === synced ? current : synced));
       });
     };
 

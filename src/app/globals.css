@@ -898,6 +898,11 @@ body {
 }
 
 @media (min-width: 640px) {
+  .funding-carousel-track {
+    scroll-snap-type: none;
+    scroll-behavior: auto;
+  }
+
   .funding-carousel-card {
     flex-basis: min(100%, 340px);
   }
