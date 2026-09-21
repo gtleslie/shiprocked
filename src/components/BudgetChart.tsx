@@ -262,6 +262,9 @@ export function BudgetChart({ items, leading }: BudgetChartProps) {
       labelPoint.x = Math.min(width - labelPadX, Math.max(labelPadX, labelPoint.x));
     }
 
+    const labelFontSize =
+      !isActive ? 16 : index === 2 && !compactChart ? 20 : 22;
+
     return {
       ...item,
       index,
@@ -276,6 +279,8 @@ export function BudgetChart({ items, leading }: BudgetChartProps) {
       labelY: labelPoint.y,
       textAnchor: (isRight ? "start" : "end") as "start" | "end",
       percentTextColor: index === 4 && !isActive ? "#111111" : "#ffffff",
+      labelFontSize,
+      labelLineDy: isActive ? (labelFontSize >= 22 ? 26 : 24) : 20,
       lines,
     };
   });
@@ -469,7 +474,7 @@ export function BudgetChart({ items, leading }: BudgetChartProps) {
                 y={slice.labelY - (slice.lines.length > 1 ? 9 : 0)}
                 textAnchor={slice.textAnchor}
                 fill={slice.isActive ? "#ffffff" : "#bdbdbd"}
-                fontSize={slice.isActive ? "22" : "16"}
+                fontSize={slice.labelFontSize}
                 fontWeight={slice.isActive ? "800" : "600"}
                 style={{ fontFamily: "var(--font-inter), Inter, system-ui, sans-serif" }}
               >
@@ -477,7 +482,7 @@ export function BudgetChart({ items, leading }: BudgetChartProps) {
                   <tspan
                     key={`${slice.label}-${lineIndex}`}
                     x={slice.labelX}
-                    dy={lineIndex === 0 ? 0 : slice.isActive ? 26 : 20}
+                    dy={lineIndex === 0 ? 0 : slice.labelLineDy}
                   >
                     {line}
                   </tspan>
