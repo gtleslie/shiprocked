@@ -203,7 +203,6 @@ export function HeroVideo({
   const watchUrl = `https://www.youtube.com/watch?v=${videoId}`;
   const posterThumbUrl = `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`;
   const showPoster = embedFailed || !everPlayed;
-  const showInScreenPlay = !embedFailed && !playing;
 
   const syncViewport = () => {
     const wrap = wrapRef.current;
@@ -738,19 +737,19 @@ export function HeroVideo({
                 className="hero-video-poster-logo"
                 priority
               />
+              {!embedFailed ? (
+                <button
+                  type="button"
+                  className="hero-video-poster-play"
+                  onClick={togglePlayback}
+                  aria-label={`Play ${label}`}
+                >
+                  <span className="hero-video-poster-play-icon" aria-hidden>
+                    <PlayIcon />
+                  </span>
+                </button>
+              ) : null}
             </div>
-            <button
-              type="button"
-              className={`hero-video-stage-hit${showInScreenPlay ? " is-interactive" : ""}`}
-              onClick={showInScreenPlay ? togglePlayback : undefined}
-              tabIndex={showInScreenPlay ? 0 : -1}
-              aria-hidden={!showInScreenPlay}
-              aria-label={playing ? `Pause ${label}` : `Play ${label}`}
-            >
-              <span className="hero-video-stage-play" aria-hidden>
-                <PlayIcon />
-              </span>
-            </button>
           </div>
           <div className="hero-visual-sheen pointer-events-none absolute inset-0" aria-hidden />
         </div>

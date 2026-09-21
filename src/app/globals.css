@@ -270,39 +270,28 @@ body {
   border: 0;
 }
 
-.hero-video-stage-hit {
+.hero-video-poster-play {
   position: absolute;
   inset: 0;
-  z-index: 6;
+  z-index: 3;
   display: flex;
   align-items: center;
   justify-content: center;
   margin: 0;
   padding: 0;
   border: 0;
-  background: transparent;
-  cursor: default;
-  pointer-events: none;
-}
-
-.hero-video-stage-hit.is-interactive {
   cursor: pointer;
+  background: transparent;
+  color: #ffffff;
   pointer-events: auto;
 }
 
-.hero-video-stage-hit.is-interactive:hover,
-.hero-video-stage-hit.is-interactive:focus-visible {
+.hero-video-poster-play:hover,
+.hero-video-poster-play:focus-visible {
   outline: none;
 }
 
-.hero-video-stage-hit.is-interactive:hover .hero-video-stage-play,
-.hero-video-stage-hit.is-interactive:focus-visible .hero-video-stage-play {
-  border-color: rgba(255, 255, 255, 1);
-  background: rgba(210, 31, 31, 0.92);
-  transform: scale(1.04);
-}
-
-.hero-video-stage-play {
+.hero-video-poster-play-icon {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -311,7 +300,6 @@ body {
   border-radius: 9999px;
   border: 2px solid rgba(255, 255, 255, 0.88);
   background: rgba(210, 31, 31, 0.78);
-  color: #ffffff;
   box-shadow: 0 6px 28px rgba(0, 0, 0, 0.45);
   transition:
     transform 0.2s ease,
@@ -319,10 +307,17 @@ body {
     border-color 0.2s ease;
 }
 
-.hero-video-stage-play svg {
+.hero-video-poster-play-icon svg {
   width: 1.65rem;
   height: 1.65rem;
   margin-left: 0.15rem;
+}
+
+.hero-video-poster-play:hover .hero-video-poster-play-icon,
+.hero-video-poster-play:focus-visible .hero-video-poster-play-icon {
+  border-color: rgba(255, 255, 255, 1);
+  background: rgba(210, 31, 31, 0.92);
+  transform: scale(1.04);
 }
 
 .site-nav-offset {
