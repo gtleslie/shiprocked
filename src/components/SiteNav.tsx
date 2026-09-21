@@ -10,7 +10,7 @@ type SiteNavProps = {
 };
 
 export function SiteNav({ activePage }: SiteNavProps) {
-  const { nav, links } = siteContent;
+  const { nav } = siteContent;
   const [open, setOpen] = useState(false);
 
   return (
@@ -59,14 +59,12 @@ export function SiteNav({ activePage }: SiteNavProps) {
           })}
         </nav>
 
-        <a
-          href={links.seedAndSpark}
-          target="_blank"
-          rel="noopener noreferrer"
+        <Link
+          href="/support"
           className="inline-flex h-10 shrink-0 items-center justify-center bg-accent-red px-4 text-[10px] font-bold tracking-[0.44px] text-white uppercase max-md:justify-self-start md:col-start-3 md:h-9 md:min-w-[132px] md:justify-self-end md:px-5 md:text-[11px]"
         >
           {nav.supportCta}
-        </a>
+        </Link>
 
         <Link
           href="/"
