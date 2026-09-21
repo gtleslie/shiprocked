@@ -1078,22 +1078,6 @@ body {
   object-position: 50% 16%;
 }
 
-/* Mobile Meet the Characters — one fixed card height; taller back for full bios. */
-@media (max-width: 639px) {
-  .characters-carousel--character-focus .crew-flip-card--character {
-    height: 380px;
-  }
-
-  .characters-carousel--character-focus .crew-flip-card--character .crew-flip-front-image {
-    height: 200px;
-    max-height: 200px;
-  }
-
-  .characters-carousel--character-focus .crew-flip-card--character .crew-flip-front-card {
-    grid-template-rows: 200px max-content;
-  }
-}
-
 .characters-carousel-track {
   display: flex;
   gap: 1.5rem;
