@@ -187,7 +187,7 @@ export function BudgetChart({ items, leading }: BudgetChartProps) {
   const activeOuter = compactChart ? 252 : 264;
   const innerRadius = 126;
   const gap = 1.75;
-  const labelPadX = compactChart ? 18 : 16;
+  const labelPadX = compactChart ? 18 : 12;
   const labelPadY = compactChart ? 52 : 40;
   const labelGap = compactChart ? 22 : 14;
 
@@ -245,15 +245,6 @@ export function BudgetChart({ items, leading }: BudgetChartProps) {
       // Festival submission fees — pull label below expanded slice.
       labelPoint.y += compactChart ? 5 * (height / 250) : 14;
       leaderEnd.y += 6;
-    }
-
-    if (isActive && index === 2 && !compactChart) {
-      // Sound design & color grade — expanded slice; left callout must not clip the “S”.
-      if (!isRight) {
-        labelPoint.x += 18;
-        leaderEnd.x += 6;
-        labelPoint.x = Math.min(width - labelPadX, Math.max(labelPadX + 26, labelPoint.x));
-      }
     }
 
     if (isActive && index === 3) {

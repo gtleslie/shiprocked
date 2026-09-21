@@ -1064,7 +1064,6 @@ body {
   .budget-chart {
     display: flex;
     min-height: 0;
-    overflow: visible;
     align-items: stretch;
     align-self: stretch;
     justify-content: center;
@@ -1073,7 +1072,7 @@ body {
   .funding-pie-svg {
     flex: 1 1 auto;
     min-height: 0;
-    translate: 6px 0;
+    translate: 3px 0;
   }
 }
 
