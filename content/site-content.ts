@@ -213,7 +213,7 @@ export const siteContent = {
     },
     crew: {
       overline: "THE TEAM",
-      kicker: "36 SCAD students across a range of creative majors",
+      kicker: "30+ SCAD students across a range of creative majors",
       headline: "Meet the Film-Crew",
       members: [
         {
