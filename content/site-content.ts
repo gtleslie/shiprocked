@@ -12,6 +12,7 @@ export const siteContent = {
     ask4Logo: "/assets/logos/ask4-entertainment.png",
     skullyRide: "/assets/logos/skully-riding-cruise.png",
     innerCircleLogo: "/assets/logos/inner-circle-logo.mp4",
+    innerCircleLogoText: "/assets/logos/inner-circle-text.png",
     innerCircleJoin: "/assets/logos/click-to-join.png",
     seedAndSpark: "/assets/logos/seed-and-spark.png",
     seedAndSparkInline: "/assets/seedandsparkinline.png",

@@ -245,11 +245,7 @@ body {
   aspect-ratio: 16 / 9;
   width: 100%;
   height: auto;
-  opacity: 0;
-  transition: opacity 0.5s ease;
-}
-
-.hero-video-frame.is-revealed {
+  /* Must stay visible — browsers block autoplay on opacity:0 media. */
   opacity: 1;
 }
 

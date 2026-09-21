@@ -11,7 +11,7 @@ const BLACK_LUMA_CUTOFF = 28;
 
 export function InnerCircle() {
   const { innerCircle } = siteContent.support;
-  const { innerCircleLogo, innerCircleJoin } = siteContent.assets;
+  const { innerCircleLogo, innerCircleLogoText, innerCircleJoin } = siteContent.assets;
   const groupHref = siteContent.links.innerCircle;
   const hasGroupLink = groupHref.startsWith("http");
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -357,13 +357,23 @@ export function InnerCircle() {
 
       <div
         ref={logoStageRef}
-        className="inner-circle-logo relative w-full max-w-[780px] overflow-hidden bg-transparent"
+        className="inner-circle-logo relative w-full max-w-[780px] overflow-hidden bg-transparent aspect-[1666/456]"
       >
+        {/* Static INNER / CIRCLE text — hole in center so emblem sits flush. */}
+        <Image
+          src={innerCircleLogoText}
+          alt=""
+          width={1666}
+          height={456}
+          priority
+          className="pointer-events-none absolute inset-0 z-0 h-full w-full object-contain"
+          aria-hidden
+        />
         <canvas
           ref={canvasRef}
           width={1666}
           height={456}
-          className={`absolute inset-0 z-[1] block h-full w-full pointer-events-none transition-opacity duration-300 ${
+          className={`pointer-events-none absolute inset-0 z-[1] block h-full w-full transition-opacity duration-300 [clip-path:circle(19.8%_at_48.56%_50%)] ${
             logoReady ? "opacity-100" : "opacity-0"
           }`}
           aria-hidden

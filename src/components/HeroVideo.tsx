@@ -285,12 +285,14 @@ export function HeroVideo({
     if (!autoSound || userMutedRef.current || soundUnlockedRef.current) return;
     if (soundAutoplayQueuedRef.current) return;
     soundAutoplayQueuedRef.current = true;
+    // Try immediately once playback is confirmed, then retry.
+    enableAutoplaySound(player);
     clearUnmuteTimer();
     unmuteTimerRef.current = window.setTimeout(() => {
       unmuteTimerRef.current = null;
       enableAutoplaySound(player);
       scheduleAutoplaySound(player);
-    }, 650);
+    }, 250);
   };
 
   const ensureAutoplay = (player: YouTubePlayer) => {
@@ -299,11 +301,9 @@ export function HeroVideo({
       return;
     }
     try {
-      // Browsers allow muted autoplay; unmute only after PLAYING (see onStateChange).
-      if (!everPlayedRef.current) {
-        player.mute();
-        setMuted(true);
-      }
+      // Muted autoplay is allowed by browsers; keep muted until the user unmutes.
+      player.mute();
+      setMuted(true);
       player.playVideo();
     } catch {
       // Autoplay may be blocked until the player is fully ready.
@@ -413,7 +413,7 @@ export function HeroVideo({
 
       playerRef.current = new YT.Player(mountRef.current, {
         videoId,
-        host: "https://www.youtube-nocookie.com",
+        host: "https://www.youtube.com",
         playerVars: {
           autoplay: 1,
           mute: 1,
@@ -434,11 +434,21 @@ export function HeroVideo({
           onReady: (event) => {
             hideCaptions(event.target);
             userPausedRef.current = false;
-            inViewRef.current = syncViewport().visible;
-            updateViewportPlayback();
+            // Don't wait on IntersectionObserver — hero should start muted immediately.
+            inViewRef.current = true;
+            audioInViewRef.current = true;
+            wasInViewRef.current = false;
+            try {
+              event.target.mute();
+              event.target.setVolume(0);
+              event.target.playVideo();
+            } catch {
+              // fall through to retries
+            }
             ensureAutoplay(event.target);
             schedulePlayRetries(event.target);
             startAutoplayWatchdog(event.target);
+            updateViewportPlayback();
           },
           onStateChange: (event) => {
             hideCaptions(event.target);
@@ -449,7 +459,17 @@ export function HeroVideo({
               setEverPlayed(true);
               setPlaying(true);
               clearPlayRetries();
-              queueAutoplaySound(event.target);
+              // Stay muted on autoplay; user can unmute via the control.
+              try {
+                if (!autoSound || userMutedRef.current) {
+                  event.target.mute();
+                  setMuted(true);
+                } else {
+                  queueAutoplaySound(event.target);
+                }
+              } catch {
+                setMuted(true);
+              }
             } else if (event.data === BUFFERING) {
               setPlaying(true);
             } else if (event.data === PAUSED) {
@@ -464,6 +484,7 @@ export function HeroVideo({
             }
             if (event.data === ENDED && !userPausedRef.current && inViewRef.current) {
               try {
+                event.target.mute();
                 event.target.playVideo();
               } catch {
                 ensureAutoplay(event.target);
@@ -519,7 +540,8 @@ export function HeroVideo({
 
     const kickAfterInteraction = () => {
       const player = playerRef.current;
-      if (!player || userPausedRef.current || !inViewRef.current) return;
+      if (!player || userPausedRef.current) return;
+      inViewRef.current = true;
       ensureAutoplay(player);
       if (!everPlayedRef.current) {
         schedulePlayRetries(player);
@@ -529,12 +551,17 @@ export function HeroVideo({
       once: true,
       passive: true,
     });
+    document.addEventListener("touchstart", kickAfterInteraction, {
+      once: true,
+      passive: true,
+    });
     document.addEventListener("keydown", kickAfterInteraction, { once: true });
 
     return () => {
       observer.disconnect();
       clearUnmuteTimer();
       document.removeEventListener("pointerdown", kickAfterInteraction);
+      document.removeEventListener("touchstart", kickAfterInteraction);
       document.removeEventListener("keydown", kickAfterInteraction);
     };
   }, [autoSound, videoId]);
@@ -687,9 +714,7 @@ export function HeroVideo({
       <div className="hero-visual-frame relative aspect-video w-full">
         <div className="hero-video relative h-full w-full overflow-hidden">
           <div className="hero-video-slot">
-            <div
-              className={`hero-video-frame${everPlayed && !embedFailed ? " is-revealed" : ""}`}
-            >
+            <div className="hero-video-frame">
               <div ref={mountRef} className="hero-video-mount" />
             </div>
             <div
@@ -720,6 +745,15 @@ export function HeroVideo({
       <div className="hero-video-controls max-sm:relative max-sm:z-30">
         <button
           type="button"
+          onClick={toggleAudio}
+          className={`hero-video-btn ${muted ? "is-muted" : ""}`}
+          aria-pressed={!muted}
+          aria-label={muted ? `Turn ${label} sound on` : `Mute ${label} sound`}
+        >
+          {muted ? <VolumeOffIcon /> : <VolumeOnIcon />}
+        </button>
+        <button
+          type="button"
           onClick={togglePlayback}
           className="hero-video-btn"
           aria-pressed={playing}
@@ -743,15 +777,6 @@ export function HeroVideo({
           aria-label={copied ? `${label} link copied` : `Share ${label}`}
         >
           {copied ? <CheckIcon /> : <ShareIcon />}
-        </button>
-        <button
-          type="button"
-          onClick={toggleAudio}
-          className={`hero-video-btn ${muted ? "is-muted" : ""}`}
-          aria-pressed={!muted}
-          aria-label={muted ? `Turn ${label} sound on` : `Mute ${label} sound`}
-        >
-          {muted ? <VolumeOffIcon /> : <VolumeOnIcon />}
         </button>
       </div>
       <p className="sr-only" aria-live="polite">
