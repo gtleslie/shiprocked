@@ -191,7 +191,8 @@ export function HeroVideo({
   const embedFailedRef = useRef(false);
   const resumeAttemptRef = useRef(0);
   const unmuteTimerRef = useRef<number | null>(null);
-  const [muted, setMuted] = useState(() => !autoSound);
+  // Always start muted in UI until playback is running and unmute succeeds.
+  const [muted, setMuted] = useState(true);
   const [playing, setPlaying] = useState(false);
   const [everPlayed, setEverPlayed] = useState(false);
   const [embedFailed, setEmbedFailed] = useState(false);
@@ -231,9 +232,21 @@ export function HeroVideo({
     }
   };
 
+  const isPlayerPlaying = (player: YouTubePlayer) => {
+    try {
+      const state = player.getPlayerState?.();
+      const YT = window.YT;
+      if (state === undefined || !YT?.PlayerState) return false;
+      return state === YT.PlayerState.PLAYING;
+    } catch {
+      return false;
+    }
+  };
+
   const enableAutoplaySound = (player: YouTubePlayer) => {
     if (!autoSound || userMutedRef.current || userPausedRef.current) return;
-    if (!isPlayerActive(player)) return;
+    if (!audioInViewRef.current) return;
+    if (!isPlayerPlaying(player)) return;
     try {
       player.unMute();
       player.setVolume(100);
@@ -246,17 +259,24 @@ export function HeroVideo({
 
   const scheduleAutoplaySound = (player: YouTubePlayer) => {
     if (!autoSound || userMutedRef.current) return;
-    for (const delay of [0, 80, 200, 450, 900, 1600, 2800, 4500]) {
+    for (const delay of [400, 900, 1600, 2800, 4500]) {
       window.setTimeout(() => enableAutoplaySound(player), delay);
     }
+  };
+
+  const queueAutoplaySound = (player: YouTubePlayer) => {
+    if (!autoSound || userMutedRef.current) return;
+    clearUnmuteTimer();
+    unmuteTimerRef.current = window.setTimeout(() => {
+      unmuteTimerRef.current = null;
+      enableAutoplaySound(player);
+      scheduleAutoplaySound(player);
+    }, 450);
   };
 
   const ensureAutoplay = (player: YouTubePlayer) => {
     if (userPausedRef.current) return;
     if (isPlayerActive(player)) {
-      if (autoSound && !userMutedRef.current) {
-        enableAutoplaySound(player);
-      }
       return;
     }
     try {
@@ -305,7 +325,7 @@ export function HeroVideo({
     }
   };
 
-  const applyInViewPlayback = (visible: boolean, _audioEligible: boolean) => {
+  const applyInViewPlayback = (visible: boolean, audioEligible: boolean) => {
     const player = playerRef.current;
     if (!player) return;
 
@@ -315,6 +335,15 @@ export function HeroVideo({
     if (!visible) {
       clearUnmuteTimer();
       return;
+    }
+
+    if (
+      audioEligible &&
+      autoSound &&
+      !userMutedRef.current &&
+      everPlayedRef.current
+    ) {
+      enableAutoplaySound(player);
     }
 
     if (userPausedRef.current) {
@@ -392,8 +421,7 @@ export function HeroVideo({
               everPlayedRef.current = true;
               setEverPlayed(true);
               setPlaying(true);
-              enableAutoplaySound(event.target);
-              scheduleAutoplaySound(event.target);
+              queueAutoplaySound(event.target);
             } else if (event.data === BUFFERING) {
               setPlaying(true);
             } else if (event.data === PAUSED) {
