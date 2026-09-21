@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { FundraisingBanner } from "@/components/FundraisingBanner";
 import { Logo } from "@/components/Logo";
 import { siteContent, type NavKey } from "@content/site-content";
 
@@ -14,8 +15,8 @@ export function SiteNav({ activePage }: SiteNavProps) {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="fixed top-0 right-0 left-0 z-50 h-[84px] border-b border-white/5 bg-black">
-      <div className="mx-auto grid h-full max-w-[1440px] grid-cols-[auto_1fr] items-center gap-x-2 px-4 md:grid-cols-[1fr_auto_1fr] md:gap-3 md:px-12 lg:px-16">
+    <header className="fixed top-0 right-0 left-0 z-50 bg-black">
+      <div className="mx-auto grid h-[84px] max-w-[1440px] grid-cols-[auto_1fr] items-center gap-x-2 border-b border-white/5 px-4 md:grid-cols-[1fr_auto_1fr] md:gap-3 md:px-12 lg:px-16">
         <button
           type="button"
           className="-ml-1 flex h-11 w-11 shrink-0 items-center justify-center text-white md:hidden"
@@ -67,6 +68,8 @@ export function SiteNav({ activePage }: SiteNavProps) {
           <Logo size="nav" />
         </Link>
       </div>
+
+      <FundraisingBanner />
 
       {open && (
         <div className="border-b border-white/10 bg-black px-4 py-3 md:hidden">

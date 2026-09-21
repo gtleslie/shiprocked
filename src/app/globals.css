@@ -21,6 +21,14 @@
   --font-sans: var(--font-inter);
 }
 
+:root {
+  --site-nav-height: 84px;
+  --site-fundraising-banner-height: 34px;
+  --site-header-stack-height: calc(
+    var(--site-nav-height) + var(--site-fundraising-banner-height)
+  );
+}
+
 * {
   box-sizing: border-box;
 }
@@ -180,6 +188,35 @@ body {
   container-type: size;
 }
 
+.hero-video-poster {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #050505;
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity 0.45s ease,
+    visibility 0.45s ease;
+}
+
+.hero-video-poster.is-visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+.hero-video-poster-logo {
+  display: block;
+  height: auto;
+  width: min(62%, 280px);
+  max-height: 58%;
+  object-fit: contain;
+}
+
 .hero-video-frame {
   position: relative;
   aspect-ratio: 16 / 9;
@@ -201,6 +238,77 @@ body {
   width: 100%;
   height: 100%;
   border: 0;
+}
+
+.site-main-offset {
+  padding-top: var(--site-header-stack-height);
+}
+
+.fundraising-banner {
+  height: var(--site-fundraising-banner-height);
+  border-bottom: 1px solid rgba(212, 162, 60, 0.28);
+  background: linear-gradient(180deg, #0c0c0c 0%, #050505 100%);
+}
+
+.fundraising-banner-viewport {
+  height: 100%;
+  overflow: hidden;
+}
+
+.fundraising-banner-track {
+  display: flex;
+  width: max-content;
+  animation: fundraising-ticker 36s linear infinite;
+}
+
+.fundraising-banner-text {
+  flex-shrink: 0;
+  padding-inline: 1.75rem;
+  line-height: var(--site-fundraising-banner-height);
+  white-space: nowrap;
+  animation: fundraising-headline-flash 1.35s ease-in-out infinite;
+}
+
+@keyframes fundraising-ticker {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes fundraising-headline-flash {
+  0%,
+  100% {
+    opacity: 1;
+    color: var(--color-accent-gold);
+    text-shadow: 0 0 0 transparent;
+  }
+  50% {
+    opacity: 0.62;
+    color: #f2cf7a;
+    text-shadow: 0 0 14px rgba(212, 162, 60, 0.45);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fundraising-banner-track {
+    animation: none;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .fundraising-banner-text:last-child {
+    display: none;
+  }
+
+  .fundraising-banner-text {
+    animation: none;
+    padding-inline: 1rem;
+    text-align: center;
+    white-space: normal;
+  }
 }
 
 .hero-video-wrap {

@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { YouTubeIcon } from "@/components/SocialIcons";
 import { siteContent } from "@content/site-content";
@@ -31,6 +32,7 @@ type YouTubeNamespace = {
       events?: {
         onReady?: (event: { target: YouTubePlayer }) => void;
         onStateChange?: (event: { data: number; target: YouTubePlayer }) => void;
+        onError?: (event: { data: number }) => void;
       };
     },
   ) => YouTubePlayer;
@@ -185,11 +187,17 @@ export function HeroVideo({
   const audioInViewRef = useRef(false);
   const userMutedRef = useRef(false);
   const userPausedRef = useRef(false);
+  const everPlayedRef = useRef(false);
+  const embedFailedRef = useRef(false);
   const unmuteTimerRef = useRef<number | null>(null);
   const [muted, setMuted] = useState(true);
   const [playing, setPlaying] = useState(false);
+  const [playerReady, setPlayerReady] = useState(false);
+  const [embedFailed, setEmbedFailed] = useState(false);
   const [copied, setCopied] = useState(false);
   const watchUrl = `https://www.youtube.com/watch?v=${videoId}`;
+  const showPoster =
+    embedFailed || !playerReady || (!playing && !everPlayedRef.current);
 
   const fadeVolume = (player: YouTubePlayer, from: number, to: number, ms: number) => {
     const token = ++fadeToken.current;
@@ -348,6 +356,7 @@ export function HeroVideo({
           onReady: (event) => {
             hideCaptions(event.target);
             userPausedRef.current = false;
+            setPlayerReady(true);
             updateViewportPlayback();
             schedulePlayRetries(event.target);
           },
@@ -355,6 +364,7 @@ export function HeroVideo({
             hideCaptions(event.target);
             const { ENDED, PAUSED, PLAYING, BUFFERING } = YT.PlayerState;
             if (event.data === PLAYING || event.data === BUFFERING) {
+              everPlayedRef.current = true;
               setPlaying(true);
             } else if (event.data === PAUSED) {
               setPlaying(false);
@@ -363,6 +373,12 @@ export function HeroVideo({
               ensurePlaying(event.target);
             }
           },
+          onError: () => {
+            embedFailedRef.current = true;
+            setEmbedFailed(true);
+            setPlayerReady(true);
+            setPlaying(false);
+          },
         },
       });
     });
@@ -370,6 +386,10 @@ export function HeroVideo({
     return () => {
       cancelled = true;
       fadeToken.current += 1;
+      everPlayedRef.current = false;
+      embedFailedRef.current = false;
+      setPlayerReady(false);
+      setEmbedFailed(false);
       playerRef.current?.destroy();
       playerRef.current = null;
       clearUnmuteTimer();
@@ -434,6 +454,7 @@ export function HeroVideo({
     try {
       player.mute();
       player.playVideo();
+      everPlayedRef.current = true;
       setPlaying(true);
     } catch {
       // ignore
@@ -464,6 +485,7 @@ export function HeroVideo({
       player.unMute();
       player.setVolume(100);
       player.playVideo();
+      everPlayedRef.current = true;
       setMuted(false);
       setPlaying(true);
       return;
@@ -538,6 +560,19 @@ export function HeroVideo({
           <div className="hero-video-slot">
             <div className="hero-video-frame">
               <div ref={mountRef} />
+            </div>
+            <div
+              className={`hero-video-poster${showPoster ? " is-visible" : ""}`}
+              aria-hidden={!showPoster}
+            >
+              <Image
+                src={siteContent.assets.heroLogo}
+                alt=""
+                width={1020}
+                height={660}
+                className="hero-video-poster-logo"
+                priority
+              />
             </div>
           </div>
           <div className="hero-visual-sheen pointer-events-none absolute inset-0" aria-hidden />
