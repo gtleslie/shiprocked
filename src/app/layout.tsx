@@ -41,9 +41,11 @@ export const metadata: Metadata = {
   title: siteContent.site.title,
   description: siteContent.site.description,
   icons: {
-    icon: [{ url: "/assets/logos/skully-logo-1.png", type: "image/png" }],
-    shortcut: [{ url: "/assets/logos/skully-logo-1.png", type: "image/png" }],
-    apple: [{ url: "/assets/logos/skully-logo-1.png", type: "image/png" }],
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/icon.png", type: "image/png" },
+    ],
+    apple: [{ url: "/apple-icon.png", type: "image/png" }],
   },
   openGraph: {
     title: siteContent.site.title,
