@@ -329,16 +329,6 @@ body {
   padding-top: var(--site-nav-height);
 }
 
-.site-support-offset {
-  padding-top: calc(var(--site-nav-height) + var(--site-fundraising-banner-height));
-}
-
-/* Pull hero bg under the fixed ticker so no black strip shows between them. */
-.site-support-offset > .support-campaign-hero {
-  margin-top: calc(-1 * var(--site-fundraising-banner-height));
-  padding-top: var(--site-fundraising-banner-height);
-}
-
 .fundraising-banner-bleed {
   position: relative;
   left: 50%;
@@ -349,14 +339,8 @@ body {
   margin-right: -50vw;
 }
 
-.fundraising-banner-bleed--under-nav {
-  top: var(--site-nav-height);
-  left: 0;
-  right: 0;
-  width: 100%;
-  max-width: none;
-  margin-left: 0;
-  margin-right: 0;
+.fundraising-banner-bleed--below-divider {
+  margin-top: 2px;
 }
 
 .fundraising-banner {
@@ -369,36 +353,8 @@ body {
 }
 
 @media (max-width: 639px) {
-  .fundraising-banner-bleed--under-nav {
-    background: #000000;
-  }
-
   .fundraising-banner--support {
     background: #000000;
-  }
-
-  /* Extend hero art into the ticker band; mask keeps header black, not grey PNG. */
-  .support-campaign-hero > .support-campaign-hero-bg {
-    top: calc(-1 * var(--site-fundraising-banner-height));
-    height: calc(100% + var(--site-fundraising-banner-height));
-  }
-
-  .support-campaign-hero::before {
-    content: "";
-    position: absolute;
-    top: calc(-1 * var(--site-fundraising-banner-height));
-    left: 0;
-    right: 0;
-    z-index: 0;
-    height: var(--site-fundraising-banner-height);
-    background: #000000;
-    pointer-events: none;
-  }
-
-  .support-campaign-hero-inner {
-    position: relative;
-    z-index: 1;
-    padding-top: calc(var(--site-fundraising-banner-height) + 0.25rem);
   }
 }
 
