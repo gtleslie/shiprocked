@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import { FundraisingBanner } from "@/components/FundraisingBanner";
 import { SectionDivider } from "@/components/SectionDivider";
 import { InnerCircle } from "@/components/InnerCircle";
 
@@ -25,10 +24,6 @@ export function SupportCampaign() {
       </section>
 
       <SectionDivider />
-
-      <div className="fundraising-banner-bleed">
-        <FundraisingBanner />
-      </div>
     </>
   );
 }

@@ -1,6 +1,6 @@
 import { siteContent } from "@content/site-content";
 
-/** Rendered only from SupportCampaign on `/support` — not in global nav or other routes. */
+/** Rendered only on `/support`, directly under the site nav. */
 const TICKER_MESSAGE = siteContent.campaign.fundraisingBanner;
 const TICKER_COPIES = 10;
 

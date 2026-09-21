@@ -2,6 +2,7 @@ import Image from "next/image";
 import { PageShell } from "@/components/PageShell";
 import { SiteButton } from "@/components/SiteButton";
 import { SectionLabel, SectionSubhead } from "@/components/ImagePlaceholder";
+import { FundraisingBanner } from "@/components/FundraisingBanner";
 import { SupportCampaign } from "@/components/SupportCampaign";
 import { siteContent } from "@content/site-content";
 
@@ -10,6 +11,10 @@ export default function SupportPage() {
 
   return (
     <PageShell activePage="support">
+      <div className="fundraising-banner-bleed fundraising-banner-bleed--under-nav sticky z-40">
+        <FundraisingBanner />
+      </div>
+
       <SupportCampaign />
 
       <section className="mx-auto max-w-[1440px] px-4 pt-10 pb-16 md:px-12 md:pt-14 md:pb-20 lg:px-16 lg:pt-16">

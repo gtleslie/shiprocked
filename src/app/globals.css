@@ -288,6 +288,10 @@ body {
   margin-right: -50vw;
 }
 
+.fundraising-banner-bleed--under-nav {
+  top: var(--site-nav-height);
+}
+
 .fundraising-banner {
   height: var(--site-fundraising-banner-height);
 }
