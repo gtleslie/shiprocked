@@ -159,8 +159,8 @@ export function CrewFlipCard({ member, variant = "crew" }: CrewFlipCardProps) {
             <p
               className={
                 isCharacter
-                  ? "crew-flip-back-bio min-h-0 flex-1 overflow-y-auto overscroll-contain text-pretty text-[14px] leading-[1.58] text-text-muted sm:text-[15px] sm:leading-[1.62]"
-                  : "min-h-0 flex-1 overflow-y-auto overscroll-contain text-[13px] leading-snug text-text-muted sm:text-[14px] sm:leading-relaxed"
+                  ? "crew-flip-back-bio min-h-0 flex-1 overflow-hidden text-pretty text-[14px] leading-[1.58] text-text-muted sm:text-[15px] sm:leading-[1.62]"
+                  : "min-h-0 flex-1 overflow-hidden text-[13px] leading-snug text-text-muted sm:text-[14px] sm:leading-relaxed"
               }
             >
               {member.bio}
