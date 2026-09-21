@@ -17,8 +17,10 @@ export function InnerCircle() {
   const videoRef = useRef<HTMLVideoElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const rafRef = useRef(0);
+  const rvfcRef = useRef<number>(0);
   const lastTimeRef = useRef(-1);
   const canvasReadyRef = useRef(false);
+  const shouldAnimateRef = useRef(false);
   const [showVideoFallback, setShowVideoFallback] = useState(false);
 
   useLayoutEffect(() => {
@@ -53,6 +55,7 @@ export function InnerCircle() {
     let cancelled = false;
     let bootstrapped = false;
     let isSeekingLoop = false;
+    let playRetryTimer = 0;
 
     const seekToLogoStart = (): Promise<void> =>
       new Promise((resolve) => {
@@ -118,6 +121,40 @@ export function InnerCircle() {
       return true;
     };
 
+    const ensurePlaying = () => {
+      if (cancelled || isSeekingLoop || !shouldAnimateRef.current) return;
+      if (document.visibilityState !== "visible") return;
+      if (video.readyState < 2) return;
+
+      if (video.currentTime < LOGO_ANIM_START_SEC - 0.01) {
+        void loopFromLogo();
+        return;
+      }
+
+      const duration = video.duration;
+      if (
+        Number.isFinite(duration) &&
+        duration > LOGO_ANIM_START_SEC + 0.25 &&
+        video.currentTime >= duration - 0.05
+      ) {
+        void loopFromLogo();
+        return;
+      }
+
+      if (video.paused) {
+        void video.play().catch(() => {
+          // Autoplay may stay blocked until interaction.
+        });
+      }
+    };
+
+    const schedulePlayRetry = () => {
+      window.clearTimeout(playRetryTimer);
+      playRetryTimer = window.setTimeout(() => {
+        ensurePlaying();
+      }, 80);
+    };
+
     const bootstrap = async () => {
       if (bootstrapped || cancelled) return;
       bootstrapped = true;
@@ -132,11 +169,16 @@ export function InnerCircle() {
         setShowVideoFallback(false);
       }
 
+      shouldAnimateRef.current = true;
+
       try {
         await video.play();
       } catch {
         // Autoplay may be blocked until interaction; first frame is still shown.
       }
+
+      ensurePlaying();
+      scheduleVideoFrameLoop();
     };
 
     const loopFromLogo = async () => {
@@ -150,10 +192,12 @@ export function InnerCircle() {
         if (cancelled) return;
         paintFrame();
         await video.play();
+        scheduleVideoFrameLoop();
       } catch {
         // Autoplay blocked or seek interrupted; keep last good canvas frame.
       } finally {
         isSeekingLoop = false;
+        ensurePlaying();
       }
     };
 
@@ -183,6 +227,35 @@ export function InnerCircle() {
       rafRef.current = requestAnimationFrame(tick);
     };
 
+    const scheduleVideoFrameLoop = () => {
+      if (cancelled || !("requestVideoFrameCallback" in video)) return;
+
+      const onVideoFrame = () => {
+        if (cancelled) return;
+        if (paintFrame() && !canvasReadyRef.current) {
+          canvasReadyRef.current = true;
+          setShowVideoFallback(false);
+        }
+        rvfcRef.current = video.requestVideoFrameCallback(onVideoFrame);
+      };
+
+      rvfcRef.current = video.requestVideoFrameCallback(onVideoFrame);
+    };
+
+    const onPause = () => {
+      if (!isSeekingLoop && shouldAnimateRef.current) {
+        schedulePlayRetry();
+      }
+    };
+
+    const onVisibilityChange = () => {
+      if (document.visibilityState === "visible") {
+        lastTimeRef.current = -1;
+        ensurePlaying();
+        schedulePlayRetry();
+      }
+    };
+
     const onLoadedData = () => {
       void bootstrap();
     };
@@ -195,6 +268,24 @@ export function InnerCircle() {
     video.addEventListener("loadedmetadata", onLoadedMetadata);
     video.addEventListener("timeupdate", onTimeUpdate);
     video.addEventListener("ended", loopFromLogo);
+    video.addEventListener("pause", onPause);
+    video.addEventListener("stalled", schedulePlayRetry);
+    video.addEventListener("waiting", schedulePlayRetry);
+    document.addEventListener("visibilitychange", onVisibilityChange);
+    window.addEventListener("focus", ensurePlaying);
+
+    const intersection = new IntersectionObserver(
+      ([entry]) => {
+        if (entry?.isIntersecting) {
+          ensurePlaying();
+          schedulePlayRetry();
+        }
+      },
+      { threshold: 0.05 },
+    );
+    intersection.observe(video);
+
+    const watchId = window.setInterval(ensurePlaying, 2000);
 
     if (video.readyState >= 2) {
       void bootstrap();
@@ -204,11 +295,23 @@ export function InnerCircle() {
 
     return () => {
       cancelled = true;
+      shouldAnimateRef.current = false;
+      window.clearTimeout(playRetryTimer);
+      window.clearInterval(watchId);
       cancelAnimationFrame(rafRef.current);
+      if ("cancelVideoFrameCallback" in video && rvfcRef.current) {
+        video.cancelVideoFrameCallback(rvfcRef.current);
+      }
+      intersection.disconnect();
       video.removeEventListener("loadeddata", onLoadedData);
       video.removeEventListener("loadedmetadata", onLoadedMetadata);
       video.removeEventListener("timeupdate", onTimeUpdate);
       video.removeEventListener("ended", loopFromLogo);
+      video.removeEventListener("pause", onPause);
+      video.removeEventListener("stalled", schedulePlayRetry);
+      video.removeEventListener("waiting", schedulePlayRetry);
+      document.removeEventListener("visibilitychange", onVisibilityChange);
+      window.removeEventListener("focus", ensurePlaying);
       video.pause();
     };
   }, []);
@@ -229,18 +332,19 @@ export function InnerCircle() {
           ref={canvasRef}
           width={1666}
           height={456}
-          className="absolute inset-0 z-[1] block h-full w-full"
+          className="absolute inset-0 z-[1] block h-full w-full pointer-events-none"
           aria-hidden
         />
         <video
           ref={videoRef}
-          className={`pointer-events-none absolute inset-0 z-[2] h-full w-full transition-opacity duration-75 ${
-            showVideoFallback ? "opacity-100" : "opacity-0"
+          className={`pointer-events-none absolute inset-0 z-0 h-full w-full transition-opacity duration-75 ${
+            showVideoFallback ? "z-[2] opacity-100" : "opacity-[0.01]"
           }`}
           src={videoSrc}
           muted
           playsInline
           preload="auto"
+          disablePictureInPicture
           aria-hidden
           tabIndex={-1}
         />
