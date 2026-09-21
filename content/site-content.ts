@@ -272,7 +272,7 @@ export const siteContent = {
         {
           name: "ALAN KOENIG",
           image: "/assets/Alan Koenig.png",
-          bio: 'Alan Koenig launched ASK4 Entertainment in 2009 to pioneer ShipRocked, earning his reputation as "the father" of the premier floating rock festival. His vision replaced standard music venues with a community-driven cruise, uniting top-tier rock bands and thousands of fans at sea for over 15 years.',
+          bio: 'Alan Koenig launched ASK4 Entertainment in 2008 to pioneer ShipRocked, earning his reputation as "The Captain" of the premier floating rock music festival. His vision was to change a typical music festival into a community driven vacation cruise, uniting top-tier rock bands and thousands of fans at sea.',
         },
         {
           name: "COOKIE",
@@ -290,14 +290,14 @@ export const siteContent = {
           bio: "Emi Grace is a self-taught guitar prodigy known for her heavy electronic riffs, a distinct Stratocaster shred style, and backing from rock legends like Brian May. Aboard ShipRocked, she channels that exact raw energy into high-octane solo sets and guest appearances with the cruise’s all-star band, The Stowaways.",
         },
         {
-          name: "JENNIFER ZITO",
-          image: "/assets/Jennifer Zito.png",
-          bio: "Jennifer Zito serves as the Vice President of Operations for ASK4 Entertainment, managing all logistics, event planning, and production behind the scenes. She directs the complex shipboard operations required to execute ShipRocked seamlessly year after year.",
-        },
-        {
           name: "AL MCMANUS",
           image: "/assets/Al McManus.png",
           bio: "Al McManus serves as the Vice President of Operations and Talent Booker for ASK4 Entertainment, managing heavy-hitting artist relations and event coordination. He also produces Making Waves: The ShipRocked Podcast, keeping the cruise community engaged year-round.",
+        },
+        {
+          name: "JENNIFER ZITO",
+          image: "/assets/Jennifer Zito.png",
+          bio: "Jennifer Zito serves as the Vice President of Operations for ASK4 Entertainment, managing all logistics, event planning, and production behind the scenes. She directs the complex shipboard operations required to execute ShipRocked seamlessly year after year.",
         },
         {
           name: "THE SWEDES",
