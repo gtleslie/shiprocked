@@ -282,6 +282,12 @@ body {
   padding-top: calc(var(--site-nav-height) + var(--site-fundraising-banner-height));
 }
 
+/* Pull hero bg under the fixed ticker so no black strip shows between them. */
+.site-support-offset > .support-campaign-hero {
+  margin-top: calc(-1 * var(--site-fundraising-banner-height));
+  padding-top: var(--site-fundraising-banner-height);
+}
+
 .fundraising-banner-bleed {
   position: relative;
   left: 50%;
