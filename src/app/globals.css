@@ -326,9 +326,35 @@ body {
     background: #000000;
   }
 
-  /* Keep support artwork below the ticker — image under the bar read as grey on phones. */
+  .site-support-offset > .support-campaign-hero {
+    padding-top: 0;
+  }
+
   .support-campaign-hero > .support-campaign-hero-bg {
-    top: var(--site-fundraising-banner-height);
+    top: 0;
+  }
+
+  .support-campaign-hero > .support-campaign-hero-bg img {
+    object-position: center top;
+  }
+
+  /* Solid black under the fixed ticker; full-bleed art meets the bar below it. */
+  .support-campaign-hero::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 0;
+    height: var(--site-fundraising-banner-height);
+    background: #000000;
+    pointer-events: none;
+  }
+
+  .support-campaign-hero-inner {
+    position: relative;
+    z-index: 1;
+    padding-top: calc(var(--site-fundraising-banner-height) + 0.5rem);
   }
 }
 

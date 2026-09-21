@@ -21,7 +21,7 @@ export function SupportCampaign() {
             className="object-cover object-center"
           />
         </div>
-        <div className="relative mx-auto max-w-[1440px] pt-4 md:pt-6">
+        <div className="support-campaign-hero-inner relative mx-auto max-w-[1440px] pt-4 md:pt-6">
           <InnerCircle />
         </div>
       </section>
