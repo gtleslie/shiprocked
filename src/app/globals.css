@@ -1078,45 +1078,19 @@ body {
   object-position: 50% 16%;
 }
 
-/* Mobile: flipped character bios grow the card so copy is not clipped. */
+/* Mobile Meet the Characters — one fixed card height; taller back for full bios. */
 @media (max-width: 639px) {
-  .characters-carousel--character-focus .characters-carousel-card {
-    overflow: visible;
+  .characters-carousel--character-focus .crew-flip-card--character {
+    height: 380px;
   }
 
-  .characters-carousel--character-focus .characters-carousel-track {
-    overflow-y: visible;
+  .characters-carousel--character-focus .crew-flip-card--character .crew-flip-front-image {
+    height: 200px;
+    max-height: 200px;
   }
 
-  .characters-carousel--character-focus .crew-flip-card--character:has(.crew-flip-inner.is-flipped) {
-    height: auto;
-  }
-
-  .characters-carousel--character-focus
-    .crew-flip-card--character:has(.crew-flip-inner.is-flipped)
-    .crew-flip-inner {
-    height: auto;
-  }
-
-  .characters-carousel--character-focus
-    .crew-flip-card--character:has(.crew-flip-inner.is-flipped)
-    .crew-flip-back {
-    position: relative;
-    inset: auto;
-    width: 100%;
-    height: auto;
-    overflow: visible;
-  }
-
-  .characters-carousel--character-focus
-    .crew-flip-card--character:has(.crew-flip-inner.is-flipped)
-    .crew-flip-back-inner {
-    height: auto;
-  }
-
-  .characters-carousel--character-focus .crew-flip-back-bio {
-    flex: 0 1 auto;
-    overflow: visible;
+  .characters-carousel--character-focus .crew-flip-card--character .crew-flip-front-card {
+    grid-template-rows: 200px max-content;
   }
 }
 
