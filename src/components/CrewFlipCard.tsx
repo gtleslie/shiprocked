@@ -116,7 +116,7 @@ export function CrewFlipCard({ member, variant = "crew" }: CrewFlipCardProps) {
                 <ImagePlaceholder className="h-full w-full" />
               )}
             </div>
-            <div className="ship-card-footer shrink-0 px-5 pt-2.5 pb-2 sm:mt-auto sm:py-4">
+            <div className="ship-card-footer shrink-0 px-5 pt-2.5 pb-2 max-sm:pb-0 sm:mt-auto sm:py-4">
             <h3 className="text-[16px] font-bold tracking-[0.2px] text-white">
               {member.name}
               {member.nameSuffix ? (

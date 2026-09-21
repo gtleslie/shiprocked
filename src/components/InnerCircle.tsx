@@ -62,6 +62,8 @@ export function InnerCircle() {
     let bootstrapped = false;
     let isSeekingLoop = false;
     let playRetryTimer = 0;
+    let watchId = 0;
+    const playbackFinishedRef = { current: false };
 
     const seekToLogoStart = (): Promise<void> =>
       new Promise((resolve) => {
@@ -127,13 +129,31 @@ export function InnerCircle() {
       return true;
     };
 
+    const finishPlayback = () => {
+      if (playbackFinishedRef.current || cancelled) return;
+      playbackFinishedRef.current = true;
+      shouldAnimateRef.current = false;
+      window.clearInterval(watchId);
+      window.clearTimeout(playRetryTimer);
+      if ("cancelVideoFrameCallback" in video && rvfcRef.current) {
+        video.cancelVideoFrameCallback(rvfcRef.current);
+        rvfcRef.current = 0;
+      }
+      cancelAnimationFrame(rafRef.current);
+      video.pause();
+      lastTimeRef.current = -1;
+      paintFrame();
+    };
+
     const ensurePlaying = () => {
-      if (cancelled || isSeekingLoop || !shouldAnimateRef.current) return;
+      if (cancelled || isSeekingLoop || !shouldAnimateRef.current || playbackFinishedRef.current) {
+        return;
+      }
       if (document.visibilityState !== "visible") return;
       if (video.readyState < 2) return;
 
       if (video.currentTime < LOGO_ANIM_START_SEC - 0.01) {
-        void loopFromLogo();
+        void seekToLogoAndPlay();
         return;
       }
 
@@ -143,7 +163,7 @@ export function InnerCircle() {
         duration > LOGO_ANIM_START_SEC + 0.25 &&
         video.currentTime >= duration - 0.05
       ) {
-        void loopFromLogo();
+        finishPlayback();
         return;
       }
 
@@ -185,15 +205,15 @@ export function InnerCircle() {
       scheduleVideoFrameLoop();
     };
 
-    const loopFromLogo = async () => {
-      if (cancelled || isSeekingLoop) return;
+    const seekToLogoAndPlay = async () => {
+      if (cancelled || isSeekingLoop || playbackFinishedRef.current) return;
       isSeekingLoop = true;
       video.pause();
       lastTimeRef.current = -1;
 
       try {
         await seekToLogoStart();
-        if (cancelled) return;
+        if (cancelled || playbackFinishedRef.current) return;
         paintFrame();
         await video.play();
         scheduleVideoFrameLoop();
@@ -206,10 +226,10 @@ export function InnerCircle() {
     };
 
     const onTimeUpdate = () => {
-      if (isSeekingLoop) return;
+      if (isSeekingLoop || playbackFinishedRef.current) return;
 
       if (video.currentTime < LOGO_ANIM_START_SEC - 0.01) {
-        void loopFromLogo();
+        void seekToLogoAndPlay();
         return;
       }
 
@@ -219,7 +239,7 @@ export function InnerCircle() {
         duration > LOGO_ANIM_START_SEC + 0.25 &&
         video.currentTime >= duration - 0.05
       ) {
-        void loopFromLogo();
+        finishPlayback();
       }
     };
 
@@ -234,7 +254,7 @@ export function InnerCircle() {
       if (cancelled || !("requestVideoFrameCallback" in video)) return;
 
       const onVideoFrame = () => {
-        if (cancelled) return;
+        if (cancelled || playbackFinishedRef.current) return;
         if (paintFrame() && !canvasReadyRef.current) {
           markLogoReady();
         }
@@ -245,17 +265,21 @@ export function InnerCircle() {
     };
 
     const onPause = () => {
-      if (!isSeekingLoop && shouldAnimateRef.current) {
+      if (!isSeekingLoop && shouldAnimateRef.current && !playbackFinishedRef.current) {
         schedulePlayRetry();
       }
     };
 
     const onVisibilityChange = () => {
-      if (document.visibilityState === "visible") {
+      if (document.visibilityState === "visible" && !playbackFinishedRef.current) {
         lastTimeRef.current = -1;
         ensurePlaying();
         schedulePlayRetry();
       }
+    };
+
+    const onEnded = () => {
+      finishPlayback();
     };
 
     const onLoadedData = () => {
@@ -269,7 +293,7 @@ export function InnerCircle() {
     video.addEventListener("loadeddata", onLoadedData);
     video.addEventListener("loadedmetadata", onLoadedMetadata);
     video.addEventListener("timeupdate", onTimeUpdate);
-    video.addEventListener("ended", loopFromLogo);
+    video.addEventListener("ended", onEnded);
     video.addEventListener("pause", onPause);
     video.addEventListener("stalled", schedulePlayRetry);
     video.addEventListener("waiting", schedulePlayRetry);
@@ -278,7 +302,7 @@ export function InnerCircle() {
 
     const intersection = new IntersectionObserver(
       ([entry]) => {
-        if (entry?.isIntersecting) {
+        if (entry?.isIntersecting && !playbackFinishedRef.current) {
           ensurePlaying();
           schedulePlayRetry();
         }
@@ -287,7 +311,7 @@ export function InnerCircle() {
     );
     intersection.observe(video);
 
-    const watchId = window.setInterval(ensurePlaying, 2000);
+    watchId = window.setInterval(ensurePlaying, 2000);
 
     if (video.readyState >= 2) {
       void bootstrap();
@@ -308,7 +332,7 @@ export function InnerCircle() {
       video.removeEventListener("loadeddata", onLoadedData);
       video.removeEventListener("loadedmetadata", onLoadedMetadata);
       video.removeEventListener("timeupdate", onTimeUpdate);
-      video.removeEventListener("ended", loopFromLogo);
+      video.removeEventListener("ended", onEnded);
       video.removeEventListener("pause", onPause);
       video.removeEventListener("stalled", schedulePlayRetry);
       video.removeEventListener("waiting", schedulePlayRetry);

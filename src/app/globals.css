@@ -452,7 +452,7 @@ body {
   }
 
   .crew-flip-card:not(.crew-flip-card--character):has(.ship-card-footer p) {
-    height: calc(200px + 3.875rem);
+    height: calc(200px + 4.625rem);
   }
 
   .crew-flip-card--character {
@@ -483,9 +483,14 @@ body {
     padding-bottom: 0.5rem;
   }
 
-  /* Meet the Film-Crew — role line was tight to the card bottom on phones. */
+  /* Meet the Film-Crew — extra black strip below role (Director, etc.) on phones. */
   .crew-flip-card:not(.crew-flip-card--character) .ship-card-footer {
-    padding-bottom: 0.75rem;
+    box-sizing: border-box;
+    padding-bottom: 1.125rem;
+  }
+
+  .crew-flip-card:not(.crew-flip-card--character):has(.ship-card-footer p) .ship-card-footer {
+    padding-bottom: 1.25rem;
   }
 }
 
