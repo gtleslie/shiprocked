@@ -92,6 +92,19 @@ export async function POST(request: Request) {
 
   if (error) {
     console.error("Resend contact error:", error);
+    const resendMessage =
+      typeof error === "object" && error !== null && "message" in error
+        ? String((error as { message?: string }).message)
+        : "";
+    if (resendMessage.includes("verify a domain")) {
+      return Response.json(
+        {
+          error:
+            "We couldn't deliver that message yet. The team is still finishing email domain setup — try again soon or email us directly.",
+        },
+        { status: 502 },
+      );
+    }
     return Response.json(
       { error: "Couldn't send that message. Please try again." },
       { status: 502 },

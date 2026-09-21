@@ -486,8 +486,8 @@ export const siteContent = {
     form: {
       overline: "GOT A QUESTION?",
       headline: "Drop us a line.",
-      name: "NAME",
-      email: "EMAIL",
+      name: "Your name",
+      email: "Your email",
       message: "MESSAGE",
       submit: "SEND MESSAGE",
     },
