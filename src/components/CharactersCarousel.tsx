@@ -150,7 +150,10 @@ export function CharactersCarousel({
             data-carousel-card
             className="characters-carousel-card"
           >
-            <CrewFlipCard member={subject} />
+            <CrewFlipCard
+              member={subject}
+              variant={characterPhotoFocus ? "character" : "crew"}
+            />
           </div>
         ))}
       </div>

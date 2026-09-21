@@ -15,6 +15,8 @@ type CrewMember = {
 
 type CrewFlipCardProps = {
   member: CrewMember;
+  /** Meet the Characters carousel — taller card and bio layout tuned for longer copy. */
+  variant?: "crew" | "character";
 };
 
 function FlipCardIcon({ className = "h-4 w-4" }: { className?: string }) {
@@ -45,7 +47,8 @@ function FlipBadge() {
   );
 }
 
-export function CrewFlipCard({ member }: CrewFlipCardProps) {
+export function CrewFlipCard({ member, variant = "crew" }: CrewFlipCardProps) {
+  const isCharacter = variant === "character";
   const [flipped, setFlipped] = useState(false);
   const hoverFlip = useRef(false);
 
@@ -68,7 +71,7 @@ export function CrewFlipCard({ member }: CrewFlipCardProps) {
         if (hoverFlip.current) return;
         setFlipped((value) => !value);
       }}
-      className="crew-flip-card group w-full text-left"
+      className={`crew-flip-card group w-full text-left${isCharacter ? " crew-flip-card--character" : ""}`}
     >
       <div className={`crew-flip-inner ${flipped ? "is-flipped" : ""}`}>
         <div className="crew-flip-face crew-flip-front flex h-full flex-col overflow-hidden">
@@ -111,8 +114,10 @@ export function CrewFlipCard({ member }: CrewFlipCardProps) {
         </div>
 
         <div className="crew-flip-face crew-flip-back ship-card h-full overflow-hidden border-b border-border">
-          <div className="flex h-full min-h-0 flex-col px-4 py-3.5 sm:px-4 sm:py-3">
-            <div className="shrink-0 pb-2">
+          <div
+            className={`flex h-full min-h-0 flex-col ${isCharacter ? "crew-flip-back-inner px-[1.125rem] py-4 sm:px-5 sm:py-4" : "px-4 py-3.5 sm:px-4 sm:py-3"}`}
+          >
+            <div className={`shrink-0 ${isCharacter ? "pb-2.5" : "pb-2"}`}>
               <h3 className="text-[15px] leading-tight font-bold tracking-[0.2px] text-white sm:text-[16px]">
                 {member.name}
                 {member.nameSuffix ? (
@@ -128,9 +133,19 @@ export function CrewFlipCard({ member }: CrewFlipCardProps) {
                 </p>
               ) : null}
             </div>
-            <p className="min-h-0 flex-1 overflow-y-auto overscroll-contain text-[13px] leading-snug text-text-muted sm:text-[14px] sm:leading-relaxed">
-              {member.bio}
-            </p>
+            <div
+              className={`flex min-h-0 flex-1 flex-col ${isCharacter ? "justify-center" : ""}`}
+            >
+              <p
+                className={
+                  isCharacter
+                    ? "crew-flip-back-bio max-h-full min-h-0 overflow-y-auto overscroll-contain text-pretty text-[14px] leading-[1.58] text-text-muted sm:text-[15px] sm:leading-[1.62]"
+                    : "min-h-0 flex-1 overflow-y-auto overscroll-contain text-[13px] leading-snug text-text-muted sm:text-[14px] sm:leading-relaxed"
+                }
+              >
+                {member.bio}
+              </p>
+            </div>
           </div>
         </div>
       </div>

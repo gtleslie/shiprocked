@@ -421,6 +421,23 @@ body {
     height: calc(200px + 3.625rem);
   }
 
+  .crew-flip-card--character {
+    height: calc(228px + 2.75rem);
+  }
+
+  .crew-flip-card--character:has(.ship-card-footer p) {
+    height: calc(228px + 3.875rem);
+  }
+
+  .crew-flip-card--character .crew-flip-front-image {
+    height: 228px;
+    max-height: 228px;
+  }
+
+  .crew-flip-card--character .crew-flip-front-card {
+    grid-template-rows: 228px max-content;
+  }
+
   .crew-flip-front-card {
     display: grid;
     grid-template-rows: 200px max-content;
@@ -436,6 +453,15 @@ body {
 @media (min-width: 640px) {
   .crew-flip-card {
     height: 356px;
+  }
+
+  .crew-flip-card--character {
+    height: 408px;
+  }
+
+  .crew-flip-card--character .crew-flip-front-image {
+    height: 320px;
+    max-height: 320px;
   }
 }
 
