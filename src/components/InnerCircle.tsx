@@ -7,7 +7,7 @@ import { siteContent } from "@content/site-content";
 /** Skip intro text; start when the central logo begins animating in. */
 const LOGO_ANIM_START_SEC = 0.72;
 /** Luminance at or below this becomes transparent (video black plate). */
-const BLACK_LUMA_CUTOFF = 28;
+const BLACK_LUMA_CUTOFF = 42;
 
 export function InnerCircle() {
   const { innerCircle } = siteContent.support;
@@ -373,7 +373,7 @@ export function InnerCircle() {
           ref={canvasRef}
           width={1666}
           height={456}
-          className={`pointer-events-none absolute inset-0 z-[1] block h-full w-full transition-opacity duration-300 [clip-path:circle(19.8%_at_48.56%_50%)] ${
+          className={`pointer-events-none absolute inset-0 z-[1] block h-full w-full object-contain object-center transition-opacity duration-300 ${
             logoReady ? "opacity-100" : "opacity-0"
           }`}
           aria-hidden
