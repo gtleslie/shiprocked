@@ -284,7 +284,7 @@ body {
 .fundraising-banner-track {
   display: flex;
   width: max-content;
-  animation: fundraising-ticker 58s linear infinite;
+  animation: fundraising-ticker 96s linear infinite;
 }
 
 .fundraising-banner-text {
@@ -300,10 +300,11 @@ body {
   display: inline-flex;
   flex-shrink: 0;
   align-items: center;
+  gap: 0.35rem;
 }
 
 .fundraising-banner-sep {
-  margin-inline: 2rem;
+  margin-inline: 3.25rem 3.75rem;
   font-size: 0.72em;
   opacity: 0.92;
 }
