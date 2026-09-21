@@ -12,7 +12,7 @@ export function PageShell({ activePage, children }: PageShellProps) {
   return (
     <div className="flex min-h-screen flex-col overflow-x-hidden bg-black">
       <SiteNav activePage={activePage} />
-      <main className="site-main-offset flex-1">{children}</main>
+      <main className="site-nav-offset flex-1">{children}</main>
       <SiteFooter />
     </div>
   );

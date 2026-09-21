@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { FundraisingBanner } from "@/components/FundraisingBanner";
 import { Logo } from "@/components/Logo";
 import { siteContent, type NavKey } from "@content/site-content";
 
@@ -68,8 +67,6 @@ export function SiteNav({ activePage }: SiteNavProps) {
           <Logo size="nav" />
         </Link>
       </div>
-
-      <FundraisingBanner />
 
       {open && (
         <div className="border-b border-white/10 bg-black px-4 py-3 md:hidden">

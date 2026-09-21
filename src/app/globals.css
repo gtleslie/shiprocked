@@ -24,9 +24,6 @@
 :root {
   --site-nav-height: 84px;
   --site-fundraising-banner-height: 34px;
-  --site-header-stack-height: calc(
-    var(--site-nav-height) + var(--site-fundraising-banner-height)
-  );
 }
 
 * {
@@ -277,14 +274,27 @@ body {
   border: 0;
 }
 
-.site-main-offset {
-  padding-top: var(--site-header-stack-height);
+.site-nav-offset {
+  padding-top: var(--site-nav-height);
+}
+
+.fundraising-banner-bleed {
+  position: relative;
+  left: 50%;
+  right: 50%;
+  width: 100vw;
+  max-width: 100vw;
+  margin-left: -50vw;
+  margin-right: -50vw;
 }
 
 .fundraising-banner {
   height: var(--site-fundraising-banner-height);
-  border-bottom: 1px solid rgba(212, 162, 60, 0.28);
-  background: linear-gradient(180deg, #0c0c0c 0%, #050505 100%);
+}
+
+.fundraising-banner--support {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.28);
+  background: var(--color-accent-red);
 }
 
 .fundraising-banner-viewport {
@@ -295,15 +305,33 @@ body {
 .fundraising-banner-track {
   display: flex;
   width: max-content;
-  animation: fundraising-ticker 36s linear infinite;
+  animation: fundraising-ticker 58s linear infinite;
 }
 
 .fundraising-banner-text {
+  display: inline-flex;
   flex-shrink: 0;
-  padding-inline: 1.75rem;
+  align-items: center;
+  padding-inline: 1.25rem;
   line-height: var(--site-fundraising-banner-height);
   white-space: nowrap;
-  animation: fundraising-headline-flash 1.35s ease-in-out infinite;
+}
+
+.fundraising-banner-item {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+}
+
+.fundraising-banner-sep {
+  margin-inline: 2rem;
+  font-size: 0.72em;
+  opacity: 0.92;
+}
+
+.fundraising-banner--support .fundraising-banner-text {
+  color: #ffffff;
+  animation: fundraising-headline-flash-support 1.35s ease-in-out infinite;
 }
 
 @keyframes fundraising-ticker {
@@ -315,17 +343,17 @@ body {
   }
 }
 
-@keyframes fundraising-headline-flash {
+@keyframes fundraising-headline-flash-support {
   0%,
   100% {
     opacity: 1;
-    color: var(--color-accent-gold);
+    color: #ffffff;
     text-shadow: 0 0 0 transparent;
   }
   50% {
-    opacity: 0.62;
-    color: #f2cf7a;
-    text-shadow: 0 0 14px rgba(212, 162, 60, 0.45);
+    opacity: 0.82;
+    color: #fff5f5;
+    text-shadow: 0 0 12px rgba(255, 255, 255, 0.35);
   }
 }
 
