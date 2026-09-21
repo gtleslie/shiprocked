@@ -15,7 +15,7 @@ export function SiteNav({ activePage }: SiteNavProps) {
 
   return (
     <header className="fixed top-0 right-0 left-0 z-50 h-[84px] border-b border-white/5 bg-black">
-      <div className="mx-auto grid h-full max-w-[1440px] grid-cols-[auto_auto_1fr] items-center gap-x-2 px-4 md:grid-cols-3 md:gap-3 md:px-12 lg:px-16">
+      <div className="mx-auto grid h-full max-w-[1440px] grid-cols-[auto_1fr] items-center gap-x-2 px-4 md:grid-cols-[1fr_auto_1fr] md:gap-3 md:px-12 lg:px-16">
         <button
           type="button"
           className="-ml-1 flex h-11 w-11 shrink-0 items-center justify-center text-white md:hidden"
@@ -58,13 +58,6 @@ export function SiteNav({ activePage }: SiteNavProps) {
             );
           })}
         </nav>
-
-        <Link
-          href="/support"
-          className="inline-flex h-10 shrink-0 items-center justify-center bg-accent-red px-4 text-[10px] font-bold tracking-[0.44px] text-white uppercase max-md:justify-self-start md:col-start-3 md:h-9 md:min-w-[132px] md:justify-self-end md:px-5 md:text-[11px]"
-        >
-          {nav.supportCta}
-        </Link>
 
         <Link
           href="/"
