@@ -388,7 +388,7 @@ export function BudgetChart({ items, leading }: BudgetChartProps) {
         }
       }}
     >
-      <div className="funding-viz-shell mt-1 grid grid-cols-1 gap-5 sm:grid-cols-[minmax(0,1fr)_minmax(0,1.08fr)] sm:items-stretch sm:gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.12fr)]">
+      <div className="funding-viz-shell mt-1 grid grid-cols-1 gap-5 sm:grid-cols-[minmax(0,1fr)_minmax(0,1.08fr)] sm:items-start sm:gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.12fr)]">
         {leading ? (
           <div className="funding-viz-leading shrink-0 sm:col-start-1 sm:row-start-1">{leading}</div>
         ) : null}
@@ -547,8 +547,8 @@ export function BudgetChart({ items, leading }: BudgetChartProps) {
         </svg>
       </div>
 
-        <div className="funding-viz-copy flex min-h-0 min-w-0 flex-col sm:col-start-1 sm:row-start-2">
-        <div className="funding-carousel flex min-h-0 min-w-0 flex-col">
+        <div className="funding-viz-copy flex min-w-0 flex-col sm:col-start-1 sm:row-start-2">
+        <div className="funding-carousel flex min-w-0 flex-col">
 
         <div
           ref={trackRef}
