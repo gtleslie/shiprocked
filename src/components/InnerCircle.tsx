@@ -52,10 +52,11 @@ export function InnerCircle() {
 
     let cancelled = false;
     let bootstrapped = false;
+    let isSeekingLoop = false;
 
     const seekToLogoStart = (): Promise<void> =>
       new Promise((resolve) => {
-        if (video.currentTime >= LOGO_ANIM_START_SEC - 0.02) {
+        if (Math.abs(video.currentTime - LOGO_ANIM_START_SEC) <= 0.02) {
           resolve();
           return;
         }
@@ -70,6 +71,10 @@ export function InnerCircle() {
       });
 
     const paintFrame = (): boolean => {
+      if (isSeekingLoop) {
+        return canvasReadyRef.current;
+      }
+
       const w = video.videoWidth;
       const h = video.videoHeight;
       if (
@@ -134,16 +139,40 @@ export function InnerCircle() {
       }
     };
 
-    const onTimeUpdate = () => {
-      if (video.currentTime < LOGO_ANIM_START_SEC) {
-        video.currentTime = LOGO_ANIM_START_SEC;
+    const loopFromLogo = async () => {
+      if (cancelled || isSeekingLoop) return;
+      isSeekingLoop = true;
+      video.pause();
+      lastTimeRef.current = -1;
+
+      try {
+        await seekToLogoStart();
+        if (cancelled) return;
+        paintFrame();
+        await video.play();
+      } catch {
+        // Autoplay blocked or seek interrupted; keep last good canvas frame.
+      } finally {
+        isSeekingLoop = false;
       }
     };
 
-    const loopFromLogo = () => {
-      lastTimeRef.current = -1;
-      video.currentTime = LOGO_ANIM_START_SEC;
-      void video.play().catch(() => {});
+    const onTimeUpdate = () => {
+      if (isSeekingLoop) return;
+
+      if (video.currentTime < LOGO_ANIM_START_SEC - 0.01) {
+        void loopFromLogo();
+        return;
+      }
+
+      const duration = video.duration;
+      if (
+        Number.isFinite(duration) &&
+        duration > LOGO_ANIM_START_SEC + 0.25 &&
+        video.currentTime >= duration - 0.05
+      ) {
+        void loopFromLogo();
+      }
     };
 
     const tick = () => {
