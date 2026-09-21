@@ -15,6 +15,7 @@ type YouTubePlayer = {
   mute: () => void;
   unMute: () => void;
   playVideo: () => void;
+  pauseVideo: () => void;
   getPlayerState?: () => number;
   setVolume: (volume: number) => void;
   unloadModule: (module: string) => void;
@@ -37,6 +38,7 @@ type YouTubeNamespace = {
     ENDED: number;
     PAUSED: number;
     PLAYING: number;
+    BUFFERING: number;
     UNSTARTED: number;
     CUED: number;
   };
@@ -105,6 +107,32 @@ function ShareIcon() {
   );
 }
 
+function PlayIcon() {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      className="h-[18px] w-[18px]"
+      aria-hidden
+    >
+      <path d="M8 5.14v13.72L19 12 8 5.14Z" />
+    </svg>
+  );
+}
+
+function PauseIcon() {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      className="h-[18px] w-[18px]"
+      aria-hidden
+    >
+      <path d="M6 5h4v14H6V5Zm8 0h4v14h-4V5Z" />
+    </svg>
+  );
+}
+
 function CheckIcon() {
   return (
     <svg
@@ -156,8 +184,10 @@ export function HeroVideo({
   const inViewRef = useRef(false);
   const audioInViewRef = useRef(false);
   const userMutedRef = useRef(false);
+  const userPausedRef = useRef(false);
   const unmuteTimerRef = useRef<number | null>(null);
   const [muted, setMuted] = useState(true);
+  const [playing, setPlaying] = useState(false);
   const [copied, setCopied] = useState(false);
   const watchUrl = `https://www.youtube.com/watch?v=${videoId}`;
 
@@ -221,28 +251,44 @@ export function HeroVideo({
 
     if (!visible) {
       clearUnmuteTimer();
-      player.mute();
-      setMuted(true);
+      try {
+        player.pauseVideo();
+      } catch {
+        // Player may not be ready yet.
+      }
+      setPlaying(false);
       return;
     }
 
-    player.mute();
-    setMuted(true);
+    if (userPausedRef.current) {
+      return;
+    }
+
     ensurePlaying(player);
 
-    if (!autoSound) return;
+    if (!autoSound || userMutedRef.current) {
+      return;
+    }
 
     clearUnmuteTimer();
 
-    if (!audioEligible || userMutedRef.current) {
+    if (!audioEligible) {
       fadeVolume(player, 100, 0, 280);
+      try {
+        player.mute();
+      } catch {
+        // ignore
+      }
+      setMuted(true);
       return;
     }
 
     // Let muted playback start first (required on iOS), then fade sound in.
     unmuteTimerRef.current = window.setTimeout(() => {
       unmuteTimerRef.current = null;
-      if (!audioInViewRef.current || userMutedRef.current) return;
+      if (!audioInViewRef.current || userMutedRef.current || userPausedRef.current) {
+        return;
+      }
       try {
         player.unMute();
         fadeVolume(player, 0, 100, 420);
@@ -285,10 +331,10 @@ export function HeroVideo({
         playerVars: {
           autoplay: 1,
           mute: 1,
-          controls: 1,
-          disablekb: 0,
+          controls: 0,
+          disablekb: 1,
           enablejsapi: 1,
-          fs: 1,
+          fs: 0,
           modestbranding: 1,
           playsinline: 1,
           rel: 0,
@@ -301,20 +347,19 @@ export function HeroVideo({
         events: {
           onReady: (event) => {
             hideCaptions(event.target);
+            userPausedRef.current = false;
             updateViewportPlayback();
             schedulePlayRetries(event.target);
           },
           onStateChange: (event) => {
             hideCaptions(event.target);
-            const { ENDED, PAUSED, UNSTARTED, CUED } = YT.PlayerState;
-            if (event.data === ENDED) {
-              ensurePlaying(event.target);
-              return;
+            const { ENDED, PAUSED, PLAYING, BUFFERING } = YT.PlayerState;
+            if (event.data === PLAYING || event.data === BUFFERING) {
+              setPlaying(true);
+            } else if (event.data === PAUSED) {
+              setPlaying(false);
             }
-            if (
-              inViewRef.current &&
-              (event.data === PAUSED || event.data === UNSTARTED || event.data === CUED)
-            ) {
+            if (event.data === ENDED && !userPausedRef.current && inViewRef.current) {
               ensurePlaying(event.target);
             }
           },
@@ -361,7 +406,7 @@ export function HeroVideo({
     const resumeIfVisible = () => {
       if (document.visibilityState !== "visible") return;
       const player = playerRef.current;
-      if (!player || !inViewRef.current) return;
+      if (!player || !inViewRef.current || userPausedRef.current) return;
       ensurePlaying(player);
     };
 
@@ -369,16 +414,58 @@ export function HeroVideo({
     return () => document.removeEventListener("visibilitychange", resumeIfVisible);
   }, [videoId]);
 
+  const togglePlayback = () => {
+    const player = playerRef.current;
+    if (!player) return;
+
+    if (playing) {
+      userPausedRef.current = true;
+      clearUnmuteTimer();
+      try {
+        player.pauseVideo();
+      } catch {
+        // ignore
+      }
+      setPlaying(false);
+      return;
+    }
+
+    userPausedRef.current = false;
+    try {
+      player.mute();
+      player.playVideo();
+      setPlaying(true);
+    } catch {
+      // ignore
+    }
+    if (autoSound && audioInViewRef.current && !userMutedRef.current) {
+      window.setTimeout(() => {
+        if (userPausedRef.current || userMutedRef.current) return;
+        try {
+          player.unMute();
+          player.setVolume(100);
+          setMuted(false);
+        } catch {
+          // ignore
+        }
+      }, 400);
+    }
+  };
+
   const toggleAudio = () => {
     const player = playerRef.current;
     if (!player) return;
 
     if (muted) {
       userMutedRef.current = false;
+      if (userPausedRef.current) {
+        userPausedRef.current = false;
+      }
       player.unMute();
       player.setVolume(100);
       player.playVideo();
       setMuted(false);
+      setPlaying(true);
       return;
     }
 
@@ -457,6 +544,15 @@ export function HeroVideo({
         </div>
       </div>
       <div className="hero-video-controls max-sm:relative max-sm:z-30">
+        <button
+          type="button"
+          onClick={togglePlayback}
+          className="hero-video-btn"
+          aria-pressed={playing}
+          aria-label={playing ? `Pause ${label}` : `Play ${label}`}
+        >
+          {playing ? <PauseIcon /> : <PlayIcon />}
+        </button>
         <a
           href={watchUrl}
           target="_blank"
