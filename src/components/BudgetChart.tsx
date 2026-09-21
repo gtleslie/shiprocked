@@ -61,7 +61,8 @@ function describeSlice(
 function wrapLabel(label: string): string[] {
   if (label.includes(" & ")) {
     const [left, right] = label.split(" & ");
-    return [left, `& ${right}`];
+    // Keep "&" on the first line so left-anchored callouts don't clip it.
+    return [`${left} &`, right];
   }
   if (label.length > 22) {
     const words = label.split(" ");
@@ -189,6 +190,12 @@ export function BudgetChart({ items, leading }: BudgetChartProps) {
       // Festival submission fees — pull label below expanded slice.
       labelPoint.y += compactChart ? 5 * (height / 250) : 14;
       leaderEnd.y += 6;
+    }
+
+    if (isActive && index === 3) {
+      // Travel & final voyage capture — keep multiline callout clear of the left edge.
+      labelPoint.x += isRight ? 0 : 18;
+      labelPoint.x = Math.min(width - labelPadX, Math.max(labelPadX + 24, labelPoint.x));
     }
 
     if (isActive && index === 4) {
