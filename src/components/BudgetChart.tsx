@@ -262,8 +262,13 @@ export function BudgetChart({ items, leading }: BudgetChartProps) {
       labelPoint.x = Math.min(width - labelPadX, Math.max(labelPadX, labelPoint.x));
     }
 
-    const labelFontSize =
-      !isActive ? 16 : index === 2 && !compactChart ? 20 : 22;
+    const labelFontSize = !isActive
+      ? 16
+      : !compactChart && index === 2
+        ? 20
+        : !compactChart && index === 1
+          ? 21
+          : 22;
 
     return {
       ...item,
