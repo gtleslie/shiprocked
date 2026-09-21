@@ -904,7 +904,8 @@ body {
   }
 
   .funding-carousel-card {
-    flex-basis: min(100%, 340px);
+    flex: 0 0 min(100%, 340px);
+    max-width: 340px;
   }
 }
 

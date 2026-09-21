@@ -142,14 +142,7 @@ function indexFromScroll(track: HTMLElement): number {
 }
 
 function indexFromScrollDesktop(track: HTMLElement): number {
-  const cards = Array.from(track.querySelectorAll<HTMLElement>("[data-funding-slide]"));
-  if (!cards.length) return 0;
-
-  const step = measureCarouselStep(track);
-  if (step <= 0) return 0;
-
-  const raw = Math.round(track.scrollLeft / step);
-  return Math.min(cards.length - 1, Math.max(0, raw));
+  return indexFromScroll(track);
 }
 
 export function BudgetChart({ items, leading }: BudgetChartProps) {
@@ -157,9 +150,14 @@ export function BudgetChart({ items, leading }: BudgetChartProps) {
   const [paused, setPaused] = useState(false);
   const [compactChart, setCompactChart] = useState(false);
   const trackRef = useRef<HTMLDivElement>(null);
+  const activeIndexRef = useRef(0);
   useForwardVerticalWheelToPage(trackRef);
   const ignoreScrollSync = useRef(false);
   const scrollSyncTimeout = useRef<number | null>(null);
+
+  useEffect(() => {
+    activeIndexRef.current = activeIndex;
+  }, [activeIndex]);
 
   useEffect(() => {
     const mq = window.matchMedia("(max-width: 639px)");
@@ -288,7 +286,7 @@ export function BudgetChart({ items, leading }: BudgetChartProps) {
   const isMobileCarousel = () =>
     window.matchMedia("(max-width: 639px)").matches;
 
-  const scrollToIndex = (index: number) => {
+  const scrollToIndex = (index: number, fromIndex: number) => {
     const track = trackRef.current;
     if (!track) return;
 
@@ -298,8 +296,24 @@ export function BudgetChart({ items, leading }: BudgetChartProps) {
     }
 
     const step = measureCarouselStep(track);
-    const card = track.querySelector<HTMLElement>(`[data-funding-slide="${index}"]`);
-    const targetLeft = card?.offsetLeft ?? Math.max(0, index * step);
+    const lastIndex = items.length - 1;
+    let targetLeft: number;
+
+    if (isMobileCarousel()) {
+      targetLeft = scrollLeftForIndex(track, index);
+    } else if (fromIndex === lastIndex && index === 0) {
+      targetLeft = 0;
+    } else if (index === fromIndex + 1) {
+      targetLeft = track.scrollLeft + step;
+    } else if (index === fromIndex - 1) {
+      targetLeft = Math.max(0, track.scrollLeft - step);
+    } else {
+      const card = track.querySelector<HTMLElement>(`[data-funding-slide="${index}"]`);
+      targetLeft = card?.offsetLeft ?? Math.max(0, index * step);
+    }
+
+    const maxScroll = track.scrollWidth - track.clientWidth;
+    targetLeft = Math.min(maxScroll, Math.max(0, targetLeft));
 
     const applyScroll = () => {
       track.scrollLeft = targetLeft;
@@ -313,8 +327,10 @@ export function BudgetChart({ items, leading }: BudgetChartProps) {
 
   const goTo = (index: number) => {
     const next = ((index % items.length) + items.length) % items.length;
+    const from = activeIndexRef.current;
     setActiveIndex(next);
-    scrollToIndex(next);
+    activeIndexRef.current = next;
+    scrollToIndex(next, from);
   };
 
   useEffect(() => {
