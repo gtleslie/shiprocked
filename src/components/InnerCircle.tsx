@@ -8,6 +8,10 @@ import { siteContent } from "@content/site-content";
 const LOGO_ANIM_START_SEC = 0.72;
 /** Luminance at or below this becomes transparent (video black plate). */
 const BLACK_LUMA_CUTOFF = 42;
+/** Center emblem mask — matches the hole in inner-circle-text.png (not CSS clip-path). */
+const LOGO_MASK_CENTER_X = 0.4856;
+const LOGO_MASK_CENTER_Y = 0.5;
+const LOGO_MASK_RADIUS = 0.198;
 
 export function InnerCircle() {
   const { innerCircle } = siteContent.support;
@@ -98,7 +102,10 @@ export function InnerCircle() {
         return false;
       }
 
-      if (video.currentTime === lastTimeRef.current) {
+      if (
+        !playbackFinishedRef.current &&
+        video.currentTime === lastTimeRef.current
+      ) {
         return canvasReadyRef.current;
       }
 
@@ -113,7 +120,19 @@ export function InnerCircle() {
         ctx.drawImage(video, 0, 0, w, h);
         const frame = ctx.getImageData(0, 0, w, h);
         const data = frame.data;
+        const cx = w * LOGO_MASK_CENTER_X;
+        const cy = h * LOGO_MASK_CENTER_Y;
+        const radius = Math.hypot(w / 2, h / 2) * LOGO_MASK_RADIUS;
+        const radiusSq = radius * radius;
         for (let i = 0; i < data.length; i += 4) {
+          const px = (i / 4) % w;
+          const py = (i / 4 / w) | 0;
+          const dx = px - cx;
+          const dy = py - cy;
+          if (dx * dx + dy * dy > radiusSq) {
+            data[i + 3] = 0;
+            continue;
+          }
           const r = data[i];
           const g = data[i + 1];
           const b = data[i + 2];
@@ -245,6 +264,7 @@ export function InnerCircle() {
     };
 
     const tick = () => {
+      if (cancelled || playbackFinishedRef.current) return;
       if (paintFrame() && !cancelled && !canvasReadyRef.current) {
         markLogoReady();
       }
@@ -259,6 +279,7 @@ export function InnerCircle() {
         if (paintFrame() && !canvasReadyRef.current) {
           markLogoReady();
         }
+        if (playbackFinishedRef.current) return;
         rvfcRef.current = video.requestVideoFrameCallback(onVideoFrame);
       };
 
