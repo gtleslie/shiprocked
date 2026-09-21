@@ -105,7 +105,7 @@ export default function HomePage() {
 
         <div className="why-card-grid mt-6 grid gap-6 max-sm:mt-2 md:mt-12 md:grid-cols-3">
           {home.whyItMatters.cards.map((card) => (
-            <article key={card.number} className="why-card">
+            <article key={card.title} className="why-card">
               <div className="why-card-stage relative aspect-[4/3]">
                 <div className="why-card-bloom" aria-hidden>
                   <div className="relative h-full w-full">
@@ -130,9 +130,6 @@ export default function HomePage() {
                   </div>
                 </div>
                 <div className="why-card-scrim" />
-                <p className="absolute top-4 left-5 z-10 text-[13px] font-bold text-accent-red">
-                  {card.number}
-                </p>
                 <div className="absolute inset-x-5 bottom-4 z-10">
                   <h3 className="text-[15px] font-bold tracking-[0.2px] text-white">
                     {card.title}
