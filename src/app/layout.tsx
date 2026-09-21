@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import localFont from "next/font/local";
 import { ScrollToTop } from "@/components/ScrollToTop";
 import { siteContent } from "@content/site-content";
+import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 
 const inter = Inter({
@@ -78,6 +79,7 @@ export default function RootLayout({
       <body className="min-h-screen antialiased">
         <ScrollToTop />
         {children}
+        <Analytics />
       </body>
     </html>
   );
