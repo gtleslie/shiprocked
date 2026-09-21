@@ -317,6 +317,21 @@ body {
   background: linear-gradient(180deg, #0c0c0c 0%, #050505 100%);
 }
 
+@media (max-width: 639px) {
+  .fundraising-banner-bleed--under-nav {
+    background: #000000;
+  }
+
+  .fundraising-banner--support {
+    background: #000000;
+  }
+
+  /* Keep support artwork below the ticker — image under the bar read as grey on phones. */
+  .support-campaign-hero > .support-campaign-hero-bg {
+    top: var(--site-fundraising-banner-height);
+  }
+}
+
 .fundraising-banner-viewport {
   height: 100%;
   overflow: hidden;
