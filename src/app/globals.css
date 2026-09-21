@@ -529,6 +529,54 @@ body {
   transform: rotateY(180deg);
 }
 
+/* Touch: swap faces with opacity — 3D flip flashes the photo on iOS Safari. */
+@media (max-width: 639px) {
+  .crew-flip-card {
+    perspective: none;
+  }
+
+  .crew-flip-card:hover .crew-flip-inner {
+    transform: none;
+  }
+
+  .crew-flip-inner {
+    transform: none !important;
+    transform-style: flat;
+    transition: none;
+  }
+
+  .crew-flip-face {
+    backface-visibility: visible;
+    -webkit-backface-visibility: visible;
+    transform: none;
+  }
+
+  .crew-flip-front {
+    z-index: 2;
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .crew-flip-back {
+    z-index: 1;
+    opacity: 0;
+    visibility: hidden;
+    background: #0a0a0a;
+  }
+
+  .crew-flip-inner.is-flipped .crew-flip-front {
+    z-index: 0;
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  .crew-flip-inner.is-flipped .crew-flip-back {
+    z-index: 2;
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
 .crew-flip-badge {
   position: absolute;
   top: 12px;
