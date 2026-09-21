@@ -15,6 +15,7 @@ type YouTubePlayer = {
   mute: () => void;
   unMute: () => void;
   playVideo: () => void;
+  getPlayerState?: () => number;
   setVolume: (volume: number) => void;
   unloadModule: (module: string) => void;
 };
@@ -155,6 +156,7 @@ export function HeroVideo({
   const inViewRef = useRef(false);
   const audioInViewRef = useRef(false);
   const userMutedRef = useRef(false);
+  const unmuteTimerRef = useRef<number | null>(null);
   const [muted, setMuted] = useState(true);
   const [copied, setCopied] = useState(false);
   const watchUrl = `https://www.youtube.com/watch?v=${videoId}`;
@@ -173,6 +175,25 @@ export function HeroVideo({
     requestAnimationFrame(step);
   };
 
+  const syncViewport = () => {
+    const wrap = wrapRef.current;
+    if (!wrap) {
+      return { visible: false, audioEligible: false };
+    }
+
+    const rect = wrap.getBoundingClientRect();
+    const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+    const visible = rect.bottom > 0 && rect.top < viewportHeight;
+    if (!visible || rect.height <= 0) {
+      return { visible: false, audioEligible: false };
+    }
+
+    const visibleHeight =
+      Math.min(rect.bottom, viewportHeight) - Math.max(rect.top, 0);
+    const ratio = visibleHeight / rect.height;
+    return { visible: true, audioEligible: ratio >= 0.35 };
+  };
+
   const ensurePlaying = (player: YouTubePlayer) => {
     try {
       player.playVideo();
@@ -181,23 +202,47 @@ export function HeroVideo({
     }
   };
 
+  const schedulePlayRetries = (player: YouTubePlayer) => {
+    for (const delay of [0, 250, 700, 1500]) {
+      window.setTimeout(() => ensurePlaying(player), delay);
+    }
+  };
+
+  const clearUnmuteTimer = () => {
+    if (unmuteTimerRef.current !== null) {
+      window.clearTimeout(unmuteTimerRef.current);
+      unmuteTimerRef.current = null;
+    }
+  };
+
   const applyInViewPlayback = (visible: boolean, audioEligible: boolean) => {
     const player = playerRef.current;
     if (!player) return;
 
-    if (visible) {
-      ensurePlaying(player);
-    }
-
-    if (!autoSound) {
-      if (visible) {
-        player.mute();
-        setMuted(true);
-      }
+    if (!visible) {
+      clearUnmuteTimer();
+      player.mute();
+      setMuted(true);
       return;
     }
 
-    if (audioEligible && !userMutedRef.current) {
+    player.mute();
+    setMuted(true);
+    ensurePlaying(player);
+
+    if (!autoSound) return;
+
+    clearUnmuteTimer();
+
+    if (!audioEligible || userMutedRef.current) {
+      fadeVolume(player, 100, 0, 280);
+      return;
+    }
+
+    // Let muted playback start first (required on iOS), then fade sound in.
+    unmuteTimerRef.current = window.setTimeout(() => {
+      unmuteTimerRef.current = null;
+      if (!audioInViewRef.current || userMutedRef.current) return;
       try {
         player.unMute();
         fadeVolume(player, 0, 100, 420);
@@ -206,16 +251,14 @@ export function HeroVideo({
         player.mute();
         setMuted(true);
       }
-      return;
-    }
+    }, 650);
+  };
 
-    fadeVolume(player, 100, 0, 380);
-    window.setTimeout(() => {
-      if (!audioInViewRef.current) {
-        player.mute();
-        setMuted(true);
-      }
-    }, 400);
+  const updateViewportPlayback = () => {
+    const { visible, audioEligible } = syncViewport();
+    inViewRef.current = visible;
+    audioInViewRef.current = audioEligible;
+    applyInViewPlayback(visible, audioEligible);
   };
 
   useEffect(() => {
@@ -258,9 +301,8 @@ export function HeroVideo({
         events: {
           onReady: (event) => {
             hideCaptions(event.target);
-            event.target.mute();
-            ensurePlaying(event.target);
-            applyInViewPlayback(inViewRef.current, audioInViewRef.current);
+            updateViewportPlayback();
+            schedulePlayRetries(event.target);
           },
           onStateChange: (event) => {
             hideCaptions(event.target);
@@ -285,6 +327,7 @@ export function HeroVideo({
       fadeToken.current += 1;
       playerRef.current?.destroy();
       playerRef.current = null;
+      clearUnmuteTimer();
       if (copiedTimeout.current) {
         window.clearTimeout(copiedTimeout.current);
       }
@@ -294,6 +337,8 @@ export function HeroVideo({
   useEffect(() => {
     const wrap = wrapRef.current;
     if (!wrap) return;
+
+    updateViewportPlayback();
 
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -306,7 +351,10 @@ export function HeroVideo({
     );
 
     observer.observe(wrap);
-    return () => observer.disconnect();
+    return () => {
+      observer.disconnect();
+      clearUnmuteTimer();
+    };
   }, [autoSound, videoId]);
 
   useEffect(() => {
