@@ -1078,6 +1078,13 @@ body {
   object-position: 50% 16%;
 }
 
+@media (max-width: 639px) {
+  .characters-carousel--character-focus .crew-flip-back-bio {
+    font-size: 12.5px;
+    line-height: 1.52;
+  }
+}
+
 .characters-carousel-track {
   display: flex;
   gap: 1.5rem;
