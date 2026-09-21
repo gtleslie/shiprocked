@@ -233,6 +233,7 @@ export function HeroVideo({
 
   const enableAutoplaySound = (player: YouTubePlayer) => {
     if (!autoSound || userMutedRef.current || userPausedRef.current) return;
+    if (!isPlayerActive(player)) return;
     try {
       player.unMute();
       player.setVolume(100);
@@ -253,19 +254,16 @@ export function HeroVideo({
   const ensureAutoplay = (player: YouTubePlayer) => {
     if (userPausedRef.current) return;
     if (isPlayerActive(player)) {
-      if (autoSound && !userMutedRef.current) {
-        enableAutoplaySound(player);
-      }
       return;
     }
     try {
-      // Start muted so browsers allow autoplay, then unmute when autoSound is on.
+      // Browsers allow muted autoplay; unmute only after PLAYING (see onStateChange).
       player.mute();
+      setMuted(true);
       player.playVideo();
     } catch {
       // Autoplay may be blocked until the player is fully ready.
     }
-    scheduleAutoplaySound(player);
   };
 
   const resumeIfStuck = (player: YouTubePlayer) => {
@@ -278,7 +276,7 @@ export function HeroVideo({
   };
 
   const schedulePlayRetries = (player: YouTubePlayer) => {
-    for (const delay of [0, 120, 350, 700, 1500, 2800, 4500]) {
+    for (const delay of [0, 120, 350, 700, 1500, 2800, 4500, 7000, 10_000]) {
       window.setTimeout(() => {
         if (userPausedRef.current) return;
         ensureAutoplay(player);
@@ -327,17 +325,6 @@ export function HeroVideo({
 
     ensureAutoplay(player);
     schedulePlayRetries(player);
-
-    if (!autoSound || userMutedRef.current) {
-      return;
-    }
-
-    clearUnmuteTimer();
-    enableAutoplaySound(player);
-    unmuteTimerRef.current = window.setTimeout(() => {
-      unmuteTimerRef.current = null;
-      enableAutoplaySound(player);
-    }, 500);
   };
 
   const updateViewportPlayback = () => {
@@ -402,7 +389,7 @@ export function HeroVideo({
               everPlayedRef.current = true;
               setEverPlayed(true);
               setPlaying(true);
-              enableAutoplaySound(event.target);
+              scheduleAutoplaySound(event.target);
             } else if (event.data === BUFFERING) {
               setPlaying(true);
             } else if (event.data === PAUSED) {
@@ -458,13 +445,29 @@ export function HeroVideo({
           entry.isIntersecting && entry.intersectionRatio >= 0.35;
         applyInViewPlayback(inViewRef.current, audioInViewRef.current);
       },
-      { threshold: [0, 0.2], rootMargin: "48px 0px" },
+      { threshold: [0, 0.1, 0.25, 0.5], rootMargin: "80px 0px" },
     );
 
     observer.observe(wrap);
+
+    const kickAfterInteraction = () => {
+      const player = playerRef.current;
+      if (player && !userPausedRef.current && inViewRef.current) {
+        ensureAutoplay(player);
+        schedulePlayRetries(player);
+      }
+    };
+    document.addEventListener("pointerdown", kickAfterInteraction, {
+      once: true,
+      passive: true,
+    });
+    document.addEventListener("keydown", kickAfterInteraction, { once: true });
+
     return () => {
       observer.disconnect();
       clearUnmuteTimer();
+      document.removeEventListener("pointerdown", kickAfterInteraction);
+      document.removeEventListener("keydown", kickAfterInteraction);
     };
   }, [autoSound, videoId]);
 
@@ -476,8 +479,16 @@ export function HeroVideo({
       resumeIfStuck(player);
     };
 
+    const resumeFromCache = () => {
+      window.setTimeout(resumeIfVisible, 0);
+    };
+
     document.addEventListener("visibilitychange", resumeIfVisible);
-    return () => document.removeEventListener("visibilitychange", resumeIfVisible);
+    window.addEventListener("pageshow", resumeFromCache);
+    return () => {
+      document.removeEventListener("visibilitychange", resumeIfVisible);
+      window.removeEventListener("pageshow", resumeFromCache);
+    };
   }, [videoId]);
 
   const togglePlayback = () => {

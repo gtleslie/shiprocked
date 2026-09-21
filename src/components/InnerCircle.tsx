@@ -15,6 +15,7 @@ export function InnerCircle() {
   const groupHref = siteContent.links.innerCircle;
   const hasGroupLink = groupHref.startsWith("http");
   const videoRef = useRef<HTMLVideoElement>(null);
+  const logoStageRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const rafRef = useRef(0);
   const rvfcRef = useRef<number>(0);
@@ -309,7 +310,8 @@ export function InnerCircle() {
       },
       { threshold: 0.05 },
     );
-    intersection.observe(video);
+    const observeTarget = logoStageRef.current ?? video;
+    intersection.observe(observeTarget);
 
     watchId = window.setInterval(ensurePlaying, 2000);
 
@@ -353,7 +355,10 @@ export function InnerCircle() {
     <div className="inner-circle-stage relative mx-auto flex w-full max-w-[860px] flex-col items-center text-center">
       <h1 className="sr-only">{innerCircle.headline}</h1>
 
-      <div className="inner-circle-logo relative w-full max-w-[780px] overflow-hidden bg-transparent">
+      <div
+        ref={logoStageRef}
+        className="inner-circle-logo relative w-full max-w-[780px] overflow-hidden bg-transparent"
+      >
         <canvas
           ref={canvasRef}
           width={1666}
@@ -368,6 +373,7 @@ export function InnerCircle() {
           className="pointer-events-none absolute inset-0 -z-10 h-full w-full opacity-0 invisible"
           src={videoSrc}
           muted
+          autoPlay
           playsInline
           preload="auto"
           disablePictureInPicture
