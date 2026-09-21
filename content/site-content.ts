@@ -501,7 +501,7 @@ export const siteContent = {
       sentMessage: "Your message is on its way. We'll get back to you soon.",
       sendAnother: "Send another message",
       activationMessage:
-        "Almost there — FormSubmit sent an activation link to our inbox. Someone on the team needs to open that email and click Activate Form (check spam). After that, submit again and messages will come through.",
+        "Almost there — FormSubmit sent an activation link to shiprocked@koenigentertainment.com. Click Activate Form in that email (check spam), then submit again from www.storyofshiprocked.com/contact — not the .vercel.app URL.",
     },
     social: {
       overline: "FOLLOW THE FILM",

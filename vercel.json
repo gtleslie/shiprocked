@@ -1,0 +1,10 @@
+{
+  "redirects": [
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "shiprocked.vercel.app" }],
+      "destination": "https://www.storyofshiprocked.com/:path*",
+      "permanent": true
+    }
+  ]
+}

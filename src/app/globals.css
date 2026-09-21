@@ -529,51 +529,43 @@ body {
   transform: rotateY(180deg);
 }
 
-/* Touch: swap faces with opacity — 3D flip flashes the photo on iOS Safari. */
-@media (max-width: 639px) {
+/* Touch: hard swap (no 3D) — rotateY flashes a mirrored photo on iOS Safari. */
+@media (max-width: 639px), (hover: none) and (pointer: coarse) {
   .crew-flip-card {
     perspective: none;
   }
 
-  .crew-flip-card:hover .crew-flip-inner {
-    transform: none;
-  }
-
-  .crew-flip-inner {
+  .crew-flip-inner,
+  .crew-flip-inner.is-flipped,
+  .crew-flip-card:hover .crew-flip-inner,
+  .crew-flip-card:focus-visible .crew-flip-inner {
     transform: none !important;
-    transform-style: flat;
-    transition: none;
+    -webkit-transform: none !important;
+    transform-style: flat !important;
+    transition: none !important;
   }
 
   .crew-flip-face {
     backface-visibility: visible;
     -webkit-backface-visibility: visible;
-    transform: none;
-  }
-
-  .crew-flip-front {
-    z-index: 2;
-    opacity: 1;
-    visibility: visible;
+    transform: none !important;
+    -webkit-transform: none !important;
   }
 
   .crew-flip-back {
-    z-index: 1;
-    opacity: 0;
-    visibility: hidden;
     background: #0a0a0a;
   }
 
+  .crew-flip-inner:not(.is-flipped) .crew-flip-back {
+    display: none !important;
+  }
+
   .crew-flip-inner.is-flipped .crew-flip-front {
-    z-index: 0;
-    opacity: 0;
-    visibility: hidden;
+    display: none !important;
   }
 
   .crew-flip-inner.is-flipped .crew-flip-back {
-    z-index: 2;
-    opacity: 1;
-    visibility: visible;
+    display: flex !important;
   }
 }
 

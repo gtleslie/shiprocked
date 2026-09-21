@@ -10,8 +10,8 @@ import { siteContent } from "@content/site-content";
 
 type FormStatus = "idle" | "sending" | "sent" | "activation" | "error";
 
-function formSubmitFailed(value: unknown): boolean {
-  return value === false || value === "false";
+function formSubmitSucceeded(value: unknown): boolean {
+  return value === true || value === "true";
 }
 
 function ContactEmailLink({ email }: { email: string }) {
@@ -63,7 +63,7 @@ export default function ContactPage() {
     setError("");
 
     try {
-      const endpoint = `https://formsubmit.co/ajax/${encodeURIComponent(contact.form.deliverTo)}`;
+      const endpoint = `https://formsubmit.co/ajax/${contact.form.deliverTo}`;
       const payload = new FormData();
       payload.append("name", name);
       payload.append("email", email);
@@ -97,11 +97,20 @@ export default function ContactPage() {
         return;
       }
 
-      if (!response.ok || formSubmitFailed(result.success)) {
+      if (
+        !response.ok ||
+        !formSubmitSucceeded(result.success) ||
+        messageText.toLowerCase().includes("web server")
+      ) {
         setStatus("error");
+        const originHint =
+          typeof window !== "undefined" &&
+          !window.location.hostname.startsWith("www.")
+            ? " Open the site at www.storyofshiprocked.com/contact and try again."
+            : "";
         setError(
-          messageText ||
-            "Couldn't send that message. Please try again or email us directly.",
+          (messageText || "Couldn't send that message. Please try again or email us directly.") +
+            originHint,
         );
         return;
       }

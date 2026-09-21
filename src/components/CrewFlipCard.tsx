@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useRef, useState, useSyncExternalStore } from "react";
 import Image from "next/image";
 import { ImagePlaceholder } from "@/components/ImagePlaceholder";
 
@@ -47,8 +47,29 @@ function FlipBadge() {
   );
 }
 
+const MOBILE_FLIP_QUERY = "(max-width: 639px), (hover: none) and (pointer: coarse)";
+
+function subscribeMobileFlip(onChange: () => void) {
+  const media = window.matchMedia(MOBILE_FLIP_QUERY);
+  media.addEventListener("change", onChange);
+  return () => media.removeEventListener("change", onChange);
+}
+
+function getMobileFlipSnapshot() {
+  return window.matchMedia(MOBILE_FLIP_QUERY).matches;
+}
+
+function getMobileFlipServerSnapshot() {
+  return false;
+}
+
 export function CrewFlipCard({ member, variant = "crew" }: CrewFlipCardProps) {
   const isCharacter = variant === "character";
+  const mobileInstantFlip = useSyncExternalStore(
+    subscribeMobileFlip,
+    getMobileFlipSnapshot,
+    getMobileFlipServerSnapshot,
+  );
   const [flipped, setFlipped] = useState(false);
   const hoverFlip = useRef(false);
 
@@ -58,12 +79,12 @@ export function CrewFlipCard({ member, variant = "crew" }: CrewFlipCardProps) {
       aria-pressed={flipped}
       aria-label={`${member.name}${member.role ? `, ${member.role}` : ""}. ${flipped ? "Showing bio. Click to flip back." : "Hover or click to flip and reveal bio."}`}
       onPointerEnter={(event) => {
-        if (event.pointerType !== "mouse") return;
+        if (mobileInstantFlip || event.pointerType !== "mouse") return;
         hoverFlip.current = true;
         setFlipped(true);
       }}
       onPointerLeave={(event) => {
-        if (event.pointerType !== "mouse") return;
+        if (mobileInstantFlip || event.pointerType !== "mouse") return;
         hoverFlip.current = false;
         setFlipped(false);
       }}
@@ -71,9 +92,11 @@ export function CrewFlipCard({ member, variant = "crew" }: CrewFlipCardProps) {
         if (hoverFlip.current) return;
         setFlipped((value) => !value);
       }}
-      className={`crew-flip-card group w-full text-left${isCharacter ? " crew-flip-card--character" : ""}`}
+      className={`crew-flip-card group w-full text-left${isCharacter ? " crew-flip-card--character" : ""}${mobileInstantFlip ? " crew-flip-card--instant" : ""}`}
     >
-      <div className={`crew-flip-inner ${flipped ? "is-flipped" : ""}`}>
+      <div
+        className={`crew-flip-inner ${flipped ? "is-flipped" : ""}${mobileInstantFlip ? " crew-flip-inner--instant" : ""}`}
+      >
         <div className="crew-flip-face crew-flip-front flex h-full flex-col overflow-hidden">
           <div className="ship-card crew-flip-front-card flex h-full min-h-0 flex-col overflow-hidden border-b border-border">
             <div className="crew-flip-front-image relative h-[200px] w-full max-h-[200px] shrink-0 overflow-hidden bg-bg-card sm:h-[280px] sm:max-h-[280px]">
