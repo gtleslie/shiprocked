@@ -152,7 +152,7 @@ export const siteContent = {
       headline: "From dock to deadline.",
       items: [
         {
-          date: "SEPT - NOV 2026",
+          date: "OCT - NOV 2026",
           title: "Fundraising campaign",
           description:
             "Public campaign to fund post-production and distribution costs.",
@@ -471,7 +471,7 @@ export const siteContent = {
       {
         overline: "MARKETING & PRESS",
         title: "Story of ShipRocked Team",
-        email: "shiprocked@koenigentertainment.com",
+        email: "storyofshiprocked@koenigentertainment.com",
         note: null,
         logo: "ke" as const,
       },
