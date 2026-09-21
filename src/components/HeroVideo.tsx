@@ -184,6 +184,7 @@ export function HeroVideo({
   const copiedTimeout = useRef<number | null>(null);
   const fadeToken = useRef(0);
   const inViewRef = useRef(false);
+  const wasInViewRef = useRef(false);
   const audioInViewRef = useRef(false);
   const userMutedRef = useRef(false);
   const userPausedRef = useRef(false);
@@ -257,14 +258,19 @@ export function HeroVideo({
     const player = playerRef.current;
     if (!player) return;
 
+    const enteredView = visible && !wasInViewRef.current;
+    wasInViewRef.current = visible;
+
     if (!visible) {
       clearUnmuteTimer();
-      try {
-        player.pauseVideo();
-      } catch {
-        // Player may not be ready yet.
+      if (autoSound && !userMutedRef.current) {
+        try {
+          player.mute();
+          setMuted(true);
+        } catch {
+          // ignore
+        }
       }
-      setPlaying(false);
       return;
     }
 
@@ -273,6 +279,9 @@ export function HeroVideo({
     }
 
     ensurePlaying(player);
+    if (enteredView) {
+      schedulePlayRetries(player);
+    }
 
     if (!autoSound || userMutedRef.current) {
       return;
@@ -388,6 +397,7 @@ export function HeroVideo({
       fadeToken.current += 1;
       everPlayedRef.current = false;
       embedFailedRef.current = false;
+      wasInViewRef.current = false;
       setPlayerReady(false);
       setEmbedFailed(false);
       playerRef.current?.destroy();
@@ -412,7 +422,7 @@ export function HeroVideo({
           entry.isIntersecting && entry.intersectionRatio >= 0.35;
         applyInViewPlayback(inViewRef.current, audioInViewRef.current);
       },
-      { threshold: [0, 0.01, 0.35, 0.6], rootMargin: "64px 0px" },
+      { threshold: [0, 0.15, 0.35, 0.6], rootMargin: "0px 0px 12% 0px" },
     );
 
     observer.observe(wrap);
