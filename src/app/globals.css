@@ -1320,6 +1320,8 @@ h2 {
 
 .inner-circle-logo-video {
   max-width: 100%;
+  background: transparent;
+  mix-blend-mode: screen;
 }
 
 .campaign-rider {
