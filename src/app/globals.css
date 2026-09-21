@@ -24,6 +24,7 @@
 :root {
   --site-nav-height: 84px;
   --site-fundraising-banner-height: 34px;
+  --site-fundraising-banner-padding-block: 10px;
 }
 
 * {
@@ -343,6 +344,9 @@ body {
 }
 
 .fundraising-banner--support {
+  height: auto;
+  min-height: var(--site-fundraising-banner-height);
+  padding-block: var(--site-fundraising-banner-padding-block);
   border-bottom: 1px solid rgba(212, 162, 60, 0.28);
   background: linear-gradient(180deg, #0c0c0c 0%, #050505 100%);
 }
@@ -358,6 +362,10 @@ body {
   overflow: hidden;
 }
 
+.fundraising-banner--support .fundraising-banner-viewport {
+  height: auto;
+}
+
 .fundraising-banner-track {
   display: flex;
   width: max-content;
@@ -371,6 +379,10 @@ body {
   padding-inline: 1.25rem;
   line-height: var(--site-fundraising-banner-height);
   white-space: nowrap;
+}
+
+.fundraising-banner--support .fundraising-banner-text {
+  line-height: 1.25;
 }
 
 .fundraising-banner-item {
