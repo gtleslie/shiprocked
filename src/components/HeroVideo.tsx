@@ -189,6 +189,7 @@ export function HeroVideo({
   const userPausedRef = useRef(false);
   const everPlayedRef = useRef(false);
   const embedFailedRef = useRef(false);
+  const resumeAttemptRef = useRef(0);
   const unmuteTimerRef = useRef<number | null>(null);
   const [muted, setMuted] = useState(() => !autoSound);
   const [playing, setPlaying] = useState(false);
@@ -218,6 +219,18 @@ export function HeroVideo({
     return { visible: true, audioEligible: ratio >= 0.35 };
   };
 
+  const isPlayerActive = (player: YouTubePlayer) => {
+    try {
+      const state = player.getPlayerState?.();
+      const YT = window.YT;
+      if (state === undefined || !YT?.PlayerState) return false;
+      const { PLAYING, BUFFERING } = YT.PlayerState;
+      return state === PLAYING || state === BUFFERING;
+    } catch {
+      return false;
+    }
+  };
+
   const enableAutoplaySound = (player: YouTubePlayer) => {
     if (!autoSound || userMutedRef.current || userPausedRef.current) return;
     try {
@@ -230,8 +243,21 @@ export function HeroVideo({
     }
   };
 
+  const scheduleAutoplaySound = (player: YouTubePlayer) => {
+    if (!autoSound || userMutedRef.current) return;
+    for (const delay of [120, 400, 900, 1800]) {
+      window.setTimeout(() => enableAutoplaySound(player), delay);
+    }
+  };
+
   const ensureAutoplay = (player: YouTubePlayer) => {
     if (userPausedRef.current) return;
+    if (isPlayerActive(player)) {
+      if (autoSound && !userMutedRef.current) {
+        enableAutoplaySound(player);
+      }
+      return;
+    }
     try {
       // Start muted so browsers allow autoplay, then unmute when autoSound is on.
       player.mute();
@@ -239,11 +265,16 @@ export function HeroVideo({
     } catch {
       // Autoplay may be blocked until the player is fully ready.
     }
-    if (autoSound && !userMutedRef.current) {
-      for (const delay of [120, 400, 900, 1800]) {
-        window.setTimeout(() => enableAutoplaySound(player), delay);
-      }
-    }
+    scheduleAutoplaySound(player);
+  };
+
+  const resumeIfStuck = (player: YouTubePlayer) => {
+    if (userPausedRef.current || !inViewRef.current) return;
+    if (isPlayerActive(player)) return;
+    const now = performance.now();
+    if (now - resumeAttemptRef.current < 900) return;
+    resumeAttemptRef.current = now;
+    ensureAutoplay(player);
   };
 
   const schedulePlayRetries = (player: YouTubePlayer) => {
@@ -282,14 +313,6 @@ export function HeroVideo({
 
     if (!visible) {
       clearUnmuteTimer();
-      if (autoSound && !userMutedRef.current) {
-        try {
-          player.mute();
-          setMuted(true);
-        } catch {
-          // ignore
-        }
-      }
       return;
     }
 
@@ -297,12 +320,15 @@ export function HeroVideo({
       return;
     }
 
-    ensureAutoplay(player);
-    if (enteredView || !everPlayedRef.current) {
-      schedulePlayRetries(player);
+    const shouldKickPlayback = enteredView || !everPlayedRef.current;
+    if (!shouldKickPlayback) {
+      return;
     }
 
-    if (!autoSound || userMutedRef.current || !visible) {
+    ensureAutoplay(player);
+    schedulePlayRetries(player);
+
+    if (!autoSound || userMutedRef.current) {
       return;
     }
 
@@ -383,13 +409,11 @@ export function HeroVideo({
               setPlaying(false);
             }
             if (
-              !userPausedRef.current &&
-              inViewRef.current &&
-              (event.data === PAUSED ||
-                event.data === UNSTARTED ||
-                event.data === CUED)
+              event.data === PAUSED ||
+              event.data === UNSTARTED ||
+              event.data === CUED
             ) {
-              ensureAutoplay(event.target);
+              resumeIfStuck(event.target);
             }
             if (event.data === ENDED && !userPausedRef.current && inViewRef.current) {
               ensureAutoplay(event.target);
@@ -434,7 +458,7 @@ export function HeroVideo({
           entry.isIntersecting && entry.intersectionRatio >= 0.35;
         applyInViewPlayback(inViewRef.current, audioInViewRef.current);
       },
-      { threshold: [0, 0.01, 0.2, 0.35], rootMargin: "48px 0px" },
+      { threshold: [0, 0.2], rootMargin: "48px 0px" },
     );
 
     observer.observe(wrap);
@@ -449,7 +473,7 @@ export function HeroVideo({
       if (document.visibilityState !== "visible") return;
       const player = playerRef.current;
       if (!player || !inViewRef.current || userPausedRef.current) return;
-      ensureAutoplay(player);
+      resumeIfStuck(player);
     };
 
     document.addEventListener("visibilitychange", resumeIfVisible);
