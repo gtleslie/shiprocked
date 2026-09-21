@@ -214,29 +214,8 @@ body {
   height: 100%;
   width: 100%;
   object-fit: cover;
-  filter: blur(10px) brightness(0.38) saturate(0.85);
-  transform: scale(1.06);
-}
-
-.hero-video-poster-scrim {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  background: linear-gradient(
-    180deg,
-    rgba(0, 0, 0, 0.35) 0%,
-    rgba(0, 0, 0, 0.72) 100%
-  );
-}
-
-.hero-video-poster-logo {
-  position: relative;
-  z-index: 2;
-  display: block;
-  height: auto;
-  width: min(62%, 280px);
-  max-height: 58%;
-  object-fit: contain;
+  object-position: center;
+  background: #050505;
 }
 
 .hero-video-frame {
