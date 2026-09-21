@@ -230,6 +230,11 @@ export function BudgetChart({ items, leading }: BudgetChartProps) {
   const active = items[activeIndex] ?? items[0];
   const activeColor = SLICE_COLORS[activeIndex % SLICE_COLORS.length];
 
+  const releaseScrollSync = (track: HTMLElement) => {
+    track.style.scrollSnapType = "";
+    ignoreScrollSync.current = false;
+  };
+
   const scrollToIndex = (index: number) => {
     const track = trackRef.current;
     if (!track) return;
@@ -238,14 +243,19 @@ export function BudgetChart({ items, leading }: BudgetChartProps) {
     if (!card) return;
 
     ignoreScrollSync.current = true;
-    track.scrollTo({ left: Math.max(0, card.offsetLeft), behavior: "smooth" });
-
     if (scrollSyncTimeout.current) {
       window.clearTimeout(scrollSyncTimeout.current);
     }
-    scrollSyncTimeout.current = window.setTimeout(() => {
-      ignoreScrollSync.current = false;
-    }, 450);
+
+    track.style.scrollSnapType = "none";
+    track.scrollTo({ left: Math.max(0, card.offsetLeft), behavior: "auto" });
+
+    const finish = () => releaseScrollSync(track);
+    if ("onscrollend" in track) {
+      track.addEventListener("scrollend", finish, { once: true });
+    } else {
+      scrollSyncTimeout.current = window.setTimeout(finish, 48);
+    }
   };
 
   const goTo = (index: number) => {
@@ -272,19 +282,16 @@ export function BudgetChart({ items, leading }: BudgetChartProps) {
         if (!cards.length) return;
 
         const viewportLeft = track.scrollLeft;
-        let closest = 0;
-        let closestDist = Number.POSITIVE_INFINITY;
+        let leftmostActive = 0;
 
         cards.forEach((card) => {
           const index = Number(card.dataset.fundingSlide);
-          const dist = Math.abs(card.offsetLeft - viewportLeft);
-          if (dist < closestDist) {
-            closestDist = dist;
-            closest = index;
+          if (card.offsetLeft <= viewportLeft + 4) {
+            leftmostActive = index;
           }
         });
 
-        setActiveIndex((current) => (current === closest ? current : closest));
+        setActiveIndex((current) => (current === leftmostActive ? current : leftmostActive));
       });
     };
 
