@@ -18,10 +18,10 @@ export function SupportCampaign() {
             fill
             priority
             sizes="100vw"
-            className="object-cover object-center"
+            className="support-campaign-hero-bg-img object-cover object-center max-md:object-top"
           />
         </div>
-        <div className="support-campaign-hero-inner relative mx-auto max-w-[1440px] pt-4 md:pt-6">
+        <div className="support-campaign-hero-inner relative mx-auto max-w-[1440px] md:pt-6">
           <InnerCircle />
         </div>
       </section>
