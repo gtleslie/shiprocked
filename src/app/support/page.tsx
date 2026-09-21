@@ -2,7 +2,6 @@ import Image from "next/image";
 import { PageShell } from "@/components/PageShell";
 import { SiteButton } from "@/components/SiteButton";
 import { SectionLabel, SectionSubhead } from "@/components/ImagePlaceholder";
-import { FundraisingBanner } from "@/components/FundraisingBanner";
 import { SupportCampaign } from "@/components/SupportCampaign";
 import { siteContent } from "@content/site-content";
 
@@ -12,10 +11,6 @@ export default function SupportPage() {
   return (
     <PageShell activePage="support">
       <SupportCampaign />
-
-      <div className="fundraising-banner-bleed">
-        <FundraisingBanner />
-      </div>
 
       <section className="mx-auto max-w-[1440px] px-4 pt-10 pb-16 md:px-12 md:pt-14 md:pb-20 lg:px-16 lg:pt-16">
         <div className="grid items-center gap-10 lg:grid-cols-[minmax(0,1.35fr)_minmax(0,0.65fr)] lg:gap-x-8 xl:gap-x-10">
