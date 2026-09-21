@@ -142,7 +142,7 @@ export const siteContent = {
 
   about: {
     hero: {
-      overline: "PRODUCTION DETAILS",
+      overline: "DOCUMENTARY DETAILS",
       headline: "30 terabytes",
       headlineAccent: "and counting...",
       body: "What started as a film school thesis has become the most ambitious documentation project in ShipRocked's sixteen-year history. Two years of footage, hundreds of interviews, and one voyage left to capture before the story is complete.",
