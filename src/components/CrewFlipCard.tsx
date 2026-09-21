@@ -156,19 +156,15 @@ export function CrewFlipCard({ member, variant = "crew" }: CrewFlipCardProps) {
                 </p>
               ) : null}
             </div>
-            <div
-              className={`flex min-h-0 flex-1 flex-col ${isCharacter ? "justify-center" : ""}`}
+            <p
+              className={
+                isCharacter
+                  ? "crew-flip-back-bio min-h-0 flex-1 overflow-y-auto overscroll-contain text-pretty text-[14px] leading-[1.58] text-text-muted sm:text-[15px] sm:leading-[1.62]"
+                  : "min-h-0 flex-1 overflow-y-auto overscroll-contain text-[13px] leading-snug text-text-muted sm:text-[14px] sm:leading-relaxed"
+              }
             >
-              <p
-                className={
-                  isCharacter
-                    ? "crew-flip-back-bio max-h-full min-h-0 overflow-y-auto overscroll-contain text-pretty text-[14px] leading-[1.58] text-text-muted sm:text-[15px] sm:leading-[1.62]"
-                    : "min-h-0 flex-1 overflow-y-auto overscroll-contain text-[13px] leading-snug text-text-muted sm:text-[14px] sm:leading-relaxed"
-                }
-              >
-                {member.bio}
-              </p>
-            </div>
+              {member.bio}
+            </p>
           </div>
         </div>
       </div>
