@@ -44,25 +44,50 @@ export default function ContactPage() {
     const form = event.currentTarget;
     const data = new FormData(form);
 
+    if (String(data.get("_gotcha") ?? "").trim()) {
+      form.reset();
+      setStatus("sent");
+      return;
+    }
+
+    const name = String(data.get("name") ?? "").trim();
+    const email = String(data.get("email") ?? "").trim();
+    const message = String(data.get("message") ?? "").trim();
+
     setStatus("sending");
     setError("");
 
     try {
-      const response = await fetch("/api/contact", {
+      const endpoint = `https://formsubmit.co/ajax/${encodeURIComponent(contact.form.deliverTo)}`;
+      const response = await fetch(endpoint, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
         body: JSON.stringify({
-          name: data.get("name"),
-          email: data.get("email"),
-          message: data.get("message"),
-          website: data.get("website"),
+          name,
+          email,
+          message,
+          _subject: `${contact.form.subject} — ${name}`,
+          _replyto: email,
+          _template: "table",
         }),
       });
-      const result = (await response.json()) as { error?: string };
+
+      let result: { success?: string; message?: string } = {};
+      try {
+        result = (await response.json()) as typeof result;
+      } catch {
+        result = {};
+      }
 
       if (!response.ok) {
         setStatus("error");
-        setError(result.error || "Couldn't send that message. Please try again.");
+        setError(
+          result.message ||
+            "Couldn't send that message. Please try again or email us directly.",
+        );
         return;
       }
 
@@ -70,7 +95,7 @@ export default function ContactPage() {
       setStatus("sent");
     } catch {
       setStatus("error");
-      setError("Couldn't send that message. Please try again.");
+      setError("Couldn't send that message. Please try again or email us directly.");
     }
   }
 
@@ -215,8 +240,8 @@ export default function ContactPage() {
 
               <div className="absolute -left-[9999px] h-0 w-0 overflow-hidden" aria-hidden>
                 <label>
-                  Website
-                  <input name="website" type="text" tabIndex={-1} autoComplete="off" />
+                  Leave blank
+                  <input name="_gotcha" type="text" tabIndex={-1} autoComplete="off" />
                 </label>
               </div>
 

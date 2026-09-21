@@ -494,6 +494,9 @@ export const siteContent = {
       email: "Your email",
       message: "MESSAGE",
       submit: "SEND MESSAGE",
+      /** FormSubmit.co delivery address (activate once via their confirmation email). */
+      deliverTo: "storyofshiprocked@koenigentertainment.com",
+      subject: "ShipRocked contact form",
     },
     social: {
       overline: "FOLLOW THE FILM",
@@ -504,7 +507,11 @@ export const siteContent = {
           variant: "turquoise" as const,
         },
         { label: "INSTAGRAM", href: "https://www.instagram.com/storyofshiprocked", variant: "outline" as const },
-        { label: "FACEBOOK", href: "#", variant: "outline" as const },
+        {
+          label: "FACEBOOK",
+          href: "https://www.facebook.com/GetShipRocked/",
+          variant: "outline" as const,
+        },
         { label: "YOUTUBE", href: "https://www.youtube.com/@ASK4EntertainmentLLC", variant: "outline" as const },
       ],
     },
