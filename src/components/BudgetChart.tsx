@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import Image from "next/image";
 import { ImagePlaceholder } from "@/components/ImagePlaceholder";
+import { useForwardVerticalWheelToPage } from "@/lib/useForwardVerticalWheelToPage";
 
 type BreakdownItem = {
   label: string;
@@ -113,6 +114,7 @@ export function BudgetChart({ items, leading }: BudgetChartProps) {
   const [paused, setPaused] = useState(false);
   const [compactChart, setCompactChart] = useState(false);
   const trackRef = useRef<HTMLDivElement>(null);
+  useForwardVerticalWheelToPage(trackRef);
   const ignoreScrollSync = useRef(false);
   const scrollSyncTimeout = useRef<number | null>(null);
 

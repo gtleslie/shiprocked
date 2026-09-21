@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { useForwardVerticalWheelToPage } from "@/lib/useForwardVerticalWheelToPage";
 import Image from "next/image";
 import { ImagePlaceholder } from "@/components/ImagePlaceholder";
 import { siteContent } from "@content/site-content";
@@ -46,6 +47,7 @@ function ChevronRightIcon({ className = "h-4 w-4" }: { className?: string }) {
 export function MerchCarousel({ onSelect }: MerchCarouselProps) {
   const items = siteContent.support.tiers.items;
   const trackRef = useRef<HTMLDivElement>(null);
+  useForwardVerticalWheelToPage(trackRef);
   const [canPrev, setCanPrev] = useState(false);
   const [canNext, setCanNext] = useState(false);
 

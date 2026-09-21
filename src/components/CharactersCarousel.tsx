@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { CrewFlipCard } from "@/components/CrewFlipCard";
+import { useForwardVerticalWheelToPage } from "@/lib/useForwardVerticalWheelToPage";
 
 type CharacterSubject = {
   name: string;
@@ -61,6 +62,7 @@ export function CharactersCarousel({
   characterPhotoFocus = false,
 }: CharactersCarouselProps) {
   const trackRef = useRef<HTMLDivElement>(null);
+  useForwardVerticalWheelToPage(trackRef);
   const [canPrev, setCanPrev] = useState(false);
   const [canNext, setCanNext] = useState(false);
 
