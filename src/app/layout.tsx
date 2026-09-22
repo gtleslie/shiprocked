@@ -37,15 +37,15 @@ const shiprockedNeue = localFont({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://shiprocked.vercel.app"),
+  metadataBase: new URL("https://www.storyofshiprocked.com"),
   title: siteContent.site.title,
   description: siteContent.site.description,
   icons: {
     icon: [
       { url: "/favicon.ico", sizes: "any" },
-      { url: "/icon.png", type: "image/png" },
+      { url: "/icon.png", type: "image/png", sizes: "512x512" },
     ],
-    apple: [{ url: "/apple-icon.png", type: "image/png" }],
+    apple: [{ url: "/apple-icon.png", type: "image/png", sizes: "180x180" }],
   },
   openGraph: {
     title: siteContent.site.title,

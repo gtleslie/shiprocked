@@ -1,6 +1,6 @@
 export const siteContent = {
   site: {
-    title: "The Story of ShipRocked",
+    title: "Story of Shiprocked",
     description:
       "A senior thesis documentary capturing sixteen years of ShipRocked, the heavy metal rock cruise festival in the Caribbean.",
   },
