@@ -7,7 +7,7 @@ import { ImagePlaceholder } from "@/components/ImagePlaceholder";
 import { siteContent } from "@content/site-content";
 
 type MerchCarouselProps = {
-  onSelect?: (tierId: string) => void;
+  onSelect: (tierId: string) => void;
 };
 
 function ChevronLeftIcon({ className = "h-4 w-4" }: { className?: string }) {
@@ -97,7 +97,7 @@ export function MerchCarousel({ onSelect }: MerchCarouselProps) {
           <div key={tier.id} data-carousel-card className="merch-carousel-card">
             <button
               type="button"
-              onClick={() => onSelect?.(tier.id)}
+              onClick={() => onSelect(tier.id)}
               className="ship-card group w-full overflow-hidden text-left"
             >
               <div className="relative h-[180px] overflow-hidden bg-[#0c0c0c]">
