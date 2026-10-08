@@ -25,6 +25,7 @@
   --site-nav-height: 84px;
   --site-fundraising-banner-height: 34px;
   --site-fundraising-banner-padding-block: 10px;
+  --site-cabin-banner-height: 40px;
 }
 
 * {
@@ -323,6 +324,32 @@ body {
 
 .site-nav-offset {
   padding-top: var(--site-nav-height);
+}
+
+.site-nav-offset--with-banner {
+  --site-nav-height: calc(84px + var(--site-cabin-banner-height));
+}
+
+.cabin-banner-slot {
+  position: fixed;
+  top: 84px;
+  right: 0;
+  left: 0;
+  z-index: 40;
+}
+
+.fundraising-banner--floating {
+  height: var(--site-cabin-banner-height);
+  min-height: var(--site-cabin-banner-height);
+  padding-block: 0;
+}
+
+.fundraising-banner--floating .fundraising-banner-viewport {
+  height: 100%;
+}
+
+.fundraising-banner--floating .fundraising-banner-text {
+  line-height: var(--site-cabin-banner-height);
 }
 
 .fundraising-banner-bleed {
