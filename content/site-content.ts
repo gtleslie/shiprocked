@@ -48,12 +48,13 @@ export const siteContent = {
     homeDates: "October 14th - November 13th",
     datesLabel: "CAMPAIGN: OCT 14 - NOV 13, 2026",
     fundraisingBanner: "Fundraising Ends November 13th",
+    cabinBanner: "5 Oceanview Cabins Available - Pledge on Oct. 14th",
     eightyPercentNote:
       "Seed & Spark requires campaigns to reach 80% of goal before funds are released.",
   },
 
   nav: {
-    supportCta: "Donate",
+    supportCta: "Pledge Early",
     links: [
       { label: "HOME", href: "/", key: "home" as const },
       { label: "ABOUT", href: "/about", key: "about" as const },

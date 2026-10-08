@@ -25,6 +25,7 @@
   --site-nav-height: 84px;
   --site-fundraising-banner-height: 34px;
   --site-fundraising-banner-padding-block: 10px;
+  --site-cabin-banner-height: 40px;
 }
 
 * {
@@ -323,6 +324,32 @@ body {
 
 .site-nav-offset {
   padding-top: var(--site-nav-height);
+}
+
+.site-nav-offset--with-banner {
+  --site-nav-height: calc(84px + var(--site-cabin-banner-height));
+}
+
+.cabin-banner-slot {
+  position: fixed;
+  top: 84px;
+  right: 0;
+  left: 0;
+  z-index: 40;
+}
+
+.fundraising-banner--floating {
+  height: var(--site-cabin-banner-height);
+  min-height: var(--site-cabin-banner-height);
+  padding-block: 0;
+}
+
+.fundraising-banner--floating .fundraising-banner-viewport {
+  height: 100%;
+}
+
+.fundraising-banner--floating .fundraising-banner-text {
+  line-height: var(--site-cabin-banner-height);
 }
 
 .fundraising-banner-bleed {
@@ -1171,46 +1198,45 @@ body {
   cursor: not-allowed;
 }
 
-.merch-carousel-track {
+.merch-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+}
+
+@media (min-width: 768px) {
+  .merch-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1100px) {
+  .merch-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.merch-card {
+  border-radius: 10px;
+}
+
+.merch-card-split {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  min-height: 220px;
+}
+
+.merch-card-preview {
   display: flex;
-  gap: 1.5rem;
-  overflow-x: auto;
-  overflow-y: hidden;
-  scroll-snap-type: x mandatory;
-  scroll-behavior: smooth;
-  padding-bottom: 0.5rem;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;
+  min-width: 0;
+  flex-direction: column;
+  border-right: 1px solid #000;
 }
 
-.merch-carousel-track::-webkit-scrollbar {
-  display: none;
-}
-
-.merch-carousel-card {
-  flex: 0 0 min(260px, 78%);
-  scroll-snap-align: start;
-}
-
-@media (min-width: 640px) {
-  .merch-carousel-card {
-    flex-basis: calc((100% - 1.5rem) / 2);
-  }
-}
-
-@media (min-width: 1024px) {
-  .merch-carousel-card {
-    flex-basis: calc((100% - 3rem) / 3);
-  }
-}
-
-.merch-carousel-card .ship-card {
-  width: 100%;
-  transition: border-color 0.2s ease;
-}
-
-.merch-carousel-card .ship-card:hover {
-  border-color: rgba(210, 31, 31, 0.7);
+.merch-card-included {
+  min-width: 0;
+  padding: 1rem 1rem 1.1rem;
+  background: #000;
 }
 
 .font-header,

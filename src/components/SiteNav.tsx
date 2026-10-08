@@ -10,7 +10,7 @@ type SiteNavProps = {
 };
 
 export function SiteNav({ activePage }: SiteNavProps) {
-  const { nav } = siteContent;
+  const { nav, links } = siteContent;
   const [open, setOpen] = useState(false);
 
   return (
@@ -60,7 +60,9 @@ export function SiteNav({ activePage }: SiteNavProps) {
         </nav>
 
         <Link
-          href="/support"
+          href={links.innerCircle}
+          target="_blank"
+          rel="noopener noreferrer"
           className="inline-flex h-8 shrink-0 items-center justify-center bg-accent-red px-3.5 text-[10px] font-bold tracking-[0.44px] text-white uppercase transition-colors hover:bg-[#b81818] max-md:justify-self-start md:col-start-3 md:h-9 md:justify-self-end md:px-5 md:text-[11px]"
         >
           {nav.supportCta}

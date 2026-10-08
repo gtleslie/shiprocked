@@ -4,7 +4,7 @@ import Image from "next/image";
 import { FundraisingBanner } from "@/components/FundraisingBanner";
 import { SectionDivider } from "@/components/SectionDivider";
 import { InnerCircle } from "@/components/InnerCircle";
-import { MerchCarousel } from "@/components/MerchCarousel";
+import { MerchGrid } from "@/components/MerchGrid";
 import { siteContent } from "@content/site-content";
 
 export function SupportMerchSection() {
@@ -21,7 +21,7 @@ export function SupportMerchSection() {
           {support.tiers.merchHeadline}
         </h2>
         <div className="mt-8">
-          <MerchCarousel />
+          <MerchGrid />
         </div>
       </section>
     </>
