@@ -6,31 +6,31 @@ export function MerchGrid() {
   const items = siteContent.support.tiers.items;
 
   return (
-    <div className="merch-grid">
+    <div className="grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-3">
       {items.map((tier) => (
         <article key={tier.id} className="ship-card merch-card overflow-hidden">
-          <div className="merch-card-split">
-            <div className="merch-card-preview">
-              <div className="relative min-h-[140px] flex-1 overflow-hidden bg-[#0c0c0c]">
+          <div className="grid h-full grid-cols-2">
+            <div className="flex min-w-0 flex-col border-r border-black">
+              <div className="relative h-[148px] shrink-0 overflow-hidden bg-[#0c0c0c]">
                 {tier.image ? (
                   <Image
                     src={tier.image}
                     alt=""
                     fill
-                    sizes="(min-width: 1100px) 16vw, (min-width: 768px) 25vw, 50vw"
+                    sizes="(min-width: 1280px) 16vw, (min-width: 768px) 25vw, 50vw"
                     className="object-cover"
                   />
                 ) : (
-                  <ImagePlaceholder className="h-full min-h-[140px] w-full" />
+                  <ImagePlaceholder className="h-[148px] w-full" />
                 )}
               </div>
-              <div className="ship-card-footer px-4 py-3">
+              <div className="ship-card-footer mt-auto px-4 py-3">
                 <p className="text-[11px] font-bold tracking-[0.44px] text-accent-gold uppercase">
                   {tier.name}
                 </p>
               </div>
             </div>
-            <div className="merch-card-included">
+            <div className="min-w-0 bg-black px-4 py-4">
               <p className="text-[10px] font-bold tracking-[0.44px] text-text-dim uppercase">
                 Included
               </p>

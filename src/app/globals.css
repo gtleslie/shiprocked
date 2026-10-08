@@ -1198,45 +1198,8 @@ body {
   cursor: not-allowed;
 }
 
-.merch-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 1.25rem;
-}
-
-@media (min-width: 768px) {
-  .merch-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-
-@media (min-width: 1100px) {
-  .merch-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-}
-
 .merch-card {
   border-radius: 10px;
-}
-
-.merch-card-split {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  min-height: 220px;
-}
-
-.merch-card-preview {
-  display: flex;
-  min-width: 0;
-  flex-direction: column;
-  border-right: 1px solid #000;
-}
-
-.merch-card-included {
-  min-width: 0;
-  padding: 1rem 1rem 1.1rem;
-  background: #000;
 }
 
 .font-header,
