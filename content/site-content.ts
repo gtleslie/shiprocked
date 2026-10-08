@@ -47,13 +47,13 @@ export const siteContent = {
     homeDatesSoon: "Coming #Soon:",
     homeDates: "October 14th - November 13th",
     datesLabel: "CAMPAIGN: OCT 14 - NOV 13, 2026",
-    fundraisingBanner: "Fundraising begins October 14th",
+    fundraisingBanner: "Fundraising Ends November 13th",
     eightyPercentNote:
       "Seed & Spark requires campaigns to reach 80% of goal before funds are released.",
   },
 
   nav: {
-    supportCta: "SUPPORT NOW",
+    supportCta: "Donate",
     links: [
       { label: "HOME", href: "/", key: "home" as const },
       { label: "ABOUT", href: "/about", key: "about" as const },
