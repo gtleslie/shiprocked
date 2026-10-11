@@ -800,40 +800,50 @@ body {
 
 /* Touch: hard swap (no 3D) — rotateY flashes a mirrored photo on iOS Safari. */
 @media (max-width: 639px), (hover: none) and (pointer: coarse) {
-  .crew-flip-card {
+  .crew-flip-card,
+  .merch-flip-card {
     perspective: none;
   }
 
   .crew-flip-inner,
+  .merch-flip-inner,
   .crew-flip-inner.is-flipped,
+  .merch-flip-inner.is-flipped,
   .crew-flip-card:hover .crew-flip-inner,
-  .crew-flip-card:focus-visible .crew-flip-inner {
+  .merch-flip-card:hover .merch-flip-inner,
+  .crew-flip-card:focus-visible .crew-flip-inner,
+  .merch-flip-card:focus-visible .merch-flip-inner {
     transform: none !important;
     -webkit-transform: none !important;
     transform-style: flat !important;
     transition: none !important;
   }
 
-  .crew-flip-face {
+  .crew-flip-face,
+  .merch-flip-face {
     backface-visibility: visible;
     -webkit-backface-visibility: visible;
     transform: none !important;
     -webkit-transform: none !important;
   }
 
-  .crew-flip-back {
+  .crew-flip-back,
+  .merch-flip-back {
     background: #0a0a0a;
   }
 
-  .crew-flip-inner:not(.is-flipped) .crew-flip-back {
+  .crew-flip-inner:not(.is-flipped) .crew-flip-back,
+  .merch-flip-inner:not(.is-flipped) .merch-flip-back {
     display: none !important;
   }
 
-  .crew-flip-inner.is-flipped .crew-flip-front {
+  .crew-flip-inner.is-flipped .crew-flip-front,
+  .merch-flip-inner.is-flipped .merch-flip-front {
     display: none !important;
   }
 
-  .crew-flip-inner.is-flipped .crew-flip-back {
+  .crew-flip-inner.is-flipped .crew-flip-back,
+  .merch-flip-inner.is-flipped .merch-flip-back {
     display: flex !important;
   }
 }
@@ -1202,6 +1212,106 @@ body {
   border-radius: 10px;
 }
 
+.merch-flip-card {
+  perspective: 1200px;
+  height: 392px;
+  background: transparent;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+}
+
+@media (max-width: 639px) {
+  .merch-flip-card {
+    height: 360px;
+  }
+}
+
+@media (min-width: 640px) {
+  .merch-flip-card {
+    height: 420px;
+  }
+}
+
+.merch-flip-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.65s cubic-bezier(0.4, 0.2, 0.2, 1);
+}
+
+.merch-flip-inner.is-flipped,
+.merch-flip-card:focus-visible .merch-flip-inner {
+  transform: rotateY(180deg);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .merch-flip-card:hover .merch-flip-inner {
+    transform: rotateY(180deg);
+  }
+}
+
+.merch-flip-face {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.merch-flip-back {
+  transform: rotateY(180deg);
+}
+
+.merch-flip-front-card {
+  display: grid;
+  grid-template-rows: 1fr max-content;
+  height: 100%;
+}
+
+.merch-flip-illustration {
+  min-height: 220px;
+}
+
+.merch-preview-carousel-track {
+  display: flex;
+  gap: 1.5rem;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  padding-bottom: 0.25rem;
+}
+
+.merch-preview-carousel-track::-webkit-scrollbar {
+  display: none;
+}
+
+.merch-preview-carousel-card {
+  flex: 0 0 78%;
+  scroll-snap-align: start;
+}
+
+@media (min-width: 640px) {
+  .merch-preview-carousel-card {
+    flex-basis: calc((100% - 1.5rem) / 2);
+  }
+}
+
+@media (min-width: 1024px) {
+  .merch-preview-carousel-card {
+    flex-basis: calc((100% - 3rem) / 3);
+  }
+}
+
+.merch-showcase-frame {
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.05),
+    0 6px 20px rgba(0, 0, 0, 0.35);
+}
+
 .font-header,
 h1:not(.sr-only),
 h2 {
@@ -1395,7 +1505,22 @@ h2 {
 }
 
 .campaign-fill {
-  transition: width 1.8s cubic-bezier(0.22, 1, 0.36, 1);
+  transition:
+    width 1.8s cubic-bezier(0.22, 1, 0.36, 1),
+    left 1.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.campaign-track--compact {
+  background: #2a2a2a;
+  box-shadow: none;
+}
+
+.campaign-fill--goal {
+  z-index: 1;
+}
+
+.campaign-fill--overflow {
+  z-index: 2;
 }
 
 .campaign-wave-body {
@@ -1408,6 +1533,42 @@ h2 {
     #a31414 78%,
     #6d0c0c 100%
   );
+}
+
+.campaign-wave-body--overflow {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.35) 0%,
+    #c4a0ff 12%,
+    #9b6bff 28%,
+    #7b3fe8 52%,
+    #5a22c9 78%,
+    #3a1288 100%
+  );
+}
+
+.campaign-track--compact .campaign-fill--goal:not(:has(.campaign-wave-body)) {
+  background: var(--color-accent-red);
+}
+
+.campaign-fill--overflow:not(:has(.campaign-wave-body)) {
+  background: linear-gradient(180deg, #b088ff 0%, #6b2fd4 55%, #4a1a9e 100%);
+}
+
+.campaign-goal-marker {
+  pointer-events: none;
+  position: absolute;
+  top: -1px;
+  bottom: -1px;
+  z-index: 4;
+  width: 2px;
+  transform: translateX(-50%);
+  border-radius: 999px;
+  background: var(--color-accent-gold);
+  box-shadow:
+    0 0 0 1px rgba(0, 0, 0, 0.4),
+    0 0 0 2px rgba(255, 255, 255, 0.12),
+    0 0 10px rgba(212, 162, 60, 0.45);
 }
 
 .campaign-wave-motion {

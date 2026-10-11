@@ -42,6 +42,7 @@ export const siteContent = {
   campaign: {
     goal: 30000,
     homeGoal: 30000,
+    /** Fallback when CAMPAIGN_RAISED env is unset; match Seed & Spark manually or via Vercel env. */
     raised: 0,
     dates: "October 14 - November 13, 2026",
     homeDatesSoon: "Coming #Soon:",
@@ -382,6 +383,63 @@ export const siteContent = {
       merchNoteLead: "FILM MERCHANDISE previews coming #soon.",
       merchNoteDetail:
         "Inner Circle members get first-looks and help design the items.",
+    },
+    merchPreviews: {
+      overline: "MERCH PREVIEWS",
+      headline: "Merchandise",
+      body: "Flip each card to see what’s included. Full previews and pledge tiers launch with the campaign.",
+      flipHint: "Hover or tap a card to flip",
+      showcase: {
+        motionMediaLabel: "Motion Media",
+        comingSoon: "Coming soon",
+        videoSrc: "",
+        poster: "/assets/merch/voyage-poster.jpg",
+        caption: "A motion showcase of every reward item — launching with the campaign.",
+      },
+      cards: [
+        {
+          id: "merch-thank-you",
+          name: "Digital thank-you card",
+          tier: "Tier I · Newb",
+          illustration: "/assets/opening-mail.png",
+          included: ["Personalized digital thank-you", "Name in film credits"],
+        },
+        {
+          id: "merch-bts",
+          name: "Exclusive BTS photo set",
+          tier: "Tier II · Shiprocker",
+          illustration: "/assets/sr-skeletons-film-crew.png",
+          included: ["Curated behind-the-scenes gallery", "On-ship and edit-bay photography", "Digital delivery"],
+        },
+        {
+          id: "merch-trailer",
+          name: "Early trailer access",
+          tier: "Tier III · Skully’s Daimyo",
+          illustration: "/assets/logos/skully-riding-cruise.png",
+          included: ["Early access link before public release", "All Tier II rewards"],
+        },
+        {
+          id: "merch-poster",
+          name: "Signed voyage poster",
+          tier: "Tier IV · Skully’s Hand",
+          illustration: "/assets/merch/voyage-poster.jpg",
+          included: ["Limited art print", "Cast & crew signatures", "Shipped flat with care"],
+        },
+        {
+          id: "merch-download",
+          name: "Day-one digital film",
+          tier: "Tier V · Survivor",
+          illustration: "/assets/sr-skeleton-directors-chair.png",
+          included: ["HD digital download on release day", "All lower-tier rewards"],
+        },
+        {
+          id: "merch-cabin",
+          name: "Oceanview cabin for two",
+          tier: "Tier VI · Voyage of the Ronin",
+          illustration: "/assets/curiseshipfinalfinal.png",
+          included: ["Two berths on ShipRocked 2027", "Exclusive donor events onboard", "Full reward stack"],
+        },
+      ],
     },
     tiers: {
       overline: "COME ABOARD",

@@ -1,22 +1,49 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import Image from "next/image";
 import { siteContent } from "@content/site-content";
+import { getCampaignBarGeometry } from "@/lib/campaign-stats";
+import { useCampaignRaised } from "@/hooks/useCampaignRaised";
 
 type CampaignProgressProps = {
   className?: string;
   variant?: "home" | "support";
 };
 
+type CampaignGoalMarkerProps = {
+  leftPct: number;
+  goalLabel: string;
+};
+
+/** Goal line on the track — only when the bar scales past goal (overflow). */
+function CampaignGoalMarker({ leftPct, goalLabel }: CampaignGoalMarkerProps) {
+  if (leftPct >= 99.2) return null;
+
+  return (
+    <div
+      className="campaign-goal-marker"
+      style={{ left: `${leftPct}%` }}
+      title={goalLabel}
+      aria-hidden
+    />
+  );
+}
+
 export function CampaignProgress({
   className = "",
   variant = "home",
 }: CampaignProgressProps) {
   const { campaign, assets } = siteContent;
+  const { raised, goal: liveGoal } = useCampaignRaised();
   const goal = variant === "home" ? campaign.homeGoal : campaign.goal;
-  const percent = Math.min((campaign.raised / goal) * 100, 100);
-  const visualPercent = Math.max(percent, 11);
+  const effectiveGoal = liveGoal || goal;
+
+  const geometry = useMemo(
+    () => getCampaignBarGeometry(raised, effectiveGoal),
+    [raised, effectiveGoal],
+  );
+
   const [ride, setRide] = useState(0);
   const trackRef = useRef<HTMLDivElement>(null);
 
@@ -26,14 +53,14 @@ export function CampaignProgress({
 
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (reduceMotion) {
-      setRide(visualPercent);
+      setRide(geometry.visualFillPct);
       return;
     }
 
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          setRide(visualPercent);
+          setRide(geometry.visualFillPct);
           observer.disconnect();
         }
       },
@@ -42,20 +69,45 @@ export function CampaignProgress({
 
     observer.observe(track);
     return () => observer.disconnect();
-  }, [visualPercent]);
+  }, [geometry.visualFillPct]);
+
+  const raisedLabel = `$${raised.toLocaleString()} RAISED`;
+  const goalLabel = `GOAL: $${effectiveGoal.toLocaleString()}`;
 
   if (variant !== "home") {
     return (
       <div className={className}>
-        <div className="h-[10px] w-full overflow-hidden rounded-full bg-[#2a2a2a]">
+        <div
+          ref={trackRef}
+          className="campaign-track campaign-track--compact relative h-[10px] w-full overflow-visible rounded-full"
+        >
           <div
-            className="h-full rounded-full bg-accent-red"
-            style={{ width: `${visualPercent}%` }}
+            className="campaign-fill campaign-fill--goal absolute inset-y-0 left-0 rounded-full"
+            style={{ width: `${geometry.redWidthPct}%` }}
+          />
+          {geometry.overflowWidthPct > 0 ? (
+            <div
+              className="campaign-fill campaign-fill--overflow absolute inset-y-0 rounded-full"
+              style={{
+                left: `${geometry.goalMarkerPct}%`,
+                width: `${geometry.overflowWidthPct}%`,
+              }}
+            />
+          ) : null}
+          <CampaignGoalMarker
+            leftPct={geometry.goalMarkerPct}
+            goalLabel={`$${effectiveGoal.toLocaleString()} goal`}
           />
         </div>
-        <div className="mt-3 flex items-center justify-between text-[11px] font-bold tracking-[0.32px] uppercase">
+        <div className="mt-3 flex flex-wrap items-center justify-between gap-x-3 gap-y-1 text-[11px] font-bold tracking-[0.32px] uppercase">
           <span className="text-white">
-            ${campaign.raised.toLocaleString()} RAISED OF ${goal.toLocaleString()} GOAL
+            ${raised.toLocaleString()} RAISED OF ${effectiveGoal.toLocaleString()} GOAL
+            {geometry.overGoal ? (
+              <span className="text-accent-gold">
+                {" "}
+                (+${geometry.overflowAmount.toLocaleString()} over)
+              </span>
+            ) : null}
           </span>
           <span className="text-accent-gold">{campaign.datesLabel}</span>
         </div>
@@ -79,10 +131,10 @@ export function CampaignProgress({
           />
         </div>
 
-        <div className="campaign-track relative h-[24px] w-full overflow-hidden rounded-full">
+        <div className="campaign-track relative h-[24px] w-full overflow-visible rounded-full">
           <div
-            className="campaign-fill relative h-full overflow-hidden rounded-full"
-            style={{ width: `calc(${ride}% + var(--campaign-fill-extra))` }}
+            className="campaign-fill campaign-fill--goal absolute inset-y-0 left-0 overflow-hidden rounded-full"
+            style={{ width: `${geometry.redWidthPct}%` }}
           >
             <div className="campaign-wave-body absolute inset-0" />
             <svg
@@ -105,11 +157,34 @@ export function CampaignProgress({
               />
             </svg>
           </div>
+          {geometry.overflowWidthPct > 0 ? (
+            <div
+              className="campaign-fill campaign-fill--overflow absolute inset-y-0 overflow-hidden rounded-full"
+              style={{
+                left: `${geometry.goalMarkerPct}%`,
+                width: `${geometry.overflowWidthPct}%`,
+              }}
+            >
+              <div className="campaign-wave-body campaign-wave-body--overflow absolute inset-0" />
+            </div>
+          ) : null}
+          <CampaignGoalMarker
+            leftPct={geometry.goalMarkerPct}
+            goalLabel={`$${effectiveGoal.toLocaleString()} goal`}
+          />
         </div>
       </div>
-      <div className="mt-3 flex items-center justify-between text-[11px] font-bold tracking-[0.32px] uppercase">
-        <span className="text-white">${campaign.raised.toLocaleString()} RAISED</span>
-        <span className="text-white">GOAL: ${goal.toLocaleString()}</span>
+      <div className="mt-3 flex flex-wrap items-center justify-between gap-x-3 gap-y-1 text-[11px] font-bold tracking-[0.32px] uppercase">
+        <span className="text-white">
+          {raisedLabel}
+          {geometry.overGoal ? (
+            <span className="text-accent-gold">
+              {" "}
+              (+${geometry.overflowAmount.toLocaleString()} over goal)
+            </span>
+          ) : null}
+        </span>
+        <span className="text-white">{goalLabel}</span>
       </div>
     </div>
   );
