@@ -768,6 +768,12 @@ body {
   }
 }
 
+.crew-flip-card--character .crew-flip-face,
+.crew-flip-card--character .ship-card {
+  overflow: hidden;
+  border-radius: 22px;
+}
+
 .crew-flip-inner {
   position: relative;
   width: 100%;
@@ -1137,9 +1143,56 @@ body {
   }
 }
 
-/* Meet the Characters — focal crop only; card size unchanged. */
+/* Meet the Characters — focal crop, and grow the hovered card so neighbors slide aside. */
 .characters-carousel--character-focus .crew-flip-card .object-cover {
   object-position: 50% 16%;
+}
+
+.characters-carousel--character-focus .characters-carousel-track {
+  align-items: center;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .characters-carousel--character-focus .characters-carousel-track:hover {
+    scroll-snap-type: none;
+  }
+}
+
+.characters-carousel--character-focus .characters-carousel-card {
+  transition: flex-basis 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.characters-carousel--character-focus .crew-flip-card--character,
+.characters-carousel--character-focus .crew-flip-card--character .crew-flip-front-image {
+  transition:
+    height 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    max-height 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@media (hover: hover) and (pointer: fine) and (min-width: 640px) {
+  .characters-carousel--character-focus .characters-carousel-card:hover,
+  .characters-carousel--character-focus .characters-carousel-card:focus-within {
+    flex-basis: calc((100% - 1.5rem) / 1.55);
+    z-index: 2;
+  }
+
+  .characters-carousel--character-focus .characters-carousel-card:hover .crew-flip-card--character,
+  .characters-carousel--character-focus .characters-carousel-card:focus-within .crew-flip-card--character {
+    height: 488px;
+  }
+
+  .characters-carousel--character-focus .characters-carousel-card:hover .crew-flip-front-image,
+  .characters-carousel--character-focus .characters-carousel-card:focus-within .crew-flip-front-image {
+    height: 392px;
+    max-height: 392px;
+  }
+}
+
+@media (hover: hover) and (pointer: fine) and (min-width: 1024px) {
+  .characters-carousel--character-focus .characters-carousel-card:hover,
+  .characters-carousel--character-focus .characters-carousel-card:focus-within {
+    flex-basis: calc((100% - 3rem) / 2.35);
+  }
 }
 
 @media (max-width: 639px) {

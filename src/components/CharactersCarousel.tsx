@@ -62,6 +62,7 @@ export function CharactersCarousel({
   characterPhotoFocus = false,
 }: CharactersCarouselProps) {
   const trackRef = useRef<HTMLDivElement>(null);
+  const followFrame = useRef(0);
   useForwardVerticalWheelToPage(trackRef);
   const [canPrev, setCanPrev] = useState(false);
   const [canNext, setCanNext] = useState(false);
@@ -86,8 +87,51 @@ export function CharactersCarousel({
     return () => {
       track.removeEventListener("scroll", updateControls);
       window.removeEventListener("resize", updateControls);
+      cancelAnimationFrame(followFrame.current);
     };
   }, [subjects.length]);
+
+  const followExpandedCard = (card: HTMLElement) => {
+    if (!characterPhotoFocus) return;
+    const track = trackRef.current;
+    if (!track) return;
+
+    cancelAnimationFrame(followFrame.current);
+    const previousBehavior = track.style.scrollBehavior;
+    track.style.scrollBehavior = "auto";
+    const started = performance.now();
+    const pad = 16;
+
+    const step = (now: number) => {
+      const trackRect = track.getBoundingClientRect();
+      const cardRect = card.getBoundingClientRect();
+      const overflowRight = cardRect.right - (trackRect.right - pad);
+      const overflowLeft = trackRect.left + pad - cardRect.left;
+
+      if (overflowRight > 1 && overflowLeft <= 1) {
+        track.scrollLeft += overflowRight;
+      } else if (overflowLeft > 1) {
+        track.scrollLeft -= overflowLeft;
+      }
+
+      const next = card.getBoundingClientRect();
+      const viewBottom = window.innerHeight - pad;
+      if (next.bottom > viewBottom) {
+        window.scrollBy(0, next.bottom - viewBottom);
+      } else if (next.top < pad) {
+        window.scrollBy(0, next.top - pad);
+      }
+
+      if (now - started < 520) {
+        followFrame.current = requestAnimationFrame(step);
+      } else {
+        track.style.scrollBehavior = previousBehavior;
+        updateControls();
+      }
+    };
+
+    followFrame.current = requestAnimationFrame(step);
+  };
 
   const scrollByCard = (direction: -1 | 1) => {
     const track = trackRef.current;
@@ -151,6 +195,17 @@ export function CharactersCarousel({
             key={`${subject.name}-${index}`}
             data-carousel-card
             className="characters-carousel-card"
+            onPointerEnter={(event) => {
+              if (!characterPhotoFocus || event.pointerType === "touch") return;
+              followExpandedCard(event.currentTarget);
+            }}
+            onFocus={() => {
+              if (!characterPhotoFocus) return;
+              const card = trackRef.current?.querySelector<HTMLElement>(
+                "[data-carousel-card]:focus-within",
+              );
+              if (card) followExpandedCard(card);
+            }}
           >
             <CrewFlipCard
               member={subject}
