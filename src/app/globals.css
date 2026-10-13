@@ -1232,8 +1232,6 @@ body {
 }
 
 .merch-flip-front-card {
-  display: grid;
-  grid-template-rows: 1fr max-content;
   height: 100%;
 }
 

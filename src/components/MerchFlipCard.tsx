@@ -8,6 +8,7 @@ export type MerchPreviewCard = {
   id: string;
   name: string;
   tier: string;
+  price: number;
   illustration: string;
   included: readonly string[];
 };
@@ -86,8 +87,8 @@ export function MerchFlipCard({ card }: MerchFlipCardProps) {
         className={`merch-flip-inner ${flipped ? "is-flipped" : ""}${mobileInstantFlip ? " merch-flip-inner--instant" : ""}`}
       >
         <div className="merch-flip-face merch-flip-front flex h-full flex-col overflow-hidden">
-          <div className="ship-card merch-flip-front-card flex h-full min-h-0 flex-col overflow-hidden border-b border-border">
-            <div className="merch-flip-illustration relative min-h-0 flex-1 overflow-hidden bg-[#0a0a0a]">
+          <div className="ship-card merch-flip-front-card relative h-full min-h-0 overflow-hidden border-b border-border">
+            <div className="merch-flip-illustration relative h-full min-h-0 overflow-hidden bg-[#0a0a0a]">
               {card.illustration ? (
                 <Image
                   src={card.illustration}
@@ -100,14 +101,6 @@ export function MerchFlipCard({ card }: MerchFlipCardProps) {
                 <ImagePlaceholder className="h-full w-full" />
               )}
             </div>
-            <div className="ship-card-footer shrink-0 px-4 py-3 sm:px-5 sm:py-4">
-              <p className="text-[10px] font-bold tracking-[0.44px] text-accent-gold uppercase">
-                {card.tier}
-              </p>
-              <h3 className="mt-1 text-[15px] font-bold tracking-[0.2px] text-white sm:text-[16px]">
-                {card.name}
-              </h3>
-            </div>
           </div>
           <span className="crew-flip-badge" title="Flip card">
             <FlipCardIcon className="h-[15px] w-[15px]" />
@@ -116,13 +109,14 @@ export function MerchFlipCard({ card }: MerchFlipCardProps) {
 
         <div className="merch-flip-face merch-flip-back ship-card h-full overflow-hidden border-b border-border bg-black">
           <div className="flex h-full min-h-0 flex-col px-4 py-4 sm:px-5 sm:py-5">
-            <p className="text-[10px] font-bold tracking-[0.44px] text-text-dim uppercase">
-              What&apos;s included
+            <p className="text-[10px] font-bold tracking-[0.44px] text-accent-gold uppercase">
+              {card.tier}
             </p>
-            <h3 className="mt-1 text-[15px] font-bold tracking-[0.2px] text-white sm:text-[16px]">
+            <h3 className="mt-1 text-[18px] font-black tracking-[0.2px] text-white sm:text-[20px]">
               {card.name}
             </h3>
-            <ul className="mt-3 min-h-0 flex-1 space-y-2 overflow-y-auto pr-1">
+            <p className="mt-1 text-[22px] font-black text-white">${card.price.toLocaleString()}</p>
+            <ul className="mt-4 min-h-0 flex-1 space-y-2 overflow-y-auto pr-1">
               {card.included.map((item) => (
                 <li
                   key={item}
