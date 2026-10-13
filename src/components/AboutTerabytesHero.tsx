@@ -74,21 +74,21 @@ export function AboutTerabytesHero() {
         className="pointer-events-none absolute inset-0 bg-gradient-to-r from-black/55 via-black/20 to-black/25"
         aria-hidden
       />
-      <div className="relative z-10 mx-auto max-w-[1440px] px-4 pt-8 pb-4 md:px-12 md:pt-10 md:pb-5 lg:px-16 lg:pt-12 lg:pb-6">
+      <div className="relative z-10 mx-auto max-w-[1440px] px-4 pt-5 pb-3 md:px-12 md:pt-6 md:pb-4 lg:px-16 lg:pt-6 lg:pb-4">
         <div className="grid items-center gap-x-8 lg:grid-cols-[1.15fr_0.85fr]">
           <div ref={textRef} className="relative z-20 w-fit max-w-full">
             <SectionLabel>{about.hero.overline}</SectionLabel>
-            <h1 className="!mt-1 text-[36px] leading-none font-black text-white md:text-[56px]">
+            <h1 className="!mt-1 text-[32px] leading-none font-black text-white md:text-[42px]">
               {about.hero.headline}
             </h1>
-            <p className="font-header mt-1 text-[36px] leading-none text-accent-red md:text-[56px]">
+            <p className="font-header mt-1 text-[32px] leading-none text-accent-red md:text-[42px]">
               {about.hero.headlineAccent}
             </p>
             <SectionSubhead className="mt-3 max-w-2xl text-[16px] leading-relaxed text-white/85">
               {about.hero.body}
             </SectionSubhead>
           </div>
-          <div className="about-skeletons relative z-10 mt-4 h-[240px] lg:mt-0 lg:h-[320px]">
+          <div className="about-skeletons relative z-10 mt-3 h-[180px] lg:mt-0 lg:h-[220px]">
             <div ref={slideRef} className="absolute inset-0 will-change-transform" data-slide-x="0">
               <Image
                 ref={crewRef}

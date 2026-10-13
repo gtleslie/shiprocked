@@ -1,7 +1,6 @@
 "use client";
 
 import { MerchPreviewCarousel } from "@/components/MerchPreviewCarousel";
-import { MerchShowcaseVideo } from "@/components/MerchShowcaseVideo";
 import { SectionLabel } from "@/components/ImagePlaceholder";
 import { siteContent } from "@content/site-content";
 
@@ -13,16 +12,6 @@ export function MerchPreviews() {
       <SectionLabel>{merchPreviews.overline}</SectionLabel>
       <h2 className="text-[32px] font-black text-white md:text-[36px]">{merchPreviews.headline}</h2>
       <p className="mt-4 max-w-2xl text-[15px] leading-relaxed text-text-secondary">{merchPreviews.body}</p>
-
-      <div className="mt-6 md:mt-7">
-        <MerchShowcaseVideo
-          motionMediaLabel={merchPreviews.showcase.motionMediaLabel}
-          comingSoon={merchPreviews.showcase.comingSoon}
-          videoSrc={merchPreviews.showcase.videoSrc}
-          poster={merchPreviews.showcase.poster}
-          caption={merchPreviews.showcase.caption}
-        />
-      </div>
 
       <p className="mt-6 text-[11px] font-bold tracking-[0.32px] text-text-dim uppercase">
         {merchPreviews.flipHint}

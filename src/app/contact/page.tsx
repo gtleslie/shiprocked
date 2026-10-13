@@ -113,9 +113,9 @@ export default function ContactPage() {
 
   return (
     <PageShell activePage="contact">
-      <section className="mx-auto max-w-[1440px] px-4 pt-10 pb-8 md:px-12 md:pt-16 md:pb-10 lg:px-16">
+      <section className="mx-auto max-w-[1440px] px-4 pt-6 pb-6 md:px-12 md:pt-8 md:pb-8 lg:px-16">
         <SectionLabel>{contact.hero.overline}</SectionLabel>
-        <h1 className="!mt-1 text-[32px] font-black text-white md:text-[52px]">
+        <h1 className="!mt-1 text-[30px] font-black text-white md:text-[40px]">
           {contact.hero.headline}
         </h1>
         <SectionSubhead className="mt-4 max-w-3xl text-[16px]">{contact.hero.body}</SectionSubhead>
