@@ -1267,75 +1267,24 @@ body {
   flex: 0 0 min(200px, 72vw);
   width: min(200px, 72vw);
   scroll-snap-align: start;
+  transition:
+    flex-basis 0.65s cubic-bezier(0.4, 0.2, 0.2, 1),
+    width 0.65s cubic-bezier(0.4, 0.2, 0.2, 1);
 }
 
 @media (min-width: 1024px) {
-  .support-launch {
-    display: flex;
-    flex-direction: column;
-    box-sizing: border-box;
-    min-height: calc(100svh - var(--site-nav-height));
-    padding-bottom: 1.5rem;
-  }
-
-  .support-seed {
-    margin-top: auto;
-    padding-top: 1.5rem;
-  }
-
-  .merch-preview-carousel-navs {
-    display: none;
-  }
-
-  .merch-preview-carousel-track {
-    display: grid;
-    width: min(100%, 920px);
-    grid-template-columns: repeat(5, minmax(0, 1fr));
-    align-items: stretch;
-    gap: 0.75rem;
-    overflow: visible;
-    scroll-snap-type: none;
-    padding-block: 1.25rem 1.75rem;
-  }
-
   .merch-preview-carousel-card {
-    flex: none;
-    width: 100%;
-    min-width: 0;
-    aspect-ratio: 1 / 1;
-    transform-origin: center center;
-    transition:
-      transform 0.5s cubic-bezier(0.22, 1, 0.36, 1),
-      opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1);
-  }
-
-  .merch-preview-carousel-card .merch-flip-card {
-    height: 100%;
-    aspect-ratio: auto;
-  }
-
-  .merch-preview-carousel-card:nth-child(1) {
-    transform-origin: left center;
-  }
-
-  .merch-preview-carousel-card:nth-child(5) {
-    transform-origin: right center;
+    flex-basis: 210px;
+    width: 210px;
   }
 }
 
-@media (hover: hover) and (pointer: fine) and (min-width: 1024px) {
-  .merch-preview-carousel-track:has(.merch-preview-carousel-card:hover) .merch-preview-carousel-card,
-  .merch-preview-carousel-track:has(.merch-preview-carousel-card:focus-within) .merch-preview-carousel-card {
-    transform: scale(0.96);
-    opacity: 0.45;
-  }
-
-  .merch-preview-carousel-track:has(.merch-preview-carousel-card:hover) .merch-preview-carousel-card:hover,
-  .merch-preview-carousel-track:has(.merch-preview-carousel-card:focus-within)
-    .merch-preview-carousel-card:focus-within {
-    transform: scale(1.22);
-    opacity: 1;
-    z-index: 4;
+@media (hover: hover) and (pointer: fine) and (min-width: 640px) {
+  .merch-preview-carousel-card:hover,
+  .merch-preview-carousel-card:focus-within {
+    flex-basis: 268px;
+    width: 268px;
+    z-index: 2;
   }
 }
 
@@ -1657,4 +1606,3 @@ h2 {
     opacity: 0;
   }
 }
-

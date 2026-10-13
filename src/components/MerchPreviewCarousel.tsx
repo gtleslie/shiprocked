@@ -61,7 +61,6 @@ export function MerchPreviewCarousel({
   const followExpandedCard = (card: HTMLElement) => {
     const track = trackRef.current;
     if (!track) return;
-    if (track.scrollWidth <= track.clientWidth + 8) return;
 
     cancelAnimationFrame(followFrame.current);
     const previousBehavior = track.style.scrollBehavior;
@@ -103,7 +102,7 @@ export function MerchPreviewCarousel({
 
   return (
     <div className="merch-preview-carousel">
-      <div className="merch-preview-carousel-navs flex items-center justify-between gap-4">
+      <div className="flex items-center justify-between gap-4">
         {hint ? (
           <p className="text-[11px] font-bold tracking-[0.32px] text-text-dim uppercase">{hint}</p>
         ) : (
