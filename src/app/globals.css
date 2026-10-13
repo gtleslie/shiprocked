@@ -1193,12 +1193,13 @@ body {
 
 .merch-flip-card {
   perspective: 1200px;
-  height: 220px;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1 / 1;
   background: transparent;
   border: 0;
   padding: 0;
   cursor: pointer;
-  transition: height 0.65s cubic-bezier(0.4, 0.2, 0.2, 1);
 }
 
 .merch-flip-inner {
@@ -1263,40 +1264,27 @@ body {
 }
 
 .merch-preview-carousel-card {
-  flex: 0 0 78%;
+  flex: 0 0 min(200px, 72vw);
+  width: min(200px, 72vw);
   scroll-snap-align: start;
-  transition: flex-basis 0.65s cubic-bezier(0.4, 0.2, 0.2, 1);
+  transition:
+    flex-basis 0.65s cubic-bezier(0.4, 0.2, 0.2, 1),
+    width 0.65s cubic-bezier(0.4, 0.2, 0.2, 1);
+}
+
+@media (min-width: 1024px) {
+  .merch-preview-carousel-card {
+    flex-basis: 210px;
+    width: 210px;
+  }
 }
 
 @media (hover: hover) and (pointer: fine) and (min-width: 640px) {
   .merch-preview-carousel-card:hover,
   .merch-preview-carousel-card:focus-within {
-    flex-basis: calc((100% - 1.5rem) / 1.45);
+    flex-basis: 268px;
+    width: 268px;
     z-index: 2;
-  }
-
-  .merch-preview-carousel-card:hover .merch-flip-card,
-  .merch-preview-carousel-card:focus-within .merch-flip-card {
-    height: 340px;
-  }
-}
-
-@media (min-width: 640px) {
-  .merch-preview-carousel-card {
-    flex-basis: calc((100% - 1.5rem) / 2);
-  }
-}
-
-@media (min-width: 1024px) {
-  .merch-preview-carousel-card {
-    flex-basis: calc((100% - 3rem) / 3);
-  }
-}
-
-@media (hover: hover) and (pointer: fine) and (min-width: 1024px) {
-  .merch-preview-carousel-card:hover,
-  .merch-preview-carousel-card:focus-within {
-    flex-basis: calc((100% - 3rem) / 2.15);
   }
 }
 
