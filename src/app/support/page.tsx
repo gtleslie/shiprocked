@@ -15,8 +15,8 @@ export default function SupportPage() {
     <PageShell activePage="support">
       <SupportMerchSection />
 
-      <section className="mx-auto max-w-[1440px] px-4 pt-10 pb-16 md:px-12 md:pt-14 md:pb-20 lg:px-16 lg:pt-16">
-        <div className="grid items-center gap-10 lg:grid-cols-[minmax(0,1.35fr)_minmax(0,0.65fr)] lg:gap-x-8 xl:gap-x-10">
+      <section className="mx-auto max-w-[1440px] px-4 pt-4 pb-10 md:px-12 md:pt-5 md:pb-12 lg:px-16">
+        <div className="grid items-center gap-6 lg:grid-cols-[minmax(0,1.35fr)_minmax(0,0.45fr)] lg:gap-x-8">
           <div className="min-w-0 max-w-xl lg:max-w-none lg:pr-4 xl:pr-6">
             <p className="font-overline flex items-center gap-1 !tracking-normal text-[19px] font-bold text-accent-gold uppercase sm:hidden">
               <span>{support.seedAndSpark.overlinePrefix}</span>
@@ -31,23 +31,23 @@ export default function SupportPage() {
             <div className="hidden sm:block">
               <SectionLabel>{support.seedAndSpark.overline}</SectionLabel>
             </div>
-            <h2 className="!mt-[7px] text-[26px] font-black text-white sm:!mt-1 md:text-[36px]">
+            <h2 className="!mt-1 text-[24px] font-black text-white md:text-[28px]">
               {support.seedAndSpark.headline}
             </h2>
-            <SectionSubhead className="mt-5 text-[15px] leading-relaxed text-text-secondary">
+            <SectionSubhead className="mt-2 text-[14px] leading-snug text-text-secondary">
               {support.seedAndSpark.body}
             </SectionSubhead>
-            <SiteButton href={links.seedAndSpark} newTab className="mt-8">
+            <SiteButton href={links.seedAndSpark} newTab className="mt-4">
               {support.seedAndSpark.cta}
             </SiteButton>
           </div>
-          <div className="hidden items-center justify-center sm:flex lg:min-h-[min(100%,22rem)]">
+          <div className="hidden items-center justify-center sm:flex">
             <Image
               src={assets.seedAndSpark}
               alt="Seed & Spark"
               width={1800}
               height={1353}
-              className="h-auto w-full max-w-[180px] mix-blend-screen sm:max-w-[210px] md:max-w-[250px] lg:max-w-[300px] xl:max-w-[340px]"
+              className="h-auto w-full max-w-[120px] mix-blend-screen md:max-w-[140px] lg:max-w-[160px]"
             />
           </div>
         </div>

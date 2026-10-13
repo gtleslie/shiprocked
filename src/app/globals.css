@@ -1116,56 +1116,9 @@ body {
   }
 }
 
-/* Meet the Characters — focal crop, and grow the hovered card so neighbors slide aside. */
+/* Meet the Characters — focal crop only; card size unchanged. */
 .characters-carousel--character-focus .crew-flip-card .object-cover {
   object-position: 50% 16%;
-}
-
-.characters-carousel--character-focus .characters-carousel-track {
-  align-items: center;
-}
-
-@media (hover: hover) and (pointer: fine) {
-  .characters-carousel--character-focus .characters-carousel-track:hover {
-    scroll-snap-type: none;
-  }
-}
-
-.characters-carousel--character-focus .characters-carousel-card {
-  transition: flex-basis 0.4s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.characters-carousel--character-focus .crew-flip-card--character,
-.characters-carousel--character-focus .crew-flip-card--character .crew-flip-front-image {
-  transition:
-    height 0.4s cubic-bezier(0.22, 1, 0.36, 1),
-    max-height 0.4s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-@media (hover: hover) and (pointer: fine) and (min-width: 640px) {
-  .characters-carousel--character-focus .characters-carousel-card:hover,
-  .characters-carousel--character-focus .characters-carousel-card:focus-within {
-    flex-basis: calc((100% - 1.5rem) / 1.55);
-    z-index: 2;
-  }
-
-  .characters-carousel--character-focus .characters-carousel-card:hover .crew-flip-card--character,
-  .characters-carousel--character-focus .characters-carousel-card:focus-within .crew-flip-card--character {
-    height: 488px;
-  }
-
-  .characters-carousel--character-focus .characters-carousel-card:hover .crew-flip-front-image,
-  .characters-carousel--character-focus .characters-carousel-card:focus-within .crew-flip-front-image {
-    height: 392px;
-    max-height: 392px;
-  }
-}
-
-@media (hover: hover) and (pointer: fine) and (min-width: 1024px) {
-  .characters-carousel--character-focus .characters-carousel-card:hover,
-  .characters-carousel--character-focus .characters-carousel-card:focus-within {
-    flex-basis: calc((100% - 3rem) / 2.35);
-  }
 }
 
 @media (max-width: 639px) {
@@ -1240,23 +1193,12 @@ body {
 
 .merch-flip-card {
   perspective: 1200px;
-  height: 392px;
+  height: 220px;
   background: transparent;
   border: 0;
   padding: 0;
   cursor: pointer;
-}
-
-@media (max-width: 639px) {
-  .merch-flip-card {
-    height: 360px;
-  }
-}
-
-@media (min-width: 640px) {
-  .merch-flip-card {
-    height: 420px;
-  }
+  transition: height 0.65s cubic-bezier(0.4, 0.2, 0.2, 1);
 }
 
 .merch-flip-inner {
@@ -1296,11 +1238,12 @@ body {
 }
 
 .merch-flip-illustration {
-  min-height: 220px;
+  min-height: 0;
 }
 
 .merch-preview-carousel-track {
   display: flex;
+  align-items: flex-start;
   gap: 1.5rem;
   overflow-x: auto;
   overflow-y: hidden;
@@ -1311,6 +1254,12 @@ body {
   padding-bottom: 0.25rem;
 }
 
+@media (hover: hover) and (pointer: fine) {
+  .merch-preview-carousel-track:hover {
+    scroll-snap-type: none;
+  }
+}
+
 .merch-preview-carousel-track::-webkit-scrollbar {
   display: none;
 }
@@ -1318,6 +1267,20 @@ body {
 .merch-preview-carousel-card {
   flex: 0 0 78%;
   scroll-snap-align: start;
+  transition: flex-basis 0.65s cubic-bezier(0.4, 0.2, 0.2, 1);
+}
+
+@media (hover: hover) and (pointer: fine) and (min-width: 640px) {
+  .merch-preview-carousel-card:hover,
+  .merch-preview-carousel-card:focus-within {
+    flex-basis: calc((100% - 1.5rem) / 1.45);
+    z-index: 2;
+  }
+
+  .merch-preview-carousel-card:hover .merch-flip-card,
+  .merch-preview-carousel-card:focus-within .merch-flip-card {
+    height: 340px;
+  }
 }
 
 @media (min-width: 640px) {
@@ -1329,6 +1292,13 @@ body {
 @media (min-width: 1024px) {
   .merch-preview-carousel-card {
     flex-basis: calc((100% - 3rem) / 3);
+  }
+}
+
+@media (hover: hover) and (pointer: fine) and (min-width: 1024px) {
+  .merch-preview-carousel-card:hover,
+  .merch-preview-carousel-card:focus-within {
+    flex-basis: calc((100% - 3rem) / 2.15);
   }
 }
 
