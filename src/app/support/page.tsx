@@ -13,9 +13,10 @@ export default function SupportPage() {
 
   return (
     <PageShell activePage="support">
+      <div className="support-launch">
       <SupportMerchSection />
 
-      <section className="mx-auto max-w-[1440px] px-4 pt-4 pb-10 md:px-12 md:pt-5 md:pb-12 lg:px-16">
+      <section className="support-seed mx-auto w-full max-w-[1440px] px-4 pt-6 pb-8 md:px-12 md:pt-8 md:pb-10 lg:px-16">
         <div className="grid items-center gap-6 lg:grid-cols-[minmax(0,1.35fr)_minmax(0,0.45fr)] lg:gap-x-8">
           <div className="min-w-0 max-w-xl lg:max-w-none lg:pr-4 xl:pr-6">
             <p className="font-overline flex items-center gap-1 !tracking-normal text-[19px] font-bold text-accent-gold uppercase sm:hidden">
@@ -52,6 +53,7 @@ export default function SupportPage() {
           </div>
         </div>
       </section>
+      </div>
 
       <SupportInnerCircleSection />
     </PageShell>
