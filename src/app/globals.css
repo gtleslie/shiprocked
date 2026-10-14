@@ -1321,16 +1321,6 @@ body {
   background: transparent;
 }
 
-.merch-skully-pledge-label {
-  position: absolute;
-  left: 50%;
-  top: 76%;
-  width: 62%;
-  height: 28%;
-  transform: translate(-50%, -50%);
-  pointer-events: none;
-}
-
 @media (min-width: 640px) {
   .merch-preview-row {
     grid-template-columns: 1fr 2fr;

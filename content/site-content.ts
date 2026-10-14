@@ -26,8 +26,7 @@ export const siteContent = {
     dockToDeadline: "/assets/dock-to-deadline.jpg",
     meetCharactersCrew: "/assets/meet-the-characters-and-film-crew.jpg",
     contactBackground: "/assets/contact-artboard.jpg",
-    swagSkully: "/Swag skully.png",
-    pledgeRewardsOverlay: "/assets/pledge-rewards-overlay.png",
+    swagSkully: "/assets/correct-skully.png",
   },
 
   links: {
@@ -403,7 +402,7 @@ export const siteContent = {
           tier: "Tier 1",
           price: 25,
           illustration: "/assets/Tier 1.png",
-          included: ["Inner Circle", "Campaign Updates", "Social Media Shoutout"],
+          included: ["Inner Circle", "Group Access", "Campaign Updates", "Social Media Shoutout"],
         },
         {
           id: "tier-2",
@@ -466,6 +465,7 @@ export const siteContent = {
           image: "",
           perks: [
             "Inner Circle",
+            "Group Access",
             "Campaign Updates",
             "Social Media Shoutout",
           ],
