@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState, useSyncExternalStore } from "react";
+import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 import Image from "next/image";
 import { ImagePlaceholder } from "@/components/ImagePlaceholder";
 
@@ -15,6 +15,7 @@ export type MerchPreviewCard = {
 
 type MerchFlipCardProps = {
   card: MerchPreviewCard;
+  index?: number;
 };
 
 function FlipCardIcon({ className = "h-4 w-4" }: { className?: string }) {
@@ -53,20 +54,26 @@ function getMobileFlipServerSnapshot() {
   return false;
 }
 
-export function MerchFlipCard({ card }: MerchFlipCardProps) {
+export function MerchFlipCard({ card, index = 0 }: MerchFlipCardProps) {
   const mobileInstantFlip = useSyncExternalStore(
     subscribeMobileFlip,
     getMobileFlipSnapshot,
     getMobileFlipServerSnapshot,
   );
   const [flipped, setFlipped] = useState(false);
+  const [intro, setIntro] = useState(true);
   const hoverFlip = useRef(false);
+
+  useEffect(() => {
+    const timer = window.setTimeout(() => setIntro(false), 980 + index * 90);
+    return () => window.clearTimeout(timer);
+  }, [index]);
 
   return (
     <button
       type="button"
       aria-pressed={flipped}
-      aria-label={`${card.name}. ${flipped ? "Showing included items. Click to flip back." : "Hover or click to flip and see what's included."}`}
+      aria-label={`${card.name}, $${card.price ?? ""}. ${flipped ? "Showing included items. Click to flip back." : "Click to see what's included."}`}
       onPointerEnter={(event) => {
         if (mobileInstantFlip || event.pointerType !== "mouse") return;
         hoverFlip.current = true;
@@ -84,30 +91,23 @@ export function MerchFlipCard({ card }: MerchFlipCardProps) {
       className={`merch-flip-card group w-full text-left${mobileInstantFlip ? " merch-flip-card--instant" : ""}`}
     >
       <div
-        className={`merch-flip-inner ${flipped ? "is-flipped" : ""}${mobileInstantFlip ? " merch-flip-inner--instant" : ""}`}
+        className={`merch-flip-inner ${flipped ? "is-flipped" : ""}${intro ? " is-intro" : ""}${mobileInstantFlip ? " merch-flip-inner--instant" : ""}`}
+        style={intro ? { animationDelay: `${index * 90}ms` } : undefined}
       >
         <div className="merch-flip-face merch-flip-front flex h-full flex-col overflow-hidden">
-          <div className="ship-card merch-flip-front-card flex h-full min-h-0 flex-col overflow-hidden border-b border-border">
-            <div className="merch-flip-illustration relative min-h-0 flex-1 overflow-hidden bg-[#0a0a0a]">
+          <div className="ship-card merch-flip-front-card relative h-full min-h-0 overflow-hidden">
+            <div className="merch-flip-illustration relative h-full min-h-0 overflow-hidden bg-[#0a0a0a]">
               {card.illustration ? (
                 <Image
                   src={card.illustration}
                   alt=""
                   fill
-                  sizes="(max-width: 639px) 78vw, (min-width: 640px) 33vw, 28vw"
-                  className="object-contain object-center p-3 sm:p-4"
+                  sizes="(max-width: 639px) 42vw, 180px"
+                  className="object-contain object-center"
                 />
               ) : (
                 <ImagePlaceholder className="h-full w-full" />
               )}
-            </div>
-            <div className="ship-card-footer shrink-0 px-4 py-3 sm:px-5 sm:py-4">
-              <p className="text-[10px] font-bold tracking-[0.44px] text-accent-gold uppercase">
-                {card.tier}
-              </p>
-              <h3 className="mt-1 text-[15px] font-bold tracking-[0.2px] text-white sm:text-[16px]">
-                {card.name}
-              </h3>
             </div>
           </div>
           <span className="crew-flip-badge" title="Flip card">

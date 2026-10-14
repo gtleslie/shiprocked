@@ -15,6 +15,12 @@ export default function SupportPage() {
     <PageShell activePage="support">
       <SupportMerchSection />
 
+      <div className="mx-auto max-w-[1440px] px-4 pt-4 md:px-12 md:pt-5 lg:px-16">
+        <SiteButton href={links.seedAndSpark} newTab>
+          {support.seedAndSpark.cta}
+        </SiteButton>
+      </div>
+
       <section className="mx-auto max-w-[1440px] px-4 pt-4 pb-10 md:px-12 md:pt-5 md:pb-12 lg:px-16">
         <div className="grid items-center gap-6 lg:grid-cols-[minmax(0,1.35fr)_minmax(0,0.45fr)] lg:gap-x-8">
           <div className="min-w-0 max-w-xl lg:max-w-none lg:pr-4 xl:pr-6">
@@ -37,9 +43,6 @@ export default function SupportPage() {
             <SectionSubhead className="mt-2 text-[14px] leading-snug text-text-secondary">
               {support.seedAndSpark.body}
             </SectionSubhead>
-            <SiteButton href={links.seedAndSpark} newTab className="mt-4">
-              {support.seedAndSpark.cta}
-            </SiteButton>
           </div>
           <div className="hidden items-center justify-center sm:flex">
             <Image

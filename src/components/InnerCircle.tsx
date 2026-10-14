@@ -155,28 +155,11 @@ export function InnerCircle() {
             className="mx-auto block h-auto w-full aspect-[848/240]"
           />
         </button>
-        <div className="font-shiprocked-neue mt-2.5 max-w-[34rem] px-1 md:mt-3">
-          <p className="text-[17px] leading-tight whitespace-nowrap uppercase text-white max-sm:text-[13px] sm:text-[15px] md:text-[27px]">
-            {innerCircle.merchNoteLead.includes("#soon") ? (
-              <>
-                {innerCircle.merchNoteLead.replace(/\s#soon\.?\s*$/, "").trim()}{" "}
-                <span className="inner-circle-salted font-salted tk-salted tracking-normal normal-case text-accent-turquoise">
-                  #soon
-                </span>
-                .
-              </>
-            ) : (
-              innerCircle.merchNoteLead
-            )}
+        {innerCircle.merchNoteLead ? (
+          <p className="font-shiprocked-neue mt-2.5 max-w-[34rem] px-1 text-center text-[17px] leading-tight whitespace-nowrap uppercase text-white max-sm:text-[13px] sm:text-[15px] md:mt-3 md:text-[27px]">
+            {innerCircle.merchNoteLead}
           </p>
-          <p className="inner-circle-copy font-subhead relative mt-0.5 text-[15px] leading-snug whitespace-nowrap text-white max-sm:mt-1.5 max-sm:text-[12px] md:mt-1">
-            <span
-              className="pointer-events-none absolute -inset-x-4 -inset-y-1.5 rounded-sm bg-black/55"
-              aria-hidden
-            />
-            <span className="relative">{innerCircle.merchNoteDetail}</span>
-          </p>
-        </div>
+        ) : null}
       </div>
     </div>
   );

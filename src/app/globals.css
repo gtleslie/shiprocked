@@ -1194,12 +1194,12 @@ body {
 .merch-flip-card {
   perspective: 1200px;
   width: 100%;
-  height: 220px;
+  height: auto;
+  aspect-ratio: 5 / 8;
   background: transparent;
   border: 0;
   padding: 0;
   cursor: pointer;
-  transition: height 0.65s cubic-bezier(0.4, 0.2, 0.2, 1);
 }
 
 .merch-flip-inner {
@@ -1210,15 +1210,35 @@ body {
   transition: transform 0.65s cubic-bezier(0.4, 0.2, 0.2, 1);
 }
 
+.merch-flip-inner.is-intro {
+  animation: merch-card-spin 0.9s cubic-bezier(0.4, 0.2, 0.2, 1) both;
+}
+
+@keyframes merch-card-spin {
+  from {
+    transform: rotateY(0deg);
+  }
+  to {
+    transform: rotateY(360deg);
+  }
+}
+
 .merch-flip-inner.is-flipped,
-.merch-flip-card:focus-visible .merch-flip-inner {
+.merch-flip-card:focus-visible .merch-flip-inner:not(.is-intro) {
   transform: rotateY(180deg);
 }
 
 @media (hover: hover) and (pointer: fine) {
-  .merch-flip-card:hover .merch-flip-inner {
+  .merch-flip-card:hover .merch-flip-inner:not(.is-intro) {
     transform: rotateY(180deg);
   }
+}
+
+.merch-flip-face,
+.merch-flip-front-card,
+.merch-flip-back {
+  overflow: hidden;
+  border-radius: 22px;
 }
 
 .merch-flip-face {
@@ -1233,8 +1253,6 @@ body {
 }
 
 .merch-flip-front-card {
-  display: grid;
-  grid-template-rows: 1fr max-content;
   height: 100%;
 }
 
@@ -1272,15 +1290,14 @@ body {
 }
 
 @media (hover: hover) and (pointer: fine) and (min-width: 640px) {
-  .merch-preview-carousel-card:hover,
-  .merch-preview-carousel-card:focus-within {
-    flex-basis: calc((100% - 1.5rem) / 1.45);
-    z-index: 2;
+  .merch-preview-carousel-card {
+    transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
   }
 
-  .merch-preview-carousel-card:hover .merch-flip-card,
-  .merch-preview-carousel-card:focus-within .merch-flip-card {
-    height: 340px;
+  .merch-preview-carousel-card:hover,
+  .merch-preview-carousel-card:focus-within {
+    z-index: 3;
+    transform: scale(1.08);
   }
 }
 
@@ -1291,15 +1308,20 @@ body {
 }
 
 @media (min-width: 1024px) {
-  .merch-preview-carousel-card {
-    flex-basis: calc((100% - 3rem) / 3);
+  .merch-preview-carousel-navs {
+    display: none;
   }
-}
 
-@media (hover: hover) and (pointer: fine) and (min-width: 1024px) {
-  .merch-preview-carousel-card:hover,
-  .merch-preview-carousel-card:focus-within {
-    flex-basis: calc((100% - 3rem) / 2.15);
+  .merch-preview-carousel-track {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    overflow: visible;
+    gap: 0.75rem;
+  }
+
+  .merch-preview-carousel-card {
+    flex: none;
+    width: 100%;
   }
 }
 

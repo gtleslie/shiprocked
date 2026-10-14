@@ -355,14 +355,7 @@ export default function ContactPage() {
                     : "border border-white text-white transition-colors hover:border-accent-gold hover:bg-white/5"
                 }`}
               >
-                {button.variant === "turquoise" ? (
-                  <span className="inline-flex items-baseline justify-center gap-0.5">
-                    <span>JOIN THE</span>
-                    <span>INNER CIRCLE</span>
-                  </span>
-                ) : (
-                  button.label
-                )}
+                {button.label}
               </a>
             );
           })}

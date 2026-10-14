@@ -102,7 +102,7 @@ export function MerchPreviewCarousel({
 
   return (
     <div className="merch-preview-carousel">
-      <div className="flex items-center justify-between gap-4">
+      <div className="merch-preview-carousel-navs flex items-center justify-between gap-4">
         {hint ? (
           <p className="text-[11px] font-bold tracking-[0.32px] text-text-dim uppercase">{hint}</p>
         ) : (
@@ -137,7 +137,7 @@ export function MerchPreviewCarousel({
         aria-label={label}
         tabIndex={0}
       >
-        {cards.map((card) => (
+        {cards.map((card, index) => (
           <div
             key={card.id}
             data-merch-carousel-card
@@ -147,7 +147,7 @@ export function MerchPreviewCarousel({
               followExpandedCard(event.currentTarget);
             }}
           >
-            <MerchFlipCard card={card} />
+            <MerchFlipCard card={card} index={index} />
           </div>
         ))}
       </div>
