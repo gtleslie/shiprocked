@@ -1317,7 +1317,8 @@ body {
 .merch-skully {
   position: relative;
   width: 100%;
-  aspect-ratio: 798 / 872;
+  aspect-ratio: 5 / 8;
+  background: transparent;
 }
 
 @media (min-width: 640px) {
