@@ -1413,17 +1413,12 @@ body {
 
 .support-seed-spark-grid {
   align-items: start;
-  margin-top: -1rem;
-}
-
-@media (min-width: 768px) {
-  .support-seed-spark-grid {
-    margin-top: -1rem;
-  }
+  margin-top: 30px;
 }
 
 @media (min-width: 640px) {
   .support-seed-spark-grid {
+    margin-top: -1rem;
     grid-template-columns: minmax(0, 1fr) auto;
     align-items: center;
     column-gap: 1.75rem;
