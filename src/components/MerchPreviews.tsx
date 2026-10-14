@@ -30,7 +30,7 @@ export function MerchPreviews() {
             />
           </div>
         </div>
-        <div className="min-w-0 flex-1">
+        <div className="merch-preview-carousel-wrap min-w-0">
           <MerchPreviewCarousel cards={merchPreviews.cards} />
         </div>
       </div>

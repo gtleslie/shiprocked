@@ -1309,7 +1309,7 @@ body {
 
 .merch-preview-row {
   display: grid;
-  grid-template-columns: 1.14fr 1fr;
+  grid-template-columns: 0.438fr 1fr;
   align-items: end;
   gap: 0.75rem;
 }
@@ -1333,7 +1333,7 @@ body {
 
 @media (min-width: 640px) {
   .merch-preview-row {
-    grid-template-columns: 0.73fr 1fr;
+    grid-template-columns: 1fr 2fr;
   }
 }
 
@@ -1343,7 +1343,11 @@ body {
   }
 
   .merch-preview-row {
-    grid-template-columns: 1.46fr 5fr;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+  }
+
+  .merch-preview-carousel-wrap {
+    grid-column: span 5;
   }
 
   .merch-preview-carousel-track {
