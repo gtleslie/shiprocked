@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import { FundraisingBanner } from "@/components/FundraisingBanner";
 import { SectionDivider } from "@/components/SectionDivider";
 import { InnerCircle } from "@/components/InnerCircle";
 import { MerchPreviews } from "@/components/MerchPreviews";
@@ -9,14 +8,15 @@ import { siteContent } from "@content/site-content";
 
 export function SupportMerchSection() {
   const { hero } = siteContent.support;
+  const { fundraisingBanner } = siteContent.campaign;
 
   return (
     <>
-      <div className="fundraising-banner-bleed">
-        <FundraisingBanner />
-      </div>
       <section className="mx-auto max-w-[1440px] px-4 pt-5 pb-2 md:px-12 md:pt-7 md:pb-3 lg:px-16">
-        <h1 className="font-header text-[38px] font-black leading-[0.95] text-accent-red sm:text-[48px] md:text-[56px] lg:text-[64px]">
+        <p className="font-overline text-[11px] font-bold uppercase leading-tight tracking-normal text-accent-red sm:text-[12px] md:text-[13px]">
+          {fundraisingBanner}
+        </p>
+        <h1 className="font-header mt-1 text-[38px] font-black leading-[0.95] text-white sm:text-[48px] md:mt-1.5 md:text-[56px] lg:text-[64px]">
           {hero.headline}
         </h1>
         <p className="font-subhead mt-1.5 max-w-[980px] text-[14px] leading-snug text-text-secondary md:mt-2">
