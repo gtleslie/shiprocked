@@ -37,11 +37,8 @@ export function getCampaignBarGeometry(raised: number, goal: number) {
   const fillPct = (raised / displayMax) * 100;
   const redWidthPct = Math.min(fillPct, goalMarkerPct);
   const overflowWidthPct = Math.max(0, fillPct - goalMarkerPct);
-  /** Slightly under true % so the bar does not read too full at early totals (labels stay exact). */
-  const barVisualScale = 0.88;
-  const visualFillPct = raised > 0 ? fillPct * barVisualScale : 0;
-  const displayRedWidthPct =
-    raised <= 0 ? 0 : Math.min(redWidthPct * barVisualScale, goalMarkerPct);
+  const visualFillPct = raised > 0 ? fillPct : 0;
+  const displayRedWidthPct = raised <= 0 ? 0 : Math.min(redWidthPct, goalMarkerPct);
   const skullyLeftPct = raised <= 0 ? 0 : Math.min(visualFillPct, goalMarkerPct);
   const overGoal = raised > safeGoal;
 
