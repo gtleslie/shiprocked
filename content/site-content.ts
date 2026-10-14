@@ -359,9 +359,8 @@ export const siteContent = {
 
   support: {
     hero: {
-      overline: "JOIN THE CREW",
-      headline: "Fund the final voyage.",
-      body: "Every tier gets you closer to the finished film, and the top tier gets you a cabin on the real thing.",
+      headline: "Support the Film",
+      body: "Fuel the next chapter of ShipRocked. Get exclusive rewards, help bring the story to life, and become part of the crew that makes this film possible.",
     },
     teaser: {
       badge: "REWARDS INSIDE",
