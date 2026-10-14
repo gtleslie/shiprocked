@@ -26,7 +26,8 @@ export const siteContent = {
     dockToDeadline: "/assets/dock-to-deadline.jpg",
     meetCharactersCrew: "/assets/meet-the-characters-and-film-crew.jpg",
     contactBackground: "/assets/contact-artboard.jpg",
-    swagSkully: "/assets/correct-skully.png",
+    swagSkully: "/Swag skully.png",
+    pledgeRewardsOverlay: "/assets/pledge-rewards-overlay.png",
   },
 
   links: {
