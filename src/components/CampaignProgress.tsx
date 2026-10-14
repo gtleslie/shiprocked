@@ -17,12 +17,12 @@ type CampaignGoalMarkerProps = {
 };
 
 type AnimatedBar = {
-  ride: number;
+  skully: number;
   red: number;
   overflow: number;
 };
 
-const BAR_AT_REST: AnimatedBar = { ride: 0, red: 0, overflow: 0 };
+const BAR_AT_REST: AnimatedBar = { skully: 0, red: 0, overflow: 0 };
 
 /** Goal line on the track — only when the bar scales past goal (overflow). */
 function CampaignGoalMarker({ leftPct, goalLabel }: CampaignGoalMarkerProps) {
@@ -60,7 +60,7 @@ export function CampaignProgress({
     if (!track) return;
 
     const target: AnimatedBar = {
-      ride: geometry.visualFillPct,
+      skully: geometry.skullyLeftPct,
       red: geometry.redWidthPct,
       overflow: geometry.overflowWidthPct,
     };
@@ -87,7 +87,7 @@ export function CampaignProgress({
     if (inView) apply();
 
     return () => observer.disconnect();
-  }, [geometry.visualFillPct, geometry.redWidthPct, geometry.overflowWidthPct]);
+  }, [geometry.skullyLeftPct, geometry.redWidthPct, geometry.overflowWidthPct]);
 
   const raisedLabel = `$${raised.toLocaleString()} RAISED`;
   const goalLabel = `GOAL: $${effectiveGoal.toLocaleString()}`;
@@ -100,7 +100,7 @@ export function CampaignProgress({
           className="campaign-track campaign-track--compact relative h-[10px] w-full overflow-visible rounded-full"
         >
           <div
-            className="campaign-fill campaign-fill--goal absolute inset-y-0 left-0 rounded-full"
+            className={`campaign-fill campaign-fill--goal absolute inset-y-0 left-0 rounded-full${animated.red > 0 ? " campaign-fill--has-raised" : ""}`}
             style={{ width: `${animated.red}%` }}
           />
           {geometry.overflowWidthPct > 0 ? (
@@ -138,7 +138,7 @@ export function CampaignProgress({
       <div className="relative overflow-visible pt-[72px] max-sm:pt-[68px] md:pt-[110px]">
         <div
           className="campaign-rider pointer-events-none absolute z-[2] h-[78px] w-[104px] overflow-hidden max-sm:h-[68px] max-sm:w-[90px] md:h-[132px] md:w-[220px]"
-          style={{ left: `${animated.ride}%` }}
+          style={{ left: `${animated.skully}%` }}
         >
           <Image
             src={assets.skullyRide}
@@ -151,13 +151,8 @@ export function CampaignProgress({
 
         <div className="campaign-track relative h-[24px] w-full overflow-visible rounded-full">
           <div
-            className="campaign-fill campaign-fill--goal absolute inset-y-0 left-0 overflow-hidden rounded-full"
-            style={{
-              width:
-                animated.red > 0
-                  ? `calc(${animated.red}% + var(--campaign-fill-extra))`
-                  : "0%",
-            }}
+            className={`campaign-fill campaign-fill--goal absolute inset-y-0 left-0 overflow-hidden rounded-full${animated.red > 0 ? " campaign-fill--has-raised" : ""}`}
+            style={{ width: animated.red > 0 ? `${animated.red}%` : "0%" }}
           >
             <div className="campaign-wave-body absolute inset-0" />
             <svg

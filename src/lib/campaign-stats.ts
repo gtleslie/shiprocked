@@ -37,7 +37,11 @@ export function getCampaignBarGeometry(raised: number, goal: number) {
   const fillPct = (raised / displayMax) * 100;
   const redWidthPct = Math.min(fillPct, goalMarkerPct);
   const overflowWidthPct = Math.max(0, fillPct - goalMarkerPct);
-  const visualFillPct = raised > 0 ? Math.max(fillPct, 11) : 0;
+  /** True share of the track (no 11% floor — early pledges stay a thin sliver). */
+  const visualFillPct = raised > 0 ? fillPct : 0;
+  /** Keep Skully slightly in view when progress is still a fraction of a percent. */
+  const skullyLeftPct =
+    raised <= 0 ? 0 : fillPct < 3 ? Math.max(fillPct, 0.45) : fillPct;
   const overGoal = raised > safeGoal;
 
   return {
@@ -46,6 +50,7 @@ export function getCampaignBarGeometry(raised: number, goal: number) {
     redWidthPct,
     overflowWidthPct,
     visualFillPct,
+    skullyLeftPct,
     overGoal,
     overflowAmount: Math.max(0, raised - safeGoal),
   };

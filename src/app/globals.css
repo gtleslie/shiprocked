@@ -1667,6 +1667,10 @@ h2 {
   z-index: 1;
 }
 
+.campaign-fill--goal.campaign-fill--has-raised {
+  min-width: 6px;
+}
+
 .campaign-fill--overflow {
   z-index: 2;
 }
