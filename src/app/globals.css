@@ -1307,9 +1307,32 @@ body {
   }
 }
 
+.merch-preview-row {
+  display: grid;
+  grid-template-columns: 1.14fr 1fr;
+  align-items: end;
+  gap: 0.75rem;
+}
+
+.merch-skully {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 798 / 872;
+}
+
+@media (min-width: 640px) {
+  .merch-preview-row {
+    grid-template-columns: 0.73fr 1fr;
+  }
+}
+
 @media (min-width: 1024px) {
   .merch-preview-carousel-navs {
     display: none;
+  }
+
+  .merch-preview-row {
+    grid-template-columns: 1.46fr 5fr;
   }
 
   .merch-preview-carousel-track {
@@ -1317,6 +1340,7 @@ body {
     grid-template-columns: repeat(5, minmax(0, 1fr));
     overflow: visible;
     gap: 0.75rem;
+    margin-top: 0;
   }
 
   .merch-preview-carousel-card {
@@ -1643,3 +1667,4 @@ h2 {
     opacity: 0;
   }
 }
+

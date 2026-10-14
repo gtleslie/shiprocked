@@ -26,7 +26,7 @@ export const siteContent = {
     dockToDeadline: "/assets/dock-to-deadline.jpg",
     meetCharactersCrew: "/assets/meet-the-characters-and-film-crew.jpg",
     contactBackground: "/assets/contact-artboard.jpg",
-    swagSkully: "/Swag skully.png",
+    swagSkully: "/assets/correct-skully.png",
   },
 
   links: {
@@ -402,7 +402,7 @@ export const siteContent = {
           tier: "Tier 1",
           price: 25,
           illustration: "/assets/Tier 1.png",
-          included: ["Inner Circle", "Campaign Updates", "Social Media Shoutout", "Day-1 Pin"],
+          included: ["Inner Circle", "Campaign Updates", "Social Media Shoutout"],
         },
         {
           id: "tier-2",
@@ -410,7 +410,7 @@ export const siteContent = {
           tier: "Tier 2",
           price: 60,
           illustration: "/assets/Tier 2.png",
-          included: ["BTS Featurette", "SCAD Cut", "Name in Credits", "Day-1 Pin", "Other Perk Rewards"],
+          included: ["BTS Featurette", "SCAD Cut", "Name in Credits", "Other Perk Rewards"],
         },
         {
           id: "tier-3",
@@ -418,7 +418,7 @@ export const siteContent = {
           tier: "Tier 3",
           price: 100,
           illustration: "/assets/Tier 3.png",
-          included: ["SRDC T-Shirt", "SRDC Sticker Sheet", "Day-1 Pin", "Day-1 Shirt", "Other Perk Rewards"],
+          included: ["SRDC T-Shirt", "SRDC Sticker Sheet", "Other Perk Rewards"],
         },
         {
           id: "tier-4",
@@ -432,8 +432,6 @@ export const siteContent = {
             "Inner Circle Hat",
             "SRDC Hoodie",
             "10 Years Setlist",
-            "Day-1 Pin",
-            "Day-1 Shirt",
             "Other Perk Rewards",
           ],
         },
@@ -446,8 +444,6 @@ export const siteContent = {
           included: [
             "Oceanview Cabin for Two",
             "Perfect 10 Benefits",
-            "Day-1 Pin",
-            "Day-1 Shirt",
             "Other Perk Rewards",
           ],
         },
@@ -471,7 +467,6 @@ export const siteContent = {
             "Inner Circle",
             "Campaign Updates",
             "Social Media Shoutout",
-            "Day-1 Pin",
           ],
           featured: false,
           premium: false,
@@ -487,7 +482,6 @@ export const siteContent = {
             "BTS Featurette",
             "SCAD Cut",
             "Name in Credits",
-            "Day-1 Pin",
             "Other Perk Rewards",
           ],
           featured: false,
@@ -503,8 +497,6 @@ export const siteContent = {
           perks: [
             "SRDC T-Shirt",
             "SRDC Sticker Sheet",
-            "Day-1 Pin",
-            "Day-1 Shirt",
             "Other Perk Rewards",
           ],
           featured: false,
@@ -523,8 +515,6 @@ export const siteContent = {
             "Inner Circle Hat",
             "SRDC Hoodie",
             "10 Years Setlist",
-            "Day-1 Pin",
-            "Day-1 Shirt",
             "Other Perk Rewards",
           ],
           featured: false,
@@ -540,8 +530,6 @@ export const siteContent = {
           perks: [
             "Oceanview Cabin for Two",
             "Perfect 10 Benefits",
-            "Day-1 Pin",
-            "Day-1 Shirt",
             "Other Perk Rewards",
           ],
           featured: false,

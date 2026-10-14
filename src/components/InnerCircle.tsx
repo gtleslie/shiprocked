@@ -156,7 +156,7 @@ export function InnerCircle() {
           />
         </button>
         {innerCircle.merchNoteLead ? (
-          <p className="font-shiprocked-neue mt-2.5 max-w-[34rem] px-1 text-center text-[17px] leading-tight whitespace-nowrap uppercase text-white max-sm:text-[13px] sm:text-[15px] md:mt-3 md:text-[27px]">
+          <p className="font-shiprocked-neue mt-2.5 w-full px-1 text-center text-[17px] leading-tight uppercase text-white max-sm:text-[13px] sm:text-[15px] md:mt-3 md:text-[27px]">
             {innerCircle.merchNoteLead}
           </p>
         ) : null}

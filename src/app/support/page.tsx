@@ -50,7 +50,7 @@ export default function SupportPage() {
               alt="Seed & Spark"
               width={1800}
               height={1353}
-              className="h-auto w-full max-w-[120px] mix-blend-screen md:max-w-[140px] lg:max-w-[160px]"
+              className="h-auto w-full max-w-[200px] mix-blend-screen md:max-w-[250px] lg:max-w-[300px]"
             />
           </div>
         </div>
