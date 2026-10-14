@@ -15,7 +15,7 @@ export default function SupportPage() {
     <PageShell activePage="support">
       <SupportMerchSection />
 
-      <section className="support-seed-spark mx-auto max-w-[1440px] px-4 pt-2 pb-4 md:px-12 md:pt-3 md:pb-6 lg:px-16">
+      <section className="support-seed-spark mx-auto max-w-[1440px] px-4 pt-4 pb-6 md:px-12 md:pt-5 md:pb-8 lg:px-16">
         <SiteButton href={links.seedAndSpark} newTab>
           {support.seedAndSpark.cta}
         </SiteButton>

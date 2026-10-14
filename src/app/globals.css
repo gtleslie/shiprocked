@@ -1355,12 +1355,12 @@ body {
 
 .support-seed-spark-grid {
   align-items: start;
-  margin-top: 1.25rem;
+  margin-top: 1.5rem;
 }
 
 @media (min-width: 768px) {
   .support-seed-spark-grid {
-    margin-top: 1.5rem;
+    margin-top: 1.75rem;
   }
 }
 
