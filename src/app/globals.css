@@ -1316,9 +1316,22 @@ body {
 
 .merch-skully {
   position: relative;
+  z-index: 1;
   width: 100%;
   aspect-ratio: 5 / 8;
+  overflow: visible;
   background: transparent;
+}
+
+.merch-skully-art {
+  transform: scale(1.14);
+  transform-origin: center bottom;
+}
+
+@media (min-width: 640px) {
+  .merch-skully-art {
+    transform: scale(1.22);
+  }
 }
 
 @media (min-width: 640px) {

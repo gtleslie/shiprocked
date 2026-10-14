@@ -17,7 +17,7 @@ export function MerchPreviews() {
             alt="Pledge rewards"
             fill
             sizes="(min-width: 1024px) 220px, 42vw"
-            className="pointer-events-none object-contain object-center"
+            className="merch-skully-art pointer-events-none object-contain object-bottom"
             priority
           />
         </div>
