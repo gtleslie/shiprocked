@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { FundraisingBanner } from "@/components/FundraisingBanner";
 import { SectionDivider } from "@/components/SectionDivider";
 import { InnerCircle } from "@/components/InnerCircle";
 import { MerchPreviews } from "@/components/MerchPreviews";
@@ -12,6 +13,9 @@ export function SupportMerchSection() {
 
   return (
     <>
+      <div className="fundraising-banner-bleed">
+        <FundraisingBanner />
+      </div>
       <section className="support-film-hero mx-auto max-w-[1440px] px-4 md:px-12 lg:px-16">
         <p className="support-film-hero-eyebrow font-header text-[13px] font-black leading-none text-accent-red sm:text-[14px] md:text-[15px] lg:text-[16px]">
           {fundraisingBanner}
