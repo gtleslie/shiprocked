@@ -37,7 +37,6 @@ export function getCampaignBarGeometry(raised: number, goal: number) {
   const fillPct = (raised / displayMax) * 100;
   const redWidthPct = Math.min(fillPct, goalMarkerPct);
   const overflowWidthPct = Math.max(0, fillPct - goalMarkerPct);
-  const shareOfGoal = raised / safeGoal;
   /** Bar and Skully ride at true progress (e.g. $11k / $35k ≈ one-third). */
   const visualFillPct = raised > 0 ? fillPct : 0;
   const displayRedWidthPct =
