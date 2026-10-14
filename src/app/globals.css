@@ -1437,24 +1437,11 @@ body {
     padding-left: 0.25rem;
   }
 
-  .support-seed-spark-logo-img {
-    width: auto;
-    height: auto;
-    max-height: 9.25rem;
-    max-width: min(38vw, 210px);
-    object-fit: contain;
-    object-position: center;
-  }
 }
 
 @media (min-width: 768px) {
   .support-seed-spark-grid {
     column-gap: 2rem;
-  }
-
-  .support-seed-spark-logo-img {
-    max-height: 10.25rem;
-    max-width: 240px;
   }
 }
 
@@ -1468,21 +1455,11 @@ body {
     justify-content: center;
     padding-left: 0.5rem;
   }
-
-  .support-seed-spark-logo-img {
-    max-height: 11.25rem;
-    max-width: 280px;
-  }
 }
 
 @media (min-width: 1280px) {
   .support-seed-spark-grid {
     grid-template-columns: minmax(0, 1.28fr) minmax(0, 0.55fr);
-  }
-
-  .support-seed-spark-logo-img {
-    max-height: 12rem;
-    max-width: 320px;
   }
 }
 
