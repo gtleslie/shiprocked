@@ -20,7 +20,7 @@ export default function SupportPage() {
           {support.seedAndSpark.cta}
         </SiteButton>
 
-        <div className="support-seed-spark-grid mt-1 grid gap-3 md:mt-1.5 lg:gap-x-10">
+        <div className="support-seed-spark-grid grid gap-3 lg:gap-x-10">
           <div className="min-w-0 max-w-xl lg:max-w-none lg:pr-2 xl:pr-4">
             <p className="font-overline flex items-center gap-1 !tracking-normal text-[19px] font-bold text-accent-gold uppercase sm:hidden">
               <span>{support.seedAndSpark.overlinePrefix}</span>
