@@ -9,7 +9,7 @@ export function MerchPreviews() {
   const { swagSkully } = siteContent.assets;
 
   return (
-    <section className="mx-auto max-w-[1440px] overflow-visible px-4 pb-2 md:px-12 lg:px-16">
+    <section className="support-merch-previews mx-auto max-w-[1440px] overflow-visible px-4 pb-2 md:px-12 lg:px-16">
       <div className="merch-preview-row">
         <div className="merch-skully">
           <Image

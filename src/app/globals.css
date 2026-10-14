@@ -1329,7 +1329,7 @@ body {
 }
 
 .support-film-hero h1 + .font-subhead {
-  margin-top: 0.0625rem;
+  margin-top: -0.0625rem;
   margin-bottom: 0;
 }
 
@@ -1339,7 +1339,17 @@ body {
   }
 
   .support-film-hero h1 + .font-subhead {
-    margin-top: 0.125rem;
+    margin-top: -0.0625rem;
+  }
+}
+
+.support-merch-previews {
+  padding-top: 0.875rem;
+}
+
+@media (min-width: 768px) {
+  .support-merch-previews {
+    padding-top: 1.125rem;
   }
 }
 
