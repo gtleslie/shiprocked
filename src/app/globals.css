@@ -1307,6 +1307,28 @@ body {
   }
 }
 
+.support-seed-spark-grid {
+  align-items: center;
+}
+
+@media (min-width: 1024px) {
+  .support-seed-spark-grid {
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.62fr);
+  }
+
+  .support-seed-spark-logo {
+    align-items: center;
+    justify-content: center;
+    padding-left: 0.5rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .support-seed-spark-grid {
+    grid-template-columns: minmax(0, 1.28fr) minmax(0, 0.55fr);
+  }
+}
+
 .merch-preview-row {
   display: grid;
   grid-template-columns: 0.438fr 1fr;

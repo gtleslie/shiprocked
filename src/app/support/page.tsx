@@ -20,8 +20,8 @@ export default function SupportPage() {
           {support.seedAndSpark.cta}
         </SiteButton>
 
-        <div className="mt-2 grid items-end gap-4 md:mt-3 lg:grid-cols-[minmax(0,1.35fr)_minmax(0,0.45fr)] lg:gap-x-8">
-          <div className="min-w-0 max-w-xl lg:max-w-none lg:pr-4 xl:pr-6">
+        <div className="support-seed-spark-grid mt-2 grid gap-4 md:mt-3 lg:gap-x-10">
+          <div className="min-w-0 max-w-xl lg:max-w-none lg:pr-2 xl:pr-4">
             <p className="font-overline flex items-center gap-1 !tracking-normal text-[19px] font-bold text-accent-gold uppercase sm:hidden">
               <span>{support.seedAndSpark.overlinePrefix}</span>
               <Image
@@ -42,13 +42,13 @@ export default function SupportPage() {
               {support.seedAndSpark.body}
             </SectionSubhead>
           </div>
-          <div className="hidden items-end justify-center sm:flex lg:justify-end">
+          <div className="support-seed-spark-logo hidden sm:flex">
             <Image
               src={assets.seedAndSpark}
               alt="Seed & Spark"
               width={1800}
               height={1353}
-              className="h-auto w-full max-w-[200px] mix-blend-screen md:max-w-[250px] lg:max-w-[300px]"
+              className="h-auto w-full max-w-[200px] mix-blend-screen md:max-w-[250px] lg:max-w-[280px] xl:max-w-[320px]"
             />
           </div>
         </div>
