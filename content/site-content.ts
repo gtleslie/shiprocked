@@ -360,7 +360,7 @@ export const siteContent = {
   support: {
     hero: {
       headline: "Support the Film",
-      body: "Fuel the next chapter of ShipRocked. Get exclusive rewards, help bring the story to life, and become part of the crew that makes this film possible.",
+      body: "Fuel the next chapter of ShipRocked. Get exclusive rewards, help bring the story to life, and become part\nof the crew that makes this film possible.",
     },
     teaser: {
       badge: "REWARDS INSIDE",

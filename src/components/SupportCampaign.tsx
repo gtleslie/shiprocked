@@ -19,7 +19,7 @@ export function SupportMerchSection() {
         <h1 className="font-header text-[38px] font-black leading-[0.92] text-white sm:text-[48px] md:text-[56px] lg:text-[64px]">
           {hero.headline}
         </h1>
-        <p className="font-subhead max-w-[980px] text-[14px] leading-snug text-text-secondary">
+        <p className="font-subhead max-w-[980px] whitespace-pre-line text-[14px] leading-snug text-text-secondary">
           {hero.body}
         </p>
       </section>
