@@ -12,14 +12,14 @@ export function SupportMerchSection() {
 
   return (
     <>
-      <section className="mx-auto max-w-[1440px] px-4 pt-5 pb-2 md:px-12 md:pt-7 md:pb-3 lg:px-16">
-        <p className="font-overline text-[11px] font-bold uppercase leading-tight tracking-normal text-accent-red sm:text-[12px] md:text-[13px]">
+      <section className="support-film-hero mx-auto max-w-[1440px] px-4 md:px-12 lg:px-16">
+        <p className="support-film-hero-eyebrow font-header text-[13px] font-black leading-none text-accent-red sm:text-[14px] md:text-[15px] lg:text-[16px]">
           {fundraisingBanner}
         </p>
-        <h1 className="font-header mt-1 text-[38px] font-black leading-[0.95] text-white sm:text-[48px] md:mt-1.5 md:text-[56px] lg:text-[64px]">
+        <h1 className="font-header text-[38px] font-black leading-[0.92] text-white sm:text-[48px] md:text-[56px] lg:text-[64px]">
           {hero.headline}
         </h1>
-        <p className="font-subhead mt-1.5 max-w-[980px] text-[14px] leading-snug text-text-secondary md:mt-2">
+        <p className="font-subhead max-w-[980px] text-[14px] leading-snug text-text-secondary">
           {hero.body}
         </p>
       </section>
