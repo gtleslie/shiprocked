@@ -15,14 +15,7 @@ export function PageShell({ activePage, children }: PageShellProps) {
   return (
     <div className="flex min-h-screen flex-col overflow-x-hidden bg-black">
       <SiteNav activePage={activePage} />
-      {showCabinBanner ? (
-        <div className="cabin-banner-slot">
-          <FundraisingBanner message={siteContent.campaign.cabinBanner} floating />
-        </div>
-      ) : null}
-      <main className={`site-nav-offset flex-1${showCabinBanner ? " site-nav-offset--with-banner" : ""}`}>
-        {children}
-      </main>
+      <main className="site-nav-offset flex-1">{children}</main>
       <SiteFooter />
     </div>
   );

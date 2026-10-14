@@ -8,7 +8,7 @@ export function HeroSection() {
   const { home, assets } = siteContent;
 
   return (
-    <section className="hero-cinematic relative flex flex-col overflow-hidden lg:h-[calc(100dvh-var(--site-nav-height)-6rem)]">
+    <section className="hero-cinematic relative flex flex-col overflow-hidden">
       <Image
         src={assets.homeBackground}
         alt=""
@@ -32,11 +32,11 @@ export function HeroSection() {
       </div>
 
       <div className="relative z-10 mx-auto flex min-h-0 w-full max-w-[1440px] flex-1 flex-col lg:flex-row lg:items-center">
-        <div className="relative z-10 hidden flex-col justify-center px-4 py-6 md:px-12 md:py-10 lg:flex lg:flex-1 lg:basis-[42%] lg:px-10 lg:py-12 xl:px-14">
+        <div className="relative z-10 hidden flex-col justify-center px-4 py-4 md:px-12 md:py-6 lg:flex lg:flex-1 lg:basis-[42%] lg:px-10 lg:py-6 xl:px-14">
           <Logo size="hero" />
         </div>
 
-        <div className="hero-visual relative z-10 flex w-full flex-col items-center px-4 pt-4 pb-5 max-sm:pt-3 max-sm:pb-9 md:px-10 md:py-12 lg:min-h-0 lg:flex-1 lg:basis-[58%] lg:justify-center lg:px-12 lg:py-16">
+        <div className="hero-visual relative z-10 flex w-full flex-col items-center px-4 pt-3 pb-4 max-sm:pt-2 max-sm:pb-6 md:px-10 md:py-6 lg:min-h-0 lg:flex-1 lg:basis-[58%] lg:justify-center lg:px-12 lg:py-6">
           <div className="mb-3 flex w-full shrink-0 justify-center max-sm:mb-1.5 max-sm:-translate-x-[3px] sm:mb-4 lg:hidden">
             <Logo
               size="hero"

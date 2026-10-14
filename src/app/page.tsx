@@ -149,13 +149,8 @@ export default function HomePage() {
         <h2 className="!mt-1 text-[26px] font-black text-white md:text-[36px]">
           {home.campaign.headline}
         </h2>
-        <p className="mt-3 flex flex-wrap items-baseline gap-x-2 gap-y-1 max-sm:mt-2 max-sm:mb-2">
-          <span className="font-overline !tracking-normal text-[18px] font-bold !italic text-accent-red uppercase">
-            {siteContent.campaign.homeDatesSoon}
-          </span>
-          <span className="font-subhead text-[16px] text-text-muted">
-            {siteContent.campaign.homeDates}
-          </span>
+        <p className="font-subhead mt-3 text-[16px] text-text-muted max-sm:mt-2 max-sm:mb-2">
+          {siteContent.campaign.homeDates}
         </p>
         <CampaignProgress variant="home" className="mt-4 max-sm:mt-0 md:mt-8" />
         <SiteButton href="/support" className="mt-8">

@@ -35,8 +35,14 @@ type TierCardProps = {
   index?: number;
 };
 
+function tierBadge(tier: Tier) {
+  if (!("badge" in tier) || typeof tier.badge !== "string") return null;
+  return tier.badge;
+}
+
 export function TierCard({ tier, locked = false, index = 0 }: TierCardProps) {
   const { support, links } = siteContent;
+  const badge = tierBadge(tier);
   const gold = tier.featured || tier.premium;
   const path = wavyPath(320, 540, gold ? 8 : 7, 8);
   const clipId = `${tier.id}-shape`;
@@ -99,9 +105,9 @@ export function TierCard({ tier, locked = false, index = 0 }: TierCardProps) {
         />
       </svg>
 
-      {"badge" in tier && tier.badge && (
+      {badge && (
         <span className="absolute top-5 left-1/2 z-10 -translate-x-1/2 bg-accent-gold px-3 py-1 text-[10px] font-bold tracking-[0.4px] text-black uppercase">
-          {tier.badge}
+          {badge}
         </span>
       )}
 
