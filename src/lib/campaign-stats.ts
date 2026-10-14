@@ -37,12 +37,12 @@ export function getCampaignBarGeometry(raised: number, goal: number) {
   const fillPct = (raised / displayMax) * 100;
   const redWidthPct = Math.min(fillPct, goalMarkerPct);
   const overflowWidthPct = Math.max(0, fillPct - goalMarkerPct);
-  /** Half of the original 11% early-campaign visual floor. */
-  const earlyVisualFloor = 5.5;
-  const visualFillPct = raised > 0 ? Math.max(fillPct, earlyVisualFloor) : 0;
+  const shareOfGoal = raised / safeGoal;
+  /** Bar and Skully ride at true progress (e.g. $11k / $35k ≈ one-third). */
+  const visualFillPct = raised > 0 ? fillPct : 0;
   const displayRedWidthPct =
-    raised <= 0 ? 0 : Math.min(Math.max(redWidthPct, earlyVisualFloor), goalMarkerPct);
-  const skullyLeftPct = raised <= 0 ? 0 : visualFillPct;
+    raised <= 0 ? 0 : Math.min(redWidthPct, goalMarkerPct);
+  const skullyLeftPct = raised <= 0 ? 0 : Math.min(visualFillPct, goalMarkerPct);
   const overGoal = raised > safeGoal;
 
   return {
