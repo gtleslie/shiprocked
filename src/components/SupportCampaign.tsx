@@ -16,10 +16,10 @@ export function SupportMerchSection() {
         <FundraisingBanner />
       </div>
       <section className="mx-auto max-w-[1440px] px-4 pt-5 pb-2 md:px-12 md:pt-7 md:pb-3 lg:px-16">
-        <h1 className="font-header text-[38px] font-black leading-[0.95] text-white sm:text-[48px] md:text-[56px] lg:text-[64px]">
+        <h1 className="font-header text-[38px] font-black leading-[0.95] text-accent-red sm:text-[48px] md:text-[56px] lg:text-[64px]">
           {hero.headline}
         </h1>
-        <p className="font-subhead mt-3 max-w-[980px] text-[15px] leading-relaxed text-white md:mt-4 md:text-[17px] lg:text-[18px]">
+        <p className="font-subhead mt-1.5 max-w-[980px] text-[14px] leading-snug text-text-secondary md:mt-2">
           {hero.body}
         </p>
       </section>
