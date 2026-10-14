@@ -1353,14 +1353,26 @@ body {
   }
 }
 
+.support-seed-spark-cta {
+  padding-top: 1.25rem;
+  padding-bottom: 0.25rem;
+}
+
+@media (min-width: 768px) {
+  .support-seed-spark-cta {
+    padding-top: 1.5rem;
+    padding-bottom: 0.375rem;
+  }
+}
+
 .support-seed-spark-grid {
   align-items: start;
-  margin-top: 1.5rem;
+  margin-top: 1.75rem;
 }
 
 @media (min-width: 768px) {
   .support-seed-spark-grid {
-    margin-top: 1.75rem;
+    margin-top: 2rem;
   }
 }
 

@@ -15,10 +15,12 @@ export default function SupportPage() {
     <PageShell activePage="support">
       <SupportMerchSection />
 
-      <section className="support-seed-spark mx-auto max-w-[1440px] px-4 pt-4 pb-6 md:px-12 md:pt-5 md:pb-8 lg:px-16">
-        <SiteButton href={links.seedAndSpark} newTab>
-          {support.seedAndSpark.cta}
-        </SiteButton>
+      <section className="support-seed-spark mx-auto max-w-[1440px] px-4 pb-6 md:px-12 md:pb-8 lg:px-16">
+        <div className="support-seed-spark-cta">
+          <SiteButton href={links.seedAndSpark} newTab>
+            {support.seedAndSpark.cta}
+          </SiteButton>
+        </div>
 
         <div className="support-seed-spark-grid grid gap-3 lg:gap-x-10">
           <div className="min-w-0 max-w-xl lg:max-w-none lg:pr-2 xl:pr-4">
