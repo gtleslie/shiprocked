@@ -1338,7 +1338,6 @@ body {
 
 .merch-skully {
   position: relative;
-  z-index: 1;
   width: 100%;
   aspect-ratio: 5 / 8;
   overflow: hidden;
@@ -1346,13 +1345,23 @@ body {
 }
 
 .merch-skully-art {
-  transform: scale(1.1);
+  transform: scale(0.94);
   transform-origin: center bottom;
 }
 
 @media (min-width: 640px) {
   .merch-skully-art {
-    transform: scale(1.16);
+    transform: scale(0.96);
+  }
+}
+
+@media (min-width: 1024px) {
+  .merch-skully {
+    padding-right: 0.35rem;
+  }
+
+  .merch-skully-art {
+    transform: scale(0.9);
   }
 }
 
@@ -1369,7 +1378,7 @@ body {
 
   .merch-preview-row {
     grid-template-columns: repeat(6, minmax(0, 1fr));
-    gap: 1rem;
+    gap: 1.25rem;
   }
 
   .merch-preview-carousel-wrap {
