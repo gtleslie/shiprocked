@@ -15,14 +15,12 @@ export default function SupportPage() {
     <PageShell activePage="support">
       <SupportMerchSection />
 
-      <div className="mx-auto max-w-[1440px] px-4 pt-4 md:px-12 md:pt-5 lg:px-16">
+      <section className="support-seed-spark mx-auto max-w-[1440px] px-4 pt-2 pb-4 md:px-12 md:pt-3 md:pb-6 lg:px-16">
         <SiteButton href={links.seedAndSpark} newTab>
           {support.seedAndSpark.cta}
         </SiteButton>
-      </div>
 
-      <section className="mx-auto max-w-[1440px] px-4 pt-4 pb-10 md:px-12 md:pt-5 md:pb-12 lg:px-16">
-        <div className="grid items-center gap-6 lg:grid-cols-[minmax(0,1.35fr)_minmax(0,0.45fr)] lg:gap-x-8">
+        <div className="mt-2 grid items-end gap-4 md:mt-3 lg:grid-cols-[minmax(0,1.35fr)_minmax(0,0.45fr)] lg:gap-x-8">
           <div className="min-w-0 max-w-xl lg:max-w-none lg:pr-4 xl:pr-6">
             <p className="font-overline flex items-center gap-1 !tracking-normal text-[19px] font-bold text-accent-gold uppercase sm:hidden">
               <span>{support.seedAndSpark.overlinePrefix}</span>
@@ -44,7 +42,7 @@ export default function SupportPage() {
               {support.seedAndSpark.body}
             </SectionSubhead>
           </div>
-          <div className="hidden items-center justify-center sm:flex">
+          <div className="hidden items-end justify-center sm:flex lg:justify-end">
             <Image
               src={assets.seedAndSpark}
               alt="Seed & Spark"
