@@ -1401,6 +1401,16 @@ body {
   gap: 0.75rem;
 }
 
+@media (max-width: 639px) {
+  .merch-preview-row {
+    grid-template-columns: 1fr;
+  }
+
+  .merch-skully {
+    display: none;
+  }
+}
+
 .merch-skully {
   position: relative;
   width: 100%;
