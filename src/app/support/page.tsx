@@ -20,7 +20,7 @@ export default function SupportPage() {
           {support.seedAndSpark.cta}
         </SiteButton>
 
-        <div className="support-seed-spark-grid mt-2 grid gap-4 md:mt-3 lg:gap-x-10">
+        <div className="support-seed-spark-grid mt-1 grid gap-3 md:mt-1.5 lg:gap-x-10">
           <div className="min-w-0 max-w-xl lg:max-w-none lg:pr-2 xl:pr-4">
             <p className="font-overline flex items-center gap-1 !tracking-normal text-[19px] font-bold text-accent-gold uppercase sm:hidden">
               <span>{support.seedAndSpark.overlinePrefix}</span>
@@ -35,10 +35,10 @@ export default function SupportPage() {
             <div className="hidden sm:block">
               <SectionLabel>{support.seedAndSpark.overline}</SectionLabel>
             </div>
-            <h2 className="!mt-1 text-[24px] font-black text-white md:text-[28px]">
+            <h2 className="!mt-0.5 text-[24px] font-black text-white md:text-[28px]">
               {support.seedAndSpark.headline}
             </h2>
-            <SectionSubhead className="mt-2 text-[14px] leading-snug text-text-secondary">
+            <SectionSubhead className="mt-1 text-[14px] leading-snug text-text-secondary">
               {support.seedAndSpark.body}
             </SectionSubhead>
           </div>

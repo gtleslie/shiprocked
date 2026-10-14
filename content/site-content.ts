@@ -40,8 +40,8 @@ export const siteContent = {
   },
 
   campaign: {
-    goal: 30000,
-    homeGoal: 30000,
+    goal: 35000,
+    homeGoal: 35000,
     /** Fallback when CAMPAIGN_RAISED env is unset; match Seed & Spark manually or via Vercel env. */
     raised: 0,
     dates: "October 14 - November 13, 2026",
@@ -439,7 +439,7 @@ export const siteContent = {
             "SOS Canvas Tote",
             "Inner Circle Hat",
             "SOS Hoodie",
-            "10 Years Setlist (first 70)",
+            "10 Years Setlist (First 65)",
             "Previous Tier Rewards",
           ],
         },
@@ -451,7 +451,7 @@ export const siteContent = {
           illustration: "/assets/Tier 5.png",
           included: [
             "Oceanview Cabin for Two",
-            "Guitar",
+            "Custom Guitar",
             "Perfect 10 Benefits",
             "Previous Tier Rewards",
           ],
@@ -524,7 +524,7 @@ export const siteContent = {
             "SOS Canvas Tote",
             "Inner Circle Hat",
             "SOS Hoodie",
-            "10 Years Setlist (first 70)",
+            "10 Years Setlist (First 65)",
             "Previous Tier Rewards",
           ],
           featured: false,
@@ -539,7 +539,7 @@ export const siteContent = {
           image: "",
           perks: [
             "Oceanview Cabin for Two",
-            "Guitar",
+            "Custom Guitar",
             "Perfect 10 Benefits",
             "Previous Tier Rewards",
           ],
@@ -552,7 +552,7 @@ export const siteContent = {
       overline: "POWERED BY SEED & SPARK",
       overlinePrefix: "POWERED BY",
       headline: "Built for indie film. Designed for trust.",
-      body: "We're running this campaign through Seed & Spark, the platform built specifically for independent filmmakers: transparent fees, direct filmmaker support, and a community that champions indie stories. More info on the campaign, and rewards for our donors coming #soon!",
+      body: "We're running this campaign through Seed & Spark, the platform built specifically for independent filmmakers: transparent fees, direct filmmaker support, and a community that champions indie stories.",
       cta: "PLEDGE VIA SEED & SPARK →",
     },
   },

@@ -16,6 +16,14 @@ type CampaignGoalMarkerProps = {
   goalLabel: string;
 };
 
+type AnimatedBar = {
+  ride: number;
+  red: number;
+  overflow: number;
+};
+
+const BAR_AT_REST: AnimatedBar = { ride: 0, red: 0, overflow: 0 };
+
 /** Goal line on the track — only when the bar scales past goal (overflow). */
 function CampaignGoalMarker({ leftPct, goalLabel }: CampaignGoalMarkerProps) {
   if (leftPct >= 99.2) return null;
@@ -44,32 +52,42 @@ export function CampaignProgress({
     [raised, effectiveGoal],
   );
 
-  const [ride, setRide] = useState(0);
+  const [animated, setAnimated] = useState<AnimatedBar>(BAR_AT_REST);
   const trackRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const track = trackRef.current;
     if (!track) return;
 
+    const target: AnimatedBar = {
+      ride: geometry.visualFillPct,
+      red: geometry.redWidthPct,
+      overflow: geometry.overflowWidthPct,
+    };
+
+    const apply = () => setAnimated(target);
+
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (reduceMotion) {
-      setRide(geometry.visualFillPct);
+      apply();
       return;
     }
 
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
-          setRide(geometry.visualFillPct);
-          observer.disconnect();
-        }
+        if (entry.isIntersecting) apply();
       },
       { threshold: 0.45 },
     );
 
     observer.observe(track);
+
+    const rect = track.getBoundingClientRect();
+    const inView = rect.top < window.innerHeight * 0.95 && rect.bottom > 0;
+    if (inView) apply();
+
     return () => observer.disconnect();
-  }, [geometry.visualFillPct]);
+  }, [geometry.visualFillPct, geometry.redWidthPct, geometry.overflowWidthPct]);
 
   const raisedLabel = `$${raised.toLocaleString()} RAISED`;
   const goalLabel = `GOAL: $${effectiveGoal.toLocaleString()}`;
@@ -83,14 +101,14 @@ export function CampaignProgress({
         >
           <div
             className="campaign-fill campaign-fill--goal absolute inset-y-0 left-0 rounded-full"
-            style={{ width: `${geometry.redWidthPct}%` }}
+            style={{ width: `${animated.red}%` }}
           />
           {geometry.overflowWidthPct > 0 ? (
             <div
               className="campaign-fill campaign-fill--overflow absolute inset-y-0 rounded-full"
               style={{
                 left: `${geometry.goalMarkerPct}%`,
-                width: `${geometry.overflowWidthPct}%`,
+                width: `${animated.overflow}%`,
               }}
             />
           ) : null}
@@ -120,7 +138,7 @@ export function CampaignProgress({
       <div className="relative overflow-visible pt-[72px] max-sm:pt-[68px] md:pt-[110px]">
         <div
           className="campaign-rider pointer-events-none absolute z-[2] h-[78px] w-[104px] overflow-hidden max-sm:h-[68px] max-sm:w-[90px] md:h-[132px] md:w-[220px]"
-          style={{ left: `${ride}%` }}
+          style={{ left: `${animated.ride}%` }}
         >
           <Image
             src={assets.skullyRide}
@@ -134,7 +152,12 @@ export function CampaignProgress({
         <div className="campaign-track relative h-[24px] w-full overflow-visible rounded-full">
           <div
             className="campaign-fill campaign-fill--goal absolute inset-y-0 left-0 overflow-hidden rounded-full"
-            style={{ width: `${geometry.redWidthPct}%` }}
+            style={{
+              width:
+                animated.red > 0
+                  ? `calc(${animated.red}% + var(--campaign-fill-extra))`
+                  : "0%",
+            }}
           >
             <div className="campaign-wave-body absolute inset-0" />
             <svg
@@ -162,7 +185,7 @@ export function CampaignProgress({
               className="campaign-fill campaign-fill--overflow absolute inset-y-0 overflow-hidden rounded-full"
               style={{
                 left: `${geometry.goalMarkerPct}%`,
-                width: `${geometry.overflowWidthPct}%`,
+                width: `${animated.overflow}%`,
               }}
             >
               <div className="campaign-wave-body campaign-wave-body--overflow absolute inset-0" />
