@@ -61,7 +61,7 @@ export function CampaignProgress({
 
     const target: AnimatedBar = {
       skully: geometry.skullyLeftPct,
-      red: geometry.redWidthPct,
+      red: geometry.displayRedWidthPct,
       overflow: geometry.overflowWidthPct,
     };
 
@@ -87,7 +87,7 @@ export function CampaignProgress({
     if (inView) apply();
 
     return () => observer.disconnect();
-  }, [geometry.skullyLeftPct, geometry.redWidthPct, geometry.overflowWidthPct]);
+  }, [geometry.skullyLeftPct, geometry.displayRedWidthPct, geometry.overflowWidthPct]);
 
   const raisedLabel = `$${raised.toLocaleString()} RAISED`;
   const goalLabel = `GOAL: $${effectiveGoal.toLocaleString()}`;
@@ -152,7 +152,12 @@ export function CampaignProgress({
         <div className="campaign-track relative h-[24px] w-full overflow-visible rounded-full">
           <div
             className={`campaign-fill campaign-fill--goal absolute inset-y-0 left-0 overflow-hidden rounded-full${animated.red > 0 ? " campaign-fill--has-raised" : ""}`}
-            style={{ width: animated.red > 0 ? `${animated.red}%` : "0%" }}
+            style={{
+              width:
+                animated.red > 0
+                  ? `calc(${animated.red}% + var(--campaign-fill-extra-half))`
+                  : "0%",
+            }}
           >
             <div className="campaign-wave-body absolute inset-0" />
             <svg
