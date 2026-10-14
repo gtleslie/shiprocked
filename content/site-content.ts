@@ -31,11 +31,10 @@ export const siteContent = {
 
   links: {
     trailer: "https://www.youtube.com/watch?v=ce-JuEMSmvk",
-    seedAndSpark: "https://seedandspark.com/user/shiprocked-01knmpy4554rbz6ppy7xb7y4vk",
+    seedAndSpark: "https://seedandspark.com/fund/shiprocked",
     instagram: "https://www.instagram.com/storyofshiprocked",
     facebook: "https://www.facebook.com/GetShipRocked/",
-    innerCircle:
-      "https://docs.google.com/forms/d/1KZD-Ogcz0iUF5weKBX-_ZGT5Fn_KoVsRfWWu-P8DzF8/viewform",
+    innerCircle: "https://seedandspark.com/fund/shiprocked",
     youtube: "https://www.youtube.com/@ASK4EntertainmentLLC",
     mailingList: "#",
   },
@@ -598,7 +597,7 @@ export const siteContent = {
       buttons: [
         {
           label: "SEED & SPARK",
-          href: "https://seedandspark.com/user/shiprocked-01knmpy4554rbz6ppy7xb7y4vk",
+          href: "https://seedandspark.com/fund/shiprocked",
           variant: "turquoise" as const,
         },
         { label: "INSTAGRAM", href: "https://www.instagram.com/storyofshiprocked", variant: "outline" as const },

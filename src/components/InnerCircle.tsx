@@ -10,7 +10,7 @@ const LOGO_ANIM_START_SEC = 0.72;
 export function InnerCircle() {
   const { innerCircle } = siteContent.support;
   const { innerCircleLogo, innerCircleJoin } = siteContent.assets;
-  const groupHref = siteContent.links.innerCircle;
+  const groupHref = siteContent.links.seedAndSpark;
   const hasGroupLink = groupHref.startsWith("http");
   const videoRef = useRef<HTMLVideoElement>(null);
   const logoStageRef = useRef<HTMLDivElement>(null);
