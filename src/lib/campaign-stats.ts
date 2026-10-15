@@ -35,12 +35,13 @@ export function getCampaignBarGeometry(raised: number, goal: number) {
   const displayMax = Math.max(safeGoal, raised, 1);
   const goalMarkerPct = (safeGoal / displayMax) * 100;
   const fillPct = (raised / displayMax) * 100;
-  const redWidthPct = Math.min(fillPct, goalMarkerPct);
-  const overflowWidthPct = Math.max(0, fillPct - goalMarkerPct);
   const overGoal = raised > safeGoal;
+  const redWidthPct = Math.min(fillPct, goalMarkerPct);
+  const overflowWidthPct = overGoal ? 0 : Math.max(0, fillPct - goalMarkerPct);
   const visualFillPct = raised > 0 ? fillPct : 0;
-  const displayRedWidthPct = raised <= 0 ? 0 : Math.min(redWidthPct, goalMarkerPct);
-  /** Past goal, ride Skully at the end of the track (full overflow). */
+  /** Past goal: one red fill to the end (no separate overflow segment). */
+  const displayRedWidthPct =
+    raised <= 0 ? 0 : overGoal ? fillPct : Math.min(redWidthPct, goalMarkerPct);
   const skullyLeftPct =
     raised <= 0 ? 0 : overGoal ? fillPct : Math.min(visualFillPct, goalMarkerPct);
 
