@@ -154,9 +154,11 @@ export function CampaignProgress({
             className={`campaign-fill campaign-fill--goal absolute inset-y-0 left-0 overflow-hidden rounded-full${animated.red > 0 ? " campaign-fill--has-raised" : ""}`}
             style={{
               width:
-                animated.red > 0
-                  ? `calc(${animated.red}% + var(--campaign-fill-extra-half))`
-                  : "0%",
+                animated.red <= 0
+                  ? "0%"
+                  : geometry.overGoal || animated.red >= geometry.goalMarkerPct - 0.05
+                    ? `${animated.red}%`
+                    : `calc(${animated.red}% + var(--campaign-fill-extra-half))`,
             }}
           >
             <div className="campaign-wave-body absolute inset-0" />
