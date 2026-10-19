@@ -48,7 +48,7 @@ export const siteContent = {
     homeDatesSoon: "Coming #Soon:",
     homeDates: "October 14th - November 13th",
     datesLabel: "CAMPAIGN: OCT 14 - NOV 13, 2026",
-    fundraisingBanner: "Crowdfunding is Live Now! Ends Nov. 13th",
+    fundraisingBanner: "Crowdfunding is Live Now! Ends Nov. 14th",
     eightyPercentNote:
       "Seed & Spark requires campaigns to reach 80% of goal before funds are released.",
   },
