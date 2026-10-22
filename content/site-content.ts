@@ -30,7 +30,7 @@ export const siteContent = {
   },
 
   links: {
-    trailer: "https://www.youtube.com/watch?v=ce-JuEMSmvk",
+    trailer: "https://vimeo.com/1238055867",
     seedAndSpark: "https://seedandspark.com/fund/shiprocked",
     instagram: "https://www.instagram.com/storyofshiprocked",
     facebook: "https://www.facebook.com/GetShipRocked/",
@@ -95,12 +95,14 @@ export const siteContent = {
       dates: "JANUARY 2027",
       visualLabel: "HERO STILL / POSTER ART",
       watchTrailer: "WATCH TRAILER",
-      youtubeId: "ce-JuEMSmvk",
+      vimeoId: "1238055867",
+      vimeoPoster:
+        "https://i.vimeocdn.com/video/2215055655-090f9bb35b119bdabb6684c493b9f03a10693ceb670c9ac841493ff0d2754ef7-d_1280",
     },
     film: {
       overline: "THE FILM",
       headline: ["A floating world,", "finally documented."],
-      testimonialsYoutubeId: "IPbCpdFxE0k",
+      testimonialsYoutubeId: "ce-JuEMSmvk",
       paragraphs: [
         "For sixteen years, ShipRocked has built something bigger than a music festival: a family. Four thousand people come together for one week in the Caribbean, but the friendships, traditions, and stories live on long after the ship docks.",
         "The Story of ShipRocked follows the people who make that family possible - from ASK4 Entertainment navigating impossible problems more than a year before sailing, to artists becoming part of the community, to fans whose ShipRocked relationships have carried into weddings, funerals, road trips, and everyday life. Through pandemics, near-disasters, changing music, and the beautiful chaos onboard, the film explores what happens when thousands of people find a place where they truly belong.",

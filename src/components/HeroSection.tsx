@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { Logo } from "@/components/Logo";
-import { HeroVideo } from "@/components/HeroVideo";
+import { VimeoHeroVideo } from "@/components/VimeoHeroVideo";
 import { SectionDivider } from "@/components/SectionDivider";
 import { siteContent } from "@content/site-content";
 
@@ -44,7 +44,11 @@ export function HeroSection() {
             />
           </div>
           <div className="w-full min-w-0">
-            <HeroVideo videoId={home.hero.youtubeId} label="trailer" />
+            <VimeoHeroVideo
+              videoId={home.hero.vimeoId}
+              posterUrl={home.hero.vimeoPoster}
+              label="trailer"
+            />
           </div>
         </div>
       </div>
