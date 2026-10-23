@@ -98,8 +98,10 @@ function loadVimeoApi(): Promise<VimeoNamespace> {
   }
 
   return new Promise((resolve, reject) => {
-    const existing = document.querySelector('script[src="https://player.vimeo.com/api/player.js"]');
-    const script = existing ?? document.createElement("script");
+    const existing = document.querySelector<HTMLScriptElement>(
+      'script[src="https://player.vimeo.com/api/player.js"]',
+    );
+    const script: HTMLScriptElement = existing ?? document.createElement("script");
 
     const finish = () => {
       if (window.Vimeo?.Player) resolve(window.Vimeo);
