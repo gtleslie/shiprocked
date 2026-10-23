@@ -40,8 +40,8 @@ export const siteContent = {
   },
 
   campaign: {
-    goal: 75000,
-    homeGoal: 75000,
+    goal: 35000,
+    homeGoal: 35000,
     /** Fallback when CAMPAIGN_RAISED env is unset; match Seed & Spark manually or via Vercel env. */
     raised: 44153,
     dates: "October 14 - November 13, 2026",
