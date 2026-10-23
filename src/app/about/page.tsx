@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { PageShell } from "@/components/PageShell";
 import { BudgetChart } from "@/components/BudgetChart";
+import { CampaignProgress } from "@/components/CampaignProgress";
 import { CharactersCarousel } from "@/components/CharactersCarousel";
 import { TimelineExpandable } from "@/components/TimelineExpandable";
 import { TimelinePhotoCarousel } from "@/components/TimelinePhotoCarousel";
@@ -104,6 +105,7 @@ export default function AboutPage() {
               <h2 className="!mt-1 text-[26px] font-black text-white md:text-[32px]">
                 {about.transparency.headline}
               </h2>
+              <CampaignProgress variant="support" className="mt-5 max-w-xl" />
             </>
           }
           items={about.transparency.breakdown}
