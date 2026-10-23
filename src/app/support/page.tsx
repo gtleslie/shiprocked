@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { PageShell } from "@/components/PageShell";
+import { CampaignProgress } from "@/components/CampaignProgress";
 import { SiteButton } from "@/components/SiteButton";
 import { SectionLabel, SectionSubhead } from "@/components/ImagePlaceholder";
 import {
@@ -54,6 +55,8 @@ export default function SupportPage() {
             />
           </div>
         </div>
+
+        <CampaignProgress variant="support" className="mt-6 md:mt-8" />
       </section>
 
       <SupportInnerCircleSection />

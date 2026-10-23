@@ -97,10 +97,10 @@ export function CampaignProgress({
       <div className={className}>
         <div
           ref={trackRef}
-          className="campaign-track campaign-track--compact relative h-[10px] w-full overflow-visible rounded-full"
+          className="campaign-track campaign-track--compact relative h-[10px] w-full overflow-hidden rounded-full"
         >
           <div
-            className={`campaign-fill campaign-fill--goal absolute inset-y-0 left-0 rounded-full${animated.red > 0 ? " campaign-fill--has-raised" : ""}`}
+            className={`campaign-fill campaign-fill--goal h-full rounded-full${animated.red > 0 ? " campaign-fill--has-raised" : ""}`}
             style={{ width: `${animated.red}%` }}
           />
           {geometry.overflowWidthPct > 0 ? (
