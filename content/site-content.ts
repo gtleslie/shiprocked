@@ -43,7 +43,7 @@ export const siteContent = {
     goal: 75000,
     homeGoal: 75000,
     /** Fallback when CAMPAIGN_RAISED env is unset; match Seed & Spark manually or via Vercel env. */
-    raised: 45000,
+    raised: 44153,
     dates: "October 14 - November 13, 2026",
     homeDatesSoon: "Coming #Soon:",
     homeDates: "October 14th - November 13th",
@@ -238,9 +238,9 @@ export const siteContent = {
           bio: "Silas Grasse is a Marketer and Producer from Philadelphia, PA. He specializes in creating vivid and interactive promotional campaigns for experiential creative projects. As Marketing Producer on The Story of ShipRocked, he leads the film's marketing strategy & execution, and works to bring the ShipRocked story to audiences beyond the ship.",
         },
         {
-          name: "ARCHER MCCRACKEN",
+          name: "ARCHER MACCRACKEN",
           role: "SOUND SUPERVISOR",
-          image: "/assets/Archer MackCracken.png",
+          image: "/assets/Archer MacCracken.png",
           bio: "Archer MacCracken is a Sound Supervisor and Recording Engineer from Washington, D.C., deeply involved in SCAD's film and production community. As head of the post-sound team on The Story of ShipRocked, Archer is shaping the sonic world of the film-from live music and crowd energy to the intimate moments in between.",
         },
         {
