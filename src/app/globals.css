@@ -1399,6 +1399,36 @@ body {
   }
 }
 
+.support-seed-spark-progress {
+  /* Matches the section padding under the bar, down to the diamond divider. */
+  margin-top: 1.5rem;
+}
+
+@media (min-width: 640px) {
+  .support-seed-spark-progress {
+    /* Pull through the logo file's empty pixels so the visible wordmark gap matches. */
+    margin-top: calc(1.5rem - 23.8px);
+  }
+}
+
+@media (min-width: 768px) {
+  .support-seed-spark-progress {
+    margin-top: calc(2rem - 29.7px);
+  }
+}
+
+@media (min-width: 1024px) {
+  .support-seed-spark-progress {
+    margin-top: calc(2rem - 33.3px);
+  }
+}
+
+@media (min-width: 1280px) {
+  .support-seed-spark-progress {
+    margin-top: calc(2rem - 38.1px);
+  }
+}
+
 .support-seed-spark-cta {
   padding-top: 1.75rem;
   padding-bottom: 0.5rem;

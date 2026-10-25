@@ -56,7 +56,7 @@ export default function SupportPage() {
           </div>
         </div>
 
-        <CampaignProgress variant="support" className="mt-6 md:mt-8" />
+        <CampaignProgress variant="support" className="support-seed-spark-progress" />
       </section>
 
       <SupportInnerCircleSection />
