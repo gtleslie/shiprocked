@@ -1219,6 +1219,7 @@ body {
 }
 
 .merch-flip-card {
+  position: relative;
   perspective: 1200px;
   width: 100%;
   height: auto;
@@ -1227,6 +1228,18 @@ body {
   border: 0;
   padding: 0;
   cursor: pointer;
+}
+
+.merch-flip-card > .crew-flip-badge {
+  z-index: 3;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .merch-flip-card:hover > .crew-flip-badge {
+    opacity: 0;
+    pointer-events: none;
+    animation: none;
+  }
 }
 
 .merch-flip-inner {

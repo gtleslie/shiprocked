@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { PageShell } from "@/components/PageShell";
 import { CampaignProgress } from "@/components/CampaignProgress";
 import { SiteButton } from "@/components/SiteButton";
@@ -27,13 +28,21 @@ export default function SupportPage() {
           <div className="min-w-0 max-w-xl lg:max-w-none lg:pr-2 xl:pr-4">
             <p className="font-overline flex items-center gap-1 !tracking-normal text-[19px] font-bold text-accent-gold uppercase sm:hidden">
               <span>{support.seedAndSpark.overlinePrefix}</span>
-              <Image
-                src={assets.seedAndSparkInline}
-                alt="Seed & Spark"
-                width={640}
-                height={120}
-                className="h-[1.1875rem] w-auto max-w-[9.5rem] -translate-x-[2px] object-contain object-left"
-              />
+              <Link
+                href={links.seedAndSpark}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Pledge via Seed & Spark"
+                className="inline-flex transition-opacity hover:opacity-80"
+              >
+                <Image
+                  src={assets.seedAndSparkInline}
+                  alt=""
+                  width={640}
+                  height={120}
+                  className="h-[1.1875rem] w-auto max-w-[9.5rem] -translate-x-[2px] object-contain object-left"
+                />
+              </Link>
             </p>
             <div className="hidden sm:block">
               <SectionLabel>{support.seedAndSpark.overline}</SectionLabel>
@@ -46,13 +55,21 @@ export default function SupportPage() {
             </SectionSubhead>
           </div>
           <div className="support-seed-spark-logo hidden sm:flex">
-            <Image
-              src={assets.seedAndSpark}
-              alt="Seed & Spark"
-              width={1800}
-              height={1353}
-              className="support-seed-spark-logo-img h-auto w-full max-w-[200px] mix-blend-screen md:max-w-[250px] lg:max-w-[280px] xl:max-w-[320px]"
-            />
+            <Link
+              href={links.seedAndSpark}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Pledge via Seed & Spark"
+              className="inline-flex transition-opacity hover:opacity-80"
+            >
+              <Image
+                src={assets.seedAndSpark}
+                alt=""
+                width={1800}
+                height={1353}
+                className="support-seed-spark-logo-img h-auto w-full max-w-[200px] mix-blend-screen md:max-w-[250px] lg:max-w-[280px] xl:max-w-[320px]"
+              />
+            </Link>
           </div>
         </div>
 
