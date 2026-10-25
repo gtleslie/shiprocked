@@ -768,8 +768,8 @@ body {
   }
 }
 
-.crew-flip-card--character .crew-flip-face,
-.crew-flip-card--character .ship-card {
+.crew-flip-card .crew-flip-face,
+.crew-flip-card .ship-card {
   overflow: hidden;
   border-radius: 22px;
 }
