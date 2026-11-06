@@ -361,7 +361,7 @@ export const siteContent = {
   support: {
     hero: {
       headline: "Support the Film",
-      body: "Fuel the next chapter of ShipRocked. Get exclusive rewards, help bring the story to life, and become part\nof the crew that makes this film possible.",
+      body: "Fuel the next chapter of ShipRocked. Get exclusive rewards, help bring the story to life, and become part of the crew that makes this film possible.",
     },
     teaser: {
       badge: "REWARDS INSIDE",
@@ -449,10 +449,10 @@ export const siteContent = {
           id: "tier-guitar",
           name: "Custom Guitar",
           tier: "Add-on",
+          price: 1000,
           illustration: "/assets/merch/custom-guitar.png",
-          showPrice: false,
           included: [
-            "Custom Kramer Focus VT211S electric guitar — mahogany body, Alnico V pickups",
+            "Custom Kramer Focus VT211S electric guitar - mahogany body, Alnico V pickups",
             "Only 5 in stock",
             "Not including other tier items",
           ],
@@ -464,7 +464,8 @@ export const siteContent = {
           price: 6000,
           illustration: "/assets/merch/balcony-cabin-28.png",
           included: [
-            "Window cabin for two (2028 voyage)",
+            "Window Cabin for Two",
+            "Custom Guitar",
             "Perfect 10 Benefits",
             "Previous Tier Rewards",
           ],
@@ -567,7 +568,8 @@ export const siteContent = {
           reward: "Window Cabin for Two",
           image: "/assets/merch/balcony-cabin-28.png",
           perks: [
-            "Window cabin for two (2028 voyage)",
+            "Window Cabin for Two",
+            "Custom Guitar",
             "Perfect 10 Benefits",
             "Previous Tier Rewards",
           ],

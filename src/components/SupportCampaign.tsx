@@ -13,15 +13,25 @@ export function SupportMerchSection() {
   return (
     <>
       <section className="support-film-hero mx-auto max-w-[1440px] px-4 md:px-12 lg:px-16">
-        <p className="support-film-hero-eyebrow font-header text-[13px] font-black leading-none text-accent-red sm:text-[14px] md:text-[15px] lg:text-[16px]">
-          {fundraisingBanner}
-        </p>
-        <h1 className="font-header text-[38px] font-black leading-[0.92] text-white sm:text-[48px] md:text-[56px] lg:text-[64px]">
-          {hero.headline}
-        </h1>
-        <p className="font-subhead max-w-[980px] whitespace-pre-line text-[14px] leading-snug text-text-secondary">
-          {hero.body}
-        </p>
+        <div className="support-film-hero-copy min-w-0">
+          <p className="support-film-hero-eyebrow font-header text-[13px] font-black leading-none text-accent-red sm:text-[14px] md:text-[15px] lg:text-[16px]">
+            {fundraisingBanner}
+          </p>
+          <h1 className="font-header text-[38px] font-black leading-[0.92] text-white sm:text-[48px] md:text-[56px] lg:text-[64px]">
+            {hero.headline}
+          </h1>
+          <p className="support-film-hero-body font-subhead text-[14px] leading-relaxed text-text-secondary">
+            {hero.body}
+          </p>
+        </div>
+        <Image
+          src="/assets/merch/merch-band-banner.png"
+          alt="ShipRocked merchandise"
+          width={1300}
+          height={400}
+          priority
+          className="support-film-hero-merch h-auto w-full"
+        />
       </section>
       <MerchPreviews />
     </>
