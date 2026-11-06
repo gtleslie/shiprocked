@@ -35,8 +35,8 @@ export function SupportMerchSection() {
               src={merchBandBanner}
               alt=""
               fill
-              sizes="(min-width: 1024px) 200px, (min-width: 768px) 25vw, 55vw"
-              className="object-contain object-center md:object-right"
+              sizes="(min-width: 1024px) 360px, (min-width: 768px) 280px, 85vw"
+              className="object-contain object-left"
               priority
             />
           </Link>
