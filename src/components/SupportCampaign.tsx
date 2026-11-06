@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { SectionDivider } from "@/components/SectionDivider";
 import { InnerCircle } from "@/components/InnerCircle";
 import { MerchPreviews } from "@/components/MerchPreviews";
@@ -9,6 +10,7 @@ import { siteContent } from "@content/site-content";
 export function SupportMerchSection() {
   const { hero } = siteContent.support;
   const { fundraisingBanner } = siteContent.campaign;
+  const { merchBandBanner } = siteContent.assets;
 
   return (
     <>
@@ -16,9 +18,29 @@ export function SupportMerchSection() {
         <p className="support-film-hero-eyebrow font-header text-[13px] font-black leading-none text-accent-red sm:text-[14px] md:text-[15px] lg:text-[16px]">
           {fundraisingBanner}
         </p>
-        <h1 className="font-header text-[38px] font-black leading-[0.92] text-white sm:text-[48px] md:text-[56px] lg:text-[64px]">
-          {hero.headline}
-        </h1>
+        <div className="support-film-hero-title-row">
+          <div className="support-film-hero-heading min-w-0">
+            <h1 className="font-header text-[38px] font-black leading-[0.92] text-white sm:text-[48px] md:text-[56px] lg:text-[64px]">
+              {hero.headline}
+            </h1>
+          </div>
+          <Link
+            href={siteContent.links.seedAndSpark}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="View merchandise and pledge on Seed & Spark"
+            className="support-film-merch-banner shrink-0"
+          >
+            <Image
+              src={merchBandBanner}
+              alt=""
+              fill
+              sizes="(min-width: 1024px) 200px, (min-width: 768px) 25vw, 55vw"
+              className="object-contain object-center md:object-right"
+              priority
+            />
+          </Link>
+        </div>
         <p className="font-subhead max-w-[980px] whitespace-pre-line text-[14px] leading-snug text-text-secondary">
           {hero.body}
         </p>
