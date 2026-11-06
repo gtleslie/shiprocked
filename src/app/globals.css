@@ -1508,8 +1508,8 @@ body {
 
 .merch-preview-row {
   display: grid;
-  grid-template-columns: 0.438fr 1fr;
-  align-items: end;
+  grid-template-columns: minmax(0, 1fr) minmax(120px, 0.42fr);
+  align-items: start;
   gap: 0.75rem;
 }
 
@@ -1518,33 +1518,30 @@ body {
     grid-template-columns: 1fr;
   }
 
-  .merch-skully {
-    display: none;
+  .merch-merch-banner {
+    order: 1;
+    max-height: 220px;
+  }
+
+  .merch-preview-carousel-wrap {
+    order: 2;
   }
 }
 
-.merch-skully {
+.merch-merch-banner {
   position: relative;
   width: 100%;
-  aspect-ratio: 5 / 8;
+  min-height: 200px;
+  aspect-ratio: 4 / 5;
+  max-height: 420px;
   overflow: hidden;
   background: transparent;
 }
 
-.merch-skully-art {
-  transform: scale(1.11);
-  transform-origin: center bottom;
-}
-
-@media (min-width: 1024px) {
-  .merch-skully {
-    padding-right: 0.35rem;
-  }
-}
-
 @media (min-width: 640px) {
   .merch-preview-row {
-    grid-template-columns: 1fr 2fr;
+    grid-template-columns: minmax(0, 1.85fr) minmax(140px, 0.6fr);
+    align-items: end;
   }
 }
 
@@ -1556,15 +1553,22 @@ body {
   .merch-preview-row {
     grid-template-columns: repeat(6, minmax(0, 1fr));
     gap: 1.25rem;
+    align-items: end;
   }
 
   .merch-preview-carousel-wrap {
     grid-column: span 5;
   }
 
+  .merch-merch-banner {
+    grid-column: span 1;
+    max-height: none;
+    min-height: 260px;
+  }
+
   .merch-preview-carousel-track {
     display: grid;
-    grid-template-columns: repeat(5, minmax(0, 1fr));
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     overflow: visible;
     gap: 0.75rem;
     margin-top: 0;
@@ -1573,6 +1577,12 @@ body {
   .merch-preview-carousel-card {
     flex: none;
     width: 100%;
+  }
+}
+
+@media (min-width: 1280px) {
+  .merch-preview-carousel-track {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
   }
 }
 

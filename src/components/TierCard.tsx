@@ -132,14 +132,20 @@ export function TierCard({ tier, locked = false, index = 0 }: TierCardProps) {
 
         <div className="mt-3 flex items-start justify-between gap-4">
           <p className="text-[15px] leading-snug font-semibold text-white">{tier.reward}</p>
-          <p
-            className={`teaser-price shrink-0 text-[18px] font-bold ${
-              locked ? "text-[#3a3a3a] blur-[16px] select-none" : "text-accent-gold blur-none"
-            }`}
-            aria-hidden={locked}
-          >
-            ${tier.price.toLocaleString()}
-          </p>
+          {"hidePrice" in tier && tier.hidePrice ? (
+            <p className="teaser-price shrink-0 text-[12px] font-bold tracking-[0.28px] text-accent-gold uppercase">
+              See campaign
+            </p>
+          ) : (
+            <p
+              className={`teaser-price shrink-0 text-[18px] font-bold ${
+                locked ? "text-[#3a3a3a] blur-[16px] select-none" : "text-accent-gold blur-none"
+              }`}
+              aria-hidden={locked}
+            >
+              ${tier.price.toLocaleString()}
+            </p>
+          )}
         </div>
 
         <ul className="mt-4 flex-1 space-y-2">

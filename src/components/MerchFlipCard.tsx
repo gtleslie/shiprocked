@@ -10,6 +10,8 @@ export type MerchPreviewCard = {
   name: string;
   tier: string;
   price?: number;
+  /** When false, back of card omits the price line (e.g. add-on pledges). */
+  showPrice?: boolean;
   illustration: string;
   included: readonly string[];
 };
@@ -56,6 +58,7 @@ function getMobileFlipServerSnapshot() {
 }
 
 export function MerchFlipCard({ card, index = 0 }: MerchFlipCardProps) {
+  const showPrice = card.showPrice !== false;
   const mobileInstantFlip = useSyncExternalStore(
     subscribeMobileFlip,
     getMobileFlipSnapshot,
@@ -121,7 +124,7 @@ export function MerchFlipCard({ card, index = 0 }: MerchFlipCardProps) {
               <h3 className="mt-1 text-[15px] font-bold tracking-[0.2px] text-white sm:text-[16px]">
                 {card.name}
               </h3>
-              {card.price != null ? (
+              {showPrice && card.price != null ? (
                 <p className="mt-1 text-[22px] font-black text-white">${card.price.toLocaleString()}</p>
               ) : null}
               <ul className="mt-3 min-h-0 flex-1 space-y-2 overflow-y-auto pr-1">

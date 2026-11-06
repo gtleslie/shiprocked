@@ -67,7 +67,7 @@ export function RewardGate({
   return (
     <div className="relative overflow-visible">
       <div
-        className={`grid gap-6 overflow-visible md:grid-cols-2 xl:grid-cols-3 ${
+        className={`grid gap-6 overflow-visible md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-6 ${
           open ? "" : "pointer-events-none"
         }`}
         aria-hidden={!open}
