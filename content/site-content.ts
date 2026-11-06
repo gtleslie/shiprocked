@@ -27,7 +27,6 @@ export const siteContent = {
     meetCharactersCrew: "/assets/meet-the-characters-and-film-crew.jpg",
     contactBackground: "/assets/contact-artboard.jpg",
     swagSkully: "/swagskullyfinalfinal.jpeg",
-    merchBandBanner: "/assets/merch/merch-band-banner.png",
   },
 
   links: {
