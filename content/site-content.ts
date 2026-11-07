@@ -464,7 +464,7 @@ export const siteContent = {
           price: 6000,
           illustration: "/assets/merch/balcony-cabin-28.png",
           included: [
-            "Balcony cabin",
+            "Balcony cabin (2028 voyage)",
             "Priority Premiere Access",
             "Perfect 10 Benefits",
             "Previous Tier Rewards",
@@ -568,7 +568,7 @@ export const siteContent = {
           reward: "Balcony Cabin",
           image: "/assets/merch/balcony-cabin-28.png",
           perks: [
-            "Balcony cabin",
+            "Balcony cabin (2028 voyage)",
             "Priority Premiere Access",
             "Perfect 10 Benefits",
             "Previous Tier Rewards",
