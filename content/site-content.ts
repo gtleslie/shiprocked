@@ -451,11 +451,7 @@ export const siteContent = {
           tier: "Add-on",
           price: 1000,
           illustration: "/assets/merch/custom-guitar.png",
-          included: [
-            "Custom Kramer Focus VT211S electric guitar - mahogany body, Alnico V pickups",
-            "Only 5 in stock",
-            "Not including other tier items",
-          ],
+          included: ["Only 5 in stock", "Not including other tier items"],
         },
         {
           id: "tier-5",
@@ -464,8 +460,8 @@ export const siteContent = {
           price: 6000,
           illustration: "/assets/merch/balcony-cabin-28.png",
           included: [
-            "Window Cabin for Two",
-            "Custom Guitar",
+            "Window cabin for two (2028 voyage)",
+            "Priority Premiere Access",
             "Perfect 10 Benefits",
             "Previous Tier Rewards",
           ],
@@ -553,7 +549,6 @@ export const siteContent = {
           reward: "Custom Kramer Focus VT211S",
           image: "/assets/merch/custom-guitar.png",
           perks: [
-            "Mahogany body, Alnico V pickups",
             "Only 5 in stock — not bundled with other tiers",
             "Separate pledge on Seed & Spark",
           ],
@@ -568,8 +563,8 @@ export const siteContent = {
           reward: "Window Cabin for Two",
           image: "/assets/merch/balcony-cabin-28.png",
           perks: [
-            "Window Cabin for Two",
-            "Custom Guitar",
+            "Window cabin for two (2028 voyage)",
+            "Priority Premiere Access",
             "Perfect 10 Benefits",
             "Previous Tier Rewards",
           ],
