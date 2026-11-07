@@ -451,7 +451,11 @@ export const siteContent = {
           tier: "Add-on",
           price: 1000,
           illustration: "/assets/merch/custom-guitar.png",
-          included: ["Only 5 in stock", "Not including other tier items"],
+          included: [
+            "Custom Kramer Focus VT211S electric guitar - mahogany body, Alnico V pickups",
+            "Only 5 in stock",
+            "Not including other tier items",
+          ],
         },
         {
           id: "tier-5",
@@ -549,6 +553,7 @@ export const siteContent = {
           reward: "Custom Kramer Focus VT211S",
           image: "/assets/merch/custom-guitar.png",
           perks: [
+            "Custom Kramer Focus VT211S electric guitar - mahogany body, Alnico V pickups",
             "Only 5 in stock — not bundled with other tiers",
             "Separate pledge on Seed & Spark",
           ],
